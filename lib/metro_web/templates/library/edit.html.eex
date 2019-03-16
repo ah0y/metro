@@ -1,0 +1,5 @@
+<h2>Edit Library</h2>
+
+<%= render "form.html", Map.put(assigns, :action, library_path(@conn, :update, @library)) %>
+
+<span><%= link "Back", to: library_path(@conn, :index) %></span>

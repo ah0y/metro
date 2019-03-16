@@ -1,0 +1,23 @@
+<h2>Show Library</h2>
+
+<ul>
+
+  <li>
+    <strong>Address:</strong>
+    <%= @library.address %>
+  </li>
+
+  <li>
+    <strong>Image:</strong>
+    <%= @library.image %>
+  </li>
+
+  <li>
+    <strong>Hours:</strong>
+    <%= @library.hours %>
+  </li>
+
+</ul>
+
+<span><%= link "Edit", to: library_path(@conn, :edit, @library) %></span>
+<span><%= link "Back", to: library_path(@conn, :index) %></span>

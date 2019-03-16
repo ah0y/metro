@@ -1,0 +1,30 @@
+<h2>Listing Checkouts</h2>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Renewals remaining</th>
+      <th>Checkout date</th>
+      <th>Due date</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for checkout <- @checkouts do %>
+    <tr>
+      <td><%= checkout.renewals_remaining %></td>
+      <td><%= checkout.checkout_date %></td>
+      <td><%= checkout.due_date %></td>
+
+      <td class="text-right">
+        <span><%= link "Show", to: checkout_path(@conn, :show, checkout), class: "btn btn-default btn-xs" %></span>
+        <span><%= link "Edit", to: checkout_path(@conn, :edit, checkout), class: "btn btn-default btn-xs" %></span>
+        <span><%= link "Delete", to: checkout_path(@conn, :delete, checkout), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %></span>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
+
+<span><%= link "New Checkout", to: checkout_path(@conn, :new) %></span>

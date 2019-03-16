@@ -1,0 +1,28 @@
+<h2>Listing Transit</h2>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Estimated arrival</th>
+      <th>Actual arrival</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for transit <- @transit do %>
+    <tr>
+      <td><%= transit.estimated_arrival %></td>
+      <td><%= transit.actual_arrival %></td>
+
+      <td class="text-right">
+        <span><%= link "Show", to: transit_path(@conn, :show, transit), class: "btn btn-default btn-xs" %></span>
+        <span><%= link "Edit", to: transit_path(@conn, :edit, transit), class: "btn btn-default btn-xs" %></span>
+        <span><%= link "Delete", to: transit_path(@conn, :delete, transit), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %></span>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
+
+<span><%= link "New Transit", to: transit_path(@conn, :new) %></span>

@@ -1,0 +1,5 @@
+<h2>Edit Checkout</h2>
+
+<%= render "form.html", Map.put(assigns, :action, checkout_path(@conn, :update, @checkout)) %>
+
+<span><%= link "Back", to: checkout_path(@conn, :index) %></span>

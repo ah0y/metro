@@ -1,0 +1,33 @@
+<h2>Show Book</h2>
+
+<ul>
+
+  <li>
+    <strong>Isbn:</strong>
+    <%= @book.isbn %>
+  </li>
+
+  <li>
+    <strong>Year:</strong>
+    <%= @book.year %>
+  </li>
+
+  <li>
+    <strong>Summary:</strong>
+    <%= @book.summary %>
+  </li>
+
+  <li>
+    <strong>Pages:</strong>
+    <%= @book.pages %>
+  </li>
+
+  <li>
+    <strong>Image:</strong>
+    <%= @book.image %>
+  </li>
+
+</ul>
+
+<span><%= link "Edit", to: book_path(@conn, :edit, @book) %></span>
+<span><%= link "Back", to: book_path(@conn, :index) %></span>
