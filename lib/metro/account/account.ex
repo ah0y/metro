@@ -1,12 +1,12 @@
-defmodule Metro.User do
+defmodule Metro.Account do
   @moduledoc """
-  The User context.
+  The Account context.
   """
 
   import Ecto.Query, warn: false
   alias Metro.Repo
 
-  alias Metro.User.Card
+  alias Metro.Account.Card
 
   @doc """
   Returns the list of cards.

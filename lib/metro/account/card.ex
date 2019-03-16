@@ -1,4 +1,4 @@
-defmodule Metro.User.Card do
+defmodule Metro.Account.Card do
   use Ecto.Schema
   import Ecto.Changeset
 

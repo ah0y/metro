@@ -1,10 +1,10 @@
-defmodule Metro.UserTest do
+defmodule Metro.AccountTest do
   use Metro.DataCase
 
-  alias Metro.User
+  alias Metro.Account
 
   describe "cards" do
-    alias Metro.User.Card
+    alias Metro.Account.Card
 
     @valid_attrs %{pin: 42}
     @update_attrs %{pin: 43}

@@ -1,5 +1,6 @@
 defmodule MetroWeb.Router do
   use MetroWeb, :router
+  use Coherence.Router
 
   pipeline :browser do
     plug :accepts, ["html"]
@@ -7,10 +8,30 @@ defmodule MetroWeb.Router do
     plug :fetch_flash
     plug :protect_from_forgery
     plug :put_secure_browser_headers
+    plug Coherence.Authentication.Session  # Add this
   end
 
   pipeline :api do
     plug :accepts, ["json"]
+  end
+
+  pipeline :protected do
+    plug :accepts, ["html"]
+    plug :fetch_session
+    plug :fetch_flash
+    plug :protect_from_forgery
+    plug :put_secure_browser_headers
+    plug Coherence.Authentication.Session, protected: true
+  end
+
+  scope "/" do
+    pipe_through :browser
+    coherence_routes()
+  end
+
+  scope "/" do
+    pipe_through :protected
+    coherence_routes :protected
   end
 
   scope "/", MetroWeb do
@@ -31,6 +52,13 @@ defmodule MetroWeb.Router do
     resources "/checkouts", CheckoutController
 
     get "/", PageController, :index
+  end
+
+  scope "/", MetroWeb do
+    pipe_through :protected
+
+    # add protected resources below
+    resources "/cards", CardController
   end
 
   # Other scopes may use custom stacks.

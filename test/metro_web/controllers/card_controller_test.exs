@@ -1,7 +1,7 @@
 defmodule MetroWeb.CardControllerTest do
   use MetroWeb.ConnCase
 
-  alias Metro.User
+  alias Metro.Account
 
   @create_attrs %{pin: 42}
   @update_attrs %{pin: 43}

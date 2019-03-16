@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="elixir_uuid" type="mix">
+    <CLASSES>
+      <root url="file://$PROJECT_DIR$/_build/dev/lib/elixir_uuid/ebin" />
+    </CLASSES>
+    <SOURCES>
+      <root url="file://$PROJECT_DIR$/deps/elixir_uuid/lib" />
+    </SOURCES>
+  </library>
+</component>

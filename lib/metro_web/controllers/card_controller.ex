@@ -1,8 +1,8 @@
 defmodule MetroWeb.CardController do
   use MetroWeb, :controller
 
-  alias Metro.User
-  alias Metro.User.Card
+  alias Metro.Account
+  alias Metro.Account.Card
 
   def index(conn, _params) do
     cards = User.list_cards()

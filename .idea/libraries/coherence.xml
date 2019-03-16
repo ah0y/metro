@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="coherence" type="mix">
+    <CLASSES />
+    <SOURCES>
+      <root url="file://$PROJECT_DIR$/deps/coherence/lib" />
+      <root url="file://$PROJECT_DIR$/deps/coherence/priv" />
+    </SOURCES>
+  </library>
+</component>
