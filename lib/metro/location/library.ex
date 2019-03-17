@@ -7,6 +7,7 @@ defmodule Metro.Location.Library do
     field :address, :string
     field :hours, :string
     field :image, :string
+    field :branch, :string
 
     timestamps()
   end
@@ -14,7 +15,7 @@ defmodule Metro.Location.Library do
   @doc false
   def changeset(library, attrs) do
     library
-    |> cast(attrs, [:address, :image, :hours])
-    |> validate_required([:address, :image, :hours])
+    |> cast(attrs, [:branch, :address, :image, :hours])
+    |> validate_required([:branch, :address, :image, :hours])
   end
 end

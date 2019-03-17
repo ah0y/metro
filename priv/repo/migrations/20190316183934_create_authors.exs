@@ -6,7 +6,7 @@ defmodule Metro.Repo.Migrations.CreateAuthors do
       add :first_name, :string
       add :last_name, :string
       add :location, :string
-      add :bio, :string
+      add :bio, :text
 
       timestamps()
     end

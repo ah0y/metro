@@ -1,0 +1,99 @@
+mix phx.gen.html Location Library libraries address:string image:string hours:string branch:string
+
+
+mix phx.gen.schema Library libraries address:string image:string hours:string branch:string
+
+mix phx.gen.html Location Author authors first_name:string last_name:string location:string bio:string 
+
+  mix phx.gen.schema Author authors first_name:string last_name:string location:string bio:string
+
+
+mix phx.gen.html Location Room rooms capacity:integer library_id:references:libraries 
+
+
+
+  mix phx.gen.schema  Room rooms capacity:integer library_id:references:libraries
+
+
+
+mix phx.gen.html Location Book books isbn:integer title:string year:integer summary:string pages:integer image:string author_id:references:authors 
+
+
+  mix phx.gen.schema Book books title:string isbn:integer year:integer summary:string pages:integer image:string author_id:references:authors
+
+
+
+
+
+mix phx.gen.html Location Copy copies checked_out?:boolean library_id:references:libraries isbn:references:books 
+
+  mix phx.gen.schema Copy copies checked_out?:boolean library_id:references:libraries isbn:references:books
+
+
+
+
+
+
+mix phx.gen.html Location Event events description:string images:string datetime:naive_datetime library_id:references:libraries room_id:references:rooms 
+
+
+  mix phx.gen.schema Event events description:string images:string datetime:naive_datetime library_id:references:libraries room_id:references:rooms
+
+mix phx.gen.html Account Member address:string fines:float email:unique:string is_librarian?:boolean num_books_out:integer card_id:references:cards library_id:references:libraries
+
+mix phx.gen.html Account Card cards pin:integer 
+
+
+  mix phx.gen.schema Card cards pin:integer
+
+
+mix phx.gen.html Order Checkout checkouts renewals_remaining:integer checkout_date:naive_datetime due_date:naive_datetime card_id:references:cards bookintsance_id:references:copies library_id:references:libraries 
+
+
+  mix phx.gen.schema Checkout checkouts renewals_remaining:integer checkout_date:naive_datetime due_date:naive_datetime card_id:references:cards copy_id:references:copies library_id:references:libraries
+
+
+
+mix phx.gen.html Order Waitlist waitlist position:integer card_id:references:cards copy_id:references:copies checkout_id:references:checkouts 
+
+
+  mix phx.gen.schema Waitlist waitlists position:integer card_id:references:cards copy_id:references:copies checkout_id:references:checkouts
+
+
+
+
+
+
+mix phx.gen.html Order Transit transit estimated_arrival:naive_datetime actual_arrival:naive_datetime library_id:references:libraries copy_id:references:copies checkout_id:references:checkouts 
+
+
+mix phx.gen.schema Transit transit estimated_arrival:naive_datetime actual_arrival:naive_datetime library_id:references:libraries copy_id:references:copies checkout_id:references:checkouts
+
+
+
+
+mix phx.gen.html Order Reservation reservations expiration_date:naive_datetime card_id:references:cards copy_id:references:copies library_id:references:libraries transit_id:references:transit 
+
+
+   mix phx.gen.schema Reservation reservations expiration_date:naive_datetime card_id:references:cards copy_id:references:copies library_id:references:libraries transit_id:references:transit
+
+
+
+
+    resources "/books", BookController
+    resources "/authors", AuthorController
+    resources "/events", EventController
+    resources "/rooms", RoomController
+    resources "/copies", CopyController
+    resources "/libraries", LibraryController
+
+
+    resources "/cards", CardController
+
+    resources "/transit", TransitController
+    resources "/waitlist", WaitlistController
+    resources "/reservation", ReservationController
+    resources "/checkouts", CheckoutController
+
+
+

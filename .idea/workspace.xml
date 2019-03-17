@@ -2,17 +2,67 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="28208ca7-9f79-48fe-85ed-a2ddb3919f11" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/certifi.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/certifi.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/coherence.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/coherence.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/combine.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/combine.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/comeonin.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/comeonin.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/connection.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/connection.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/cowboy.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/cowboy.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/cowlib.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/cowlib.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/db_connection.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/db_connection.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/decimal.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/decimal.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/ecto.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/ecto.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/elixir_make.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/elixir_make.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/elixir_uuid.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/elixir_uuid.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/gettext.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/gettext.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/hackney.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/hackney.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/idna.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/idna.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/jason.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/jason.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/metrics.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/metrics.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/mime.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/mime.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/mimerl.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/mimerl.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/parse_trans.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/parse_trans.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/phoenix.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/phoenix.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/phoenix_ecto.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/phoenix_ecto.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/phoenix_html.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/phoenix_html.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/phoenix_pubsub.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/phoenix_pubsub.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/phoenix_swoosh.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/phoenix_swoosh.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/plug.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/plug.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/plug_cowboy.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/plug_cowboy.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/plug_crypto.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/plug_crypto.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/poison.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/poison.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/poolboy.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/poolboy.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/postgrex.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/postgrex.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/ranch.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/ranch.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/ssl_verify_fun.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/ssl_verify_fun.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/swoosh.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/swoosh.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/timex.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/timex.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/timex_ecto.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/timex_ecto.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/tzdata.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/tzdata.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/unicode_util_compat.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/unicode_util_compat.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/config/config.exs" beforeDir="false" afterPath="$PROJECT_DIR$/config/config.exs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/metro/user/card.ex" beforeDir="false" afterPath="$PROJECT_DIR$/lib/metro/account/card.ex" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/metro/user/user.ex" beforeDir="false" afterPath="$PROJECT_DIR$/lib/metro/account/account.ex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/metro/account/account.ex" beforeDir="false" afterPath="$PROJECT_DIR$/lib/metro/account/account.ex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/metro/coherence/user.ex" beforeDir="false" afterPath="$PROJECT_DIR$/lib/metro/account/user.ex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/metro/location/book.ex" beforeDir="false" afterPath="$PROJECT_DIR$/lib/metro/location/book.ex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/metro/location/library.ex" beforeDir="false" afterPath="$PROJECT_DIR$/lib/metro/location/library.ex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/metro_web/controllers/book_controller.ex" beforeDir="false" afterPath="$PROJECT_DIR$/lib/metro_web/controllers/book_controller.ex" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/metro_web/controllers/card_controller.ex" beforeDir="false" afterPath="$PROJECT_DIR$/lib/metro_web/controllers/card_controller.ex" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/metro_web/router.ex" beforeDir="false" afterPath="$PROJECT_DIR$/lib/metro_web/router.ex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/metro_web/templates/author/form.html.eex" beforeDir="false" afterPath="$PROJECT_DIR$/lib/metro_web/templates/author/form.html.eex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/metro_web/templates/author/index.html.eex" beforeDir="false" afterPath="$PROJECT_DIR$/lib/metro_web/templates/author/index.html.eex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/metro_web/templates/book/form.html.eex" beforeDir="false" afterPath="$PROJECT_DIR$/lib/metro_web/templates/book/form.html.eex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/metro_web/templates/book/index.html.eex" beforeDir="false" afterPath="$PROJECT_DIR$/lib/metro_web/templates/book/index.html.eex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/metro_web/templates/book/show.html.eex" beforeDir="false" afterPath="$PROJECT_DIR$/lib/metro_web/templates/book/show.html.eex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/metro_web/templates/layout/app.html.eex" beforeDir="false" afterPath="$PROJECT_DIR$/lib/metro_web/templates/layout/app.html.eex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/metro_web/templates/library/form.html.eex" beforeDir="false" afterPath="$PROJECT_DIR$/lib/metro_web/templates/library/form.html.eex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/metro_web/templates/library/index.html.eex" beforeDir="false" afterPath="$PROJECT_DIR$/lib/metro_web/templates/library/index.html.eex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/metro_web/templates/library/show.html.eex" beforeDir="false" afterPath="$PROJECT_DIR$/lib/metro_web/templates/library/show.html.eex" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/metro.iml" beforeDir="false" afterPath="$PROJECT_DIR$/metro.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mix.exs" beforeDir="false" afterPath="$PROJECT_DIR$/mix.exs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mix.lock" beforeDir="false" afterPath="$PROJECT_DIR$/mix.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/metro/user/user_test.exs" beforeDir="false" afterPath="$PROJECT_DIR$/test/metro/user/user_test.exs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/metro_web/controllers/card_controller_test.exs" beforeDir="false" afterPath="$PROJECT_DIR$/test/metro_web/controllers/card_controller_test.exs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/priv/repo/migrations/20190316183930_create_libraries.exs" beforeDir="false" afterPath="$PROJECT_DIR$/priv/repo/migrations/20190316183930_create_libraries.exs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/priv/repo/migrations/20190316183934_create_authors.exs" beforeDir="false" afterPath="$PROJECT_DIR$/priv/repo/migrations/20190316183934_create_authors.exs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/priv/repo/migrations/20190316183944_create_books.exs" beforeDir="false" afterPath="$PROJECT_DIR$/priv/repo/migrations/20190316183944_create_books.exs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/priv/repo/migrations/20190316183952_create_events.exs" beforeDir="false" afterPath="$PROJECT_DIR$/priv/repo/migrations/20190316183952_create_events.exs" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/_build/dev/lib/connection/" />
     <ignored path="$PROJECT_DIR$/_build/dev/lib/cowboy/" />
@@ -49,9 +99,67 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
+      <file leaf-file-name="account.ex" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/lib/metro/account/account.ex">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="375">
+              <caret line="25" lean-forward="true" selection-start-line="25" selection-end-line="25" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="router.ex" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/lib/metro_web/router.ex">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="142">
+              <caret line="30" selection-start-line="30" selection-end-line="30" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="user_controller.ex" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/lib/metro_web/controllers/user_controller.ex">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="89">
+              <caret line="6" column="29" selection-start-line="6" selection-start-column="29" selection-end-line="6" selection-end-column="29" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="location.ex" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/lib/metro/location/location.ex">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="262">
+              <caret line="200" column="7" selection-start-line="200" selection-start-column="2" selection-end-line="200" selection-end-column="7" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="user.ex" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/lib/metro/account/user.ex">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="330">
+              <caret line="22" column="5" selection-start-line="22" selection-start-column="5" selection-end-line="22" selection-end-column="5" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="card.ex" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/lib/metro/account/card.ex">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <caret column="23" selection-start-column="23" selection-end-column="23" />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="config.exs" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/config/config.exs">
-          <provider selected="true" editor-type-id="text-editor" />
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="390">
+              <caret line="26" column="30" selection-start-line="26" selection-start-column="30" selection-end-line="26" selection-end-column="30" />
+            </state>
+          </provider>
         </entry>
       </file>
     </leaf>
@@ -63,10 +171,29 @@
       <find>Metro.User</find>
       <find>Coherence.</find>
       <find>MetroWeb.Coherence.</find>
+      <find>list_books</find>
+      <find>id</find>
+      <find>.Param</find>
+      <find>String.slice</find>
+      <find>defmodule Coherence.</find>
+      <find>Coherence.User</find>
+      <find>account</find>
+      <find>Metro.Coherence.User</find>
+      <find>coherence.user</find>
+      <find>Event</find>
+      <find>Card</find>
+      <find>User</find>
+      <find>defmodule</find>
+      <find>Account</find>
+      <find>Coherence.Schema</find>
+      <find>validate_format</find>
+      <find>alias</find>
       <find>coherence</find>
     </findStrings>
     <replaceStrings>
       <replace>Metro.Account</replace>
+      <replace>Account</replace>
+      <replace>User</replace>
     </replaceStrings>
     <dirStrings>
       <dir>$PROJECT_DIR$/lib/metro_web/channels</dir>
@@ -82,14 +209,38 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/priv/repo/migrations/20190316183949_create_copies.exs" />
-        <option value="$PROJECT_DIR$/priv/repo/migrations/20190316183944_create_books.exs" />
         <option value="$PROJECT_DIR$/priv/repo/migrations/20190316184010_create_reservations.exs" />
         <option value="$PROJECT_DIR$/mix.exs" />
         <option value="$PROJECT_DIR$/priv/repo/migrations/20190316185946_create_coherence_member.exs" />
         <option value="$PROJECT_DIR$/lib/metro/account/card.ex" />
-        <option value="$PROJECT_DIR$/lib/metro/account/user.ex" />
-        <option value="$PROJECT_DIR$/lib/metro_web/router.ex" />
         <option value="$PROJECT_DIR$/priv/repo/migrations/20190316185946_create_coherence_user.exs" />
+        <option value="$PROJECT_DIR$/priv/repo/migrations/20190316193646_create_coherence_user.exs" />
+        <option value="$PROJECT_DIR$/lib/metro_web/templates/book/show.html.eex" />
+        <option value="$PROJECT_DIR$/priv/repo/migrations/20190316183944_create_books.exs" />
+        <option value="$PROJECT_DIR$/priv/repo/migrations/20190316183934_create_authors.exs" />
+        <option value="$PROJECT_DIR$/priv/repo/migrations/20190316183952_create_events.exs" />
+        <option value="$PROJECT_DIR$/lib/metro_web/controllers/book_controller.ex" />
+        <option value="$PROJECT_DIR$/priv/repo/migrations/20190316183930_create_libraries.exs" />
+        <option value="$PROJECT_DIR$/lib/metro_web/templates/library/index.html.eex" />
+        <option value="$PROJECT_DIR$/lib/metro_web/templates/library/form.html.eex" />
+        <option value="$PROJECT_DIR$/lib/metro_web/templates/library/show.html.eex" />
+        <option value="$PROJECT_DIR$/lib/metro/location/library.ex" />
+        <option value="$PROJECT_DIR$/lib/metro/location/book.ex" />
+        <option value="$PROJECT_DIR$/lib/metro_web/templates/author/index.html.eex" />
+        <option value="$PROJECT_DIR$/lib/metro_web/templates/author/form.html.eex" />
+        <option value="$PROJECT_DIR$/lib/metro_web/templates/book/form.html.eex" />
+        <option value="$PROJECT_DIR$/lib/metro_web/templates/book/index.html.eex" />
+        <option value="$PROJECT_DIR$/generator_commands.txt" />
+        <option value="$PROJECT_DIR$/lib/metro_web/controllers/card_controller.ex" />
+        <option value="$PROJECT_DIR$/lib/metro_web/views/user_view.ex" />
+        <option value="$PROJECT_DIR$/lib/metro/account/schemas.ex" />
+        <option value="$PROJECT_DIR$/lib/metro/coherence/user.ex" />
+        <option value="$PROJECT_DIR$/config/config.exs" />
+        <option value="$PROJECT_DIR$/lib/metro_web/templates/layout/app.html.eex" />
+        <option value="$PROJECT_DIR$/lib/metro/account/user.ex" />
+        <option value="$PROJECT_DIR$/lib/metro/account/account.ex" />
+        <option value="$PROJECT_DIR$/lib/metro_web/router.ex" />
+        <option value="$PROJECT_DIR$/lib/metro_web/controllers/user_controller.ex" />
       </list>
     </option>
   </component>
@@ -667,7 +818,7 @@
     </packageJsonPaths>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="398" />
+    <option name="x" value="476" />
     <option name="y" value="23" />
     <option name="width" value="1018" />
     <option name="height" value="969" />
@@ -713,7 +864,28 @@
               <item name="metro" type="b2602c69:ProjectViewProjectNode" />
               <item name="metro" type="462c0819:PsiDirectoryNode" />
               <item name="lib" type="462c0819:PsiDirectoryNode" />
+              <item name="metro" type="462c0819:PsiDirectoryNode" />
+              <item name="coherence" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="metro" type="b2602c69:ProjectViewProjectNode" />
+              <item name="metro" type="462c0819:PsiDirectoryNode" />
+              <item name="lib" type="462c0819:PsiDirectoryNode" />
+              <item name="metro" type="462c0819:PsiDirectoryNode" />
+              <item name="location" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="metro" type="b2602c69:ProjectViewProjectNode" />
+              <item name="metro" type="462c0819:PsiDirectoryNode" />
+              <item name="lib" type="462c0819:PsiDirectoryNode" />
               <item name="metro_web" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="metro" type="b2602c69:ProjectViewProjectNode" />
+              <item name="metro" type="462c0819:PsiDirectoryNode" />
+              <item name="lib" type="462c0819:PsiDirectoryNode" />
+              <item name="metro_web" type="462c0819:PsiDirectoryNode" />
+              <item name="controllers" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="metro" type="b2602c69:ProjectViewProjectNode" />
@@ -728,6 +900,14 @@
               <item name="lib" type="462c0819:PsiDirectoryNode" />
               <item name="metro_web" type="462c0819:PsiDirectoryNode" />
               <item name="views" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="metro" type="b2602c69:ProjectViewProjectNode" />
+              <item name="metro" type="462c0819:PsiDirectoryNode" />
+              <item name="lib" type="462c0819:PsiDirectoryNode" />
+              <item name="metro_web" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="coherence" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="metro" type="b2602c69:ProjectViewProjectNode" />
@@ -754,7 +934,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="SearchEverywhereHistoryKey" value="router.e&#9;FILE&#9;file:///Users/aberhamhaile/Downloads/code/metro/lib/metro_web/router.ex&#10;router.ex&#9;FILE&#9;file:///Users/aberhamhaile/Downloads/code/metro/lib/metro_web/router.ex&#10;session&#9;FILE&#9;file:///Users/aberhamhaile/Downloads/code/metro/lib/metro_web/templates/coherence/session&#10;mix.exs&#9;FILE&#9;file:///Users/aberhamhaile/Downloads/code/metro/mix.exs&#10;routere&#9;FILE&#9;file:///Users/aberhamhaile/Downloads/code/metro/lib/metro_web/router.ex" />
+    <property name="SearchEverywhereHistoryKey" value="user_cont&#9;FILE&#9;file:///Users/aberhamhaile/Downloads/code/metro/lib/metro_web/controllers/user_controller.ex&#10;router.ex&#9;FILE&#9;file:///Users/aberhamhaile/Downloads/code/metro/lib/metro_web/router.ex&#10;app.ht&#9;FILE&#9;file:///Users/aberhamhaile/Downloads/code/metro/lib/metro_web/templates/layout/app.html.eex&#10;router.e&#9;FILE&#9;file:///Users/aberhamhaile/Downloads/code/metro/lib/metro_web/router.ex&#10;router&#9;FILE&#9;file:///Users/aberhamhaile/Downloads/code/metro/lib/metro_web/router.ex&#10;app.html&#9;FILE&#9;file:///Users/aberhamhaile/Downloads/code/metro/lib/metro_web/templates/layout/app.html.eex&#10;book\index&#9;FILE&#9;file:///Users/aberhamhaile/Downloads/code/metro/lib/metro_web/templates/book/index.html.eex&#10;author\inde&#9;FILE&#9;file:///Users/aberhamhaile/Downloads/code/metro/lib/metro_web/templates/author/index.html.eex&#10;author/form&#9;FILE&#9;file:///Users/aberhamhaile/Downloads/code/metro/lib/metro_web/templates/author/form.html.eex&#10;book/form&#9;FILE&#9;file:///Users/aberhamhaile/Downloads/code/metro/lib/metro_web/templates/book/form.html.eex&#10;book/new&#9;FILE&#9;file:///Users/aberhamhaile/Downloads/code/metro/lib/metro_web/templates/book/new.html.eex&#10;router.&#9;FILE&#9;file:///Users/aberhamhaile/Downloads/code/metro/lib/metro_web/router.ex&#10;book.e&#9;FILE&#9;file:///Users/aberhamhaile/Downloads/code/metro/lib/metro/location/book.ex&#10;book_cont&#9;FILE&#9;file:///Users/aberhamhaile/Downloads/code/metro/lib/metro_web/controllers/book_controller.ex&#10;library&#9;FILE&#9;file:///Users/aberhamhaile/Downloads/code/metro/lib/metro/location/library.ex&#10;templates/libra&#9;FILE&#9;file:///Users/aberhamhaile/Downloads/code/metro/lib/metro_web/templates/library&#10;library/index&#9;FILE&#9;file:///Users/aberhamhaile/Downloads/code/metro/lib/metro_web/templates/library/index.html.eex&#10;book/inde&#9;FILE&#9;file:///Users/aberhamhaile/Downloads/code/metro/lib/metro_web/templates/book/index.html.eex&#10;book/indx&#9;null&#9;null&#10;book.ex&#9;FILE&#9;file:///Users/aberhamhaile/Downloads/code/metro/lib/metro/location/book.ex&#10;book_contr&#9;FILE&#9;file:///Users/aberhamhaile/Downloads/code/metro/lib/metro_web/controllers/book_controller.ex&#10;templates/book&#9;FILE&#9;file:///Users/aberhamhaile/Downloads/code/metro/lib/metro_web/templates/book&#10; book.ex&#9;FILE&#9;file:///Users/aberhamhaile/Downloads/code/metro/lib/metro/location/book.ex&#10;book/index&#9;FILE&#9;file:///Users/aberhamhaile/Downloads/code/metro/lib/metro_web/templates/book/index.html.eex&#10;templates/book/form&#9;FILE&#9;file:///Users/aberhamhaile/Downloads/code/metro/lib/metro_web/templates/book/form.html.eex&#10;session&#9;FILE&#9;file:///Users/aberhamhaile/Downloads/code/metro/lib/metro_web/templates/coherence/session&#10;mix.exs&#9;FILE&#9;file:///Users/aberhamhaile/Downloads/code/metro/mix.exs&#10;routere&#9;FILE&#9;file:///Users/aberhamhaile/Downloads/code/metro/lib/metro_web/router.ex" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
@@ -763,7 +943,9 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/lib/metro/coherence" />
       <recent name="$PROJECT_DIR$/lib/metro/account" />
+      <recent name="$PROJECT_DIR$" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -788,15 +970,15 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1552761691582</updated>
-      <workItem from="1552761692942" duration="2985000" />
+      <workItem from="1552761692942" duration="14916000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="2985000" />
+    <option name="totallyTimeSpent" value="14916000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="398" y="23" width="1018" height="969" extended-state="0" />
+    <frame x="476" y="23" width="1018" height="969" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -826,31 +1008,16 @@
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <option name="time" value="1" />
+    </breakpoint-manager>
+  </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/priv/repo/migrations/20190316183930_create_libraries.exs">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/priv/repo/migrations/20190316183934_create_authors.exs">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/priv/repo/migrations/20190316183949_create_copies.exs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="195">
           <caret line="13" column="35" selection-start-line="13" selection-start-column="35" selection-end-line="13" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/priv/repo/migrations/20190316183944_create_books.exs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" column="36" selection-start-line="5" selection-start-column="36" selection-end-line="5" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/priv/repo/migrations/20190316183940_create_rooms.exs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="14" selection-start-line="14" selection-end-line="14" />
         </state>
       </provider>
     </entry>
@@ -868,20 +1035,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/metro/account/card.ex">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="23" selection-start-column="23" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/metro_web/router.ex">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1020">
-          <caret line="68" selection-start-line="68" selection-end-line="68" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/mix.exs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="291">
@@ -891,33 +1044,272 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/priv/repo/migrations/20190316185946_create_coherence_user.exs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="14" column="66" selection-start-line="14" selection-start-column="66" selection-end-line="14" selection-end-column="66" />
+        <state relative-caret-position="270">
+          <caret line="18" selection-start-line="18" selection-end-line="20" selection-end-column="39" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/metro/account/account.ex">
+    <entry file="file://$PROJECT_DIR$/lib/metro/location/copy.ex">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/priv/repo/migrations/20190316183944_create_books.exs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="8" column="25" selection-start-line="8" selection-start-column="25" selection-end-line="8" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/priv/repo/migrations/20190316183934_create_authors.exs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
           <caret line="8" column="21" selection-start-line="8" selection-start-column="21" selection-end-line="8" selection-end-column="21" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/metro/coherence/schemas.ex">
+    <entry file="file://$PROJECT_DIR$/priv/repo/migrations/20190316183940_create_rooms.exs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="10" column="26" lean-forward="true" selection-start-line="10" selection-start-column="26" selection-end-line="10" selection-end-column="26" />
+        <state relative-caret-position="210">
+          <caret line="14" selection-start-line="14" selection-end-line="14" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/metro/coherence/user.ex">
+    <entry file="file://$PROJECT_DIR$/priv/repo/migrations/20190316183952_create_events.exs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="6" column="26" lean-forward="true" selection-start-line="6" selection-start-column="26" selection-end-line="6" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/metro_web/templates/book/show.html.eex">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="11" column="21" selection-start-line="11" selection-start-column="21" selection-end-line="11" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/metro_web/templates/book/edit.html.eex">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="5" lean-forward="true" selection-start-line="5" selection-end-line="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/metro_web/templates/library/edit.html.eex">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/metro_web/templates/library/form.html.eex">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="9" column="29" selection-start-line="9" selection-start-column="29" selection-end-line="9" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/metro_web/templates/library/index.html.eex">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="16" column="31" selection-start-line="16" selection-start-column="31" selection-end-line="16" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/metro_web/templates/library/new.html.eex">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/metro_web/templates/library/show.html.eex">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="14" column="6" selection-start-line="14" selection-start-column="6" selection-end-line="14" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/priv/repo/migrations/20190316183930_create_libraries.exs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="13" column="5" selection-start-line="13" selection-start-column="5" selection-end-line="13" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/metro/location/library.ex">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="6" column="27" selection-start-line="6" selection-start-column="27" selection-end-line="6" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/metro_web/controllers/book_controller.ex">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="217">
+          <caret line="17" column="45" selection-start-line="17" selection-start-column="45" selection-end-line="17" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/metro/location/book.ex">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="8" selection-start-line="8" selection-end-line="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/metro_web/templates/author/index.html.eex">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="315">
+          <caret line="21" column="29" lean-forward="true" selection-start-line="21" selection-start-column="29" selection-end-line="21" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/metro_web/templates/author/form.html.eex">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="405">
+          <caret line="27" column="12" selection-start-line="27" selection-start-column="12" selection-end-line="27" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/metro_web/templates/book/form.html.eex">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="315">
+          <caret line="21" column="55" lean-forward="true" selection-start-line="21" selection-start-column="55" selection-end-line="21" selection-end-column="55" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/metro_web/templates/book/new.html.eex">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dump.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2531" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/metro_web/templates/book/index.html.eex">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="14" column="9" lean-forward="true" selection-start-line="14" selection-start-column="9" selection-end-line="14" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/generator_commands.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="264">
+          <caret line="41" column="179" selection-start-line="41" selection-start-column="179" selection-end-line="41" selection-end-column="179" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/priv/repo/migrations/20190316193646_create_coherence_user.exs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" lean-forward="true" selection-start-line="4" selection-end-line="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/metro_web/controllers/checkout_controller.ex">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/metro_web/controllers/copy_controller.ex">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/metro_web/controllers/author_controller.ex">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/lib/metro_web/controllers/coherence/responders/html.ex">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/config/config.exs">
+    <entry file="file://$PROJECT_DIR$/lib/metro_web/controllers/coherence/responders/json.ex">
       <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/metro_web/controllers/coherence/redirects.ex">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/metro_web/views/card_view.ex">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret selection-end-line="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/metro_web/controllers/card_controller.ex">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="184">
+          <caret line="22" column="32" selection-end-line="60" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/metro_web/views/user_view.ex">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="3" lean-forward="true" selection-start-line="3" selection-end-line="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/metro_web/coherence_messages.ex">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/metro_web/coherence_web.ex">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="11" column="14" lean-forward="true" selection-start-line="11" selection-start-column="14" selection-end-line="11" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/metro_web/templates/layout/app.html.eex">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="388">
+          <caret line="35" column="60" selection-start-line="35" selection-end-line="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/metro/location/location.ex">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="262">
+          <caret line="200" column="7" selection-start-line="200" selection-start-column="2" selection-end-line="200" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/metro/account/user.ex">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="22" column="5" selection-start-line="22" selection-start-column="5" selection-end-line="22" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/metro/coherence/schemas.ex">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="12" selection-start-line="12" selection-end-line="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/metro/account/card.ex">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="23" selection-start-column="23" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/metro_web/controllers/user_controller.ex">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="89">
+          <caret line="6" column="29" selection-start-line="6" selection-start-column="29" selection-end-line="6" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/metro_web/router.ex">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="142">
+          <caret line="30" selection-start-line="30" selection-end-line="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/metro/account/account.ex">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="375">
+          <caret line="25" lean-forward="true" selection-start-line="25" selection-end-line="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/config.exs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="390">
+          <caret line="26" column="30" selection-start-line="26" selection-start-column="30" selection-end-line="26" selection-end-column="30" />
+        </state>
+      </provider>
     </entry>
   </component>
 </project>

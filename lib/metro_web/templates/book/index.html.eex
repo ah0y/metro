@@ -3,23 +3,24 @@
 <table class="table">
   <thead>
     <tr>
+      <th>Image</th>
       <th>Isbn</th>
+      <th>Title</th>
       <th>Year</th>
       <th>Summary</th>
       <th>Pages</th>
-      <th>Image</th>
-
       <th></th>
     </tr>
   </thead>
   <tbody>
 <%= for book <- @books do %>
     <tr>
+      <td><img src="<%= book.image %>"height="360" width="233"</img></td>
       <td><%= book.isbn %></td>
+      <td><%= book.title %></td>
       <td><%= book.year %></td>
-      <td><%= book.summary %></td>
+      <td><%= String.slice(book.summary, 0..20) %></td>
       <td><%= book.pages %></td>
-      <td><%= book.image %></td>
 
       <td class="text-right">
         <span><%= link "Show", to: book_path(@conn, :show, book), class: "btn btn-default btn-xs" %></span>

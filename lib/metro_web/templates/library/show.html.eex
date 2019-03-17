@@ -3,6 +3,11 @@
 <ul>
 
   <li>
+    <strong>Branch:</strong>
+    <%= @library.branch %>
+  </li>
+
+  <li>
     <strong>Address:</strong>
     <%= @library.address %>
   </li>

@@ -3,7 +3,7 @@ defmodule Metro.Repo.Migrations.CreateEvents do
 
   def change do
     create table(:events) do
-      add :description, :string
+      add :description, :text
       add :images, :string
       add :datetime, :naive_datetime
       add :library_id, references(:libraries, on_delete: :nothing)

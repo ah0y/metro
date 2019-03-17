@@ -11,6 +11,12 @@
     <%= error_tag f, :isbn %>
   </div>
 
+    <div class="form-group">
+      <%= label f, :title, class: "control-label" %>
+      <%= text_input f, :title, class: "form-control" %>
+      <%= error_tag f, :title %>
+    </div>
+
   <div class="form-group">
     <%= label f, :year, class: "control-label" %>
     <%= number_input f, :year, class: "form-control" %>
@@ -19,7 +25,7 @@
 
   <div class="form-group">
     <%= label f, :summary, class: "control-label" %>
-    <%= text_input f, :summary, class: "form-control" %>
+    <%= textarea f, :summary, class: "form-control" %>
     <%= error_tag f, :summary %>
   </div>
 

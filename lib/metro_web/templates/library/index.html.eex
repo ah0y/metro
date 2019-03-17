@@ -3,6 +3,7 @@
 <table class="table">
   <thead>
     <tr>
+      <th>Branch</th>
       <th>Address</th>
       <th>Image</th>
       <th>Hours</th>
@@ -13,6 +14,7 @@
   <tbody>
 <%= for library <- @libraries do %>
     <tr>
+      <td><%= library.branch %></td>
       <td><%= library.address %></td>
       <td><%= library.image %></td>
       <td><%= library.hours %></td>

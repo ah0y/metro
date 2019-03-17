@@ -5,17 +5,17 @@ defmodule MetroWeb.CardController do
   alias Metro.Account.Card
 
   def index(conn, _params) do
-    cards = User.list_cards()
+    cards = Account.list_cards()
     render(conn, "index.html", cards: cards)
   end
 
   def new(conn, _params) do
-    changeset = User.change_card(%Card{})
+    changeset = Account.change_card(%Card{})
     render(conn, "new.html", changeset: changeset)
   end
 
   def create(conn, %{"card" => card_params}) do
-    case User.create_card(card_params) do
+    case Account.create_card(card_params) do
       {:ok, card} ->
         conn
         |> put_flash(:info, "Card created successfully.")
@@ -26,20 +26,20 @@ defmodule MetroWeb.CardController do
   end
 
   def show(conn, %{"id" => id}) do
-    card = User.get_card!(id)
+    card = Account.get_card!(id)
     render(conn, "show.html", card: card)
   end
 
   def edit(conn, %{"id" => id}) do
-    card = User.get_card!(id)
-    changeset = User.change_card(card)
+    card = Account.get_card!(id)
+    changeset = Account.change_card(card)
     render(conn, "edit.html", card: card, changeset: changeset)
   end
 
   def update(conn, %{"id" => id, "card" => card_params}) do
-    card = User.get_card!(id)
+    card = Account.get_card!(id)
 
-    case User.update_card(card, card_params) do
+    case Account.update_card(card, card_params) do
       {:ok, card} ->
         conn
         |> put_flash(:info, "Card updated successfully.")
@@ -50,8 +50,8 @@ defmodule MetroWeb.CardController do
   end
 
   def delete(conn, %{"id" => id}) do
-    card = User.get_card!(id)
-    {:ok, _card} = User.delete_card(card)
+    card = Account.get_card!(id)
+    {:ok, _card} = Account.delete_card(card)
 
     conn
     |> put_flash(:info, "Card deleted successfully.")

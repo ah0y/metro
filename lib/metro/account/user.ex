@@ -1,4 +1,4 @@
-defmodule Metro.Coherence.User do
+defmodule Metro.Account.User do
   @moduledoc false
   use Ecto.Schema
   use Coherence.Schema

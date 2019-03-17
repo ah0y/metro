@@ -6,6 +6,7 @@ defmodule Metro.Repo.Migrations.CreateLibraries do
       add :address, :string
       add :image, :string
       add :hours, :string
+      add :branch, :string
 
       timestamps()
     end

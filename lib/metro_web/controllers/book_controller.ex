@@ -25,19 +25,19 @@ defmodule MetroWeb.BookController do
     end
   end
 
-  def show(conn, %{"id" => id}) do
-    book = Location.get_book!(id)
+  def show(conn, %{"isbn" => isbn}) do
+    book = Location.get_book!(isbn)
     render(conn, "show.html", book: book)
   end
 
-  def edit(conn, %{"id" => id}) do
-    book = Location.get_book!(id)
+  def edit(conn, %{"isbn" => isbn}) do
+    book = Location.get_book!(isbn)
     changeset = Location.change_book(book)
     render(conn, "edit.html", book: book, changeset: changeset)
   end
 
-  def update(conn, %{"id" => id, "book" => book_params}) do
-    book = Location.get_book!(id)
+  def update(conn, %{"isbn" => isbn, "book" => book_params}) do
+    book = Location.get_book!(isbn)
 
     case Location.update_book(book, book_params) do
       {:ok, book} ->
@@ -49,8 +49,8 @@ defmodule MetroWeb.BookController do
     end
   end
 
-  def delete(conn, %{"id" => id}) do
-    book = Location.get_book!(id)
+  def delete(conn, %{"isbn" => isbn}) do
+    book = Location.get_book!(isbn)
     {:ok, _book} = Location.delete_book(book)
 
     conn

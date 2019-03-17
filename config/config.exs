@@ -30,7 +30,7 @@ import_config "#{Mix.env}.exs"
 
 # %% Coherence Configuration %%   Don't remove this line
 config :coherence,
-  user_schema: Metro.Coherence.User,
+  user_schema: Metro.Account.User,
   repo: Metro.Repo,
   module: Metro,
   web_module: MetroWeb,

@@ -37,13 +37,14 @@ defmodule MetroWeb.Router do
   scope "/", MetroWeb do
     pipe_through :browser # Use the default browser stack
 
-    resources "/books", BookController
+    resources "/books", BookController, param: "isbn"
     resources "/authors", AuthorController
     resources "/events", EventController
     resources "/rooms", RoomController
     resources "/copies", CopyController
     resources "/libraries", LibraryController
 
+    resources "/users", UserController
     resources "/cards", CardController
 
     resources "/transit", TransitController
