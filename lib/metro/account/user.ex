@@ -8,6 +8,12 @@ defmodule Metro.Account.User do
   schema "users" do
     field :name, :string
     field :email, :string
+
+    field :fines, :float
+    field :is_librarian?, :boolean, default: false
+    field :num_books_out, :integer
+    field :card_id, :id
+    field :library_id, :id
     coherence_schema()
 
     timestamps()

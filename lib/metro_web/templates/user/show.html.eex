@@ -1,0 +1,38 @@
+<h2>Show User</h2>
+
+<ul>
+
+  <li>
+    <strong>Name:</strong>
+    <%= @user.name %>
+  </li>
+
+    <li>
+      <strong>Email:</strong>
+      <%= @user.email %>
+    </li>
+
+  <li>
+    <strong>Fines:</strong>
+    <%= @user.fines %>
+  </li>
+
+  <li>
+    <strong>Is_librarian?:</strong>
+    <%= @user.is_librarian? %>
+  </li>
+
+  <li>
+    <strong>Num of books out:</strong>
+    <%= @user.pages %>
+  </li>
+
+  <li>
+    <strong>Image:</strong>
+    <%= @user.num_books_out %>
+  </li>
+
+</ul>
+
+<span><%= link "Edit", to: user_path(@conn, :edit, @user) %></span>
+<span><%= link "Back", to: user_path(@conn, :index) %></span>
