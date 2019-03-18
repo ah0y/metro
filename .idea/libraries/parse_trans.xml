@@ -1,5 +1,5 @@
 <component name="libraryTable">
-  <library name="parse_trans" type="mix">
+  <library name="parse_trans">
     <CLASSES>
       <root url="file://$PROJECT_DIR$/_build/dev/lib/parse_trans/ebin" />
       <root url="file://$PROJECT_DIR$/_build/test/lib/parse_trans/ebin" />

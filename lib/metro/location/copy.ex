@@ -6,7 +6,7 @@ defmodule Metro.Location.Copy do
   schema "copies" do
     field :checked_out?, :boolean, default: false
     field :library_id, :id
-    field :ISBN, :id
+    field :isbn_id, :id
 
     timestamps()
   end

@@ -25,9 +25,9 @@ mix phx.gen.html Location Book books isbn:integer title:string year:integer summ
 
 
 
-mix phx.gen.html Location Copy copies checked_out?:boolean library_id:references:libraries isbn:references:books 
+mix phx.gen.html Location Copy copies checked_out?:boolean library_id:references:libraries isbn_id:references:books
 
-  mix phx.gen.schema Copy copies checked_out?:boolean library_id:references:libraries isbn:references:books
+  mix phx.gen.schema Copy copies checked_out?:boolean library_id:references:libraries isbn_id:references:books
 
 
 

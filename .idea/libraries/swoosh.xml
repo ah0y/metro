@@ -1,5 +1,5 @@
 <component name="libraryTable">
-  <library name="swoosh" type="mix">
+  <library name="swoosh">
     <CLASSES>
       <root url="file://$PROJECT_DIR$/_build/dev/lib/swoosh/ebin" />
       <root url="file://$PROJECT_DIR$/_build/test/lib/swoosh/ebin" />

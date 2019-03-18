@@ -1,5 +1,5 @@
 <component name="libraryTable">
-  <library name="unicode_util_compat" type="mix">
+  <library name="unicode_util_compat">
     <CLASSES>
       <root url="file://$PROJECT_DIR$/_build/dev/lib/unicode_util_compat/ebin" />
       <root url="file://$PROJECT_DIR$/_build/test/lib/unicode_util_compat/ebin" />

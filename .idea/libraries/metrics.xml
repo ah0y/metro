@@ -1,5 +1,5 @@
 <component name="libraryTable">
-  <library name="metrics" type="mix">
+  <library name="metrics">
     <CLASSES>
       <root url="file://$PROJECT_DIR$/_build/dev/lib/metrics/ebin" />
       <root url="file://$PROJECT_DIR$/_build/test/lib/metrics/ebin" />

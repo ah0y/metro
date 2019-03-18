@@ -1,5 +1,5 @@
 <component name="libraryTable">
-  <library name="certifi" type="mix">
+  <library name="certifi">
     <CLASSES>
       <root url="file://$PROJECT_DIR$/_build/dev/lib/certifi/ebin" />
       <root url="file://$PROJECT_DIR$/_build/test/lib/certifi/ebin" />

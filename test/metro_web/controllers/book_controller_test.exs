@@ -4,7 +4,7 @@ defmodule MetroWeb.BookControllerTest do
   alias Metro.Location
 
   @create_attrs %{image: "some image", isbn: 42, pages: 42, summary: "some summary", year: 42}
-  @update_attrs %{image: "some updated image", isbn: 43, pages: 43, summary: "some updated summary", year: 43}
+  @update_attrs %{image: "some updated image", isbn: 42, pages: 43, summary: "some updated summary", year: 43}
   @invalid_attrs %{image: nil, isbn: nil, pages: nil, summary: nil, year: nil}
 
   def fixture(:book) do
@@ -30,10 +30,10 @@ defmodule MetroWeb.BookControllerTest do
     test "redirects to show when data is valid", %{conn: conn} do
       conn = post conn, book_path(conn, :create), book: @create_attrs
 
-      assert %{id: id} = redirected_params(conn)
-      assert redirected_to(conn) == book_path(conn, :show, id)
+      assert %{isbn: isbn} = redirected_params(conn)
+      assert redirected_to(conn) == book_path(conn, :show, isbn)
 
-      conn = get conn, book_path(conn, :show, id)
+      conn = get conn, book_path(conn, :show, isbn)
       assert html_response(conn, 200) =~ "Show Book"
     end
 

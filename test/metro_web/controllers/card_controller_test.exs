@@ -8,7 +8,7 @@ defmodule MetroWeb.CardControllerTest do
   @invalid_attrs %{pin: nil}
 
   def fixture(:card) do
-    {:ok, card} = User.create_card(@create_attrs)
+    {:ok, card} = Account.create_card(@create_attrs)
     card
   end
 

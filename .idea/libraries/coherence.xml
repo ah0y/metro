@@ -1,5 +1,5 @@
 <component name="libraryTable">
-  <library name="coherence" type="mix">
+  <library name="coherence">
     <CLASSES>
       <root url="file://$PROJECT_DIR$/_build/dev/lib/coherence/ebin" />
       <root url="file://$PROJECT_DIR$/_build/test/lib/coherence/ebin" />

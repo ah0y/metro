@@ -6,8 +6,8 @@ defmodule Metro.LocationTest do
   describe "libraries" do
     alias Metro.Location.Library
 
-    @valid_attrs %{address: "some address", hours: "some hours", image: "some image"}
-    @update_attrs %{address: "some updated address", hours: "some updated hours", image: "some updated image"}
+    @valid_attrs %{address: "some address", hours: "some hours", image: "some image", branch: "some branch"}
+    @update_attrs %{address: "some updated address", hours: "some updated hours", image: "some updated image", branch: "some updated branch"}
     @invalid_attrs %{address: nil, hours: nil, image: nil}
 
     def library_fixture(attrs \\ %{}) do
@@ -216,7 +216,7 @@ defmodule Metro.LocationTest do
 
     test "get_book!/1 returns the book with given id" do
       book = book_fixture()
-      assert Location.get_book!(book.id) == book
+      assert Location.get_book!(book.isbn) == book
     end
 
     test "create_book/1 with valid data creates a book" do
@@ -246,13 +246,13 @@ defmodule Metro.LocationTest do
     test "update_book/2 with invalid data returns error changeset" do
       book = book_fixture()
       assert {:error, %Ecto.Changeset{}} = Location.update_book(book, @invalid_attrs)
-      assert book == Location.get_book!(book.id)
+      assert book == Location.get_book!(book.isbn)
     end
 
     test "delete_book/1 deletes the book" do
       book = book_fixture()
       assert {:ok, %Book{}} = Location.delete_book(book)
-      assert_raise Ecto.NoResultsError, fn -> Location.get_book!(book.id) end
+      assert_raise Ecto.NoResultsError, fn -> Location.get_book!(book.isbn) end
     end
 
     test "change_book/1 returns a book changeset" do

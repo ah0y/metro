@@ -3,9 +3,9 @@ defmodule MetroWeb.LibraryControllerTest do
 
   alias Metro.Location
 
-  @create_attrs %{address: "some address", hours: "some hours", image: "some image"}
-  @update_attrs %{address: "some updated address", hours: "some updated hours", image: "some updated image"}
-  @invalid_attrs %{address: nil, hours: nil, image: nil}
+  @create_attrs %{address: "some address", hours: "some hours", image: "some image", branch: "some branch"}
+  @update_attrs %{address: "some updated address", hours: "some updated hours", image: "some updated image", branch: "some updated branch"}
+  @invalid_attrs %{address: nil, hours: nil, image: nil, branch: nil}
 
   def fixture(:library) do
     {:ok, library} = Location.create_library(@create_attrs)

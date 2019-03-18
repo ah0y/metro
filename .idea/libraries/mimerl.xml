@@ -1,5 +1,5 @@
 <component name="libraryTable">
-  <library name="mimerl" type="mix">
+  <library name="mimerl">
     <CLASSES>
       <root url="file://$PROJECT_DIR$/_build/dev/lib/mimerl/ebin" />
       <root url="file://$PROJECT_DIR$/_build/test/lib/mimerl/ebin" />

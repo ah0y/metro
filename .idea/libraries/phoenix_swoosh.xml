@@ -1,5 +1,5 @@
 <component name="libraryTable">
-  <library name="phoenix_swoosh" type="mix">
+  <library name="phoenix_swoosh">
     <CLASSES>
       <root url="file://$PROJECT_DIR$/_build/dev/lib/phoenix_swoosh/ebin" />
       <root url="file://$PROJECT_DIR$/_build/test/lib/phoenix_swoosh/ebin" />

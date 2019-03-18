@@ -1,5 +1,5 @@
 <component name="libraryTable">
-  <library name="idna" type="mix">
+  <library name="idna">
     <CLASSES>
       <root url="file://$PROJECT_DIR$/_build/dev/lib/idna/ebin" />
       <root url="file://$PROJECT_DIR$/_build/test/lib/idna/ebin" />

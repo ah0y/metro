@@ -1,5 +1,5 @@
 <component name="libraryTable">
-  <library name="combine" type="mix">
+  <library name="combine">
     <CLASSES>
       <root url="file://$PROJECT_DIR$/_build/dev/lib/combine/ebin" />
       <root url="file://$PROJECT_DIR$/_build/test/lib/combine/ebin" />
