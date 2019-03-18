@@ -2,6 +2,8 @@ defmodule Metro.Account.Card do
   use Ecto.Schema
   import Ecto.Changeset
 
+  alias Metro.Account.User
+
 
   schema "cards" do
     field :pin, :integer

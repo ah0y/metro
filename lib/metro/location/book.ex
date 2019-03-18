@@ -2,6 +2,9 @@ defmodule Metro.Location.Book do
   use Ecto.Schema
   import Ecto.Changeset
 
+  alias Metro.Location.Author
+  alias Metro.Location.Copy
+
   @primary_key {:isbn, :integer, autogenerate: false}
   @derive {Phoenix.Param, key: :isbn}
   schema "books" do
@@ -10,7 +13,10 @@ defmodule Metro.Location.Book do
     field :pages, :integer
     field :summary, :string
     field :year, :integer
-    field :author_id, :id
+#    field :author_id, :id
+
+    belongs_to :author, Author
+    has_many :copies, Copy
 
     timestamps()
   end

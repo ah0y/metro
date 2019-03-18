@@ -2,11 +2,15 @@ defmodule Metro.Location.Copy do
   use Ecto.Schema
   import Ecto.Changeset
 
+  alias Metro.Location.Book
+  alias Metro.Location.Library
+
 
   schema "copies" do
     field :checked_out?, :boolean, default: false
-    field :library_id, :id
-    field :isbn_id, :id
+
+    belongs_to :book, Book, foreign_key: :isbn, references: :isbn, define_field: false
+    belongs_to :library, Library
 
     timestamps()
   end

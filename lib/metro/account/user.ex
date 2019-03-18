@@ -3,6 +3,8 @@ defmodule Metro.Account.User do
   use Ecto.Schema
   use Coherence.Schema
 
+  alias Metro.Account.Card
+
   
 
   schema "users" do
@@ -12,9 +14,10 @@ defmodule Metro.Account.User do
     field :fines, :float
     field :is_librarian?, :boolean, default: false
     field :num_books_out, :integer
-    field :card_id, :id
-    field :library_id, :id
+
     coherence_schema()
+
+    has_one :card, Card
 
     timestamps()
   end
