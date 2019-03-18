@@ -47,7 +47,7 @@ mix phx.gen.html Account Card cards pin:integer
   mix phx.gen.schema Card cards pin:integer
 
 
-mix phx.gen.html Order Checkout checkouts renewals_remaining:integer checkout_date:naive_datetime due_date:naive_datetime card_id:references:cards bookintsance_id:references:copies library_id:references:libraries 
+mix phx.gen.html Order Checkout checkouts renewals_remaining:integer checkout_date:naive_datetime due_date:naive_datetime card_id:references:cards copy_id:references:copies library_id:references:libraries
 
 
   mix phx.gen.schema Checkout checkouts renewals_remaining:integer checkout_date:naive_datetime due_date:naive_datetime card_id:references:cards copy_id:references:copies library_id:references:libraries

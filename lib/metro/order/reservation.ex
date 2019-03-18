@@ -2,13 +2,12 @@ defmodule Metro.Order.Reservation do
   use Ecto.Schema
   import Ecto.Changeset
 
+  alias Metro.Order.Transit
 
   schema "reservations" do
     field :expiration_date, :naive_datetime
-    field :card_id, :id
-    field :copy_id, :id
-    field :library_id, :id
-    field :transit_id, :id
+
+    belongs_to :transit, Transit, foreign_key: :transit_id
 
     timestamps()
   end

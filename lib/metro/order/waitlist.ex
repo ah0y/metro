@@ -2,12 +2,13 @@ defmodule Metro.Order.Waitlist do
   use Ecto.Schema
   import Ecto.Changeset
 
+  alias Metro.Order.Checkout
 
   schema "waitlist" do
     field :position, :integer
-    field :card_id, :id
-    field :copy_id, :id
-    field :checkout_id, :id
+
+    belongs_to :copies, Metro.Location.Copy, foreign_key: :copy_id
+    belongs_to :checkouts, Checkout, foreign_key: :checkout_id
 
     timestamps()
   end

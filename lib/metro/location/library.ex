@@ -14,6 +14,7 @@ defmodule Metro.Location.Library do
 
     has_many :rooms, Room
     has_many :copies, Copy
+    has_many :checkouts, Metro.Order.Checkout
 
     timestamps()
   end

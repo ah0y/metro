@@ -33,6 +33,5 @@ defmodule Metro.Repo.Migrations.CreateCoherenceUser do
     create unique_index(:users, [:email])
     create index(:users, [:card_id])
     create index(:users, [:library_id])
-
   end
 end

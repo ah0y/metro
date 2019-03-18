@@ -13,9 +13,9 @@ defmodule Metro.Location.Book do
     field :pages, :integer
     field :summary, :string
     field :year, :integer
-#    field :author_id, :id
 
-    belongs_to :author, Author
+    belongs_to :author, Author, foreign_key: :author_id
+
     has_many :copies, Copy
 
     timestamps()

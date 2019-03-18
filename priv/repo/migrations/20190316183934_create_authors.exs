@@ -10,6 +10,5 @@ defmodule Metro.Repo.Migrations.CreateAuthors do
 
       timestamps()
     end
-
   end
 end

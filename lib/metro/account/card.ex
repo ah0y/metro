@@ -8,6 +8,9 @@ defmodule Metro.Account.Card do
   schema "cards" do
     field :pin, :integer
 
+#    belongs_to :user, User
+    has_many :checkouts, Metro.Order.Checkout
+
     timestamps()
   end
 

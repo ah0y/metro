@@ -7,6 +7,5 @@ defmodule Metro.Repo.Migrations.CreateCards do
 
       timestamps()
     end
-
   end
 end

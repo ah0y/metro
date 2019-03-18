@@ -10,11 +10,8 @@ defmodule Metro.Location.Event do
     field :datetime, :naive_datetime
     field :description, :string
     field :images, :string
-#    field :library_id, :id
-#    field :room_id, :id
 
-    belongs_to :room, Room
-    belongs_to :library, Library
+    belongs_to :room, Room, foreign_key: :room_id
 
     timestamps()
   end
