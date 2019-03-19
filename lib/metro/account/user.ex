@@ -5,8 +5,6 @@ defmodule Metro.Account.User do
 
   alias Metro.Account.Card
 
-  
-
   schema "users" do
     field :name, :string
     field :email, :string
@@ -15,9 +13,10 @@ defmodule Metro.Account.User do
     field :is_librarian?, :boolean, default: false
     field :num_books_out, :integer
 
+    belongs_to :card, Card, foreign_key: :card_id
+
     coherence_schema()
 
-    has_one :card, Card
 
     timestamps()
   end

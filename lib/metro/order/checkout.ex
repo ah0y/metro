@@ -9,9 +9,10 @@ defmodule Metro.Order.Checkout do
     field :due_date, :naive_datetime
     field :renewals_remaining, :integer
 
-    belongs_to :card, Metro.Location.Card, foreign_key: :card_id
+    belongs_to :card, Metro.Account.Card, foreign_key: :card_id
     belongs_to :library, Metro.Location.Library, foreign_key: :library_id
-#    belongs_to :copy, Metro.Location.Copy, foreign_key: :copy_id
+    belongs_to :copy, Metro.Location.Copy, foreign_key: :copy_id
+
 
     has_one :transit, Transit
 

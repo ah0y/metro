@@ -63,7 +63,7 @@ COPY public.copies (id, "checked_out?", library_id, isbn_id, inserted_at, update
 -- Data for Name: checkouts; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public.checkouts (id, renewals_remaining, checkout_date, due_date, card_id, bookintsance_id, library_id, inserted_at, updated_at) FROM stdin;
+COPY public.checkouts (id, renewals_remaining, checkout_date, due_date, card_id, copy_id, library_id, inserted_at, updated_at) FROM stdin;
 \.
 
 
