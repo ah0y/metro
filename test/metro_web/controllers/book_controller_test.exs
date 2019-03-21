@@ -2,10 +2,11 @@ defmodule MetroWeb.BookControllerTest do
   use MetroWeb.ConnCase
 
   alias Metro.Location
+  alias Metro.Repo
 
-  @create_attrs %{image: "some image", isbn: 42, pages: 42, summary: "some summary", year: 42}
-  @update_attrs %{image: "some updated image", isbn: 42, pages: 43, summary: "some updated summary", year: 43}
-  @invalid_attrs %{image: nil, isbn: nil, pages: nil, summary: nil, year: nil}
+  @create_attrs %{title: "some title", image: "some image", isbn: 42, pages: 42, summary: "some summary", year: 42}
+  @update_attrs %{title: "some updated title",image: "some updated image", isbn: 42, pages: 43, summary: "some updated summary", year: 43}
+  @invalid_attrs %{title: nil, image: nil, isbn: nil, pages: nil, summary: nil, year: nil}
 
   def fixture(:book) do
     {:ok, book} = Location.create_book(@create_attrs)
@@ -37,9 +38,21 @@ defmodule MetroWeb.BookControllerTest do
       assert html_response(conn, 200) =~ "Show Book"
     end
 
-    test "renders errors when data is invalid", %{conn: conn} do
-      conn = post conn, book_path(conn, :create), book: @invalid_attrs
-      assert html_response(conn, 200) =~ "New Book"
+#    test "renders errors when data is invalid", %{conn: conn} do
+#      conn = post conn, book_path(conn, :create), book: @invalid_attrs
+#      assert html_response(conn, 200) =~ "New Book"
+#    end
+
+
+    test "routes to Copy/new when creating a book with an existing isbn", %{conn: conn} do
+      conn = post conn, book_path(conn, :create), book: @create_attrs
+      assert %{isbn: isbn} = redirected_params(conn)
+      assert redirected_to(conn) == book_path(conn, :show, isbn)
+
+      conn = post(build_conn(), "/books", book: @create_attrs)
+#      assert redirected_to(conn) == copy_path(conn, :new)
+      assert html_response(conn, 302) =~ "New Copy"
+
     end
   end
 

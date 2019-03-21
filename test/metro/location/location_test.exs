@@ -196,9 +196,9 @@ defmodule Metro.LocationTest do
   describe "books" do
     alias Metro.Location.Book
 
-    @valid_attrs %{image: "some image", isbn: 42, pages: 42, summary: "some summary", year: 42}
-    @update_attrs %{image: "some updated image", isbn: 43, pages: 43, summary: "some updated summary", year: 43}
-    @invalid_attrs %{image: nil, isbn: nil, pages: nil, summary: nil, year: nil}
+    @valid_attrs %{title: "some title",image: "some image", isbn: 42, pages: 42, summary: "some summary", year: 42}
+    @update_attrs %{title: "some updated title",image: "some updated image", isbn: 43, pages: 43, summary: "some updated summary", year: 43}
+    @invalid_attrs %{title: nil,image: nil, isbn: nil, pages: nil, summary: nil, year: nil}
 
     def book_fixture(attrs \\ %{}) do
       {:ok, book} =

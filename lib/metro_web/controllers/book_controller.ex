@@ -21,7 +21,7 @@ defmodule MetroWeb.BookController do
         |> put_flash(:info, "Book created successfully.")
         |> redirect(to: book_path(conn, :show, book))
       {:error, %Ecto.Changeset{} = changeset} ->
-        render(conn, "new.html", changeset: changeset)
+        Enum.map(changeset.errors, &handle_error(conn, changeset, &1))
     end
   end
 
@@ -56,5 +56,15 @@ defmodule MetroWeb.BookController do
     conn
     |> put_flash(:info, "Book deleted successfully.")
     |> redirect(to: book_path(conn, :index))
+  end
+
+  defp handle_error(conn, _changeset,{:isbn, {"has already been taken", _}}) do
+    conn
+    |> redirect(to: copy_path(conn, :new))
+  end
+
+  defp handle_error(conn,changeset, {_some_key, _error_tuple}) do
+    conn
+    |> render("new.html", changeset: changeset)
   end
 end
