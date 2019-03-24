@@ -70,7 +70,7 @@ defmodule Metro.LocationTest do
   describe "authors" do
     alias Metro.Location.Author
 
-    @valid_attrs %{bio: "some bio", first_name: "some first_name", last_name: "some last_name", location: "some location"}
+    @valid_attrs %{bio: "some bio", first_name: "some first_name", last_name: "some last_name", location: "some location" }
     @update_attrs %{bio: "some updated bio", first_name: "some updated first_name", last_name: "some updated last_name", location: "some updated location"}
     @invalid_attrs %{bio: nil, first_name: nil, last_name: nil, location: nil}
 

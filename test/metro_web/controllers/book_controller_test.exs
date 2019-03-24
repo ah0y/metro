@@ -38,10 +38,10 @@ defmodule MetroWeb.BookControllerTest do
       assert html_response(conn, 200) =~ "Show Book"
     end
 
-#    test "renders errors when data is invalid", %{conn: conn} do
-#      conn = post conn, book_path(conn, :create), book: @invalid_attrs
-#      assert html_response(conn, 200) =~ "New Book"
-#    end
+    test "renders errors when data is invalid", %{conn: conn} do
+      conn = post conn, book_path(conn, :create), book: @invalid_attrs
+      assert html_response(conn, 200) =~ "New Book"
+    end
 
 
     test "routes to Copy/new when creating a book with an existing isbn", %{conn: conn} do
@@ -50,8 +50,15 @@ defmodule MetroWeb.BookControllerTest do
       assert redirected_to(conn) == book_path(conn, :show, isbn)
 
       conn = post(build_conn(), "/books", book: @create_attrs)
-#      assert redirected_to(conn) == copy_path(conn, :new)
-      assert html_response(conn, 302) =~ "New Copy"
+      assert redirected_to(conn) == copy_path(conn, :new)
+    end
+
+    test "creates a new author if one is entered that doesn't already exist" do
+
+    end
+
+    test "builds proper association when an existing author is selected" do
+
 
     end
   end

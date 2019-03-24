@@ -10,18 +10,26 @@ defmodule MetroWeb.BookController do
   end
 
   def new(conn, _params) do
+    authors = Location.load_authors()
     changeset = Location.change_book(%Book{})
-    render(conn, "new.html", changeset: changeset)
+    render(conn, "new.html", changeset: changeset, authors: authors)
   end
 
   def create(conn, %{"book" => book_params}) do
+#    require IEx; IEx.pry()
     case Location.create_book(book_params) do
       {:ok, book} ->
         conn
         |> put_flash(:info, "Book created successfully.")
         |> redirect(to: book_path(conn, :show, book))
       {:error, %Ecto.Changeset{} = changeset} ->
-        Enum.map(changeset.errors, &handle_error(conn, changeset, &1))
+        case Enum.at(changeset.errors, 0) do
+          {:isbn, {"has already been taken", _}} ->
+            redirect(conn, to: copy_path(conn, :new))
+           _ ->
+             authors = Location.load_authors()
+             render(conn, "new.html", changeset: changeset, authors: authors)
+        end
     end
   end
 
@@ -31,9 +39,10 @@ defmodule MetroWeb.BookController do
   end
 
   def edit(conn, %{"isbn" => isbn}) do
+    authors = Location.load_authors()
     book = Location.get_book!(isbn)
     changeset = Location.change_book(book)
-    render(conn, "edit.html", book: book, changeset: changeset)
+    render(conn, "edit.html", book: book, changeset: changeset, authors: authors)
   end
 
   def update(conn, %{"isbn" => isbn, "book" => book_params}) do
@@ -45,7 +54,8 @@ defmodule MetroWeb.BookController do
         |> put_flash(:info, "Book updated successfully.")
         |> redirect(to: book_path(conn, :show, book))
       {:error, %Ecto.Changeset{} = changeset} ->
-        render(conn, "edit.html", book: book, changeset: changeset)
+        authors = Location.load_authors()
+        render(conn, "edit.html", book: book, changeset: changeset, authors: authors)
     end
   end
 
@@ -58,13 +68,6 @@ defmodule MetroWeb.BookController do
     |> redirect(to: book_path(conn, :index))
   end
 
-  defp handle_error(conn, _changeset,{:isbn, {"has already been taken", _}}) do
-    conn
-    |> redirect(to: copy_path(conn, :new))
-  end
 
-  defp handle_error(conn,changeset, {_some_key, _error_tuple}) do
-    conn
-    |> render("new.html", changeset: changeset)
-  end
+
 end

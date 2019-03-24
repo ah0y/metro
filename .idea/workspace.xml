@@ -2,12 +2,63 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="28208ca7-9f79-48fe-85ed-a2ddb3919f11" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/metro/location/book.ex" afterPath="$PROJECT_DIR$/lib/metro/location/book.ex" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/metro_web/controllers/book_controller.ex" afterPath="$PROJECT_DIR$/lib/metro_web/controllers/book_controller.ex" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mix.exs" afterPath="$PROJECT_DIR$/mix.exs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/metro/location/location_test.exs" afterPath="$PROJECT_DIR$/test/metro/location/location_test.exs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/metro_web/controllers/book_controller_test.exs" afterPath="$PROJECT_DIR$/test/metro_web/controllers/book_controller_test.exs" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/certifi.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/coherence.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/combine.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/comeonin.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/connection.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/cowboy.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/cowlib.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/db_connection.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/decimal.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/ecto.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/elixir_make.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/elixir_uuid.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/file_system.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/gettext.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/hackney.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/idna.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/jason.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/metrics.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/mime.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/mimerl.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/parse_trans.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/phoenix.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/phoenix_ecto.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/phoenix_html.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/phoenix_live_reload.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/phoenix_pubsub.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/phoenix_swoosh.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/plug.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/plug_cowboy.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/plug_crypto.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/poison.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/poolboy.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/postgrex.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/ranch.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/ssl_verify_fun.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/swoosh.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/timex.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/timex_ecto.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/tzdata.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/unicode_util_compat.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dump.txt" beforeDir="false" afterPath="$PROJECT_DIR$/dump.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/metro/location/author.ex" beforeDir="false" afterPath="$PROJECT_DIR$/lib/metro/location/author.ex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/metro/location/location.ex" beforeDir="false" afterPath="$PROJECT_DIR$/lib/metro/location/location.ex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/metro_web/controllers/book_controller.ex" beforeDir="false" afterPath="$PROJECT_DIR$/lib/metro_web/controllers/book_controller.ex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/metro_web/templates/book/edit.html.eex" beforeDir="false" afterPath="$PROJECT_DIR$/lib/metro_web/templates/book/edit.html.eex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/metro_web/templates/book/form.html.eex" beforeDir="false" afterPath="$PROJECT_DIR$/lib/metro_web/templates/book/form.html.eex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/metro_web/templates/book/new.html.eex" beforeDir="false" afterPath="$PROJECT_DIR$/lib/metro_web/templates/book/new.html.eex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/metro_web/templates/layout/app.html.eex" beforeDir="false" afterPath="$PROJECT_DIR$/lib/metro_web/templates/layout/app.html.eex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/metro.iml" beforeDir="false" afterPath="$PROJECT_DIR$/metro.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mix.lock" beforeDir="false" afterPath="$PROJECT_DIR$/mix.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/metro/location/location_test.exs" beforeDir="false" afterPath="$PROJECT_DIR$/test/metro/location/location_test.exs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/metro_web/controllers/book_controller_test.exs" beforeDir="false" afterPath="$PROJECT_DIR$/test/metro_web/controllers/book_controller_test.exs" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/_build/dev/lib/connection/" />
     <ignored path="$PROJECT_DIR$/_build/dev/lib/cowboy/" />
@@ -45,15 +96,27 @@
   <component name="CreatePatchCommitExecutor">
     <option name="PATCH_PATH" value="" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
+  <component name="DatabaseView">
+    <option name="SHOW_INTERMEDIATE" value="true" />
+    <option name="GROUP_DATA_SOURCES" value="true" />
+    <option name="GROUP_SCHEMA" value="true" />
+    <option name="GROUP_CONTENTS" value="false" />
+    <option name="SORT_POSITIONED" value="false" />
+    <option name="SHOW_EMPTY_GROUPS" value="false" />
+    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
+    <option name="HIDDEN_KINDS">
+      <set />
+    </option>
+    <expand />
+    <select />
+  </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="450">
       <file leaf-file-name="location.ex" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lib/metro/location/location.ex">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="7400">
-              <caret line="296" column="27" lean-forward="false" selection-start-line="296" selection-start-column="27" selection-end-line="296" selection-end-column="27" />
-              <folding />
+            <state relative-caret-position="70">
+              <caret line="109" column="13" lean-forward="true" selection-start-line="109" selection-start-column="13" selection-end-line="109" selection-end-column="13" />
             </state>
           </provider>
         </entry>
@@ -61,9 +124,17 @@
       <file leaf-file-name="book_controller_test.exs" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/test/metro_web/controllers/book_controller_test.exs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="425">
-              <caret line="52" column="37" lean-forward="true" selection-start-line="52" selection-start-column="0" selection-end-line="53" selection-end-column="0" />
-              <folding />
+            <state relative-caret-position="-624">
+              <caret line="19" column="7" lean-forward="true" selection-start-line="19" selection-start-column="7" selection-end-line="19" selection-end-column="7" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="new.html.eex" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/lib/metro_web/templates/book/new.html.eex">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="45">
+              <caret line="3" lean-forward="true" selection-start-line="3" selection-end-line="3" />
             </state>
           </provider>
         </entry>
@@ -71,67 +142,30 @@
       <file leaf-file-name="book_controller.ex" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/lib/metro_web/controllers/book_controller.ex">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="400">
-              <caret line="23" column="66" lean-forward="false" selection-start-line="23" selection-start-column="66" selection-end-line="23" selection-end-column="66" />
+            <state relative-caret-position="233">
+              <caret line="23" column="31" selection-start-line="23" selection-start-column="31" selection-end-line="23" selection-end-column="31" />
               <folding>
-                <element signature="e#39#1991#1" expanded="false" />
-                <element signature="e#145#232#0" expanded="false" />
-                <element signature="e#259#364#0" expanded="false" />
-                <element signature="e#777#863#0" expanded="false" />
-                <element signature="e#901#1052#0" expanded="false" />
-                <element signature="e#1115#1483#0" expanded="false" />
-                <element signature="e#1523#1722#0" expanded="false" />
+                <element signature="e#145#232#0" />
+                <element signature="e#1129#1215#0" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="copy_controller.ex" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/lib/metro_web/controllers/copy_controller.ex">
+      <file leaf-file-name="form.html.eex" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/lib/metro_web/templates/book/form.html.eex">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="225">
-              <caret line="12" column="0" lean-forward="false" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
-              <folding />
+            <state relative-caret-position="134">
+              <caret line="11" column="8" lean-forward="true" selection-start-line="11" selection-start-column="8" selection-end-line="11" selection-end-column="8" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="location_test.exs" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/test/metro/location/location_test.exs">
+      <file leaf-file-name="edit.html.eex" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/lib/metro_web/templates/book/edit.html.eex">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="25">
-              <caret line="200" column="32" lean-forward="false" selection-start-line="200" selection-start-column="32" selection-end-line="200" selection-end-column="32" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="book.ex" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/lib/metro/location/book.ex">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="250">
-              <caret line="10" column="0" lean-forward="false" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="library.ex" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/lib/metro/location/library.ex">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="164">
-              <caret line="15" column="20" lean-forward="false" selection-start-line="15" selection-start-column="20" selection-end-line="15" selection-end-column="20" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="dump.txt" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/dump.txt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="775">
-              <caret line="31" column="13" lean-forward="false" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="13" />
-              <folding />
+            <state relative-caret-position="60">
+              <caret line="4" selection-start-line="4" selection-end-line="4" />
             </state>
           </provider>
         </entry>
@@ -140,12 +174,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>coherence.user</find>
-      <find>Event</find>
-      <find>Card</find>
-      <find>defmodule</find>
-      <find>Account</find>
-      <find>Coherence.Schema</find>
       <find>validate_format</find>
       <find>alias</find>
       <find>coherence</find>
@@ -170,6 +198,12 @@
       <find>create</find>
       <find>title</find>
       <find>create_attrs</find>
+      <find>author</find>
+      <find>Repo.all</find>
+      <find>Repo.all</find>
+      <find>create_author</find>
+      <find>Metro.Repo</find>
+      <find>alphabetical</find>
     </findStrings>
     <replaceStrings>
       <replace>Metro.Account</replace>
@@ -190,26 +224,14 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/lib/metro_web/templates/book/index.html.eex" />
-        <option value="$PROJECT_DIR$/lib/metro_web/controllers/card_controller.ex" />
-        <option value="$PROJECT_DIR$/lib/metro_web/views/user_view.ex" />
-        <option value="$PROJECT_DIR$/lib/metro/account/schemas.ex" />
-        <option value="$PROJECT_DIR$/lib/metro/coherence/user.ex" />
-        <option value="$PROJECT_DIR$/config/config.exs" />
-        <option value="$PROJECT_DIR$/lib/metro/account/account.ex" />
-        <option value="$PROJECT_DIR$/lib/metro_web/router.ex" />
-        <option value="$PROJECT_DIR$/lib/metro_web/controllers/user_controller.ex" />
         <option value="$PROJECT_DIR$/test/metro_web/controllers/library_controller_test.exs" />
-        <option value="$PROJECT_DIR$/test/metro/location/location_test.exs" />
         <option value="$PROJECT_DIR$/test/metro_web/controllers/card_controller_test.exs" />
         <option value="$PROJECT_DIR$/test/metro/account/user_test.exs" />
-        <option value="$PROJECT_DIR$/lib/metro_web/templates/layout/app.html.eex" />
         <option value="$PROJECT_DIR$/lib/metro_web/templates/user/edit.html.eex" />
         <option value="$PROJECT_DIR$/lib/metro_web/templates/user/form.html.eex" />
         <option value="$PROJECT_DIR$/lib/metro_web/templates/user/new.html.eex" />
         <option value="$PROJECT_DIR$/lib/metro_web/templates/user/index.html.eex" />
         <option value="$PROJECT_DIR$/lib/metro_web/templates/user/show.html.eex" />
-        <option value="$PROJECT_DIR$/lib/metro/location/author.ex" />
         <option value="$PROJECT_DIR$/generator_commands.txt" />
         <option value="$PROJECT_DIR$/priv/repo/migrations/20190316183934_create_authors.exs" />
         <option value="$PROJECT_DIR$/priv/repo/migrations/20190316183930_create_libraries.exs" />
@@ -236,10 +258,22 @@
         <option value="$PROJECT_DIR$/lib/metro/order/checkout.ex" />
         <option value="$PROJECT_DIR$/test/metro/order/order_test.exs" />
         <option value="$PROJECT_DIR$/lib/metro/location/copy.ex" />
-        <option value="$PROJECT_DIR$/dump.txt" />
         <option value="$PROJECT_DIR$/lib/metro/location/book.ex" />
-        <option value="$PROJECT_DIR$/test/metro_web/controllers/book_controller_test.exs" />
         <option value="$PROJECT_DIR$/lib/metro_web/controllers/copy_controller.ex" />
+        <option value="$PROJECT_DIR$/.gitignore" />
+        <option value="$PROJECT_DIR$/lib/metro_web/views/book_view.ex" />
+        <option value="$PROJECT_DIR$/dump.txt" />
+        <option value="$PROJECT_DIR$/lib/metro_web/templates/book/new.html.eex" />
+        <option value="$PROJECT_DIR$/mix.exs" />
+        <option value="$PROJECT_DIR$/lib/metro_web.ex" />
+        <option value="$PROJECT_DIR$/lib/metro_web/templates/layout/app.html.eex" />
+        <option value="$PROJECT_DIR$/assets/js/book.js" />
+        <option value="$PROJECT_DIR$/lib/metro_web/templates/book/form.html.eex" />
+        <option value="$PROJECT_DIR$/test/metro/location/location_test.exs" />
+        <option value="$PROJECT_DIR$/lib/metro/location/author.ex" />
+        <option value="$PROJECT_DIR$/lib/metro/location/location.ex" />
+        <option value="$PROJECT_DIR$/test/metro_web/controllers/book_controller_test.exs" />
+        <option value="$PROJECT_DIR$/lib/metro_web/templates/book/edit.html.eex" />
         <option value="$PROJECT_DIR$/lib/metro_web/controllers/book_controller.ex" />
       </list>
     </option>
@@ -255,618 +289,113 @@
   </component>
   <component name="NodePackageJsonFileManager">
     <packageJsonPaths>
-      <path value="$PROJECT_DIR$/assets/node_modules/accepts/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/acorn/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/align-text/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/ansi-regex/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/ansi-styles/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/ansicolors/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/anymatch/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/anysort/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/arr-diff/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/arr-flatten/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/arr-union/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/array-flatten/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/array-unique/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/asn1.js/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/assert/node_modules/inherits/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/assert/node_modules/util/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/assert/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/assign-symbols/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/async-each/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/async/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/atob/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/babel-brunch/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/babel-code-frame/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/babel-core/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/babel-generator/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/babel-helper-builder-binary-assignment-operator-visitor/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/babel-helper-call-delegate/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/babel-helper-define-map/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/babel-helper-explode-assignable-expression/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/babel-helper-function-name/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/babel-helper-get-function-arity/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/babel-helper-hoist-variables/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/babel-helper-optimise-call-expression/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/babel-helper-regex/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/babel-helper-remap-async-to-generator/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/babel-helper-replace-supers/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/babel-helpers/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/babel-messages/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/babel-plugin-check-es2015-constants/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/babel-plugin-syntax-async-functions/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/babel-plugin-syntax-exponentiation-operator/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/babel-plugin-syntax-trailing-function-commas/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/babel-plugin-transform-async-to-generator/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/babel-plugin-transform-es2015-arrow-functions/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/babel-plugin-transform-es2015-block-scoped-functions/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/babel-plugin-transform-es2015-block-scoping/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/babel-plugin-transform-es2015-classes/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/babel-plugin-transform-es2015-computed-properties/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/babel-plugin-transform-es2015-destructuring/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/babel-plugin-transform-es2015-duplicate-keys/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/babel-plugin-transform-es2015-for-of/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/babel-plugin-transform-es2015-function-name/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/babel-plugin-transform-es2015-literals/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/babel-plugin-transform-es2015-modules-amd/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/babel-plugin-transform-es2015-modules-commonjs/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/babel-plugin-transform-es2015-modules-systemjs/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/babel-plugin-transform-es2015-modules-umd/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/babel-plugin-transform-es2015-object-super/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/babel-plugin-transform-es2015-parameters/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/babel-plugin-transform-es2015-shorthand-properties/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/babel-plugin-transform-es2015-spread/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/babel-plugin-transform-es2015-sticky-regex/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/babel-plugin-transform-es2015-template-literals/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/babel-plugin-transform-es2015-typeof-symbol/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/babel-plugin-transform-es2015-unicode-regex/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/babel-plugin-transform-exponentiation-operator/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/babel-plugin-transform-regenerator/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/babel-plugin-transform-strict-mode/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/babel-preset-es2015/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/babel-preset-es2016/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/babel-preset-es2017/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/babel-preset-latest/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/babel-register/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/babel-runtime/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/babel-template/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/babel-traverse/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/babel-types/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/babylon/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/balanced-match/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/base/node_modules/define-property/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/base/node_modules/is-accessor-descriptor/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/base/node_modules/is-data-descriptor/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/base/node_modules/is-descriptor/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/base/node_modules/isobject/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/base/node_modules/kind-of/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/base/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/base64-js/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/binary-extensions/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/bn.js/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/body-parser/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/bower-config/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/brace-expansion/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/braces/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/brorand/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/browser-resolve/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/browserify-aes/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/browserify-cipher/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/browserify-des/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/browserify-rsa/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/browserify-sign/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/brunch-skeletons/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/brunch/node_modules/debug/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/brunch/node_modules/ms/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/brunch/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/buffer-xor/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/buffer/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/builtin-status-codes/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/bytes/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/cache-base/node_modules/isobject/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/cache-base/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/camelcase/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/center-align/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/chalk/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/check-dependencies/node_modules/minimist/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/check-dependencies/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/chokidar/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/cipher-base/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/class-utils/node_modules/define-property/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/class-utils/node_modules/isobject/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/class-utils/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/clean-css-brunch/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/clean-css/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/cliui/node_modules/wordwrap/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/cliui/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/coffee-script/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/collection-visit/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/colorette/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/commander/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/commonjs-require-definition/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/component-emitter/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/concat-map/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/connect-slashes/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/content-disposition/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/content-type/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/convert-source-map/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/cookie-signature/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/cookie/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/copy-descriptor/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/core-js/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/core-util-is/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/create-ecdh/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/create-hash/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/create-hmac/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/crypto-browserify/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/debug/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/decamelize/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/decode-uri-component/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/deep-assign/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/define-properties/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/define-property/node_modules/is-accessor-descriptor/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/define-property/node_modules/is-data-descriptor/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/define-property/node_modules/is-descriptor/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/define-property/node_modules/isobject/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/define-property/node_modules/kind-of/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/define-property/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/defined/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/depd/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/deppack/node_modules/loggy/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/deppack/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/deps-install/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/des.js/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/destroy/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/detect-file/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/detect-indent/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/detective/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/diffie-hellman/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/domain-browser/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/ee-first/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/elliptic/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/encodeurl/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/es-abstract/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/es-to-primitive/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/escape-html/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/escape-string-regexp/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/esutils/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/etag/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/events/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/evp_bytestokey/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/expand-brackets/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/expand-range/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/expand-tilde/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/express/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/extend-shallow/node_modules/is-extendable/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/extend-shallow/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/extglob/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/fast-levenshtein/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/fcache/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/filename-regex/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/fill-range/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/finalhandler/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/findup-sync/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/for-in/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/for-own/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/forwarded/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/fragment-cache/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/fresh/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/fs-exists-sync/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/fs.realpath/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/fsevents/node_modules/abbrev/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/fsevents/node_modules/ansi-regex/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/fsevents/node_modules/aproba/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/fsevents/node_modules/are-we-there-yet/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/fsevents/node_modules/balanced-match/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/fsevents/node_modules/brace-expansion/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/fsevents/node_modules/chownr/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/fsevents/node_modules/code-point-at/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/fsevents/node_modules/concat-map/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/fsevents/node_modules/console-control-strings/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/fsevents/node_modules/core-util-is/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/fsevents/node_modules/debug/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/fsevents/node_modules/deep-extend/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/fsevents/node_modules/delegates/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/fsevents/node_modules/detect-libc/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/fsevents/node_modules/fs-minipass/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/fsevents/node_modules/fs.realpath/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/fsevents/node_modules/gauge/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/fsevents/node_modules/glob/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/fsevents/node_modules/has-unicode/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/fsevents/node_modules/iconv-lite/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/fsevents/node_modules/ignore-walk/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/fsevents/node_modules/inflight/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/fsevents/node_modules/inherits/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/fsevents/node_modules/ini/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/fsevents/node_modules/is-fullwidth-code-point/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/fsevents/node_modules/isarray/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/fsevents/node_modules/minimatch/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/fsevents/node_modules/minimist/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/fsevents/node_modules/minipass/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/fsevents/node_modules/minizlib/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/fsevents/node_modules/mkdirp/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/fsevents/node_modules/ms/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/fsevents/node_modules/needle/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/fsevents/node_modules/node-pre-gyp/lib/util/nw-pre-gyp/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/fsevents/node_modules/node-pre-gyp/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/fsevents/node_modules/nopt/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/fsevents/node_modules/npm-bundled/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/fsevents/node_modules/npm-packlist/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/fsevents/node_modules/npmlog/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/fsevents/node_modules/number-is-nan/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/fsevents/node_modules/object-assign/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/fsevents/node_modules/once/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/fsevents/node_modules/os-homedir/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/fsevents/node_modules/os-tmpdir/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/fsevents/node_modules/osenv/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/fsevents/node_modules/path-is-absolute/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/fsevents/node_modules/process-nextick-args/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/fsevents/node_modules/rc/node_modules/minimist/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/fsevents/node_modules/rc/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/fsevents/node_modules/readable-stream/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/fsevents/node_modules/rimraf/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/fsevents/node_modules/safe-buffer/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/fsevents/node_modules/safer-buffer/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/fsevents/node_modules/sax/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/fsevents/node_modules/semver/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/fsevents/node_modules/set-blocking/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/fsevents/node_modules/signal-exit/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/fsevents/node_modules/string-width/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/fsevents/node_modules/string_decoder/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/fsevents/node_modules/strip-ansi/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/fsevents/node_modules/strip-json-comments/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/fsevents/node_modules/tar/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/fsevents/node_modules/util-deprecate/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/fsevents/node_modules/wide-align/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/fsevents/node_modules/wrappy/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/fsevents/node_modules/yallist/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/fsevents/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/function-bind/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/get-value/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/glob-base/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/glob-parent/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/glob/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/global-modules/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/global-prefix/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/globals/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/graceful-fs/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/graceful-readlink/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/growl/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/has-ansi/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/has-symbols/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/has-value/node_modules/isobject/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/has-value/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/has-values/node_modules/is-number/node_modules/kind-of/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/has-values/node_modules/is-number/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/has-values/node_modules/kind-of/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/has-values/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/has/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/hash-base/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/hash.js/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/hmac-drbg/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/home-or-tmp/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/homedir-polyfill/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/hosted-git-info/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/http-errors/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/https-browserify/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/iconv-lite/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/ieee754/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/indexof/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/inflight/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/inherits/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/ini/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/init-skeleton/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/invariant/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/ipaddr.js/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/is-accessor-descriptor/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/is-binary-path/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/is-buffer/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/is-callable/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/is-data-descriptor/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/is-date-object/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/is-descriptor/node_modules/kind-of/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/is-descriptor/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/is-dotfile/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/is-equal-shallow/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/is-extendable/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/is-extglob/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/is-finite/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/is-glob/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/is-number/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/is-obj/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/is-plain-object/node_modules/isobject/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/is-plain-object/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/is-posix-bracket/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/is-primitive/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/is-regex/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/is-symbol/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/is-windows/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/isarray/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/isexe/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/isobject/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/js-tokens/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/jsesc/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/json5/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/kind-of/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/lazy-cache/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/lodash.camelcase/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/lodash/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/loggy/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/longest/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/loose-envify/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/map-cache/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/map-visit/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/math-random/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/md5.js/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/media-typer/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/merge-descriptors/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/methods/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/micro-es7-shim/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/micro-promisify/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/micromatch/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/miller-rabin/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/mime-db/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/mime-types/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/mime/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/minimalistic-assert/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/minimalistic-crypto-utils/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/minimatch/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/minimist/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/mixin-deep/node_modules/is-extendable/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/mixin-deep/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/mkdirp/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/mout/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/ms/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/nan/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/nan/tools/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/nanomatch/node_modules/arr-diff/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/nanomatch/node_modules/array-unique/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/nanomatch/node_modules/is-windows/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/nanomatch/node_modules/kind-of/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/nanomatch/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/native-notifier/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/ncp/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/negotiator/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/node-browser-modules/node_modules/process-nextick-args/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/node-browser-modules/node_modules/readable-stream/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/node-browser-modules/node_modules/string_decoder/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/node-browser-modules/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/normalize-git-url/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/normalize-path/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/number-is-nan/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/object-copy/node_modules/define-property/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/object-copy/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/object-keys/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/object-visit/node_modules/isobject/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/object-visit/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/object.omit/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/object.pick/node_modules/isobject/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/object.pick/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/on-finished/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/once/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/optimist/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/os-browserify/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/os-homedir/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/os-tmpdir/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/osenv/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/parse-asn1/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/parse-glob/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/parse-passwd/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/parseurl/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/pascalcase/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/path-browserify/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/path-is-absolute/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/path-to-regexp/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/pbkdf2/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/posix-character-classes/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/preserve/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/private/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/process-nextick-args/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/process/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/promise.prototype.finally/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/proxy-addr/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/public-encrypt/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/punycode/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/pushserve/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/qs/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/querystring-es3/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/querystring/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/randomatic/node_modules/is-number/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/randomatic/node_modules/kind-of/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/randomatic/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/randombytes/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/range-parser/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/raw-body/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/read-components/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/readable-stream/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/readdirp/node_modules/arr-diff/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/readdirp/node_modules/array-unique/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/readdirp/node_modules/braces/node_modules/extend-shallow/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/readdirp/node_modules/braces/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/readdirp/node_modules/expand-brackets/node_modules/define-property/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/readdirp/node_modules/expand-brackets/node_modules/extend-shallow/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/readdirp/node_modules/expand-brackets/node_modules/is-accessor-descriptor/node_modules/kind-of/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/readdirp/node_modules/expand-brackets/node_modules/is-accessor-descriptor/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/readdirp/node_modules/expand-brackets/node_modules/is-data-descriptor/node_modules/kind-of/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/readdirp/node_modules/expand-brackets/node_modules/is-data-descriptor/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/readdirp/node_modules/expand-brackets/node_modules/is-descriptor/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/readdirp/node_modules/expand-brackets/node_modules/kind-of/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/readdirp/node_modules/expand-brackets/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/readdirp/node_modules/extglob/node_modules/define-property/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/readdirp/node_modules/extglob/node_modules/extend-shallow/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/readdirp/node_modules/extglob/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/readdirp/node_modules/fill-range/node_modules/extend-shallow/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/readdirp/node_modules/fill-range/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/readdirp/node_modules/is-accessor-descriptor/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/readdirp/node_modules/is-data-descriptor/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/readdirp/node_modules/is-descriptor/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/readdirp/node_modules/is-number/node_modules/kind-of/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/readdirp/node_modules/is-number/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/readdirp/node_modules/isobject/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/readdirp/node_modules/kind-of/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/readdirp/node_modules/micromatch/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/readdirp/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/regenerate/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/regenerator-runtime/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/regenerator-transform/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/regex-cache/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/regex-not/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/regexpu-core/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/regjsgen/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/regjsparser/node_modules/jsesc/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/regjsparser/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/remove-trailing-separator/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/repeat-element/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/repeat-string/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/repeating/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/resolve-dir/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/resolve-url/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/resolve/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/resolve/test/module_dir/zmodules/bbb/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/resolve/test/pathfilter/deep_ref/node_modules/deep/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/resolve/test/resolver/baz/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/resolve/test/resolver/biz/node_modules/garply/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/resolve/test/resolver/incorrect_main/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/resolve/test/subdirs/node_modules/a/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/ret/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/right-align/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/ripemd160/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/safe-buffer/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/safe-regex/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/safer-buffer/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/semver/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/send/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/serve-brunch/node_modules/debug/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/serve-brunch/node_modules/ms/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/serve-brunch/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/serve-static/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/set-value/node_modules/extend-shallow/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/set-value/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/setprototypeof/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/sha.js/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/since-app-start/node_modules/debug/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/since-app-start/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/skemata/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/slash/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/snapdragon-node/node_modules/define-property/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/snapdragon-node/node_modules/is-accessor-descriptor/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/snapdragon-node/node_modules/is-data-descriptor/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/snapdragon-node/node_modules/is-descriptor/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/snapdragon-node/node_modules/isobject/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/snapdragon-node/node_modules/kind-of/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/snapdragon-node/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/snapdragon-util/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/snapdragon/node_modules/define-property/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/snapdragon/node_modules/extend-shallow/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/snapdragon/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/source-map-resolve/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/source-map-support/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/source-map-url/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/source-map/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/split-string/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/static-extend/node_modules/define-property/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/static-extend/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/statuses/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/stream-browserify/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/stream-http/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/stream-http/test/browser/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/string_decoder/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/strip-ansi/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/supports-color/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/tag-shell/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/timers-browserify/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/to-arraybuffer/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/to-fast-properties/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/to-object-path/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/to-regex-range/node_modules/is-number/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/to-regex-range/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/to-regex/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/trim-right/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/true-case-path/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/tty-browserify/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/type-is/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/uglify-js-brunch/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/uglify-js/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/uglify-to-browserify/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/union-value/node_modules/extend-shallow/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/union-value/node_modules/set-value/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/union-value/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/universal-path/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/unpipe/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/unset-value/node_modules/has-value/node_modules/isobject/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/unset-value/node_modules/has-value/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/unset-value/node_modules/has-values/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/unset-value/node_modules/isobject/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/unset-value/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/untildify/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/urix/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/url/node_modules/punycode/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/url/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/use/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/util-deprecate/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/util/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/utils-merge/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/vary/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/vm-browserify/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/which/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/window-size/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/wordwrap/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/wrappy/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/xtend/package.json" />
-      <path value="$PROJECT_DIR$/assets/node_modules/yargs/package.json" />
       <path value="$PROJECT_DIR$/assets/package.json" />
     </packageJsonPaths>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="1407" />
-    <option name="y" value="-1361" />
-    <option name="width" value="2182" />
-    <option name="height" value="1312" />
+    <option name="x" value="305" />
+    <option name="y" value="23" />
+    <option name="width" value="1056" />
+    <option name="height" value="969" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
-    <navigator currentView="ProjectPane" proportions="" version="1">
-      <flattenPackages />
-      <showMembers />
-      <showModules />
-      <showLibraryContents />
-      <hideEmptyPackages />
-      <abbreviatePackageNames />
-      <autoscrollToSource />
-      <autoscrollFromSource />
-      <sortByType />
-      <manualOrder />
+    <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="metro" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="metro" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
+          <expand>
+            <path>
+              <item name="metro" type="b2602c69:ProjectViewProjectNode" />
+              <item name="metro" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="metro" type="b2602c69:ProjectViewProjectNode" />
+              <item name="metro" type="462c0819:PsiDirectoryNode" />
+              <item name="assets" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="metro" type="b2602c69:ProjectViewProjectNode" />
+              <item name="metro" type="462c0819:PsiDirectoryNode" />
+              <item name="assets" type="462c0819:PsiDirectoryNode" />
+              <item name="js" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="metro" type="b2602c69:ProjectViewProjectNode" />
+              <item name="metro" type="462c0819:PsiDirectoryNode" />
+              <item name="lib" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="metro" type="b2602c69:ProjectViewProjectNode" />
+              <item name="metro" type="462c0819:PsiDirectoryNode" />
+              <item name="lib" type="462c0819:PsiDirectoryNode" />
+              <item name="metro" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="metro" type="b2602c69:ProjectViewProjectNode" />
+              <item name="metro" type="462c0819:PsiDirectoryNode" />
+              <item name="lib" type="462c0819:PsiDirectoryNode" />
+              <item name="metro_web" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="metro" type="b2602c69:ProjectViewProjectNode" />
+              <item name="metro" type="462c0819:PsiDirectoryNode" />
+              <item name="lib" type="462c0819:PsiDirectoryNode" />
+              <item name="metro_web" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="metro" type="b2602c69:ProjectViewProjectNode" />
+              <item name="metro" type="462c0819:PsiDirectoryNode" />
+              <item name="lib" type="462c0819:PsiDirectoryNode" />
+              <item name="metro_web" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
+              <item name="book" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="metro" type="b2602c69:ProjectViewProjectNode" />
+              <item name="metro" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="metro" type="b2602c69:ProjectViewProjectNode" />
+              <item name="metro" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="metro" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="metro" type="b2602c69:ProjectViewProjectNode" />
+              <item name="metro" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="metro" type="462c0819:PsiDirectoryNode" />
+              <item name="account" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="metro" type="b2602c69:ProjectViewProjectNode" />
+              <item name="metro" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="metro" type="462c0819:PsiDirectoryNode" />
+              <item name="location" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
-      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="SearchEverywhereHistoryKey" value="create_book&#9;FILE&#9;file://C:/Users/hailea3/Downloads/metro/priv/repo/migrations/20190316183944_create_books.exs&#10;book.e&#9;FILE&#9;file://C:/Users/hailea3/Downloads/metro/lib/metro/location/book.ex&#10;order_test&#9;FILE&#9;file://C:/Users/hailea3/Downloads/metro/test/metro/order/order_test.exs&#10;create_checkout&#9;FILE&#9;file://C:/Users/hailea3/Downloads/metro/priv/repo/migrations/20190316183959_create_checkouts.exs&#10;create_coherence&#9;FILE&#9;file://C:/Users/hailea3/Downloads/metro/_build/dev/lib/metro/priv/repo/migrations/20190315193646_create_coherence_user.exs&#10;create_coherence_user&#9;FILE&#9;file://C:/Users/hailea3/Downloads/metro/_build/test/lib/metro/priv/repo/migrations/20190315193646_create_coherence_user.exs&#10;create_card&#9;FILE&#9;file://C:/Users/hailea3/Downloads/metro/priv/repo/migrations/20190316183956_create_cards.exs&#10;create_che&#9;FILE&#9;file://C:/Users/hailea3/Downloads/metro/priv/repo/migrations/20190316183959_create_checkouts.exs&#10;checkout&#9;FILE&#9;file://C:/Users/hailea3/Downloads/metro/lib/metro/order/checkout.ex&#10;card.e&#9;FILE&#9;file://C:/Users/hailea3/Downloads/metro/lib/metro/account/card.ex&#10;user&#9;FILE&#9;file://C:/Users/hailea3/Downloads/metro/lib/metro/account/user.ex&#10;create_co&#9;FILE&#9;file://C:/Users/hailea3/Downloads/metro/priv/repo/migrations/20190316183949_create_copies.exs&#10;copy.ex&#9;FILE&#9;file://C:/Users/hailea3/Downloads/metro/lib/metro/location/copy.ex&#10;checkout.ex&#9;FILE&#9;file://C:/Users/hailea3/Downloads/metro/lib/metro/order/checkout.ex&#10;transit.ex&#9;FILE&#9;file://C:/Users/hailea3/Downloads/metro/lib/metro/order/transit.ex&#10;waitlist&#9;FILE&#9;file://C:/Users/hailea3/Downloads/metro/lib/metro/order/waitlist.ex&#10;user.ex&#9;FILE&#9;file://C:/Users/hailea3/Downloads/metro/lib/metro/account/user.ex&#10;card\form&#9;FILE&#9;file://C:/Users/hailea3/Downloads/metro/lib/metro_web/templates/card/form.html.eex&#10;user.&#9;FILE&#9;file://C:/Users/hailea3/Downloads/metro/lib/metro/account/user.ex&#10;card&#9;FILE&#9;file://C:/Users/hailea3/Downloads/metro/lib/metro/account/card.ex&#10;author.ex&#9;FILE&#9;file://C:/Users/hailea3/Downloads/metro/lib/metro/location/author.ex&#10;book.ex&#9;FILE&#9;file://C:/Users/hailea3/Downloads/metro/lib/metro/location/book.ex&#10;location.ex&#9;FILE&#9;file://C:/Users/hailea3/Downloads/metro/lib/metro/location/location.ex&#10;copy/form&#9;FILE&#9;file://C:/Users/hailea3/Downloads/metro/lib/metro_web/templates/copy/form.html.eex&#10;user_contr&#9;FILE&#9;file://C:/Users/hailea3/Downloads/metro/lib/metro_web/controllers/user_controller.ex&#10;router.ex&#9;FILE&#9;file://C:/Users/hailea3/Downloads/metro/lib/metro_web/router.ex&#10;app&#9;FILE&#9;file://C:/Users/hailea3/Downloads/metro/lib/metro_web/templates/layout/app.html.eex&#10;book_contr&#9;FILE&#9;file://C:/Users/hailea3/Downloads/metro/lib/metro_web/controllers/book_controller.ex&#10;card_controller_test&#9;FILE&#9;file://C:/Users/hailea3/Downloads/metro/test/metro_web/controllers/card_controller_test.exs&#10;book_controller_test&#9;FILE&#9;file://C:/Users/hailea3/Downloads/metro/test/metro_web/controllers/book_controller_test.exs&#10;library_controller&#9;FILE&#9;file://C:/Users/hailea3/Downloads/metro/test/metro_web/controllers/library_controller_test.exs&#10;copye&#9;FILE&#9;file://C:/Users/hailea3/Downloads/metro/lib/metro/location/copy.ex&#10;library.e&#9;FILE&#9;file://C:/Users/hailea3/Downloads/metro/lib/metro/location/library.ex&#10;user_cont&#9;FILE&#9;file:///Users/aberhamhaile/Downloads/code/metro/lib/metro_web/controllers/user_controller.ex&#10;app.ht&#9;FILE&#9;file:///Users/aberhamhaile/Downloads/code/metro/lib/metro_web/templates/layout/app.html.eex&#10;router.e&#9;FILE&#9;file:///Users/aberhamhaile/Downloads/code/metro/lib/metro_web/router.ex&#10;router&#9;FILE&#9;file:///Users/aberhamhaile/Downloads/code/metro/lib/metro_web/router.ex&#10;app.html&#9;FILE&#9;file:///Users/aberhamhaile/Downloads/code/metro/lib/metro_web/templates/layout/app.html.eex&#10;book\index&#9;FILE&#9;file:///Users/aberhamhaile/Downloads/code/metro/lib/metro_web/templates/book/index.html.eex&#10;author\inde&#9;FILE&#9;file:///Users/aberhamhaile/Downloads/code/metro/lib/metro_web/templates/author/index.html.eex&#10;author/form&#9;FILE&#9;file:///Users/aberhamhaile/Downloads/code/metro/lib/metro_web/templates/author/form.html.eex&#10;book/form&#9;FILE&#9;file:///Users/aberhamhaile/Downloads/code/metro/lib/metro_web/templates/book/form.html.eex&#10;book/new&#9;FILE&#9;file:///Users/aberhamhaile/Downloads/code/metro/lib/metro_web/templates/book/new.html.eex&#10;router.&#9;FILE&#9;file:///Users/aberhamhaile/Downloads/code/metro/lib/metro_web/router.ex&#10;book_cont&#9;FILE&#9;file:///Users/aberhamhaile/Downloads/code/metro/lib/metro_web/controllers/book_controller.ex&#10;library&#9;FILE&#9;file:///Users/aberhamhaile/Downloads/code/metro/lib/metro/location/library.ex&#10;templates/libra&#9;FILE&#9;file:///Users/aberhamhaile/Downloads/code/metro/lib/metro_web/templates/library&#10;library/index&#9;FILE&#9;file:///Users/aberhamhaile/Downloads/code/metro/lib/metro_web/templates/library/index.html.eex&#10;book/inde&#9;FILE&#9;file:///Users/aberhamhaile/Downloads/code/metro/lib/metro_web/templates/book/index.html.eex&#10;book/indx&#9;null&#9;null" />
+    <property name="SearchEverywhereHistoryKey" value="book/form&#9;FILE&#9;file:///Users/aberhamhaile/Downloads/code/metro/lib/metro_web/templates/book/form.html.eex&#10;location.ex&#9;FILE&#9;file:///Users/aberhamhaile/Downloads/code/metro/lib/metro/location/location.ex&#10;book/edit&#9;FILE&#9;file:///Users/aberhamhaile/Downloads/code/metro/lib/metro_web/templates/book/edit.html.eex&#10;book/new&#9;FILE&#9;file:///Users/aberhamhaile/Downloads/code/metro/lib/metro_web/templates/book/new.html.eex&#10;book_cont&#9;FILE&#9;file:///Users/aberhamhaile/Downloads/code/metro/lib/metro_web/controllers/book_controller.ex&#10;location_&#9;FILE&#9;file:///Users/aberhamhaile/Downloads/code/metro/test/metro/location/location_test.exs&#10;location&#9;FILE&#9;file:///Users/aberhamhaile/Downloads/code/metro/lib/metro/location/location.ex&#10;book_con&#9;FILE&#9;file:///Users/aberhamhaile/Downloads/code/metro/test/metro_web/controllers/book_controller_test.exs&#10;location_test&#9;FILE&#9;file:///Users/aberhamhaile/Downloads/code/metro/test/metro/location/location_test.exs&#10;book_controller_test&#9;FILE&#9;file:///Users/aberhamhaile/Downloads/code/metro/test/metro_web/controllers/book_controller_test.exs&#10;mix.e&#9;FILE&#9;file:///Users/aberhamhaile/Downloads/code/metro/mix.exs&#10;app.ht&#9;FILE&#9;file:///Users/aberhamhaile/Downloads/code/metro/lib/metro_web/templates/layout/app.html.eex&#10;book/new.&#9;FILE&#9;file:///Users/aberhamhaile/Downloads/code/metro/lib/metro_web/templates/book/new.html.eex&#10;book\inde&#9;FILE&#9;file:///Users/aberhamhaile/Downloads/code/metro/lib/metro_web/templates/book/index.html.eex&#10;dump.&#9;FILE&#9;file:///Users/aberhamhaile/Downloads/code/metro/dump.txt&#10;create_author&#9;FILE&#9;file:///Users/aberhamhaile/Downloads/code/metro/priv/repo/migrations/20190316183934_create_authors.exs&#10;author&#9;FILE&#9;file:///Users/aberhamhaile/Downloads/code/metro/lib/metro/location/author.ex&#10;book\index&#9;FILE&#9;file:///Users/aberhamhaile/Downloads/code/metro/lib/metro_web/templates/book/index.html.eex&#10;book_view&#9;FILE&#9;file:///Users/aberhamhaile/Downloads/code/metro/lib/metro_web/views/book_view.ex&#10;book.ex&#9;FILE&#9;file:///Users/aberhamhaile/Downloads/code/metro/lib/metro/location/book.ex&#10;book_contr&#9;FILE&#9;file:///Users/aberhamhaile/Downloads/code/metro/lib/metro_web/controllers/book_controller.ex&#10;book_controller&#9;FILE&#9;file:///Users/aberhamhaile/Downloads/code/metro/test/metro_web/controllers/book_controller_test.exs&#10;create_book&#9;FILE&#9;file://C:/Users/hailea3/Downloads/metro/priv/repo/migrations/20190316183944_create_books.exs&#10;book.e&#9;FILE&#9;file://C:/Users/hailea3/Downloads/metro/lib/metro/location/book.ex&#10;order_test&#9;FILE&#9;file://C:/Users/hailea3/Downloads/metro/test/metro/order/order_test.exs&#10;create_checkout&#9;FILE&#9;file://C:/Users/hailea3/Downloads/metro/priv/repo/migrations/20190316183959_create_checkouts.exs&#10;create_coherence&#9;FILE&#9;file://C:/Users/hailea3/Downloads/metro/_build/dev/lib/metro/priv/repo/migrations/20190315193646_create_coherence_user.exs&#10;create_coherence_user&#9;FILE&#9;file://C:/Users/hailea3/Downloads/metro/_build/test/lib/metro/priv/repo/migrations/20190315193646_create_coherence_user.exs&#10;create_card&#9;FILE&#9;file://C:/Users/hailea3/Downloads/metro/priv/repo/migrations/20190316183956_create_cards.exs&#10;create_che&#9;FILE&#9;file://C:/Users/hailea3/Downloads/metro/priv/repo/migrations/20190316183959_create_checkouts.exs&#10;checkout&#9;FILE&#9;file://C:/Users/hailea3/Downloads/metro/lib/metro/order/checkout.ex&#10;card.e&#9;FILE&#9;file://C:/Users/hailea3/Downloads/metro/lib/metro/account/card.ex&#10;user&#9;FILE&#9;file://C:/Users/hailea3/Downloads/metro/lib/metro/account/user.ex&#10;create_co&#9;FILE&#9;file://C:/Users/hailea3/Downloads/metro/priv/repo/migrations/20190316183949_create_copies.exs&#10;copy.ex&#9;FILE&#9;file://C:/Users/hailea3/Downloads/metro/lib/metro/location/copy.ex&#10;checkout.ex&#9;FILE&#9;file://C:/Users/hailea3/Downloads/metro/lib/metro/order/checkout.ex&#10;transit.ex&#9;FILE&#9;file://C:/Users/hailea3/Downloads/metro/lib/metro/order/transit.ex&#10;waitlist&#9;FILE&#9;file://C:/Users/hailea3/Downloads/metro/lib/metro/order/waitlist.ex&#10;user.ex&#9;FILE&#9;file://C:/Users/hailea3/Downloads/metro/lib/metro/account/user.ex&#10;card\form&#9;FILE&#9;file://C:/Users/hailea3/Downloads/metro/lib/metro_web/templates/card/form.html.eex&#10;user.&#9;FILE&#9;file://C:/Users/hailea3/Downloads/metro/lib/metro/account/user.ex&#10;card&#9;FILE&#9;file://C:/Users/hailea3/Downloads/metro/lib/metro/account/card.ex&#10;author.ex&#9;FILE&#9;file://C:/Users/hailea3/Downloads/metro/lib/metro/location/author.ex&#10;copy/form&#9;FILE&#9;file://C:/Users/hailea3/Downloads/metro/lib/metro_web/templates/copy/form.html.eex&#10;user_contr&#9;FILE&#9;file://C:/Users/hailea3/Downloads/metro/lib/metro_web/controllers/user_controller.ex&#10;router.ex&#9;FILE&#9;file://C:/Users/hailea3/Downloads/metro/lib/metro_web/router.ex&#10;app&#9;FILE&#9;file://C:/Users/hailea3/Downloads/metro/lib/metro_web/templates/layout/app.html.eex&#10;card_controller_test&#9;FILE&#9;file://C:/Users/hailea3/Downloads/metro/test/metro_web/controllers/card_controller_test.exs&#10;library_controller&#9;FILE&#9;file://C:/Users/hailea3/Downloads/metro/test/metro_web/controllers/library_controller_test.exs&#10;copye&#9;FILE&#9;file://C:/Users/hailea3/Downloads/metro/lib/metro/location/copy.ex" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="js-jscs-nodeInterpreter" value="C:\Program Files\nodejs\node.exe" />
+    <property name="js.eslint.eslintPackage" value="" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../phoenixtasks" />
+    <property name="nodejs_interpreter_path" value="node" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
-    <property name="nodejs_interpreter_path" value="C:/Program Files/nodejs/node" />
-    <property name="js.eslint.eslintPackage" value="" />
-    <property name="js-jscs-nodeInterpreter" value="C:\Program Files\nodejs\node.exe" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -891,75 +420,9 @@
     </option>
   </component>
   <component name="RunManager">
-    <configuration default="true" type="CucumberRunConfigurationType" factoryName="Cucumber">
-      <predefined_log_file id="RUBY_CUCUMBER" enabled="true" />
-      <module name="" />
-      <CUCUMBER_RUN_CONFIG_SETTINGS_ID NAME="RUBY_ARGS" VALUE="-e $stdout.sync=true;$stderr.sync=true;load($0=ARGV.shift)" />
-      <CUCUMBER_RUN_CONFIG_SETTINGS_ID NAME="WORK DIR" VALUE="" />
-      <CUCUMBER_RUN_CONFIG_SETTINGS_ID NAME="SHOULD_USE_SDK" VALUE="false" />
-      <CUCUMBER_RUN_CONFIG_SETTINGS_ID NAME="ALTERN_SDK_NAME" VALUE="" />
-      <CUCUMBER_RUN_CONFIG_SETTINGS_ID NAME="myPassParentEnvs" VALUE="true" />
-      <envs />
-      <EXTENSION ID="BundlerRunConfigurationExtension" bundleExecEnabled="false" />
-      <EXTENSION ID="JRubyRunConfigurationExtension" NailgunExecEnabled="false" />
-      <EXTENSION ID="RubyCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" track_test_folders="true" runner="rcov" />
-      <CUCUMBER_RUN_CONFIG_SETTINGS_ID NAME="TEST_FILE_MASK" VALUE="**/*.feature" />
-      <CUCUMBER_RUN_CONFIG_SETTINGS_ID NAME="TEST_TEST_TYPE" VALUE="TEST_SCRIPT" />
-      <CUCUMBER_RUN_CONFIG_SETTINGS_ID NAME="TESTS_FOLDER_PATH" VALUE="" />
-      <CUCUMBER_RUN_CONFIG_SETTINGS_ID NAME="TEST_SCRIPT_PATH" VALUE="" />
-      <CUCUMBER_RUN_CONFIG_SETTINGS_ID NAME="TEST_TAGS_FILTER" VALUE="" />
-      <CUCUMBER_RUN_CONFIG_SETTINGS_ID NAME="TEST_NAME_FILTER" VALUE="" />
-      <CUCUMBER_RUN_CONFIG_SETTINGS_ID NAME="CUCUMBER_ARGS" VALUE="--color -r features" />
-      <CUCUMBER_RUN_CONFIG_SETTINGS_ID NAME="RUNNER_VERSION" VALUE="" />
-      <CUCUMBER_RUN_CONFIG_SETTINGS_ID NAME="FULL_BACKTRACE" VALUE="false" />
-      <CUCUMBER_RUN_CONFIG_SETTINGS_ID NAME="VERBOSE_OPTION" VALUE="false" />
-      <CUCUMBER_RUN_CONFIG_SETTINGS_ID NAME="DRB" VALUE="false" />
-      <CUCUMBER_RUN_CONFIG_SETTINGS_ID NAME="ZEUS" VALUE="false" />
-      <CUCUMBER_RUN_CONFIG_SETTINGS_ID NAME="SPRING" VALUE="false" />
-      <CUCUMBER_RUN_CONFIG_SETTINGS_ID NAME="CUCUMBER_RUNNER_PATH" VALUE="" />
-      <CUCUMBER_RUN_CONFIG_SETTINGS_ID NAME="USE_CUSTOM_RUNNER" VALUE="false" />
-      <CUCUMBER_RUN_CONFIG_SETTINGS_ID NAME="SETTINGS_VERSION" VALUE="2" />
-      <method />
-    </configuration>
-    <configuration default="true" type="JavaScriptTestRunnerProtractor" factoryName="Protractor">
-      <config-file value="" />
-      <node-interpreter value="project" />
-      <envs />
-      <method />
-    </configuration>
-    <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug">
-      <method />
-    </configuration>
-    <configuration default="true" type="MixExUnitRunConfigurationType" factoryName="Elixir Mix ExUnit" show_console_on_std_err="false" show_console_on_std_out="false">
-      <option name="passParentEnvs" value="false" />
-      <option name="programParameters" />
-      <option name="workingDirectory" value="" />
-      <module />
-      <envs />
-      <method />
-    </configuration>
-    <configuration default="true" type="TestUnitRunConfigurationType" factoryName="Test::Unit/Shoulda/Minitest">
-      <predefined_log_file id="RUBY_TESTUNIT" enabled="true" />
-      <module name="" />
-      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="RUBY_ARGS" VALUE="-e $stdout.sync=true;$stderr.sync=true;load($0=ARGV.shift)" />
-      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="WORK DIR" VALUE="" />
-      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="SHOULD_USE_SDK" VALUE="false" />
-      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="ALTERN_SDK_NAME" VALUE="" />
-      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="myPassParentEnvs" VALUE="true" />
-      <envs />
-      <EXTENSION ID="BundlerRunConfigurationExtension" bundleExecEnabled="false" />
-      <EXTENSION ID="JRubyRunConfigurationExtension" NailgunExecEnabled="false" />
-      <EXTENSION ID="RubyCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" track_test_folders="true" runner="rcov" />
-      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="TESTS_FOLDER_PATH" VALUE="" />
-      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="TEST_SCRIPT_PATH" VALUE="" />
-      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="TEST_FILE_MASK" VALUE="" />
-      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="TEST_METHOD_NAME" VALUE="" />
-      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="TEST_TEST_TYPE" VALUE="TEST_SCRIPT" />
-      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="DRB" VALUE="false" />
-      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="ZEUS" VALUE="false" />
-      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="SPRING" VALUE="false" />
-      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="RUNNER_OPTIONS" VALUE="" />
-      <method />
+    <configuration default="true" type="MixExUnitRunConfigurationType" factoryName="Elixir Mix ExUnit">
+      <working-directory url="file://" />
+      <module-filters inherit-application-module-filters="true" />
     </configuration>
     <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
       <node-interpreter>project</node-interpreter>
@@ -968,18 +431,7 @@
       <tasks />
       <arguments />
       <envs />
-      <method />
     </configuration>
-    <configuration default="true" type="js.build_tools.npm" factoryName="npm">
-      <command value="run" />
-      <scripts />
-      <node-interpreter value="project" />
-      <envs />
-      <method />
-    </configuration>
-  </component>
-  <component name="ShelveChangesManager" show_recycled="false">
-    <option name="remove_strategy" value="false" />
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -997,183 +449,94 @@
       <workItem from="1553183000076" duration="8000" />
       <workItem from="1553183044359" duration="50000" />
       <workItem from="1553187334956" duration="8447000" />
+      <workItem from="1553259260783" duration="23254000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="52736000" />
+    <option name="totallyTimeSpent" value="75990000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="1407" y="-1361" width="2182" height="1312" extended-state="6" />
+    <frame x="305" y="23" width="1056" height="969" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2660287" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3271202" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32991612" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
+      <window_info anchor="bottom" id="Database Changes" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="7" weight="0.3271202" />
+      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="7" visible="true" weight="0.32912844" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.3181818" />
+      <window_info anchor="bottom" id="Docker" show_stripe_button="false" />
+      <window_info anchor="right" id="Database" order="3" />
+      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="right" id="Commander" order="0" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
     </layout>
     <layout-to-restore>
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3271202" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32991612" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24976076" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="combo" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="3" weight="0.25" />
+      <window_info anchor="bottom" id="Run" order="5" />
+      <window_info anchor="right" id="Ant Build" order="2" weight="0.25" />
+      <window_info content_ui="combo" id="Project" order="1" visible="true" weight="0.24976076" />
+      <window_info id="Structure" order="2" weight="0.25" />
+      <window_info anchor="right" id="Commander" order="1" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="9" />
+      <window_info anchor="bottom" id="Version Control" order="1" weight="0.3271202" />
+      <window_info anchor="bottom" id="Find" order="4" />
+      <window_info anchor="right" id="Database" order="0" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="2" visible="true" weight="0.32991612" />
+      <window_info anchor="bottom" id="Event Log" order="0" side_tool="true" />
+      <window_info anchor="bottom" id="Inspection" order="8" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="7" weight="0.25" />
+      <window_info anchor="bottom" id="Debug" order="6" weight="0.4" />
+      <window_info anchor="bottom" id="Message" order="3" />
+      <window_info id="Favorites" order="0" side_tool="true" />
     </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
-    <option name="processedProjectFiles" value="true" />
+    <option name="version" value="1" />
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="2" />
+      <option name="time" value="3" />
     </breakpoint-manager>
-    <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/lib/metro_web/controllers/user_controller.ex">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="6" column="29" lean-forward="false" selection-start-line="6" selection-start-column="29" selection-end-line="6" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/metro_web/templates/user/form.html.eex">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="32" column="26" lean-forward="false" selection-start-line="32" selection-start-column="22" selection-end-line="32" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/metro_web/templates/user/new.html.eex">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="100">
-          <caret line="4" column="36" lean-forward="false" selection-start-line="4" selection-start-column="36" selection-end-line="4" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/metro_web/templates/user/index.html.eex">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="157">
-          <caret line="16" column="23" lean-forward="false" selection-start-line="16" selection-start-column="19" selection-end-line="16" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/metro_web/templates/user/show.html.eex">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="495">
-          <caret line="31" column="27" lean-forward="false" selection-start-line="31" selection-start-column="27" selection-end-line="31" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test/metro_web/controllers/author_controller_test.exs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test/metro_web/controllers/copy_controller_test.exs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="14" column="9" lean-forward="false" selection-start-line="14" selection-start-column="9" selection-end-line="14" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/metro_web/templates/card/form.html.eex">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test/metro_web/controllers/card_controller_test.exs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="325">
-          <caret line="69" column="5" lean-forward="true" selection-start-line="69" selection-start-column="5" selection-end-line="69" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test/metro_web/controllers/waitlist_controller_test.exs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="125">
-          <caret line="5" column="31" lean-forward="true" selection-start-line="5" selection-start-column="31" selection-end-line="5" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/metro/account/account.ex">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="625">
-          <caret line="25" column="0" lean-forward="false" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/_build/dev/lib/metro/ebin/Elixir.Metro.Location.Copy.beam">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="25">
-          <caret line="1" column="10" lean-forward="false" selection-start-line="1" selection-start-column="10" selection-end-line="1" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/generator_commands.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="212">
-          <caret line="49" column="31" lean-forward="false" selection-start-line="49" selection-start-column="23" selection-end-line="49" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/priv/repo/migrations/20190316183934_create_authors.exs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="125">
-          <caret line="5" column="30" lean-forward="true" selection-start-line="5" selection-start-column="30" selection-end-line="5" selection-end-column="30" />
+          <caret line="49" column="31" selection-start-line="49" selection-start-column="23" selection-end-line="49" selection-end-column="31" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/priv/repo/migrations/20190316183940_create_rooms.exs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="250">
-          <caret line="10" column="39" lean-forward="false" selection-start-line="10" selection-start-column="39" selection-end-line="10" selection-end-column="39" />
+          <caret line="10" column="39" selection-start-line="10" selection-start-column="39" selection-end-line="10" selection-end-column="39" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/priv/repo/migrations/20190316184004_create_waitlist.exs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="275">
-          <caret line="11" column="0" lean-forward="false" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
+          <caret line="11" selection-start-line="11" selection-end-line="11" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/priv/repo/migrations/20190316184007_create_transit.exs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="325">
-          <caret line="13" column="42" lean-forward="false" selection-start-line="13" selection-start-column="42" selection-end-line="13" selection-end-column="42" />
+          <caret line="13" column="42" selection-start-line="13" selection-start-column="42" selection-end-line="13" selection-end-column="42" />
         </state>
       </provider>
     </entry>
@@ -1194,95 +557,58 @@
     <entry file="file://$PROJECT_DIR$/lib/metro/order/transit.ex">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="275">
-          <caret line="11" column="62" lean-forward="false" selection-start-line="11" selection-start-column="62" selection-end-line="11" selection-end-column="62" />
+          <caret line="11" column="62" selection-start-line="11" selection-start-column="62" selection-end-line="11" selection-end-column="62" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/lib/metro/order/waitlist.ex">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="225">
-          <caret line="9" column="56" lean-forward="false" selection-start-line="9" selection-start-column="56" selection-end-line="9" selection-end-column="56" />
+          <caret line="9" column="56" selection-start-line="9" selection-start-column="56" selection-end-line="9" selection-end-column="56" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/lib/metro/order/reservation.ex">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="225">
-          <caret line="9" column="58" lean-forward="false" selection-start-line="9" selection-start-column="58" selection-end-line="9" selection-end-column="58" />
+          <caret line="9" column="58" selection-start-line="9" selection-start-column="58" selection-end-line="9" selection-end-column="58" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/lib/metro/order/order.ex">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/lib/metro/location/room.ex">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="250">
-          <caret line="10" column="58" lean-forward="false" selection-start-line="10" selection-start-column="58" selection-end-line="10" selection-end-column="58" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/metro/location/location.ex">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="7400">
-          <caret line="296" column="27" lean-forward="false" selection-start-line="296" selection-start-column="27" selection-end-line="296" selection-end-column="27" />
-          <folding />
+          <caret line="10" column="58" selection-start-line="10" selection-start-column="58" selection-end-line="10" selection-end-column="58" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/lib/metro/location/event.ex">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="325">
-          <caret line="13" column="49" lean-forward="false" selection-start-line="13" selection-start-column="49" selection-end-line="13" selection-end-column="49" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/metro/location/author.ex">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="325">
-          <caret line="13" column="25" lean-forward="true" selection-start-line="13" selection-start-column="25" selection-end-line="13" selection-end-column="25" />
+          <caret line="13" column="49" selection-start-line="13" selection-start-column="49" selection-end-line="13" selection-end-column="49" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/priv/repo/migrations/20190316184010_create_reservations.exs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="125">
-          <caret line="5" column="43" lean-forward="false" selection-start-line="5" selection-start-column="43" selection-end-line="5" selection-end-column="43" />
+          <caret line="5" column="43" selection-start-line="5" selection-start-column="43" selection-end-line="5" selection-end-column="43" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/priv/repo/migrations/20190316183930_create_libraries.exs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="225">
-          <caret line="9" column="0" lean-forward="true" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
+          <caret line="9" lean-forward="true" selection-start-line="9" selection-end-line="9" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/_build/dev/lib/metro/priv/repo/migrations/20190315193646_create_coherence_user.exs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-350">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/_build/test/lib/metro/priv/repo/migrations/20190315193646_create_coherence_user.exs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-361">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/_build/test/lib/metro/priv/repo/migrations/20190319114331_add_library_and_card_reference_to_users_table.exs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/_build/dev/lib/metro/priv/repo/migrations/20190315193646_create_coherence_user.exs" />
+    <entry file="file://$PROJECT_DIR$/_build/test/lib/metro/priv/repo/migrations/20190315193646_create_coherence_user.exs" />
+    <entry file="file://$PROJECT_DIR$/_build/test/lib/metro/priv/repo/migrations/20190319114331_add_library_and_card_reference_to_users_table.exs" />
     <entry file="file://$PROJECT_DIR$/priv/repo/migrations/20190316183952_create_events.exs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="200">
@@ -1293,7 +619,7 @@
     <entry file="file://$PROJECT_DIR$/priv/repo/migrations/20190316183956_create_cards.exs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="150">
-          <caret line="6" column="6" lean-forward="false" selection-start-line="6" selection-start-column="6" selection-end-line="6" selection-end-column="6" />
+          <caret line="6" column="6" selection-start-line="6" selection-start-column="6" selection-end-line="6" selection-end-column="6" />
         </state>
       </provider>
     </entry>
@@ -1301,14 +627,14 @@
     <entry file="file://$PROJECT_DIR$/priv/repo/migrations/20190316193646_create_coherence_user.exs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="464">
-          <caret line="27" column="6" lean-forward="false" selection-start-line="27" selection-start-column="6" selection-end-line="27" selection-end-column="6" />
+          <caret line="27" column="6" selection-start-line="27" selection-start-column="6" selection-end-line="27" selection-end-column="6" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/lib/metro/account/user.ex">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="375">
-          <caret line="15" column="49" lean-forward="false" selection-start-line="15" selection-start-column="49" selection-end-line="15" selection-end-column="49" />
+          <caret line="15" column="49" selection-start-line="15" selection-start-column="49" selection-end-line="15" selection-end-column="49" />
         </state>
       </provider>
     </entry>
@@ -1322,28 +648,28 @@
     <entry file="file://$PROJECT_DIR$/lib/metro/account/card.ex">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="300">
-          <caret line="12" column="0" lean-forward="false" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
+          <caret line="12" selection-start-line="12" selection-end-line="12" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/priv/repo/migrations/20190316183959_create_checkouts.exs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="200">
-          <caret line="8" column="39" lean-forward="false" selection-start-line="8" selection-start-column="39" selection-end-line="8" selection-end-column="39" />
+          <caret line="8" column="39" selection-start-line="8" selection-start-column="39" selection-end-line="8" selection-end-column="39" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/priv/repo/migrations/20190316183949_create_copies.exs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="200">
-          <caret line="8" column="0" lean-forward="true" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
+          <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/lib/metro/location/copy.ex">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="75">
-          <caret line="10" column="0" lean-forward="true" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
+          <caret line="10" lean-forward="true" selection-start-line="10" selection-end-line="10" />
         </state>
       </provider>
     </entry>
@@ -1354,74 +680,159 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/dump.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="775">
-          <caret line="31" column="13" lean-forward="false" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/priv/repo/migrations/20190316183944_create_books.exs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="375">
-          <caret line="15" column="38" lean-forward="false" selection-start-line="15" selection-start-column="38" selection-end-line="15" selection-end-column="38" />
-          <folding />
+          <caret line="15" column="38" selection-start-line="15" selection-start-column="38" selection-end-line="15" selection-end-column="38" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/lib/metro/location/library.ex">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="164">
-          <caret line="15" column="20" lean-forward="false" selection-start-line="15" selection-start-column="20" selection-end-line="15" selection-end-column="20" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/metro/location/book.ex">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="250">
-          <caret line="10" column="0" lean-forward="false" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test/metro/location/location_test.exs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="25">
-          <caret line="200" column="32" lean-forward="false" selection-start-line="200" selection-start-column="32" selection-end-line="200" selection-end-column="32" />
-          <folding />
+        <state relative-caret-position="225">
+          <caret line="15" column="20" selection-start-line="15" selection-start-column="20" selection-end-line="15" selection-end-column="20" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/lib/metro_web/controllers/copy_controller.ex">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="12" column="0" lean-forward="false" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
-          <folding />
+        <state relative-caret-position="180">
+          <caret line="12" selection-start-line="12" selection-end-line="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="420">
+          <caret line="28" column="4" selection-start-line="28" selection-start-column="4" selection-end-line="28" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/metro/application.ex">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="13" column="40" selection-start-line="13" selection-start-column="40" selection-end-line="13" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/metro.ex">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/metro_web/views/book_view.ex">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" selection-start-line="2" selection-end-line="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/priv/repo/migrations/20190316183934_create_authors.exs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="5" column="30" lean-forward="true" selection-start-line="5" selection-start-column="30" selection-end-line="5" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dump.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="208">
+          <caret line="20" lean-forward="true" selection-start-line="20" selection-end-line="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/metro/location/book.ex">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="10" selection-start-line="10" selection-end-line="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mix.exs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="137">
+          <caret line="39" column="33" selection-start-line="39" selection-start-column="33" selection-end-line="39" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/js/book.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/metro_web/templates/book/index.html.eex">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="54">
+          <caret line="4" column="8" selection-start-line="4" selection-start-column="8" selection-end-line="4" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/metro_web/templates/layout/app.html.eex">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="16" column="72" selection-start-line="16" selection-start-column="72" selection-end-line="16" selection-end-column="72" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/metro_web.ex">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="166">
+          <caret line="33" column="53" lean-forward="true" selection-start-line="33" selection-start-column="53" selection-end-line="33" selection-end-column="53" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/metro/location/author.ex">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="14" lean-forward="true" selection-start-line="14" selection-end-line="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/metro/location/location_test.exs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="72" column="122" selection-start-line="72" selection-start-column="122" selection-end-line="72" selection-end-column="122" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/metro/location/location.ex">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="70">
+          <caret line="109" column="13" lean-forward="true" selection-start-line="109" selection-start-column="13" selection-end-line="109" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/metro_web/templates/book/edit.html.eex">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" selection-start-line="4" selection-end-line="4" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/test/metro_web/controllers/book_controller_test.exs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="52" column="37" lean-forward="true" selection-start-line="52" selection-start-column="0" selection-end-line="53" selection-end-column="0" />
-          <folding />
+        <state relative-caret-position="-624">
+          <caret line="19" column="7" lean-forward="true" selection-start-line="19" selection-start-column="7" selection-end-line="19" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/metro_web/templates/book/form.html.eex">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="134">
+          <caret line="11" column="8" lean-forward="true" selection-start-line="11" selection-start-column="8" selection-end-line="11" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/metro_web/templates/book/new.html.eex">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="3" lean-forward="true" selection-start-line="3" selection-end-line="3" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/lib/metro_web/controllers/book_controller.ex">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="400">
-          <caret line="23" column="66" lean-forward="false" selection-start-line="23" selection-start-column="66" selection-end-line="23" selection-end-column="66" />
+        <state relative-caret-position="233">
+          <caret line="23" column="31" selection-start-line="23" selection-start-column="31" selection-end-line="23" selection-end-column="31" />
           <folding>
-            <element signature="e#39#1991#1" expanded="false" />
-            <element signature="e#145#232#0" expanded="false" />
-            <element signature="e#259#364#0" expanded="false" />
-            <element signature="e#777#863#0" expanded="false" />
-            <element signature="e#901#1052#0" expanded="false" />
-            <element signature="e#1115#1483#0" expanded="false" />
-            <element signature="e#1523#1722#0" expanded="false" />
+            <element signature="e#145#232#0" />
+            <element signature="e#1129#1215#0" />
           </folding>
         </state>
       </provider>

@@ -118,6 +118,23 @@ defmodule Metro.Location do
   end
 
   @doc """
+  Loads a list of authors in alphabetical order and assigns it to conn.
+
+  ## Examples
+
+      iex> load_authors()
+      [%Author{}, ...]
+
+  """
+  def load_authors  do
+    query =
+      Author
+      |> Author.alphabetical
+      |> Author.names_and_ids
+    authors = Repo.all query
+  end
+
+  @doc """
   Gets a single author.
 
   Raises `Ecto.NoResultsError` if the Author does not exist.

@@ -21,6 +21,7 @@ SET row_security = off;
 
 COPY public.authors (id, first_name, last_name, location, bio, inserted_at, updated_at) FROM stdin;
 1	Haruki	Murakami	Japan	Haruki Murakami was born in Kyoto in 1949 and now lives near Tokyo. His work has been translated into more than fifty languages, and the most recent of his many international honors is the Jerusalem Prize, whose previous recipients include J. M. Coetzee, Milan Kundera, and V. S. Naipaul.	2019-03-17 18:32:59.807706	2019-03-17 18:32:59.807714
+2	Daniel	Handler	USA	Haruki Murakami was born in Kyoto in 1949 and now lives near Tokyo. His work has been translated into more than fifty languages, and the most recent of his many international honors is the Jerusalem Prize, whose previous recipients include J. M. Coetzee, Milan Kundera, and V. S. Naipaul.	2019-03-17 18:32:59.807706	2019-03-17 18:32:59.807714
 \.
 
 
@@ -28,7 +29,7 @@ COPY public.authors (id, first_name, last_name, location, bio, inserted_at, upda
 -- Data for Name: books; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public.books (isbn, title, year, summary, pages, image, author_id, inserted_at, updated_at) FROM stdin;
+COPY public.books (isbn, title, year, summary, pages, image, inserted_at, updated_at) FROM stdin;
 9780679446698	The Wind-Up Bird Chronicle	1997	In a Tokyo suburb a young man named Toru Okada searches for his wife's missing cat.  Soon he finds himself looking for his wife as well in a netherworld that lies beneath the placid surface of Tokyo.  As these searches intersect, Okada encounters a bizarre group of allies and antagonists: a psychic prostitute; a malevolent yet mediagenic politician; a cheerfully morbid sixteen-year-old-girl; and an aging war veteran who has been permanently changed by the hideous things he witnessed during Japan's forgotten campaign in Manchuria.	613	https://contentcafe2.btol.com/ContentCafe/Jacket.aspx?&userID=CLOH21163&password=CC44366&Value=9780679446699&content=M&Return=1&Type=M	\N	2019-03-17 18:13:31.888255	2019-03-17 18:13:31.890795
 9780307593313	1Q84	2011	An ode to George Orwell's "1984" told in alternating male and female voices relates the stories of Aomame, an assassin for a secret organization who discovers that she has been transported to an alternate reality, and Tengo, a mathematics lecturer and novice writer.	925	https://contentcafe2.btol.com/ContentCafe/Jacket.aspx?&userID=CLOH21163&password=CC44366&Value=9780307593313&content=M&Return=1&Type=M	\N	2019-03-17 18:32:25.859935	2019-03-17 18:32:25.859943
 \.
