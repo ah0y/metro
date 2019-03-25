@@ -15,7 +15,6 @@ defmodule Metro.AccountTest do
         attrs
         |> Enum.into(@valid_attrs)
         |> Account.create_card()
-
       card
     end
 

@@ -20,7 +20,7 @@ defmodule Metro.Mixfile do
   def application do
     [
       mod: {Metro.Application, []},
-      extra_applications: [:logger, :runtime_tools, :coherence]
+      extra_applications: [:logger, :runtime_tools, :coherence, :ex_machina]
     ]
   end
 
@@ -43,6 +43,7 @@ defmodule Metro.Mixfile do
       {:cowboy, "~> 1.0"},
       {:plug_cowboy, "~> 1.0"},
       {:coherence, "~> 0.5.2"},
+      {:ex_machina, "~> 2.3", only: :test}
     ]
   end
 

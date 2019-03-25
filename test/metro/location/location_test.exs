@@ -3,6 +3,8 @@ defmodule Metro.LocationTest do
 
   alias Metro.Location
 
+  import Metro.Factory
+
   describe "libraries" do
     alias Metro.Location.Library
 
@@ -195,15 +197,16 @@ defmodule Metro.LocationTest do
 
   describe "books" do
     alias Metro.Location.Book
-
     @valid_attrs %{title: "some title",image: "some image", isbn: 42, pages: 42, summary: "some summary", year: 42}
     @update_attrs %{title: "some updated title",image: "some updated image", isbn: 43, pages: 43, summary: "some updated summary", year: 43}
     @invalid_attrs %{title: nil,image: nil, isbn: nil, pages: nil, summary: nil, year: nil}
 
     def book_fixture(attrs \\ %{}) do
+      author = author_fixture()
       {:ok, book} =
         attrs
         |> Enum.into(@valid_attrs)
+        |> Enum.into(%{author_id: author.id})
         |> Location.create_book()
 
       book
@@ -220,7 +223,9 @@ defmodule Metro.LocationTest do
     end
 
     test "create_book/1 with valid data creates a book" do
-      assert {:ok, %Book{} = book} = Location.create_book(@valid_attrs)
+      author = author_fixture()
+      attrs = params_for(:book, %{author_id: author.id})
+      assert {:ok, %Book{} = book} = Location.create_book(attrs)
       assert book.image == "some image"
       assert book.isbn == 42
       assert book.pages == 42

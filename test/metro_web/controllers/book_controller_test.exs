@@ -2,14 +2,16 @@ defmodule MetroWeb.BookControllerTest do
   use MetroWeb.ConnCase
 
   alias Metro.Location
-  alias Metro.Repo
+
+  import Metro.Factory
 
   @create_attrs %{title: "some title", image: "some image", isbn: 42, pages: 42, summary: "some summary", year: 42}
   @update_attrs %{title: "some updated title",image: "some updated image", isbn: 42, pages: 43, summary: "some updated summary", year: 43}
   @invalid_attrs %{title: nil, image: nil, isbn: nil, pages: nil, summary: nil, year: nil}
 
   def fixture(:book) do
-    {:ok, book} = Location.create_book(@create_attrs)
+    author = insert(:author)
+    {:ok, book} = Location.create_book(Enum.into(@create_attrs, %{author_id: author.id}))
     book
   end
 
@@ -29,7 +31,9 @@ defmodule MetroWeb.BookControllerTest do
 
   describe "create book" do
     test "redirects to show when data is valid", %{conn: conn} do
-      conn = post conn, book_path(conn, :create), book: @create_attrs
+      author = insert(:author)
+      attrs = params_for(:book, %{author_id: author.id})
+      conn = post conn, book_path(conn, :create), book: attrs
 
       assert %{isbn: isbn} = redirected_params(conn)
       assert redirected_to(conn) == book_path(conn, :show, isbn)
@@ -45,11 +49,14 @@ defmodule MetroWeb.BookControllerTest do
 
 
     test "routes to Copy/new when creating a book with an existing isbn", %{conn: conn} do
-      conn = post conn, book_path(conn, :create), book: @create_attrs
+      author = insert(:author)
+      attrs = params_for(:book, %{author_id: author.id})
+      conn = post conn, book_path(conn, :create), book: attrs
+
       assert %{isbn: isbn} = redirected_params(conn)
       assert redirected_to(conn) == book_path(conn, :show, isbn)
 
-      conn = post(build_conn(), "/books", book: @create_attrs)
+      conn = post(build_conn(), "/books", book: attrs)
       assert redirected_to(conn) == copy_path(conn, :new)
     end
 

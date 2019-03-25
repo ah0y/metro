@@ -24,8 +24,9 @@ defmodule Metro.Location.Book do
   @doc false
   def changeset(book, attrs) do
     book
-    |> cast(attrs, [:isbn, :title, :year, :summary, :pages, :image])
+    |> cast(attrs, [:isbn, :title, :year, :summary, :pages, :image, :author_id])
     |> unique_constraint(:isbn, name: :books_pkey )
-    |> validate_required([:isbn, :title, :year, :summary, :pages, :image])
+    |> foreign_key_constraint(:author_id)
+    |> validate_required([:isbn, :title, :year, :summary, :pages, :image, :author_id])
   end
 end
