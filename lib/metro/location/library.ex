@@ -1,6 +1,7 @@
 defmodule Metro.Location.Library do
   use Ecto.Schema
   import Ecto.Changeset
+  import Ecto.Query
 
   alias Metro.Location.Room
   alias Metro.Location.Copy
@@ -24,5 +25,9 @@ defmodule Metro.Location.Library do
     library
     |> cast(attrs, [:branch, :address, :image, :hours])
     |> validate_required([:branch, :address, :image, :hours])
+  end
+
+  def branch_and_ids(query) do
+    from l in query, select: {l.branch, l.id}
   end
 end

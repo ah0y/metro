@@ -21,4 +21,21 @@ defmodule Metro.Factory do
       location: "some location"
     }
   end
+
+  def copy_factory do
+    %Metro.Location.Copy{
+      checked_out?: true,
+      library: build(:library),
+      book: build(:book)
+    }
+  end
+
+  def library_factory do
+    %Metro.Location.Library{
+      address: "some address",
+      image: "some image",
+      hours: "some hours",
+      branch: "some branch"
+    }
+  end
 end

@@ -22,6 +22,22 @@ defmodule Metro.Location do
   end
 
   @doc """
+  Loads a list of library branch and library ids.
+
+  ## Examples
+
+      iex> load_libraries()
+      [%Library{}, ...]
+
+  """
+  def load_libraries do
+    query =
+      Library
+      |> Library.branch_and_ids
+    libraries = Repo.all query
+  end
+
+  @doc """
   Gets a single library.
 
   Raises `Ecto.NoResultsError` if the Library does not exist.
@@ -118,7 +134,7 @@ defmodule Metro.Location do
   end
 
   @doc """
-  Loads a list of authors in alphabetical order and assigns it to conn.
+  Loads a list of author ids and first and last names concatenated in alphabetical order and assigns it to conn.
 
   ## Examples
 

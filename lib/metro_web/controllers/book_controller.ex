@@ -33,7 +33,6 @@ defmodule MetroWeb.BookController do
                 |> Enum.map(&String.trim/1)
               attrs = %{last_name: last, first_name: first}
               {:ok, author} = Location.create_author(attrs)
-#              require IEx; IEx.pry
               updated_book_params = Map.put(book_params, "author_id", author.id)
               case Location.create_book(updated_book_params) do
                 {:ok, book} ->

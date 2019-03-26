@@ -3,12 +3,16 @@ defmodule MetroWeb.CopyControllerTest do
 
   alias Metro.Location
 
+  import Metro.Factory
+
   @create_attrs %{checked_out?: true}
   @update_attrs %{checked_out?: false}
   @invalid_attrs %{checked_out?: nil}
 
   def fixture(:copy) do
-    {:ok, copy} = Location.create_copy(@create_attrs)
+    library = insert(:library)
+    book = insert(:book)
+    {:ok, copy} = Location.create_copy(Enum.into(@create_attrs, %{library_id: library.id, isbn_id: book.isbn}))
     copy
   end
 
@@ -28,7 +32,10 @@ defmodule MetroWeb.CopyControllerTest do
 
   describe "create copy" do
     test "redirects to show when data is valid", %{conn: conn} do
-      conn = post conn, copy_path(conn, :create), copy: @create_attrs
+      library = insert(:library)
+      book = insert(:book)
+      attrs = params_for(:copy, %{library_id: library.id, isbn_id: book.isbn})
+      conn = post conn, copy_path(conn, :create), copy: attrs
 
       assert %{id: id} = redirected_params(conn)
       assert redirected_to(conn) == copy_path(conn, :show, id)

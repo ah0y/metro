@@ -274,11 +274,14 @@ defmodule Metro.LocationTest do
     @invalid_attrs %{checked_out?: nil}
 
     def copy_fixture(attrs \\ %{}) do
+      book = book_fixture()
+      library = library_fixture()
       {:ok, copy} =
         attrs
         |> Enum.into(@valid_attrs)
+        |> Enum.into(%{library_id: library.id})
+        |> Enum.into(%{isbn_id: book.isbn})
         |> Location.create_copy()
-
       copy
     end
 
@@ -293,7 +296,10 @@ defmodule Metro.LocationTest do
     end
 
     test "create_copy/1 with valid data creates a copy" do
-      assert {:ok, %Copy{} = copy} = Location.create_copy(@valid_attrs)
+      library = library_fixture()
+      book = book_fixture()
+      attrs = params_for(:copy, %{library_id: library.id, isbn_id: book.isbn})
+      assert {:ok, %Copy{} = copy} = Location.create_copy(attrs)
       assert copy.checked_out? == true
     end
 

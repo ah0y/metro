@@ -11,7 +11,6 @@ defmodule Metro.Location.Author do
     field :first_name, :string
     field :last_name, :string
     field :location, :string
-    field :name, :string, virtual: true
 
     has_many :books, Book
 

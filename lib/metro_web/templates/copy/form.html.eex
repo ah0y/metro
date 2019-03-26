@@ -6,6 +6,23 @@
   <% end %>
 
   <div class="form-group">
+    <%= label f, :isbn, class: "control-label" %>
+    <%= number_input f, :isbn, class: "form-control" %>
+    <%= error_tag f, :isbn %>
+  </div>
+
+  <style>
+    #branchList { display: none; }
+  </style>
+
+  <div class="form-group">
+    <%= label f, :library_id, class: "control-label" %>
+    <input name="branchSearch" class="awesomplete control" list="branchList" />
+    <%= select f, :library_id, [nil | @branches], class: "form-control", id: "branchList", selected: "" %>
+    <%= error_tag f, :library_id %>
+  </div>
+
+  <div class="form-group">
     <%= label f, :checked_out?, class: "control-label" %>
     <%= checkbox f, :checked_out?, class: "checkbox" %>
     <%= error_tag f, :checked_out? %>
