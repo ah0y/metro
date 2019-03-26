@@ -22,7 +22,7 @@ defmodule Metro.Location.Author do
   def changeset(author, attrs) do
     author
     |> cast(attrs, [:first_name, :last_name, :location, :bio])
-    |> validate_required([:first_name, :last_name, :location, :bio])
+    |> validate_required([:first_name, :last_name])
   end
 
   def alphabetical(query) do

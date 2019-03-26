@@ -24,8 +24,8 @@
 
     <div class="form-group">
       <%= label f, :author_id, class: "control-label" %>
-      <input class="awesomplete" list="authorList" />
-      <%= select f, :author_id, @authors, class: "form-control", id: "authorList" %>
+      <input name="authorSearch" class="awesomplete control" list="authorList" />
+      <%= select f, :author_id, [nil | @authors], class: "form-control", id: "authorList", selected: "" %>
       <%= error_tag f, :author_id %>
     </div>
 

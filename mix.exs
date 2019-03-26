@@ -20,7 +20,7 @@ defmodule Metro.Mixfile do
   def application do
     [
       mod: {Metro.Application, []},
-      extra_applications: [:logger, :runtime_tools, :coherence, :ex_machina]
+      extra_applications: [:logger, :runtime_tools, :coherence]
     ]
   end
 

@@ -60,13 +60,9 @@ defmodule MetroWeb.BookControllerTest do
       assert redirected_to(conn) == copy_path(conn, :new)
     end
 
-    test "creates a new author if one is entered that doesn't already exist" do
-
-    end
-
-    test "builds proper association when an existing author is selected" do
-
-
+    test "creates a new author if one is entered that doesn't already exist"  do
+      conn = post(build_conn(), "/books", authorSearch: "author, new", book: @create_attrs)
+      assert get_flash(conn, :info) == "Book created successfully."
     end
   end
 
