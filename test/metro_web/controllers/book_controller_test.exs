@@ -61,7 +61,7 @@ defmodule MetroWeb.BookControllerTest do
     end
 
     test "creates a new author if one is entered that doesn't already exist"  do
-      conn = post(build_conn(), "/books", authorSearch: "author, new", book: @create_attrs)
+      conn = post(build_conn(), "/books", book: Enum.into(@create_attrs, %{author_id: "author, new"}))
       assert get_flash(conn, :info) == "Book created successfully."
     end
   end

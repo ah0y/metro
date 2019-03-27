@@ -11,6 +11,7 @@ defmodule Metro.Location.Author do
     field :first_name, :string
     field :last_name, :string
     field :location, :string
+    field :name, :string, virtual: true
 
     has_many :books, Book
 
@@ -29,6 +30,6 @@ defmodule Metro.Location.Author do
   end
 
   def names_and_ids(query) do
-    from a in query, select: {fragment("concat(?, ', ', ?)", a.last_name, a.first_name), a.id}
+    from a in query, select: %{name: fragment("concat(?, ', ', ?)", a.last_name, a.first_name), id: a.id}
   end
 end

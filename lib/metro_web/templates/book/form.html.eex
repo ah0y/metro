@@ -15,18 +15,17 @@
       <%= label f, :title, class: "control-label" %>
       <%= text_input f, :title, class: "form-control" %>
       <%= error_tag f, :title %>
-    </div>
 
-
-    <style>
-      #authorList { display: none; }
-    </style>
 
     <div class="form-group">
       <%= label f, :author_id, class: "control-label" %>
-      <input name="authorSearch" class="awesomplete control" list="authorList" />
-      <%= select f, :author_id, [nil | @authors], class: "form-control", id: "authorList", selected: "" %>
-      <%= error_tag f, :author_id %>
+      <input list="book_author_id" name="book[author_id]" class="form-control" />
+      <datalist id="book_author_id">
+      <%= for author <- @authors do %>
+       <option value=<%=author.id%>><%=author.name%></option>
+       <%end%>
+      </datalist>
+     <%= error_tag f, :author_id %>
     </div>
 
 

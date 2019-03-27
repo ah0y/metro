@@ -1,4 +1,3 @@
-
 defmodule MetroWeb.BookController do
   use MetroWeb, :controller
 
@@ -27,9 +26,12 @@ defmodule MetroWeb.BookController do
           {:isbn, {"has already been taken", _}} ->
             redirect(conn, to: copy_path(conn, :new))
           {:author_id, {"can't be blank", [validation: :required]}} ->
+            authors = Location.load_authors()
+            render(conn, "new.html", changeset: changeset, authors: authors)
+          {:author_id, {"is invalid", [type: :id, validation: :cast]}} ->
             try do
               [last, first] =
-                String.split(conn.params["authorSearch"], ",")
+                String.split(book_params["author_id"], ",")
                 |> Enum.map(&String.trim/1)
               attrs = %{last_name: last, first_name: first}
               {:ok, author} = Location.create_author(attrs)
