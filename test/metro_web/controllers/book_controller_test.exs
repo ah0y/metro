@@ -57,7 +57,8 @@ defmodule MetroWeb.BookControllerTest do
       assert redirected_to(conn) == book_path(conn, :show, isbn)
 
       conn = post(build_conn(), "/books", book: attrs)
-      assert redirected_to(conn) == copy_path(conn, :new)
+
+      assert redirected_to(conn) == copy_path(conn, :new, isbn: isbn)
     end
 
     test "creates a new author if one is entered that doesn't already exist"  do

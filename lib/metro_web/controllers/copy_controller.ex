@@ -9,6 +9,12 @@ defmodule MetroWeb.CopyController do
     render(conn, "index.html", copies: copies)
   end
 
+  def new(conn,  %{"isbn"=> isbn}) do
+    libraries = Location.load_libraries()
+    changeset = Location.change_copy(%Copy{})
+    render(conn, "new.html", changeset: changeset, libraries: libraries, isbn: isbn)
+  end
+
   def new(conn, _params) do
     libraries = Location.load_libraries()
     changeset = Location.change_copy(%Copy{})

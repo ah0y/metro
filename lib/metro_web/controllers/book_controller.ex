@@ -24,7 +24,7 @@ defmodule MetroWeb.BookController do
       {:error, %Ecto.Changeset{} = changeset} ->
         case Enum.at(changeset.errors, 0) do
           {:isbn, {"has already been taken", _}} ->
-            redirect(conn, to: copy_path(conn, :new))
+            redirect(conn, to: copy_path(conn, :new, isbn: book_params["isbn"]))
           {:author_id, {"can't be blank", [validation: :required]}} ->
             authors = Location.load_authors()
             render(conn, "new.html", changeset: changeset, authors: authors)

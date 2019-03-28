@@ -6,8 +6,8 @@
   <% end %>
 
   <div class="form-group">
-    <%= label f, :isbn, class: "control-label"%>
-    <%= number_input f, :isbn, class: "form-control" %>
+    <%= label f, :isbn_id, class: "control-label"%>
+    <%= number_input f, :isbn_id, class: "form-control", value: @isbn  %>
     <%= error_tag f, :isbn %>
   </div>
 
@@ -18,7 +18,7 @@
       <datalist id="copy_library_id">
       <%= for library <- @libraries do %>
        <option value=<%=library.id%>><%=library.branch%></option>
-       <%end%>
+       <% end %>
       </datalist>
      <%= error_tag f, :library_id %>
     </div>
