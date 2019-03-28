@@ -28,6 +28,6 @@ defmodule Metro.Location.Library do
   end
 
   def branch_and_ids(query) do
-    from l in query, select: {l.branch, l.id}
+    from l in query, select: %{branch: l.branch, id: l.id}
   end
 end

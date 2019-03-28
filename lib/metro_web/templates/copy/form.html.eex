@@ -11,16 +11,18 @@
     <%= error_tag f, :isbn %>
   </div>
 
-  <style>
-    #branchList { display: none; }
-  </style>
 
-  <div class="form-group">
-    <%= label f, :library_id, class: "control-label" %>
-    <input name="branchSearch" class="awesomplete control" list="branchList" />
-    <%= select f, :library_id, [nil | @branches], class: "form-control", id: "branchList", selected: "" %>
-    <%= error_tag f, :library_id %>
-  </div>
+    <div class="form-group">
+      <%= label f, :library_id, class: "control-label" %>
+      <input list="copy_library_id" name="copy[library_id]" class="form-control" />
+      <datalist id="copy_library_id">
+      <%= for library <- @libraries do %>
+       <option value=<%=library.id%>><%=library.branch%></option>
+       <%end%>
+      </datalist>
+     <%= error_tag f, :library_id %>
+    </div>
+
 
   <div class="form-group">
     <%= label f, :checked_out?, class: "control-label" %>

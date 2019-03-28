@@ -12,7 +12,7 @@ defmodule MetroWeb.CopyController do
   def new(conn, _params) do
     libraries = Location.load_libraries()
     changeset = Location.change_copy(%Copy{})
-    render(conn, "new.html", changeset: changeset, branches: libraries)
+    render(conn, "new.html", changeset: changeset, libraries: libraries)
   end
 
   def create(conn, %{"copy" => copy_params}) do
@@ -23,7 +23,7 @@ defmodule MetroWeb.CopyController do
         |> redirect(to: copy_path(conn, :show, copy))
       {:error, %Ecto.Changeset{} = changeset} ->
         libraries = Location.load_libraries()
-        render(conn, "new.html", branches: libraries, changeset: changeset)
+        render(conn, "new.html", libraries: libraries, changeset: changeset)
     end
   end
 
@@ -36,7 +36,7 @@ defmodule MetroWeb.CopyController do
     libraries = Location.load_libraries()
     copy = Location.get_copy!(id)
     changeset = Location.change_copy(copy)
-    render(conn, "edit.html", copy: copy, changeset: changeset, branches: libraries)
+    render(conn, "edit.html", copy: copy, changeset: changeset, libraries: libraries)
   end
 
   def update(conn, %{"id" => id, "copy" => copy_params}) do
@@ -48,7 +48,7 @@ defmodule MetroWeb.CopyController do
         |> put_flash(:info, "Copy updated successfully.")
         |> redirect(to: copy_path(conn, :show, copy))
       {:error, %Ecto.Changeset{} = changeset} ->
-        render(conn, "edit.html", copy: copy, changeset: changeset, branches: libraries)
+        render(conn, "edit.html", copy: copy, changeset: changeset, libraries: libraries)
     end
   end
 
