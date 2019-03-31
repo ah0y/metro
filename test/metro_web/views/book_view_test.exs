@@ -9,20 +9,22 @@ defmodule MetroWeb.BookViewTest do
   import Metro.Factory
   @moduletag book_view_case: "book views"
 
-  test "renders show.html", %{conn: conn} do
-    book = build(:book)
-           |> insert
-           |> with_copies
+  describe "show.html" do
+    test "shows Unavailable for books without available copies", %{conn: conn} do
+      book = build(:book)
+             |> insert
+             |> with_unavailable_copies
 
-    book = Repo.preload(book, :copies)
+      book = Repo.preload(book, :copies)
 
-    content = render_to_string(BookView, "show.html", conn: conn, book: book)
-    occurences =
-      content
-      |> String.split("UNAVAILABLE")
-      |> length()
+      content = render_to_string(BookView, "show.html", conn: conn, book: book)
+      occurences =
+        content
+        |> String.split("UNAVAILABLE")
+        |> length()
 
-    assert occurences == 2
+      assert occurences == 2
+    end
   end
 end
 

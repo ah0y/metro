@@ -27,14 +27,18 @@
   <% end %>
     <td> <%= link copy.library_id , to: library_path(@conn, :show, copy.library_id), target: "_blank"%></td>
   </tbody>
-  </table>
 
+  </table>
+    <div>
+        <span><%= link "Place Hold", to: checkout_path(@conn, :new), class: "btn btn-default btn-xs" %></span>
+    </div>
 <% end %>
 </div>
 </div>
 <div style="vertical-align:bottom">
 <p><%= @book.summary %></p>
 </div>
+
 
 
 <span><%= link "Edit", to: book_path(@conn, :edit, @book) %></span>

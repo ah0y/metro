@@ -6,21 +6,27 @@
   <% end %>
 
   <div class="form-group">
-    <%= label f, :renewals_remaining, class: "control-label" %>
-    <%= number_input f, :renewals_remaining, class: "form-control" %>
-    <%= error_tag f, :renewals_remaining %>
+    <%= label f, :isbn_id, class: "control-label" %>
+    <%= number_input f, :isbn_id, class: "form-control" %>
+    <%= error_tag f, :isbn_id %>
   </div>
 
   <div class="form-group">
-    <%= label f, :checkout_date, class: "control-label" %>
-    <%= datetime_select f, :checkout_date, class: "form-control" %>
-    <%= error_tag f, :checkout_date %>
+    <%= label f, :card_id, class: "control-label" %>
+    <%= number_input f, :card_id, class: "form-control" %>
+    <%= error_tag f, :card_id %>
   </div>
 
   <div class="form-group">
-    <%= label f, :due_date, class: "control-label" %>
-    <%= datetime_select f, :due_date, class: "form-control" %>
-    <%= error_tag f, :due_date %>
+    <%= label f, :card_id, class: "control-label" %>
+    <%= number_input f, :card_id, class: "form-control" %>
+    <%= error_tag f, :card_id %>
+  </div>
+
+  <div class="form-group">
+    <%= label f, :copy_id, class: "control-label" %>
+    <%= number_input f, :copy_id, class: "form-control" %>
+    <%= error_tag f, :copy_id %>
   </div>
 
   <div class="form-group">

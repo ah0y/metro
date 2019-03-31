@@ -13,8 +13,12 @@ defmodule Metro.BookFactory do
           author: build(:author),
         }
       end
-      def with_copies(%Metro.Location.Book{} = book) do
-        insert(:copy_without_book, book: book)
+      def with_unavailable_copies(%Metro.Location.Book{} = book) do
+        insert(:copy_without_book_and_unavailable, book: book)
+        book
+      end
+      def with_available_copies(%Metro.Location.Book{} = book) do
+        insert(:copy_without_book_and_available, book: book)
         book
       end
       def book_without_author_factory do
@@ -62,12 +66,17 @@ defmodule Metro.CopyFactory do
         }
       end
 
-      def copy_without_book_factory do
+      def copy_without_book_and_unavailable_factory do
         %Metro.Location.Copy{
           checked_out?: true,
           library: build(:library),
         }
-
+      end
+      def copy_without_book_and_available_factory do
+        %Metro.Location.Copy{
+          checked_out?: false,
+          library: build(:library),
+        }
       end
     end
   end
@@ -87,3 +96,5 @@ defmodule Metro.LibraryFactory do
     end
   end
 end
+
+

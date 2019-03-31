@@ -4,4 +4,7 @@ defmodule Metro.Factory do
   use Metro.AuthorFactory
   use Metro.CopyFactory
   use Metro.LibraryFactory
+  use Metro.CheckoutFactory
+  use Metro.UserFactory
+  use Metro.CardFactory
 end

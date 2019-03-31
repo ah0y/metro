@@ -3,20 +3,31 @@ defmodule Metro.OrderTest do
 
   alias Metro.Order
 
+  import Metro.Factory
+
   describe "checkouts" do
     alias Metro.Order.Checkout
 
-    @valid_attrs %{checkout_date: ~N[2010-04-17 14:00:00.000000], due_date: ~N[2010-04-17 14:00:00.000000], renewals_remaining: 42}
-    @update_attrs %{checkout_date: ~N[2011-05-18 15:01:01.000000], due_date: ~N[2011-05-18 15:01:01.000000], renewals_remaining: 43}
+    @valid_attrs %{
+      checkout_date: ~N[2010-04-17 14:00:00.000000],
+      due_date: ~N[2010-04-17 14:00:00.000000],
+      renewals_remaining: 42
+    }
+    @update_attrs %{
+      checkout_date: ~N[2011-05-18 15:01:01.000000],
+      due_date: ~N[2011-05-18 15:01:01.000000],
+      renewals_remaining: 43
+    }
     @invalid_attrs %{checkout_date: nil, due_date: nil, renewals_remaining: nil}
 
     def checkout_fixture(attrs \\ %{}) do
-      {:ok, checkout} =
-        attrs
-        |> Enum.into(@valid_attrs)
+      card = insert(:card_without_checkouts)
+      library = insert(:library)
+      book = insert(:book)
+      {:ok, checkout}  =
+        params_for(:checkout)
+        |> Enum.into(%{library_id: library.id, isbn_id: book.isbn, card_id: card.id})
         |> Order.create_checkout()
-
-      checkout
     end
 
     test "list_checkouts/0 returns all checkouts" do
@@ -25,12 +36,24 @@ defmodule Metro.OrderTest do
     end
 
     test "get_checkout!/1 returns the checkout with given id" do
-      checkout = checkout_fixture()
+      checkout = build(:checkout)
+                 |> insert
+                 |> with_library
+                 |> with_card
+                 |> with_book
       assert Order.get_checkout!(checkout.id) == checkout
     end
 
     test "create_checkout/1 with valid data creates a checkout" do
-      assert {:ok, %Checkout{} = checkout} = Order.create_checkout(@valid_attrs)
+      card = insert(:card_without_checkouts)
+      library = insert(:library)
+      book = insert(:book)
+
+      attr =
+        params_for(:checkout)
+        |> Enum.into(%{library_id: library.id, isbn_id: book.isbn, card_id: card.id})
+
+      assert {:ok, %Checkout{} = checkout} = Order.create_checkout(attr)
       assert checkout.checkout_date == ~N[2010-04-17 14:00:00.000000]
       assert checkout.due_date == ~N[2010-04-17 14:00:00.000000]
       assert checkout.renewals_remaining == 42

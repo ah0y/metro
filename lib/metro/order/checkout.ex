@@ -9,6 +9,7 @@ defmodule Metro.Order.Checkout do
     field :due_date, :naive_datetime
     field :renewals_remaining, :integer
 
+    belongs_to :book, Metro.Location.Book, foreign_key: :isbn_id, references: :isbn
     belongs_to :card, Metro.Account.Card, foreign_key: :card_id
     belongs_to :library, Metro.Location.Library, foreign_key: :library_id
     belongs_to :copy, Metro.Location.Copy, foreign_key: :copy_id
@@ -22,7 +23,7 @@ defmodule Metro.Order.Checkout do
   @doc false
   def changeset(checkout, attrs) do
     checkout
-    |> cast(attrs, [:renewals_remaining, :checkout_date, :due_date])
-    |> validate_required([:renewals_remaining, :checkout_date, :due_date])
+    |> cast(attrs, [:isbn_id, :card_id, :library_id, :copy_id])
+    |> validate_required([:isbn_id, :card_id, :library_id, :checkout_date, :due_date, :renewals_remaining])
   end
 end

@@ -14,6 +14,7 @@ defmodule Metro.Account.User do
     field :num_books_out, :integer
 
     belongs_to :card, Card, foreign_key: :card_id
+    belongs_to :library, Metro.Location.Library, foreign_key: :library_id
 
     coherence_schema()
 

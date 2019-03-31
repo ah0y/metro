@@ -2,11 +2,19 @@ defmodule MetroWeb.BookControllerTest do
   use MetroWeb.ConnCase
 
   alias Metro.Location
+  alias Metro.Repo
 
   import Metro.Factory
 
   @create_attrs %{title: "some title", image: "some image", isbn: 42, pages: 42, summary: "some summary", year: 42}
-  @update_attrs %{title: "some updated title",image: "some updated image", isbn: 42, pages: 43, summary: "some updated summary", year: 43}
+  @update_attrs %{
+    title: "some updated title",
+    image: "some updated image",
+    isbn: 42,
+    pages: 43,
+    summary: "some updated summary",
+    year: 43
+  }
   @invalid_attrs %{title: nil, image: nil, isbn: nil, pages: nil, summary: nil, year: nil}
 
   def fixture(:book) do
@@ -67,6 +75,18 @@ defmodule MetroWeb.BookControllerTest do
     end
   end
 
+  @moduletag book_show_case: "book show"
+#  describe "show book" do
+#    setup [:create_book]
+#    test "routes to checkout/new when placing a hold on a book with an available copy ", %{conn: conn, book: book} do
+#      book =
+#        book
+#        |> with_available_copies
+#      conn = post conn, book_path(conn, :checkout, book)
+#      assert redirected_to(conn) == checkout_path(conn, :new, isbn: book.isbn)
+#    end
+#  end
+
   describe "edit book" do
     setup [:create_book]
 
@@ -109,4 +129,12 @@ defmodule MetroWeb.BookControllerTest do
     book = fixture(:book)
     {:ok, book: book}
   end
+
+  #  defp create_book_with_available_copies(_) do
+  #    book = build(:book)
+  #           |> insert
+  #           |> with_available_copies
+  #
+  #    book = Repo.preload(book, :copies)
+  #  end
 end
