@@ -26,7 +26,7 @@
      <% end%>
     </datalist>
    <%= error_tag f, :author_id %>
-   <%= link "Authors other works", to: "/authors/", id: "book_author_link", style: "display: none;"   %>
+   <%= link "Authors other works", to: "/authors/", target: "_blank", id: "book_author_link", style: "display: none;"   %>
   </div>
 
   <div class="form-group">

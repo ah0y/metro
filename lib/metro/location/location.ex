@@ -388,7 +388,7 @@ defmodule Metro.Location do
       ** (Ecto.NoResultsError)
 
   """
-  def get_book_and_copies(id), do: Repo.get!(Book, id) |> Repo.preload(:copies)
+  def get_book_and_copies(id), do: Repo.get!(Book, id) |> Repo.preload(:copies) |> Repo.preload(:author)
 
   @doc """
   Creates a book.

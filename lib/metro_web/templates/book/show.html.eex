@@ -1,4 +1,6 @@
 <h2><%= @book.title %> (<%= @book.year %>)</h2>
+<h4><%= link @book.author.last_name <> ", " <> @book.author.first_name, to: author_path(@conn, :show, @book.author_id) %> </h4>
+
 <div class="container">
 
 <div style="float:left">
@@ -23,7 +25,7 @@
   <% else %>
     <td>AVAILABLE</td>
   <% end %>
-    <td><%= copy.library_id %></td>
+    <td> <%= link copy.library_id , to: library_path(@conn, :show, copy.library_id), target: "_blank"%></td>
   </tbody>
   </table>
 
