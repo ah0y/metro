@@ -57,7 +57,7 @@ defmodule MetroWeb.BookController do
   end
 
   def show(conn, %{"isbn" => isbn}) do
-    book = Location.get_book!(isbn)
+    book = Location.get_book_and_copies(isbn)
     render(conn, "show.html", book: book)
   end
 

@@ -6,9 +6,9 @@
   <% end %>
 
   <div class="form-group">
-    <%= label f, :isbn, class: "control-label"%>
-    <%= number_input f, :isbn, class: "form-control" %>
-    <%= error_tag f, :isbn %>
+    <%= label f, :isbn_id, class: "control-label"%>
+    <%= number_input f, :isbn_id, class: "form-control" %>
+    <%= error_tag f, :isbn_id %>
   </div>
 
 

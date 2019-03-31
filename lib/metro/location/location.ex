@@ -167,6 +167,22 @@ defmodule Metro.Location do
   def get_author!(id), do: Repo.get!(Author, id)
 
   @doc """
+  Gets a single author and preloads all books of that author.
+
+  Raises `Ecto.NoResultsError` if the Book does not exist.
+
+  ## Examples
+
+      iex> get_author_and_books(123)
+      %Book{}
+
+      iex> get_author_and_books(456)
+      ** (Ecto.NoResultsError)
+
+  """
+  def get_author_and_books(id), do: Repo.get!(Author, id) |> Repo.preload(:books)
+
+  @doc """
   Creates a author.
 
   ## Examples
@@ -357,6 +373,22 @@ defmodule Metro.Location do
 
   """
   def get_book!(id), do: Repo.get!(Book, id)
+
+  @doc """
+  Gets a single book and preloads all copies of that book.
+
+  Raises `Ecto.NoResultsError` if the Book does not exist.
+
+  ## Examples
+
+      iex> get_book_and_copies(123)
+      %Book{}
+
+      iex> get_book_and_copies(456)
+      ** (Ecto.NoResultsError)
+
+  """
+  def get_book_and_copies(id), do: Repo.get!(Book, id) |> Repo.preload(:copies)
 
   @doc """
   Creates a book.

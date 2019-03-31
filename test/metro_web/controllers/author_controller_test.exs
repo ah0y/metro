@@ -34,7 +34,7 @@ defmodule MetroWeb.AuthorControllerTest do
       assert redirected_to(conn) == author_path(conn, :show, id)
 
       conn = get conn, author_path(conn, :show, id)
-      assert html_response(conn, 200) =~ "Show Author"
+      assert html_response(conn, 200) =~ "some first_name"
     end
 
     test "renders errors when data is invalid", %{conn: conn} do

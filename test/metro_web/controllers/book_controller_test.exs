@@ -39,7 +39,7 @@ defmodule MetroWeb.BookControllerTest do
       assert redirected_to(conn) == book_path(conn, :show, isbn)
 
       conn = get conn, book_path(conn, :show, isbn)
-      assert html_response(conn, 200) =~ "Show Book"
+      assert html_response(conn, 200) =~ "some title"
     end
 
     test "renders errors when data is invalid", %{conn: conn} do

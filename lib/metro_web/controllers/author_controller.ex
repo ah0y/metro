@@ -26,7 +26,7 @@ defmodule MetroWeb.AuthorController do
   end
 
   def show(conn, %{"id" => id}) do
-    author = Location.get_author!(id)
+    author = Location.get_author_and_books(id)
     render(conn, "show.html", author: author)
   end
 

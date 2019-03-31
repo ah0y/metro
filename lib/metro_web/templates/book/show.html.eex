@@ -1,38 +1,39 @@
-<h2>Show Book</h2>
+<h2><%= @book.title %> (<%= @book.year %>)</h2>
+<div class="container">
 
-<ul>
+<div style="float:left">
+<img src="<%= @book.image %>"height="360" width="233"</img>
+</div>
 
-  <li>
-    <strong>Isbn:</strong>
-    <%= @book.isbn %>
-  </li>
+<div style="float:right">
+<%= for copy <- @book.copies do %>
 
-    <li>
-      <strong>Title:</strong>
-      <%= @book.title %>
-    </li>
+<table border="1" class="table">
+  <thead>
+    <tr>
+      <th>Available</th>
+      <th>Location</th>
+    </tr>
+  </thead>
+  <tbody>
+  <%= if copy.checked_out? do %>
 
-  <li>
-    <strong>Year:</strong>
-    <%= @book.year %>
-  </li>
 
-  <li>
-    <strong>Summary:</strong>
-    <%= @book.summary %>
-  </li>
+    <td>UNAVAILABLE</td>
+  <% else %>
+    <td>AVAILABLE</td>
+  <% end %>
+    <td><%= copy.library_id %></td>
+  </tbody>
+  </table>
 
-  <li>
-    <strong>Pages:</strong>
-    <%= @book.pages %>
-  </li>
+<% end %>
+</div>
+</div>
+<div style="vertical-align:bottom">
+<p><%= @book.summary %></p>
+</div>
 
-  <li>
-    <strong>Image:</strong>
-    <%= @book.image %>
-  </li>
-
-</ul>
 
 <span><%= link "Edit", to: book_path(@conn, :edit, @book) %></span>
 <span><%= link "Back", to: book_path(@conn, :index) %></span>
