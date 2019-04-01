@@ -3,12 +3,20 @@ defmodule MetroWeb.CheckoutControllerTest do
 
   alias Metro.Order
 
+  import Metro.Factory
+
   @create_attrs %{checkout_date: ~N[2010-04-17 14:00:00.000000], due_date: ~N[2010-04-17 14:00:00.000000], renewals_remaining: 42}
   @update_attrs %{checkout_date: ~N[2011-05-18 15:01:01.000000], due_date: ~N[2011-05-18 15:01:01.000000], renewals_remaining: 43}
   @invalid_attrs %{checkout_date: nil, due_date: nil, renewals_remaining: nil}
 
   def fixture(:checkout) do
-    {:ok, checkout} = Order.create_checkout(@create_attrs)
+    card = insert(:card_without_checkouts)
+    library = insert(:library)
+    book = insert(:book)
+    {:ok, checkout}  =
+      params_for(:checkout)
+      |> Enum.into(%{library_id: library.id, isbn_id: book.isbn, card_id: card.id})
+      |> Order.create_checkout()
     checkout
   end
 
@@ -28,7 +36,11 @@ defmodule MetroWeb.CheckoutControllerTest do
 
   describe "create checkout" do
     test "redirects to show when data is valid", %{conn: conn} do
-      conn = post conn, checkout_path(conn, :create), checkout: @create_attrs
+      card = insert(:card_without_checkouts)
+      library = insert(:library)
+      book = insert(:book)
+
+      conn = post conn, checkout_path(conn, :create), checkout: Enum.into(@create_attrs, %{library_id: library.id, card_id: card.id, isbn_id: book.isbn})
 
       assert %{id: id} = redirected_params(conn)
       assert redirected_to(conn) == checkout_path(conn, :show, id)

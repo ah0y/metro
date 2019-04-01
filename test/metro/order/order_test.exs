@@ -11,12 +11,12 @@ defmodule Metro.OrderTest do
     @valid_attrs %{
       checkout_date: ~N[2010-04-17 14:00:00.000000],
       due_date: ~N[2010-04-17 14:00:00.000000],
-      renewals_remaining: 42
+      renewals_remaining: 3
     }
     @update_attrs %{
       checkout_date: ~N[2011-05-18 15:01:01.000000],
       due_date: ~N[2011-05-18 15:01:01.000000],
-      renewals_remaining: 43
+      renewals_remaining: 4
     }
     @invalid_attrs %{checkout_date: nil, due_date: nil, renewals_remaining: nil}
 
@@ -28,6 +28,7 @@ defmodule Metro.OrderTest do
         params_for(:checkout)
         |> Enum.into(%{library_id: library.id, isbn_id: book.isbn, card_id: card.id})
         |> Order.create_checkout()
+       checkout
     end
 
     test "list_checkouts/0 returns all checkouts" do
@@ -38,10 +39,7 @@ defmodule Metro.OrderTest do
     test "get_checkout!/1 returns the checkout with given id" do
       checkout = build(:checkout)
                  |> insert
-                 |> with_library
-                 |> with_card
-                 |> with_book
-      assert Order.get_checkout!(checkout.id) == checkout
+      assert Order.get_checkout!(checkout.id).id  == checkout.id
     end
 
     test "create_checkout/1 with valid data creates a checkout" do
@@ -56,7 +54,7 @@ defmodule Metro.OrderTest do
       assert {:ok, %Checkout{} = checkout} = Order.create_checkout(attr)
       assert checkout.checkout_date == ~N[2010-04-17 14:00:00.000000]
       assert checkout.due_date == ~N[2010-04-17 14:00:00.000000]
-      assert checkout.renewals_remaining == 42
+      assert checkout.renewals_remaining == 3
     end
 
     test "create_checkout/1 with invalid data returns error changeset" do
@@ -69,7 +67,7 @@ defmodule Metro.OrderTest do
       assert %Checkout{} = checkout
       assert checkout.checkout_date == ~N[2011-05-18 15:01:01.000000]
       assert checkout.due_date == ~N[2011-05-18 15:01:01.000000]
-      assert checkout.renewals_remaining == 43
+      assert checkout.renewals_remaining == 4
     end
 
     test "update_checkout/2 with invalid data returns error changeset" do
@@ -78,6 +76,7 @@ defmodule Metro.OrderTest do
       assert checkout == Order.get_checkout!(checkout.id)
     end
 
+    @moduletag delete: "book show"
     test "delete_checkout/1 deletes the checkout" do
       checkout = checkout_fixture()
       assert {:ok, %Checkout{}} = Order.delete_checkout(checkout)

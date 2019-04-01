@@ -23,7 +23,7 @@ defmodule Metro.Order.Checkout do
   @doc false
   def changeset(checkout, attrs) do
     checkout
-    |> cast(attrs, [:isbn_id, :card_id, :library_id, :copy_id])
-    |> validate_required([:isbn_id, :card_id, :library_id, :checkout_date, :due_date, :renewals_remaining])
+    |> cast(attrs, [:isbn_id, :card_id, :library_id, :copy_id, :checkout_date, :due_date, :renewals_remaining ])
+    |> validate_required([:isbn_id, :card_id, :library_id, :checkout_date, :due_date])
   end
 end

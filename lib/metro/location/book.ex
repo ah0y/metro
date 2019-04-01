@@ -17,6 +17,7 @@ defmodule Metro.Location.Book do
     belongs_to :author, Author, foreign_key: :author_id
 
     has_many :copies, Copy, foreign_key: :isbn_id
+    has_many :checkouts, Metro.Order.Checkout
 
     timestamps()
   end
