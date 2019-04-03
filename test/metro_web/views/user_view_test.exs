@@ -1,11 +1,10 @@
 defmodule MetroWeb.UserViewTest do
   use MetroWeb.ConnCase, async: true
 
-  alias MetroWeb.LayoutView
   alias MetroWeb.UserView
   alias Metro.Repo
+
   import Phoenix.View
-  import Phoenix.HTML, only: [safe_to_string: 1]
   import Metro.Factory
 
   describe "show.html" do

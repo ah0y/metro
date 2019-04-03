@@ -20,7 +20,7 @@ defmodule Metro.OrderTest do
     }
     @invalid_attrs %{checkout_date: nil, due_date: nil, renewals_remaining: nil}
 
-    def checkout_fixture(attrs \\ %{}) do
+    def checkout_fixture(_attrs \\ %{}) do
       card = insert(:card_without_checkouts)
       library = insert(:library)
       book = insert(:book)

@@ -62,7 +62,6 @@ defmodule MetroWeb.Router do
     pipe_through :protected
 
     # add protected resources below
-    resources "/cards", CardController
   end
 
   # Other scopes may use custom stacks.

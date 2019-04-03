@@ -23,6 +23,7 @@ defmodule MetroWeb do
       import Plug.Conn
       import MetroWeb.Router.Helpers
       import MetroWeb.Gettext
+      import Canary.Plugs
     end
   end
 

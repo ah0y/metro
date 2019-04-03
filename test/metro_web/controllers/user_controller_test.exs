@@ -87,7 +87,7 @@ defmodule MetroWeb.UserControllerTest do
 
     test "redirects when data is valid", %{conn: conn, user: user} do
       conn = put conn, user_path(conn, :update, user), user: @update_attrs
-      IO.inspect(conn)
+
       assert redirected_to(conn) == user_path(conn, :show, user)
 
       conn = get conn, user_path(conn, :show, user)

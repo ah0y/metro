@@ -3,7 +3,7 @@ defmodule Metro.Repo.Migrations.CreateCards do
 
   def change do
     create table(:cards) do
-      add :pin, :integer
+      add :pin, :string
       add :user_id, references(:users, on_delete: :nothing)
 
       timestamps()

@@ -2,7 +2,6 @@ defmodule MetroWeb.BookControllerTest do
   use MetroWeb.ConnCase
 
   alias Metro.Location
-  alias Metro.Repo
 
   import Metro.Factory
 

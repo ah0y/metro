@@ -1,13 +1,11 @@
 defmodule MetroWeb.AuthorViewTest do
   use MetroWeb.ConnCase, async: true
 
-  alias MetroWeb.LayoutView
   alias MetroWeb.AuthorView
   alias Metro.Repo
+
   import Phoenix.View
-  import Phoenix.HTML, only: [safe_to_string: 1]
   import Metro.Factory
-  @moduletag author_view_case: "author views"
 
   test "renders show.html", %{conn: conn} do
     author = build(:author)

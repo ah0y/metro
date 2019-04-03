@@ -10,6 +10,7 @@ defmodule MetroWeb.CheckoutController do
   end
 
   def new(conn, _params) do
+    require IEx; IEx.pry()
     changeset = Order.change_checkout(%Checkout{})
     render(conn, "new.html", changeset: changeset)
   end
