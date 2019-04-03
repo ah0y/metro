@@ -24,7 +24,7 @@ defmodule Metro.Account.User do
 
   def changeset(model, params \\ %{}) do
     model
-    |> cast(params, [:name, :email] ++ coherence_fields())
+    |> cast(params, [:name, :email, :fines, :is_librarian?, :num_books_out, :library_id] ++ coherence_fields())
     |> validate_required([:name, :email])
     |> validate_format(:email, ~r/@/)
     |> unique_constraint(:email)

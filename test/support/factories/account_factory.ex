@@ -6,6 +6,7 @@ defmodule Metro.UserFactory do
         %Metro.Account.User{
           name: "some user",
           email: sequence(:email, &"me-#{&1}@foo.com"),
+          password: "password",
           password_hash: "$2b$12$XLGRLrhRbzLiicATx7Zihe2hXdqrkpbN4cSwD.w0e/LpZtvh.TkcS",
           fines: 0.00,
           num_books_out: 0,

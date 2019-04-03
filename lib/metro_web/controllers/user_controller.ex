@@ -38,7 +38,6 @@ defmodule MetroWeb.UserController do
 
   def update(conn, %{"id" => id, "user" => user_params}) do
     user = Account.get_user!(id)
-
     case Account.update_user(user, user_params) do
       {:ok, user} ->
         conn
