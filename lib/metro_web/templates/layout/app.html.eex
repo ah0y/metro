@@ -36,7 +36,7 @@
                                     <span class="caret"></span>
                                 </a>
                                 <ul class="dropdown-menu dropdown-menu-right">
-                                     <li><%= link "new user", to: user_path(@conn, :create) %></li>
+                                     <li><%= link "profile", to: user_path(@conn, :show, Coherence.current_user(@conn) ) %></li>
                                     <li><%= link "log out", to: session_path(@conn, :delete), method: "delete" %></li>
                                 </ul>
                             </div>

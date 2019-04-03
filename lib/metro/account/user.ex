@@ -13,7 +13,7 @@ defmodule Metro.Account.User do
     field :is_librarian?, :boolean, default: false
     field :num_books_out, :integer
 
-    belongs_to :card, Card, foreign_key: :card_id
+    has_one :card, Card
     belongs_to :library, Metro.Location.Library, foreign_key: :library_id
 
     coherence_schema()

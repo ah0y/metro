@@ -5,7 +5,7 @@ defmodule Metro.UserFactory do
       def user_factory do
         %Metro.Account.User{
           name: "some user",
-          email: "some_email@example.com",
+          email: sequence(:email, &"me-#{&1}@foo.com"),
           password_hash: "$2b$12$XLGRLrhRbzLiicATx7Zihe2hXdqrkpbN4cSwD.w0e/LpZtvh.TkcS",
           fines: 0.00,
           num_books_out: 0,
@@ -15,7 +15,7 @@ defmodule Metro.UserFactory do
       end
 
       def with_card(%Metro.Account.User{} = user) do
-        insert(:card_without_user, user)
+        insert(:card_without_user, user: user)
         user
       end
     end
@@ -38,7 +38,7 @@ defmodule Metro.CardFactory do
       def card_without_user_factory do
         %Metro.Account.Card{
           pin: 0123,
-          checkouts: build(:checkout)
+          checkouts: [build(:checkout_without_card)]
         }
       end
 

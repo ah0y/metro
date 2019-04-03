@@ -8,7 +8,7 @@ defmodule Metro.Account.Card do
   schema "cards" do
     field :pin, :integer
 
-    has_one :user, User
+    belongs_to :user, User, foreign_key: :user_id
 
     has_many :checkouts, Metro.Order.Checkout
 
@@ -18,7 +18,7 @@ defmodule Metro.Account.Card do
   @doc false
   def changeset(card, attrs) do
     card
-    |> cast(attrs, [:pin])
+    |> cast(attrs, [:pin, :user_id])
     |> validate_required([:pin])
   end
 end

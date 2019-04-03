@@ -2,6 +2,9 @@ defmodule MetroWeb.Router do
   use MetroWeb, :router
   use Coherence.Router
 
+  @user_schema Application.get_env(:coherence, :user_schema)
+  @id_key Application.get_env(:coherence, :schema_key)
+
   pipeline :browser do
     plug :accepts, ["html"]
     plug :fetch_session

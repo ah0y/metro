@@ -24,15 +24,15 @@
 
   <li>
     <strong>Num of books out:</strong>
-    <%= @user.pages %>
-  </li>
-
-  <li>
-    <strong>Image:</strong>
     <%= @user.num_books_out %>
   </li>
 
 </ul>
+<%= if @user.card == nil do %>
+ <div>
+ <span><%= link "sign up for a new card", to: card_path(@conn, :new) %></span>
+ </div>
+ <% end %>
 
 <span><%= link "Edit", to: user_path(@conn, :edit, @user) %></span>
 <span><%= link "Back", to: user_path(@conn, :index) %></span>
