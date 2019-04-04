@@ -4,11 +4,10 @@ defmodule MetroWeb.UserController do
   alias Metro.Account
   alias Metro.Account.User
 
-  plug :load_and_authorize_resource, model: Metro.Account.User
-  use MetroWeb.ControllerAuthorization
+#  plug :load_and_authorize_resource, model: Metro.Account.User
+#  use MetroWeb.ControllerAuthorization
 
   def index(conn, _params) do
-#    require IEx; IEx.pry()
     users = Account.list_users()
     render(conn, "index.html", users: users)
   end
