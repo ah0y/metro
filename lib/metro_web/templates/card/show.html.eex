@@ -3,6 +3,12 @@
 <ul>
 
   <li>
+    <strong>User:</strong>
+    <%= @card.user_id %>
+  </li>
+
+
+  <li>
     <strong>Pin:</strong>
     <%= @card.pin %>
   </li>

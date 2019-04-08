@@ -31,7 +31,7 @@ defmodule MetroWeb.UserControllerTest do
   }
 
   def fixture(:user) do
-    card = insert(:card_without_checkouts)
+    card = insert(:card)
     library = insert(:library)
     {:ok, user} =
       params_for(:user)
@@ -56,7 +56,7 @@ defmodule MetroWeb.UserControllerTest do
 
   describe "create user" do
     test "redirects to show when data is valid", %{conn: conn} do
-      card = insert(:card_without_checkouts)
+      card = insert(:card)
       library = insert(:library)
 
       conn = post conn, user_path(conn, :create), user: Enum.into(@create_attrs, %{library_id: library.id, card_id: card.id})

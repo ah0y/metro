@@ -21,7 +21,7 @@ defmodule Metro.OrderTest do
     @invalid_attrs %{checkout_date: nil, due_date: nil, renewals_remaining: nil}
 
     def checkout_fixture(_attrs \\ %{}) do
-      card = insert(:card_without_checkouts)
+      card = insert(:card)
       library = insert(:library)
       book = insert(:book)
       {:ok, checkout}  =
@@ -43,7 +43,7 @@ defmodule Metro.OrderTest do
     end
 
     test "create_checkout/1 with valid data creates a checkout" do
-      card = insert(:card_without_checkouts)
+      card = insert(:card)
       library = insert(:library)
       book = insert(:book)
 

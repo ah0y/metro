@@ -16,6 +16,8 @@ defmodule Metro.Account.User do
     has_one :card, Card
     belongs_to :library, Metro.Location.Library, foreign_key: :library_id
 
+    has_many :checkouts, through: [:card, :checkouts]
+
     coherence_schema()
 
 

@@ -3,7 +3,7 @@
 <table class="table">
   <thead>
     <tr>
-      <th>Pin</th>
+      <th>User</th>
 
       <th></th>
     </tr>
@@ -11,7 +11,7 @@
   <tbody>
 <%= for card <- @cards do %>
     <tr>
-      <td><%= card.pin %></td>
+      <td><%= card.user_id %></td>
 
       <td class="text-right">
         <span><%= link "Show", to: card_path(@conn, :show, card), class: "btn btn-default btn-xs" %></span>

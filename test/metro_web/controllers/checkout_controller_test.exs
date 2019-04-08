@@ -5,6 +5,11 @@ defmodule MetroWeb.CheckoutControllerTest do
 
   import Metro.Factory
 
+#  import Canary.Plugs
+#
+#  plug :load_and_authorize_resource, model: Metro.Order.Checkout
+
+
   @create_attrs %{
     checkout_date: ~N[2010-04-17 14:00:00.000000],
     due_date: ~N[2010-04-17 14:00:00.000000],
@@ -18,7 +23,7 @@ defmodule MetroWeb.CheckoutControllerTest do
   @invalid_attrs %{checkout_date: nil, due_date: nil, renewals_remaining: nil}
 
   def fixture(:checkout) do
-    card = insert(:card_without_checkouts)
+    card = insert(:card)
     library = insert(:library)
     book = insert(:book)
     {:ok, checkout} =
@@ -36,15 +41,23 @@ defmodule MetroWeb.CheckoutControllerTest do
   end
 
   describe "new checkout" do
-    test "renders form", %{conn: conn} do
+    test "renders form only if you are authenticated and have a library card", %{conn: conn} do
       conn = get conn, checkout_path(conn, :new)
       assert html_response(conn, 200) =~ "New Checkout"
     end
+#    test "does not render form if you are authenticated without a library card", %{conn: conn} do
+#      conn = get conn, checkout_path(conn, :new)
+#      assert html_response(conn, 200) =~ "New Checkout"
+#    end
+#    test "does not render form if you are unauthenticated", %{conn: conn} do
+#      conn = get conn, checkout_path(conn, :new)
+#      assert html_response(conn, 200) =~ "New Checkout"
+#    end
   end
 
   describe "create checkout" do
     test "redirects to show when data is valid", %{conn: conn} do
-      card = insert(:card_without_checkouts)
+      card = insert(:card)
       library = insert(:library)
       book = insert(:book)
 

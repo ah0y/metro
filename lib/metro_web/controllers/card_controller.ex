@@ -4,6 +4,10 @@ defmodule MetroWeb.CardController do
   alias Metro.Account
   alias Metro.Account.Card
 
+#  plug :load_and_authorize_resource, model: Metro.Account.Card, preload: [:user]
+#  use MetroWeb.ControllerAuthorization
+
+
   def index(conn, _params) do
     cards = Account.list_cards()
     render(conn, "index.html", cards: cards)
@@ -15,6 +19,8 @@ defmodule MetroWeb.CardController do
   end
 
   def create(conn, %{"card" => card_params}) do
+#    require IEx; IEx.pry()
+    card_params = Enum.into(card_params, %{"user_id" => conn.assigns.current_user.id})
     case Account.create_card(card_params) do
       {:ok, card} ->
         conn

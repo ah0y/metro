@@ -18,7 +18,7 @@ defmodule Metro.Account do
 
   """
   def list_cards do
-    Repo.all(Card)
+    Repo.all(Card) |> Repo.preload([{:user, :library}])
   end
 
   @doc """
@@ -35,7 +35,7 @@ defmodule Metro.Account do
       ** (Ecto.NoResultsError)
 
   """
-  def get_card!(id), do: Repo.get!(Card, id)
+  def get_card!(id), do: Repo.get!(Card, id) |> Repo.preload([{:user, :library}])
 
   @doc """
   Creates a card.

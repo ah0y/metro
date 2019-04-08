@@ -32,7 +32,6 @@ defmodule Metro.CardFactory do
         %Metro.Account.Card{
           user: build(:user),
           pin: "0123",
-          checkouts: build(:checkout)
         }
       end
 
@@ -40,13 +39,6 @@ defmodule Metro.CardFactory do
         %Metro.Account.Card{
           pin: "0123",
           checkouts: [build(:checkout_without_card)]
-        }
-      end
-
-      def card_without_checkouts_factory do
-        %Metro.Account.Card{
-          pin: "0123",
-          user: build(:user)
         }
       end
     end

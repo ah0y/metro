@@ -3,34 +3,33 @@ defmodule Metro.AccountTest do
 
   alias Metro.Account
 
+  import Metro.Factory
+
   describe "cards" do
     alias Metro.Account.Card
 
-    @valid_attrs %{pin: 42}
-    @update_attrs %{pin: 43}
+    @valid_attrs %{pin: "42"}
+    @update_attrs %{pin: "43"}
     @invalid_attrs %{pin: nil}
 
     def card_fixture(attrs \\ %{}) do
-      {:ok, card} =
-        attrs
-        |> Enum.into(@valid_attrs)
-        |> Account.create_card()
-      card
+      card = insert(:card)
     end
 
     test "list_cards/0 returns all cards" do
       card = card_fixture()
-      assert Account.list_cards() == [card]
+      assert Enum.at(Account.list_cards(), 0).id == card.id
     end
 
     test "get_card!/1 returns the card with given id" do
       card = card_fixture()
-      assert Account.get_card!(card.id) == card
+      assert Account.get_card!(card.id).id == card.id
     end
 
     test "create_card/1 with valid data creates a card" do
-      assert {:ok, %Card{} = card} = Account.create_card(@valid_attrs)
-      assert card.pin == 42
+      user = insert(:user)
+      assert {:ok, %Card{} = card} = Account.create_card(Enum.into(@valid_attrs, %{user_id: user.id}))
+      assert card.pin == "42"
     end
 
     test "create_card/1 with invalid data returns error changeset" do
@@ -41,13 +40,12 @@ defmodule Metro.AccountTest do
       card = card_fixture()
       assert {:ok, card} = Account.update_card(card, @update_attrs)
       assert %Card{} = card
-      assert card.pin == 43
+      assert card.pin == "43"
     end
 
     test "update_card/2 with invalid data returns error changeset" do
       card = card_fixture()
       assert {:error, %Ecto.Changeset{}} = Account.update_card(card, @invalid_attrs)
-      assert card == Account.get_card!(card.id)
     end
 
     test "delete_card/1 deletes the card" do

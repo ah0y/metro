@@ -4,13 +4,16 @@ defmodule MetroWeb.CheckoutController do
   alias Metro.Order
   alias Metro.Order.Checkout
 
+#  plug :load_and_authorize_resource, model: Metro.Order.Checkout
+#  use MetroWeb.ControllerAuthorization
+
   def index(conn, _params) do
     checkouts = Order.list_checkouts()
     render(conn, "index.html", checkouts: checkouts)
   end
 
   def new(conn, _params) do
-#    require IEx; IEx.pry()
+        require IEx; IEx.pry()
     changeset = Order.change_checkout(%Checkout{})
     render(conn, "new.html", changeset: changeset)
   end

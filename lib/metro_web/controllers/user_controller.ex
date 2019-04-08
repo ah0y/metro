@@ -4,7 +4,7 @@ defmodule MetroWeb.UserController do
   alias Metro.Account
   alias Metro.Account.User
 
-#  plug :load_and_authorize_resource, model: Metro.Account.User
+#  plug :load_and_authorize_resource, model: Metro.Account.User, preload: :card
 #  use MetroWeb.ControllerAuthorization
 
   def index(conn, _params) do

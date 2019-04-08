@@ -3,13 +3,14 @@ defmodule MetroWeb.CardControllerTest do
 
   alias Metro.Account
 
-  @create_attrs %{pin: 42}
-  @update_attrs %{pin: 43}
+  import Metro.Factory
+
+  @create_attrs %{pin: "42"}
+  @update_attrs %{pin: "43"}
   @invalid_attrs %{pin: nil}
 
   def fixture(:card) do
-    {:ok, card} = Account.create_card(@create_attrs)
-    card
+    card = insert(:card)
   end
 
   describe "index" do
@@ -28,7 +29,11 @@ defmodule MetroWeb.CardControllerTest do
 
   describe "create card" do
     test "redirects to show when data is valid", %{conn: conn} do
-      conn = post conn, card_path(conn, :create), card: @create_attrs
+      user = insert(:user)
+      attrs = Map.take(user, [:email, :password_hash, :password])
+      conn = post(conn, session_path(conn, :create), %{session: attrs})
+
+      conn = post conn, card_path(conn, :create), card: Enum.into(params_for(:card), %{user_id: user.id})
 
       assert %{id: id} = redirected_params(conn)
       assert redirected_to(conn) == card_path(conn, :show, id)
@@ -38,6 +43,10 @@ defmodule MetroWeb.CardControllerTest do
     end
 
     test "renders errors when data is invalid", %{conn: conn} do
+      user = insert(:user)
+      attrs = Map.take(user, [:email, :password_hash, :password])
+      conn = post(conn, session_path(conn, :create), %{session: attrs})
+
       conn = post conn, card_path(conn, :create), card: @invalid_attrs
       assert html_response(conn, 200) =~ "New Card"
     end

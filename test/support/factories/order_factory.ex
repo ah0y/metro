@@ -9,7 +9,7 @@ defmodule Metro.CheckoutFactory do
           renewals_remaining: 3,
           book: build(:book),
           library: build(:library),
-          card: build(:card_without_checkouts)
+          card: build(:card)
         }
       end
       def checkout_without_card_factory do
