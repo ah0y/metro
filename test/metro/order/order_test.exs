@@ -18,7 +18,7 @@ defmodule Metro.OrderTest do
       due_date: ~N[2011-05-18 15:01:01.000000],
       renewals_remaining: 4
     }
-    @invalid_attrs %{checkout_date: nil, due_date: nil, renewals_remaining: nil}
+    @invalid_attrs %{checkout_date: nil, due_date: nil, renewals_remaining: nil, isbn_id: nil}
 
     def checkout_fixture(_attrs \\ %{}) do
       card = insert(:card)

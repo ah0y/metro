@@ -15,9 +15,9 @@ defmodule MetroWeb.CheckoutController do
   end
 
   def new(conn, _params) do
-    {_, ref_url} = Enum.at(conn.req_headers, 5)
+    {_, ref_url} = List.keyfind(conn.req_headers, "referer", 0)
     isbn = Enum.at(Regex.run(~r/\d*$/, ref_url), 0)
-
+    conn = assign(conn, :isbn, isbn)
     libraries = Location.load_libraries()
 
     changeset = Order.change_checkout(%Checkout{})
@@ -33,7 +33,8 @@ defmodule MetroWeb.CheckoutController do
         |> put_flash(:info, "Checkout created successfully.")
         |> redirect(to: checkout_path(conn, :show, checkout))
       {:error, %Ecto.Changeset{} = changeset} ->
-        render(conn, "new.html", changeset: changeset, isbn: 1, card: 1, libraries: [])
+        libraries = Location.load_libraries()
+        render(conn, "new.html", changeset: changeset, isbn: conn.assigns.isbn, card: card, libraries: [])
     end
   end
 
@@ -43,21 +44,23 @@ defmodule MetroWeb.CheckoutController do
   end
 
   def edit(conn, %{"id" => id}) do
+#    require IEx; IEx.pry()
     checkout = Order.get_checkout!(id)
     changeset = Order.change_checkout(checkout)
-    render(conn, "edit.html", checkout: checkout, changeset: changeset)
+    libraries = Location.load_libraries()
+    render(conn, "edit.html", checkout: checkout, changeset: changeset, isbn: checkout.isbn_id, libraries: libraries)
   end
 
   def update(conn, %{"id" => id, "checkout" => checkout_params}) do
     checkout = Order.get_checkout!(id)
-
+    libraries = Location.load_libraries()
     case Order.update_checkout(checkout, checkout_params) do
       {:ok, checkout} ->
         conn
         |> put_flash(:info, "Checkout updated successfully.")
         |> redirect(to: checkout_path(conn, :show, checkout))
       {:error, %Ecto.Changeset{} = changeset} ->
-        render(conn, "edit.html", checkout: checkout, changeset: changeset)
+        render(conn, "edit.html", checkout: checkout, changeset: changeset, isbn: checkout.isbn_id, libraries: libraries)
     end
   end
 

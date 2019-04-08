@@ -19,7 +19,6 @@ defmodule MetroWeb.CardController do
   end
 
   def create(conn, %{"card" => card_params}) do
-#    require IEx; IEx.pry()
     card_params = Enum.into(card_params, %{"user_id" => conn.assigns.current_user.id})
     case Account.create_card(card_params) do
       {:ok, card} ->

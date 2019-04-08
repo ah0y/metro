@@ -5,9 +5,11 @@ defmodule MetroWeb.CheckoutControllerTest do
 
   import Metro.Factory
 
-#  import Canary.Plugs
-#
-#  plug :load_and_authorize_resource, model: Metro.Order.Checkout
+  alias Metro.Repo
+
+  #  import Canary.Plugs
+  #
+  #  plug :load_and_authorize_resource, model: Metro.Order.Checkout
 
 
   @create_attrs %{
@@ -20,7 +22,7 @@ defmodule MetroWeb.CheckoutControllerTest do
     due_date: ~N[2011-05-18 15:01:01.000000],
     renewals_remaining: 43
   }
-  @invalid_attrs %{checkout_date: nil, due_date: nil, renewals_remaining: nil}
+  @invalid_attrs %{checkout_date: nil, due_date: nil, renewals_remaining: nil, isbn_id: nil}
 
   def fixture(:checkout) do
     card = insert(:card)
@@ -41,29 +43,40 @@ defmodule MetroWeb.CheckoutControllerTest do
   end
 
   describe "new checkout" do
-    test "renders form only if you are authenticated and have a library card", %{conn: conn} do
-      conn = get conn, checkout_path(conn, :new)
-      assert html_response(conn, 200) =~ "New Checkout"
-    end
-#    test "does not render form if you are authenticated without a library card", %{conn: conn} do
-#      conn = get conn, checkout_path(conn, :new)
-#      assert html_response(conn, 200) =~ "New Checkout"
-#    end
-#    test "does not render form if you are unauthenticated", %{conn: conn} do
-#      conn = get conn, checkout_path(conn, :new)
-#      assert html_response(conn, 200) =~ "New Checkout"
-#    end
+    #    test "renders form only if you are authenticated and have a library card", %{conn: conn} do
+    #      conn = get conn, checkout_path(conn, :new)
+    #      assert html_response(conn, 200) =~ "New Checkout"
+    #    end
+    #    test "does not render form if you are authenticated without a library card", %{conn: conn} do
+    #      conn = get conn, checkout_path(conn, :new)
+    #      assert html_response(conn, 200) =~ "New Checkout"
+    #    end
+    #    test "does not render form if you are unauthenticated", %{conn: conn} do
+    #      conn = get conn, checkout_path(conn, :new)
+    #      assert html_response(conn, 200) =~ "New Checkout"
+    #    end
   end
 
   describe "create checkout" do
     test "redirects to show when data is valid", %{conn: conn} do
-      card = insert(:card)
-      library = insert(:library)
-      book = insert(:book)
+      user = build(:user)
+             |> insert
+             |> with_card
+             |> Repo.preload([{:card, :checkouts}, :books])
+
+      attrs = Map.take(user, [:email, :password_hash, :password])
+      conn = post(conn, session_path(conn, :create), %{session: attrs})
 
       conn = post conn,
                   checkout_path(conn, :create),
-                  checkout: Enum.into(@create_attrs, %{library_id: library.id, card_id: card.id, isbn_id: book.isbn})
+                  checkout: Enum.into(
+                    @create_attrs,
+                    %{
+                      library_id: user.library.id,
+                      card_id: user.card.id,
+                      isbn_id: Enum.at(user.card.checkouts, 0).book.isbn
+                    }
+                  )
 
       assert %{id: id} = redirected_params(conn)
       assert redirected_to(conn) == checkout_path(conn, :show, id)
@@ -73,6 +86,20 @@ defmodule MetroWeb.CheckoutControllerTest do
     end
 
     test "renders errors when data is invalid", %{conn: conn} do
+      user = build(:user)
+             |> insert
+             |> with_card
+             |> Repo.preload([{:card, :checkouts}, :books])
+
+      attrs = Map.take(user, [:email, :password_hash, :password])
+      conn = post(conn, session_path(conn, :create), %{session: attrs})
+
+      conn =
+        conn
+        |> recycle()
+        |> assign(:isbn, nil)
+
+
       conn = post conn, checkout_path(conn, :create), checkout: @invalid_attrs
       assert html_response(conn, 200) =~ "New Checkout"
     end
