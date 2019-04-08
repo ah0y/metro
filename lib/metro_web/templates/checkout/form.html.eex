@@ -14,11 +14,11 @@
 
     <div class="form-group">
       <%= label f, :library_id, class: "control-label" %>
-      <input list="copy_library_id" name="copy[library_id]" class="form-control" />
-      <datalist id="copy_library_id">
+      <input list="checkout_library_id" name="checkout[library_id]" class="form-control" />
+      <datalist id="checkout_library_id">
       <%= for library <- @libraries do %>
        <option value=<%=library.id%>><%=library.branch%></option>
-       <%end%>
+       <% end %>
       </datalist>
      <%= error_tag f, :library_id %>
     </div>

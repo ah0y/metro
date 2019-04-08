@@ -20,22 +20,20 @@ defmodule MetroWeb.CheckoutController do
 
     libraries = Location.load_libraries()
 
-    card = Account.get_users_card!(conn.assigns.current_user.id)
-
-#    require IEx; IEx.pry()
-
     changeset = Order.change_checkout(%Checkout{})
-    render(conn, "new.html", changeset: changeset, isbn: isbn, card: card.id, libraries: libraries )
+    render(conn, "new.html", changeset: changeset, isbn: isbn, libraries: libraries )
   end
 
   def create(conn, %{"checkout" => checkout_params}) do
+    card = Account.get_users_card!(conn.assigns.current_user.id)
+    checkout_params = Enum.into(checkout_params, %{"card_id" => card.id})
     case Order.create_checkout(checkout_params) do
       {:ok, checkout} ->
         conn
         |> put_flash(:info, "Checkout created successfully.")
         |> redirect(to: checkout_path(conn, :show, checkout))
       {:error, %Ecto.Changeset{} = changeset} ->
-        render(conn, "new.html", changeset: changeset)
+        render(conn, "new.html", changeset: changeset, isbn: 1, card: 1, libraries: [])
     end
   end
 
