@@ -3,6 +3,8 @@ defmodule MetroWeb.CheckoutController do
 
   alias Metro.Order
   alias Metro.Order.Checkout
+  alias Metro.Account
+  alias Metro.Location
 
 #  plug :load_and_authorize_resource, model: Metro.Order.Checkout
 #  use MetroWeb.ControllerAuthorization
@@ -13,9 +15,17 @@ defmodule MetroWeb.CheckoutController do
   end
 
   def new(conn, _params) do
-        require IEx; IEx.pry()
+    {_, ref_url} = Enum.at(conn.req_headers, 5)
+    isbn = Enum.at(Regex.run(~r/\d*$/, ref_url), 0)
+
+    libraries = Location.load_libraries()
+
+    card = Account.get_users_card!(conn.assigns.current_user.id)
+
+#    require IEx; IEx.pry()
+
     changeset = Order.change_checkout(%Checkout{})
-    render(conn, "new.html", changeset: changeset)
+    render(conn, "new.html", changeset: changeset, isbn: isbn, card: card.id, libraries: libraries )
   end
 
   def create(conn, %{"checkout" => checkout_params}) do

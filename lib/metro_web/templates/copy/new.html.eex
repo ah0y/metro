@@ -1,7 +1,7 @@
 <h2>New Copy</h2>
 <%= if assigns[:isbn] do %>
 
- <%= render "preopulated.html", changeset: @changeset, isbn: @isbn, libraries: @libraries, action: copy_path(@conn, :create) %>
+ <%= render "prepopulated.html", changeset: @changeset, isbn: @isbn, libraries: @libraries, action: copy_path(@conn, :create) %>
 
 <% else %>
 

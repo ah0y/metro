@@ -38,6 +38,22 @@ defmodule Metro.Account do
   def get_card!(id), do: Repo.get!(Card, id) |> Repo.preload([{:user, :library}])
 
   @doc """
+  Gets a users card.
+
+  Raises `Ecto.NoResultsError` if the Card does not exist.
+
+  ## Examples
+
+      iex> get_users_card!(123)
+      %Card{}
+
+      iex> get_users_card!(456)
+      ** (Ecto.NoResultsError)
+
+  """
+  def get_users_card!(user_id), do: Repo.one!(from c in Card, where: c.user_id == ^user_id)
+
+  @doc """
   Creates a card.
 
   ## Examples

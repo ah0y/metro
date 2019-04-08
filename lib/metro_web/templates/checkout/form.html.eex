@@ -7,27 +7,22 @@
 
   <div class="form-group">
     <%= label f, :isbn_id, class: "control-label" %>
-    <%= number_input f, :isbn_id, class: "form-control" %>
+    <%= number_input f, :isbn_id, class: "form-control" , value: @isbn%>
     <%= error_tag f, :isbn_id %>
   </div>
 
-  <div class="form-group">
-    <%= label f, :card_id, class: "control-label" %>
-    <%= number_input f, :card_id, class: "form-control" %>
-    <%= error_tag f, :card_id %>
-  </div>
 
-  <div class="form-group">
-    <%= label f, :card_id, class: "control-label" %>
-    <%= number_input f, :card_id, class: "form-control" %>
-    <%= error_tag f, :card_id %>
-  </div>
+    <div class="form-group">
+      <%= label f, :library_id, class: "control-label" %>
+      <input list="copy_library_id" name="copy[library_id]" class="form-control" />
+      <datalist id="copy_library_id">
+      <%= for library <- @libraries do %>
+       <option value=<%=library.id%>><%=library.branch%></option>
+       <%end%>
+      </datalist>
+     <%= error_tag f, :library_id %>
+    </div>
 
-  <div class="form-group">
-    <%= label f, :copy_id, class: "control-label" %>
-    <%= number_input f, :copy_id, class: "form-control" %>
-    <%= error_tag f, :copy_id %>
-  </div>
 
   <div class="form-group">
     <%= submit "Submit", class: "btn btn-primary" %>
