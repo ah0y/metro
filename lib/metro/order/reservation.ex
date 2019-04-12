@@ -15,7 +15,7 @@ defmodule Metro.Order.Reservation do
   @doc false
   def changeset(reservation, attrs) do
     reservation
-    |> cast(attrs, [:expiration_date])
-    |> validate_required([:expiration_date])
+    |> cast(attrs, [:expiration_date, :transit_id])
+    |> validate_required([:transit_id])
   end
 end

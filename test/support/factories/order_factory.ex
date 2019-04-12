@@ -25,3 +25,23 @@ defmodule Metro.CheckoutFactory do
   end
 end
 
+defmodule Metro.ReservationFactory do
+
+  defmacro __using__(_opts) do
+    quote do
+      def reservation_factory do
+        %Metro.Order.Reservation{
+
+        }
+      end
+      def checkout_without_card_factory do
+        %Metro.Order.Reservation{
+
+        }
+      end
+    end
+  end
+end
+
+
+

@@ -17,7 +17,7 @@ defmodule Metro.Order.Transit do
   @doc false
   def changeset(transit, attrs) do
     transit
-    |> cast(attrs, [:estimated_arrival, :actual_arrival])
-    |> validate_required([:estimated_arrival, :actual_arrival])
+    |> cast(attrs, [:estimated_arrival, :actual_arrival, :copy_id, :checkout_id])
+    |> validate_required([:checkout_id])
   end
 end
