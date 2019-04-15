@@ -16,7 +16,7 @@ defmodule Metro.Order.Waitlist do
   @doc false
   def changeset(waitlist, attrs) do
     waitlist
-    |> cast(attrs, [:position])
-    |> validate_required([:position])
+    |> cast(attrs, [:position, :copy_id, :checkout_id])
+    |> validate_required([:position, :checkout_id])
   end
 end

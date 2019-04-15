@@ -3,13 +3,14 @@ defmodule MetroWeb.WaitlistControllerTest do
 
   alias Metro.Order
 
+  import Metro.Factory
+
   @create_attrs %{position: 42}
   @update_attrs %{position: 43}
-  @invalid_attrs %{position: nil}
+  @invalid_attrs %{position: nil, copy_id: nil, checkout_id: nil}
 
   def fixture(:waitlist) do
-    {:ok, waitlist} = Order.create_waitlist(@create_attrs)
-    waitlist
+    waitlist = insert(:waitlist)
   end
 
   describe "index" do
@@ -28,7 +29,9 @@ defmodule MetroWeb.WaitlistControllerTest do
 
   describe "create waitlist" do
     test "redirects to show when data is valid", %{conn: conn} do
-      conn = post conn, waitlist_path(conn, :create), waitlist: @create_attrs
+      checkout = insert(:checkout)
+
+      conn = post conn, waitlist_path(conn, :create), waitlist: params_for(:waitlist) |> Enum.into(checkout_id: checkout.id)
 
       assert %{id: id} = redirected_params(conn)
       assert redirected_to(conn) == waitlist_path(conn, :show, id)

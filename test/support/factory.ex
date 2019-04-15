@@ -7,4 +7,7 @@ defmodule Metro.Factory do
   use Metro.CheckoutFactory
   use Metro.UserFactory
   use Metro.CardFactory
+  use Metro.ReservationFactory
+  use Metro.TransitFactory
+  use Metro.WaitlistFactory
 end

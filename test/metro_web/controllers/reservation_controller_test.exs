@@ -1,15 +1,17 @@
 defmodule MetroWeb.ReservationControllerTest do
   use MetroWeb.ConnCase
 
+  import Metro.Factory
+
   alias Metro.Order
 
   @create_attrs %{expiration_date: ~N[2010-04-17 14:00:00.000000]}
   @update_attrs %{expiration_date: ~N[2011-05-18 15:01:01.000000]}
-  @invalid_attrs %{expiration_date: nil}
+  @invalid_attrs %{expiration_date: nil, transit_id: nil}
+
 
   def fixture(:reservation) do
-    {:ok, reservation} = Order.create_reservation(@create_attrs)
-    reservation
+    reservation = insert(:reservation)
   end
 
   describe "index" do
@@ -28,7 +30,9 @@ defmodule MetroWeb.ReservationControllerTest do
 
   describe "create reservation" do
     test "redirects to show when data is valid", %{conn: conn} do
-      conn = post conn, reservation_path(conn, :create), reservation: @create_attrs
+      transit = insert(:transit)
+
+      conn = post conn, reservation_path(conn, :create), reservation: params_for(:reservation) |> Enum.into(transit_id: transit.id)
 
       assert %{id: id} = redirected_params(conn)
       assert redirected_to(conn) == reservation_path(conn, :show, id)

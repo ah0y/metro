@@ -1,15 +1,17 @@
 defmodule MetroWeb.TransitControllerTest do
   use MetroWeb.ConnCase
 
+  import Metro.Factory
+
   alias Metro.Order
 
   @create_attrs %{actual_arrival: ~N[2010-04-17 14:00:00.000000], estimated_arrival: ~N[2010-04-17 14:00:00.000000]}
   @update_attrs %{actual_arrival: ~N[2011-05-18 15:01:01.000000], estimated_arrival: ~N[2011-05-18 15:01:01.000000]}
-  @invalid_attrs %{actual_arrival: nil, estimated_arrival: nil}
+  @invalid_attrs %{actual_arrival: nil, estimated_arrival: nil, checkout_id: nil}
+
 
   def fixture(:transit) do
-    {:ok, transit} = Order.create_transit(@create_attrs)
-    transit
+    transit = insert(:transit)
   end
 
   describe "index" do
@@ -28,7 +30,9 @@ defmodule MetroWeb.TransitControllerTest do
 
   describe "create transit" do
     test "redirects to show when data is valid", %{conn: conn} do
-      conn = post conn, transit_path(conn, :create), transit: @create_attrs
+      checkout = insert(:checkout)
+
+      conn = post conn, transit_path(conn, :create), transit: params_for(:transit) |> Enum.into(checkout_id: checkout.id)
 
       assert %{id: id} = redirected_params(conn)
       assert redirected_to(conn) == transit_path(conn, :show, id)
