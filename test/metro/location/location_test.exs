@@ -285,6 +285,20 @@ defmodule Metro.LocationTest do
       copy
     end
 
+    test "find_copy/1 returns a copy if one is available" do
+      book = build(:book)
+             |> insert
+             |> with_available_copies
+      assert %Metro.Location.Copy{} = Location.find_copy(book.isbn)
+    end
+
+    test "find_copy/1 returns nil if no copies are available" do
+      book = build(:book)
+             |> insert
+             |> with_unavailable_copies
+      assert Location.find_copy(book.isbn) == nil
+    end
+
     test "list_copies/0 returns all copies" do
       copy = copy_fixture()
       assert Location.list_copies() == [copy]

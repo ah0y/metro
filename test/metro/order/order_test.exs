@@ -2,6 +2,7 @@ defmodule Metro.OrderTest do
   use Metro.DataCase
 
   alias Metro.Order
+  alias Metro.Location
 
   import Metro.Factory
 
@@ -41,41 +42,48 @@ defmodule Metro.OrderTest do
                  |> insert
       assert Order.get_checkout!(checkout.id).id == checkout.id
     end
-#
-#    test "create_checkout/1 with valid data creates a checkout, reservation, and transit if there's an available copy" do
-#      card = insert(:card)
-#      library = insert(:library)
-#      book = insert(:book)
-#
-#      attr =
-#        params_for(:checkout)
-#        |> Enum.into(%{library_id: library.id, isbn_id: book.isbn, card_id: card.id})
-#
-#      trans = Order.create_checkout(attr)
-#
-#      assert [
-#               {:reservation, {:insert, reservation_changeset, []}},
-#               {:checkout, {:insert, checkout_changeset, []}},
-#               {:transit, {:insert, transit_changeset, []}}
-#
-#             ] = Ecto.Multi.to_list(trans)
-#
-#
-#      assert reservation_changeset.valid?
-#      assert checkout_changeset.valid?
-#      assert transit_changeset.valid?
-#    end
 
-#    test "create_checkout/1 with valid data creates a checkout, reservation, transit, and wait list if there's not an available copy" do
+    test "create_order/1 with valid data creates a checkout, reservation, and transit if there's an available copy" do
+      card = insert(:card)
+      library = insert(:library)
+      book = build(:book)
+             |> insert
+             |> with_available_copies
+
+      attr =
+        params_for(:checkout)
+        |> Enum.into(%{library_id: library.id, isbn_id: book.isbn, card_id: card.id})
+
+#      copy = Location.find_copy(book.isbn)
+      IO.inspect(attr)
+
+      trans = Order.create_order(attr)
+
+      assert [
+               {:reservation, {:insert, reservation_changeset, []}},
+               {:checkout, {:insert, checkout_changeset, []}},
+               {:transit, {:insert, transit_changeset, []}}
+
+             ] = Ecto.Multi.to_list(trans)
+
+
+      assert reservation_changeset.valid?
+      assert checkout_changeset.valid?
+      assert transit_changeset.valid?
+    end
+
+#    test "create_order/1 with valid data creates a checkout, reservation, transit, and wait list if there's not an available copy" do
 #      card = insert(:card)
 #      library = insert(:library)
-#      book = insert(:book)
+#            book = build(:book)
+#              |> insert
+#              |> with_unavailable_copies
 #
 #      attr =
 #        params_for(:checkout)
 #        |> Enum.into(%{library_id: library.id, isbn_id: book.isbn, card_id: card.id})
 #
-#      trans = Order.create_checkout(attr)
+#      trans = Order.create_order(attr)
 #
 #      assert [
 #               {:reservation, {:insert, reservation_changeset, []}},
@@ -92,7 +100,7 @@ defmodule Metro.OrderTest do
 #      assert transit_changeset.valid?
 #    end
 
-#    test "create_checkout/1 with valid data creates a checkout, reservation, transit, and NOT a wait list if there's an available copy" do
+#    test "create_order/1 with valid data creates a checkout, reservation, transit, and NOT a wait list if there's an available copy" do
 #      card = insert(:card)
 #      library = insert(:library)
 #      book = insert(:book)
@@ -101,7 +109,7 @@ defmodule Metro.OrderTest do
 #        params_for(:checkout)
 #        |> Enum.into(%{library_id: library.id, isbn_id: book.isbn, card_id: card.id})
 #
-#      trans = Order.create_checkout(attr)
+#      trans = Order.create_order(attr)
 #
 #      assert [
 #               {:reservation, {:insert, reservation_changeset, []}},

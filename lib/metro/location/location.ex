@@ -180,7 +180,9 @@ defmodule Metro.Location do
       ** (Ecto.NoResultsError)
 
   """
-  def get_author_and_books(id), do: Repo.get!(Author, id) |> Repo.preload(:books)
+  def get_author_and_books(id),
+      do: Repo.get!(Author, id)
+          |> Repo.preload(:books)
 
   @doc """
   Creates a author.
@@ -388,7 +390,30 @@ defmodule Metro.Location do
       ** (Ecto.NoResultsError)
 
   """
-  def get_book_and_copies(id), do: Repo.get!(Book, id) |> Repo.preload(:copies) |> Repo.preload(:author)
+  def get_book_and_copies(id),
+      do: Repo.get!(Book, id)
+          |> Repo.preload(:copies)
+          |> Repo.preload(:author)
+
+alias Metro.Location.Copy
+  @doc """
+  Returns a single copy of a book if one is available, if not returns nil.
+
+  Raises `Ecto.NoResultsError` if the Book does not exist.
+
+  ## Examples
+
+      iex> find_copy(123)
+      %Book{}
+
+      iex> find_copy(456)
+      ** (Ecto.NoResultsError)
+
+  """
+  def find_copy(isbn_id) do
+    Repo.one(from c in Copy,
+    where: c.isbn_id == ^isbn_id and c.checked_out? == false, limit: 1)
+  end
 
   @doc """
   Creates a book.

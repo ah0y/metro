@@ -56,6 +56,33 @@ defmodule Metro.Order do
   end
 
   @doc """
+  Creates an order.
+
+  ## Examples
+
+      iex> create_order(%{field: value})
+      {:ok, %Checkout{}}
+
+      iex> create_order(%{field: bad_value})
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def create_order(attr) do
+      order = Ecto.Multi.new
+      |> Ecto.Multi.run(:checkout, fn(_) -> create_checkout(attr) end)
+      |> Ecto.Multi.run(:reservation, fn(%{checkout: checkout}) -> create_reservation(%{checkout_id: checkout.id}) end)
+      |> Ecto.Multi.run(:transit, fn(%{checkout: checkout}) -> create_transit(checkout) end)
+#      |> Ecto.Multi.run(:copy, fn(%{_})
+      |> Repo.transaction()
+
+#      case result do
+#        {:ok, %{order: order}} ->
+#          {:ok, Repo.preload(order, [:user, :line_items])}
+#        {:error, :order, changeset, _} ->
+#          {:error, changeset}
+#      end
+  end
+  @doc """
   Updates a checkout.
 
   ## Examples
