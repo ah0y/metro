@@ -50,9 +50,11 @@ defmodule Metro.Order do
 
   """
   def create_checkout(attrs \\ %{}) do
+    #        {:ok, checkout} =
     %Checkout{}
     |> Checkout.changeset(attrs)
     |> Repo.insert()
+    #          checkout
   end
 
   @doc """
@@ -68,19 +70,24 @@ defmodule Metro.Order do
 
   """
   def create_order(attr) do
-      order = Ecto.Multi.new
-      |> Ecto.Multi.run(:checkout, fn(_) -> create_checkout(attr) end)
-      |> Ecto.Multi.run(:reservation, fn(%{checkout: checkout}) -> create_reservation(%{checkout_id: checkout.id}) end)
-      |> Ecto.Multi.run(:transit, fn(%{checkout: checkout}) -> create_transit(checkout) end)
-#      |> Ecto.Multi.run(:copy, fn(%{_})
-      |> Repo.transaction()
+    order = Ecto.Multi.new
+            |> Ecto.Multi.run(:checkout, fn (_) -> Metro.Order.create_checkout(attr) end)
+            |> Ecto.Multi.run(
+                 :transit,
+                 fn (%{checkout: checkout}) -> Metro.Order.create_transit(%{checkout_id: checkout.id}) end
+               )
+      #            |> Ecto.Multi.run(
+      #                 :reservation,
+      #                 fn (%{transit: transit}) -> Metro.Order.create_reservation(%{transit_id: transit.id}) end
+      #               )
 
-#      case result do
-#        {:ok, %{order: order}} ->
-#          {:ok, Repo.preload(order, [:user, :line_items])}
-#        {:error, :order, changeset, _} ->
-#          {:error, changeset}
-#      end
+      #            |> Ecto.Multi.insert(:checkout, Metro.Order.Checkout.changeset(%Metro.Order.Checkout{}, attr))
+      #            |> Ecto.Multi.insert(:transit, fn  %{checkout: %Metro.Order.Checkout{id: checkout_id}} -> Metro.Order.Transit.changeset(%Metro.Order.Transit{checkout_id: checkout_id}) end)
+            |> Repo.transaction()
+            |> case do
+                 {:ok, checkout} -> checkout
+                 {:ok, transit} -> transit
+               end
   end
   @doc """
   Updates a checkout.
@@ -269,9 +276,11 @@ defmodule Metro.Order do
 
   """
   def create_transit(attrs \\ %{}) do
+    #    {:ok, transit} =
     %Transit{}
     |> Transit.changeset(attrs)
     |> Repo.insert()
+    #    transit
   end
 
   @doc """
@@ -365,9 +374,11 @@ defmodule Metro.Order do
 
   """
   def create_reservation(attrs \\ %{}) do
-    %Reservation{}
-    |> Reservation.changeset(attrs)
-    |> Repo.insert()
+    {:ok, reservation} =
+      %Reservation{}
+      |> Reservation.changeset(attrs)
+      |> Repo.insert()
+    reservation
   end
 
   @doc """

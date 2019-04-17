@@ -43,6 +43,7 @@ defmodule Metro.OrderTest do
       assert Order.get_checkout!(checkout.id).id == checkout.id
     end
 
+    @tag multi: "order"
     test "create_order/1 with valid data creates a checkout, reservation, and transit if there's an available copy" do
       card = insert(:card)
       library = insert(:library)
@@ -53,78 +54,80 @@ defmodule Metro.OrderTest do
       attr =
         params_for(:checkout)
         |> Enum.into(%{library_id: library.id, isbn_id: book.isbn, card_id: card.id})
+      #      copy = Location.find_copy(book.isbn)
 
-#      copy = Location.find_copy(book.isbn)
-      IO.inspect(attr)
 
       trans = Order.create_order(attr)
+      IO.inspect(trans)
+      require IEx; IEx.pry
 
       assert [
-               {:reservation, {:insert, reservation_changeset, []}},
-               {:checkout, {:insert, checkout_changeset, []}},
-               {:transit, {:insert, transit_changeset, []}}
+               {:checkout, {:run, %Metro.Order.Checkout{} = checkout}},
+               {:transit, {:run, %Metro.Order.Transit{} = transit}}
+               #               {:reservation, {:insert, reservation_changeset, []}}
+
 
              ] = Ecto.Multi.to_list(trans)
 
 
-      assert reservation_changeset.valid?
-      assert checkout_changeset.valid?
-      assert transit_changeset.valid?
+      assert checkout.valid?
+      assert transit.valid?
+      #            assert reservation_changeset.valid?
     end
 
-#    test "create_order/1 with valid data creates a checkout, reservation, transit, and wait list if there's not an available copy" do
-#      card = insert(:card)
-#      library = insert(:library)
-#            book = build(:book)
-#              |> insert
-#              |> with_unavailable_copies
-#
-#      attr =
-#        params_for(:checkout)
-#        |> Enum.into(%{library_id: library.id, isbn_id: book.isbn, card_id: card.id})
-#
-#      trans = Order.create_order(attr)
-#
-#      assert [
-#               {:reservation, {:insert, reservation_changeset, []}},
-#               {:checkout, {:insert, checkout_changeset, []}},
-#               {:waitlist, {:insert, waitlist_changeset, []}},
-#               {:transit, {:insert, transit_changeset, []}}
-#
-#             ] = Ecto.Multi.to_list(trans)
-#
-#
-#      assert reservation_changeset.valid?
-#      assert waitlist_changeset.valid?
-#      assert checkout_changeset.valid?
-#      assert transit_changeset.valid?
-#    end
+    #    test "create_order/1 with valid data creates a checkout, reservation, transit, and wait list if there's not an available copy" do
+    #      card = insert(:card)
+    #      library = insert(:library)
+    #            book = build(:book)
+    #              |> insert
+    #              |> with_unavailable_copies
+    #
+    #      attr =
+    #        params_for(:checkout)
+    #        |> Enum.into(%{library_id: library.id, isbn_id: book.isbn, card_id: card.id})
+    #
+    #      trans = Order.create_order(attr)
+    #
+    #      assert [
+    #               {:reservation, {:insert, reservation_changeset, []}},
+    #               {:checkout, {:insert, checkout_changeset, []}},
+    #               {:waitlist, {:insert, waitlist_changeset, []}},
+    #               {:transit, {:insert, transit_changeset, []}}
+    #
+    #             ] = Ecto.Multi.to_list(trans)
+    #
+    #
+    #      assert reservation_changeset.valid?
+    #      assert waitlist_changeset.valid?
+    #      assert checkout_changeset.valid?
+    #      assert transit_changeset.valid?
+    #    end
 
-#    test "create_order/1 with valid data creates a checkout, reservation, transit, and NOT a wait list if there's an available copy" do
-#      card = insert(:card)
-#      library = insert(:library)
-#      book = insert(:book)
-#
-#      attr =
-#        params_for(:checkout)
-#        |> Enum.into(%{library_id: library.id, isbn_id: book.isbn, card_id: card.id})
-#
-#      trans = Order.create_order(attr)
-#
-#      assert [
-#               {:reservation, {:insert, reservation_changeset, []}},
-#               {:checkout, {:insert, checkout_changeset, []}},
-#               {:waitlist, {:insert, waitlist_changeset, []}},
-#               {:transit, {:insert, transit_changeset, []}}
-#
-#             ] = Ecto.Multi.to_list(trans)
-#
-#
-#      assert reservation_changeset.valid?
-#      assert waitlist_changeset.valid?
-#      assert checkout_changeset.valid?
-#      assert transit_changeset.valid?
-#    end
+    #    test "create_order/1 with valid data creates a checkout, reservation, transit, and NOT a wait list if there's an available copy" do
+    #      card = insert(:card)
+    #      library = insert(:library)
+    #      book = insert(:book)
+    #
+    #      attr =
+    #        params_for(:checkout)
+    #        |> Enum.into(%{library_id: library.id, isbn_id: book.isbn, card_id: card.id})
+    #
+    #      trans = Order.create_order(attr)
+    #
+    #      assert [
+    #               {:reservation, {:insert, reservation_changeset, []}},
+    #               {:checkout, {:insert, checkout_changeset, []}},
+    #               {:waitlist, {:insert, waitlist_changeset, []}},
+    #               {:transit, {:insert, transit_changeset, []}}
+    #
+    #             ] = Ecto.Multi.to_list(trans)
+    #
+    #
+    #      assert reservation_changeset.valid?
+    #      assert waitlist_changeset.valid?
+    #      assert checkout_changeset.valid?
+    #      assert transit_changeset.valid?
+    #    end
 
     test "create_checkout/1 with invalid data returns error changeset" do
       assert {:error, %Ecto.Changeset{}} = Order.create_checkout(@invalid_attrs)
@@ -182,7 +185,8 @@ defmodule Metro.OrderTest do
 
     test "create_waitlist/1 with valid data creates a waitlist" do
       checkout = insert(:checkout)
-      attrs =  params_for(:waitlist) |> Enum.into(%{checkout_id: checkout.id})
+      attrs = params_for(:waitlist)
+              |> Enum.into(%{checkout_id: checkout.id})
       assert {:ok, %Waitlist{} = waitlist} = Order.create_waitlist(attrs)
       assert waitlist.position == 42
     end
@@ -244,7 +248,8 @@ defmodule Metro.OrderTest do
 
     test "create_transit/1 with valid data creates a transit" do
       checkout = insert(:checkout)
-      attrs =  params_for(:transit) |> Enum.into(%{checkout_id: checkout.id})
+      attrs = params_for(:transit)
+              |> Enum.into(%{checkout_id: checkout.id})
       assert {:ok, %Transit{} = transit} = Order.create_transit(attrs)
       assert transit.actual_arrival == ~N[2010-04-17 14:00:00.000000]
       assert transit.estimated_arrival == ~N[2010-04-17 14:00:00.000000]
@@ -306,7 +311,8 @@ defmodule Metro.OrderTest do
 
     test "create_reservation/1 with valid data creates a reservation" do
       transit = insert(:transit)
-      attrs =  params_for(:reservation) |> Enum.into(%{transit_id: transit.id})
+      attrs = params_for(:reservation)
+              |> Enum.into(%{transit_id: transit.id})
       assert {:ok, %Reservation{} = reservation} = Order.create_reservation(attrs)
       assert reservation.expiration_date == ~N[2010-04-17 14:00:00.000000]
     end
@@ -344,7 +350,8 @@ end
 
 defmodule Unpreloader do
   def forget(struct, field, cardinality \\ :one) do
-    %{struct |
+    %{
+      struct |
       field => %Ecto.Association.NotLoaded{
         __field__: field,
         __owner__: struct.__struct__,
