@@ -200,7 +200,7 @@ defmodule Metro.OrderTest do
                }
              } = trans2
 #      {:ok, %{checkout: checkout2, reservation: reservation2, transit: transit2, waitlist: waitlist}} = trans2
-
+#      require IEx; IEx.pry()
       trans3 = Order.check_in(copy)
 
             assert {
@@ -210,7 +210,7 @@ defmodule Metro.OrderTest do
                          checked_out?: false
                        },
                        checkout: %Metro.Order.Checkout{
-                         checkin_date: not(is_nil)
+#                         checkin_date: not(is_nil)
                        },
 #
 #                       reservation: %Metro.Order.Reservation{
@@ -357,15 +357,11 @@ defmodule Metro.OrderTest do
              |> with_available_copies
              |> with_waitlist
 
-      waitlists_before = Repo.all(Waitlist)
+      waitlist_before = hd(Repo.all(Waitlist, limit: 1))
 
-      Order.decrement_waitlist(book.id)
+      Order.decrement_waitlist(book.isbn)
 
-      Enum.all?(waitlists_before, fn x ->
-        Repo.one(from w in Waitlist, where x.id == ^w.id) == nil
-        or
-        x.position - 1  == Repo.one(from w in Waitlist, where x.id == ^w.id)
-      end)
+      assert hd(Repo.all(Waitlist)).position == waitlist_before.position - 1 == true
     end
   end
 

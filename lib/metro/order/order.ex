@@ -134,7 +134,8 @@ defmodule Metro.Order do
                )
             |> Ecto.Multi.run(
                  :waitlist,
-                 fn (%{checkout: checkout}) -> Metro.Order.create_waitlist(%{checkout_id: checkout.id, isbn_id: checkout.isbn_id }) end
+                 fn (%{checkout: checkout}) ->
+                   Metro.Order.create_waitlist(%{checkout_id: checkout.id, isbn_id: checkout.isbn_id}) end
                )
             |> Repo.transaction()
   end
@@ -152,20 +153,24 @@ defmodule Metro.Order do
   """
   def check_in(copy) do
     check_in = Ecto.Multi.new
-            |> Ecto.Multi.run(:copy, fn (copy) -> Metro.Location.update_copy(copy, %{checked_out?: false}) end)
-            |> Ecto.Multi.run(
-                 :checkout,
-                 fn (%{copy: copy}) -> Metro.Order.update_checkout(Metro.Order.get_copy_checkout(copy.id), %{checkin_date: NaiveDateTime.utc_now() }) end
-               )
-            |> Ecto.Multi.run(
-                 :decrement,
-                 fn (%{checkout: checkout}) -> Metro.Order.decrement_waitlist(book_isbn) end
-               )
-#            |> Ecto.Multi.run(
-#                 :waitlist,
-#                 fn (%{checkout: checkout}) -> Metro.Order.update_waitlist(checkout.isbn_id) end
-#               )
-            |> Repo.transaction()
+               |> Ecto.Multi.run(:copy, fn (_) -> Metro.Location.update_copy(copy, %{checked_out?: false}) end)
+               |> Ecto.Multi.run(
+                    :checkout,
+                    fn (%{copy: copy}) ->
+                      Metro.Order.update_checkout(
+                        Metro.Order.get_copy_checkout!(copy.id),
+                        %{checkin_date: NaiveDateTime.utc_now()}
+                      ) end
+                  )
+               |> Ecto.Multi.run(
+                    :waitlist,
+                    fn (%{copy: copy}) -> Metro.Order.null_waitlist_position(copy.id) end
+                  )
+               |> Ecto.Multi.run(
+                    :decrement,
+                    fn (%{checkout: checkout}) -> Metro.Order.decrement_waitlist(checkout.isbn_id) end
+                  )
+               |> Repo.transaction()
   end
   @doc """
   Updates a checkout.
@@ -283,6 +288,24 @@ defmodule Metro.Order do
   end
 
   @doc """
+  Updates a waitlist.
+
+  ## Examples
+
+      iex> null_waitlist_position(waitlist, %{field: new_value})
+      {:ok, %Waitlist{}}
+
+      iex> update_waitlist(waitlist, %{field: bad_value})
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def null_waitlist_position(copy_id) do
+    Repo.one(from w in Waitlist, where: w.copy_id == ^copy_id)
+    |> Waitlist.changeset(%{position: nil})
+    |> Repo.update()
+  end
+
+  @doc """
   Deletes a Waitlist.
 
   ## Examples
@@ -325,7 +348,9 @@ defmodule Metro.Order do
 
   """
   def next_in_line(book_id) do
-    position =  Repo.one(from w in Waitlist, where: w.isbn_id == ^book_id and not(is_nil(w.position)), select: count(w.id)) + 1
+    position = Repo.one(
+      from w in Waitlist, where: w.isbn_id == ^book_id and not (is_nil(w.position)), select: count(w.id)
+    ) + 1
   end
 
   @doc """
@@ -342,7 +367,15 @@ defmodule Metro.Order do
 
   """
   def decrement_waitlist(book_id) do
-    from(w in Waitlist, where: w.isbn_id == ^book_id and not(is_nil(w.position)), update: [set: [position: w.position - 1 ]])
+    from(
+      w in Waitlist,
+      where: w.isbn_id == ^book_id and not (is_nil(w.position)),
+      update: [
+        inc: [
+          position: -1
+        ]
+      ]
+    )
     |> Repo.update_all([])
   end
 
@@ -395,11 +428,11 @@ defmodule Metro.Order do
     |> Repo.insert()
   end
 
-#  def create_transit(attrs, copy) do
-#    %Transit{}
-#    |> Transit.changeset(Map.merge(attrs, %{copy_id: copy.id}))
-#    |> Repo.insert()
-#  end
+  #  def create_transit(attrs, copy) do
+  #    %Transit{}
+  #    |> Transit.changeset(Map.merge(attrs, %{copy_id: copy.id}))
+  #    |> Repo.insert()
+  #  end
 
   @doc """
   Updates a transit.
@@ -498,11 +531,11 @@ defmodule Metro.Order do
     |> Repo.insert()
   end
 
-#  def create_reservation(attrs, copy) do
-#      %Reservation{}
-#      |> Reservation.changeset(Map.merge(attrs, %{copy_id: copy.id}))
-#      |> Repo.insert()
-#  end
+  #  def create_reservation(attrs, copy) do
+  #      %Reservation{}
+  #      |> Reservation.changeset(Map.merge(attrs, %{copy_id: copy.id}))
+  #      |> Repo.insert()
+  #  end
 
   @doc """
   Updates a reservation.

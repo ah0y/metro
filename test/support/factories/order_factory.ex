@@ -25,7 +25,6 @@ defmodule Metro.CheckoutFactory do
                |> insert
                |> with_available_copies
         build(book, checkout: checkout)
-        build(book.)
         checkout
       end
       def checkout_without_card_factory do
