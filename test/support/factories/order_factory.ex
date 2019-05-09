@@ -12,6 +12,22 @@ defmodule Metro.CheckoutFactory do
           card: build(:card)
         }
       end
+      def checkout_without_book_factory do
+        %Metro.Order.Checkout{
+          checkout_date: ~N[2010-04-17 14:00:00.000000],
+          due_date: ~N[2010-04-17 14:00:00.000000],
+          renewals_remaining: 3,
+          library: build(:library),
+        }
+      end
+      def with_book_and_copy(%Metro.Order.Checkout{} = checkout) do
+        book = build(:book)
+               |> insert
+               |> with_available_copies
+        build(book, checkout: checkout)
+        build(book.)
+        checkout
+      end
       def checkout_without_card_factory do
         %Metro.Order.Checkout{
           checkout_date: ~N[2010-04-17 14:00:00.000000],
@@ -59,10 +75,17 @@ defmodule Metro.WaitlistFactory do
 
   defmacro __using__(_opts) do
     quote do
-      def waitlist_factory do
+      def waitlist_without_checkout_factory do
         %Metro.Order.Waitlist{
           position: 42,
-          checkouts: build(:checkout),
+          book: build(:book),
+        }
+      end
+
+      def waitlist_with_nil_factory do
+        %Metro.Order.Waitlist{
+          position: nil,
+          book: build(:book),
         }
       end
     end

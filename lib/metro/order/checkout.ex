@@ -3,9 +3,11 @@ defmodule Metro.Order.Checkout do
   import Ecto.Changeset
 
   alias Metro.Order.Transit
+  alias Metro.Order.Waitlist
 
   schema "checkouts" do
     field :checkout_date, :naive_datetime
+    field :checkin_date, :naive_datetime
     field :due_date, :naive_datetime
     field :renewals_remaining, :integer
 
@@ -16,6 +18,7 @@ defmodule Metro.Order.Checkout do
 
 
     has_one :transit, Transit
+    has_many :waitlists, Waitlist
 
     timestamps()
   end
@@ -23,7 +26,7 @@ defmodule Metro.Order.Checkout do
   @doc false
   def changeset(checkout, attrs) do
     checkout
-    |> cast(attrs, [:isbn_id, :card_id, :library_id, :copy_id, :checkout_date, :due_date, :renewals_remaining ])
+    |> cast(attrs, [:isbn_id, :card_id, :library_id, :copy_id, :checkout_date,:checkin_date, :due_date, :renewals_remaining ])
     |> validate_required([:isbn_id, :card_id, :library_id])
   end
 end

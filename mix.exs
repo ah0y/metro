@@ -44,7 +44,8 @@ defmodule Metro.Mixfile do
       {:plug_cowboy, "~> 1.0"},
       {:coherence, "~> 0.5.2"},
       {:ex_machina, "~> 2.3", only: :test},
-      {:canary, "~> 1.1.1"}
+      {:canary, "~> 1.1.1"},
+      {:businex, "~> 0.2.0"}
     ]
   end
 

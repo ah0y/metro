@@ -37,14 +37,7 @@ defmodule Metro.OrderTest do
       assert Order.list_checkouts() == [checkout]
     end
 
-    test "get_checkout!/1 returns the checkout with given id" do
-      checkout = build(:checkout)
-                 |> insert
-      assert Order.get_checkout!(checkout.id).id == checkout.id
-    end
-
-    @tag multi: "order"
-    test "create_order/1 with valid data creates a checkout, reservation, and transit if there's an available copy" do
+    test "get_copy_checkout!/1 returns the checkout with given copy id" do
       card = insert(:card)
       library = insert(:library)
       book = build(:book)
@@ -54,80 +47,188 @@ defmodule Metro.OrderTest do
       attr =
         params_for(:checkout)
         |> Enum.into(%{library_id: library.id, isbn_id: book.isbn, card_id: card.id})
-      #      copy = Location.find_copy(book.isbn)
+      copy = Location.find_copy(book.isbn)
+      trans = Order.create_order(attr, copy)
 
+      assert {
+               :ok,
+               %{
+                 checkout: %Metro.Order.Checkout{
+                   id: checkout_id
+                 },
+                 transit: %Metro.Order.Transit{
+                   checkout_id: checkout_id
+                 },
 
-      trans = Order.create_order(attr)
-      IO.inspect(trans)
-      require IEx; IEx.pry
+                 reservation: %Metro.Order.Reservation{
+                   transit_id: transit_id
 
-      assert [
-               {:checkout, {:run, %Metro.Order.Checkout{} = checkout}},
-               {:transit, {:run, %Metro.Order.Transit{} = transit}}
-               #               {:reservation, {:insert, reservation_changeset, []}}
-
-
-             ] = Ecto.Multi.to_list(trans)
-
-
-      assert checkout.valid?
-      assert transit.valid?
-      #            assert reservation_changeset.valid?
+                 },
+                 copy: %Metro.Location.Copy{
+                   checked_out?: true
+                 }
+               }
+             } = trans
+            {:ok, %{checkout: checkout, reservation: reservation, transit: transit, copy: copy}} = trans
+      assert Order.get_copy_checkout!(copy.id).id == checkout.id
     end
 
-    #    test "create_order/1 with valid data creates a checkout, reservation, transit, and wait list if there's not an available copy" do
-    #      card = insert(:card)
-    #      library = insert(:library)
-    #            book = build(:book)
-    #              |> insert
-    #              |> with_unavailable_copies
-    #
-    #      attr =
-    #        params_for(:checkout)
-    #        |> Enum.into(%{library_id: library.id, isbn_id: book.isbn, card_id: card.id})
-    #
-    #      trans = Order.create_order(attr)
-    #
-    #      assert [
-    #               {:reservation, {:insert, reservation_changeset, []}},
-    #               {:checkout, {:insert, checkout_changeset, []}},
-    #               {:waitlist, {:insert, waitlist_changeset, []}},
-    #               {:transit, {:insert, transit_changeset, []}}
-    #
-    #             ] = Ecto.Multi.to_list(trans)
-    #
-    #
-    #      assert reservation_changeset.valid?
-    #      assert waitlist_changeset.valid?
-    #      assert checkout_changeset.valid?
-    #      assert transit_changeset.valid?
-    #    end
+    test "get_checkout!/1 returns the checkout with given id" do
+      checkout = build(:checkout)
+                 |> insert
+      assert Order.get_checkout!(checkout.id).id == checkout.id
+    end
 
-    #    test "create_order/1 with valid data creates a checkout, reservation, transit, and NOT a wait list if there's an available copy" do
-    #      card = insert(:card)
-    #      library = insert(:library)
-    #      book = insert(:book)
-    #
-    #      attr =
-    #        params_for(:checkout)
-    #        |> Enum.into(%{library_id: library.id, isbn_id: book.isbn, card_id: card.id})
-    #
-    #      trans = Order.create_order(attr)
-    #
-    #      assert [
-    #               {:reservation, {:insert, reservation_changeset, []}},
-    #               {:checkout, {:insert, checkout_changeset, []}},
-    #               {:waitlist, {:insert, waitlist_changeset, []}},
-    #               {:transit, {:insert, transit_changeset, []}}
-    #
-    #             ] = Ecto.Multi.to_list(trans)
-    #
-    #
-    #      assert reservation_changeset.valid?
-    #      assert waitlist_changeset.valid?
-    #      assert checkout_changeset.valid?
-    #      assert transit_changeset.valid?
-    #    end
+#    @tag multi: "order"
+    test "create_order/2 with valid data creates a checkout, transit, and reservation if there's an available copy" do
+      card = insert(:card)
+      library = insert(:library)
+      book = build(:book)
+             |> insert
+             |> with_available_copies
+
+      attr =
+        params_for(:checkout)
+        |> Enum.into(%{library_id: library.id, isbn_id: book.isbn, card_id: card.id})
+      copy = Location.find_copy(book.isbn)
+      trans = Order.create_order(attr, copy)
+
+      assert {
+               :ok,
+               %{
+                 checkout: %Metro.Order.Checkout{
+                   id: checkout_id
+                 },
+                 transit: %Metro.Order.Transit{
+                   checkout_id: checkout_id
+                 },
+
+                 reservation: %Metro.Order.Reservation{
+                   transit_id: transit_id
+
+                 },
+                 copy: %Metro.Location.Copy{
+                   checked_out?: true
+                 }
+               }
+             } = trans
+      #      {:ok, %{checkout: checkout, reservation: reservation, transit: transit, copy: copy}} = trans
+    end
+
+    @tag multi: "order"
+    test "create_order/2 with valid data creates a checkout, reservation, transit, and waitlist if there's not an available copy" do
+      card = insert(:card)
+      library = insert(:library)
+      book = build(:book)
+             |> insert
+             |> with_unavailable_copies
+
+      attr =
+        params_for(:checkout)
+        |> Enum.into(%{library_id: library.id, isbn_id: book.isbn, card_id: card.id})
+
+      trans = Order.create_order(attr)
+
+      assert {
+               :ok,
+               %{
+                 checkout: %Metro.Order.Checkout{
+                   id: checkout_id
+                 },
+                 transit: %Metro.Order.Transit{
+                   checkout_id: checkout_id
+                 },
+
+                 reservation: %Metro.Order.Reservation{
+                   transit_id: transit_id
+
+                 },
+                 waitlist: %Metro.Order.Waitlist{
+                   checkout_id: checkout_id,
+                    position: 1
+                 }
+               }
+             } = trans
+      #      {:ok, %{checkout: checkout, reservation: reservation, transit: transit, copy: copy}} = trans
+    end
+
+    @tag multi: "order"
+    test "check_in/1 with valid data decremetes the position of everyone on the waitlist for a copy of a book, updates the availabaility of a book, " do
+      card = insert(:card)
+      library = insert(:library)
+      book = build(:book)
+             |> insert
+             |> with_available_copies
+
+      attr =
+        params_for(:checkout)
+        |> Enum.into(%{library_id: library.id, isbn_id: book.isbn, card_id: card.id})
+      copy = Location.find_copy(book.isbn)
+      trans = Order.create_order(attr, copy) #checks out out the only copy of a book to someone
+
+      {:ok, %{checkout: checkout, reservation: reservation, transit: transit, copy: copy}} = trans
+
+      copy_id = copy.id
+
+      card2 = insert(:card)
+
+      attr2 =
+        params_for(:checkout)
+        |> Enum.into(%{library_id: library.id, isbn_id: book.isbn, card_id: card.id})
+
+      trans2 = Order.create_order(attr) #puts someone at position 1 for a book that's already checked out
+
+      assert {
+               :ok,
+               %{
+                 checkout: %Metro.Order.Checkout{
+#                   id: checkout_id
+                 },
+                 transit: %Metro.Order.Transit{
+#                   checkout_id: checkout_id
+                 },
+
+                 reservation: %Metro.Order.Reservation{
+#                   transit_id: transit_id
+
+                 },
+                 waitlist: %Metro.Order.Waitlist{
+                   checkout_id: checkout_id,
+                    position: 1,
+                    copy_id: nil
+                 }
+               }
+             } = trans2
+#      {:ok, %{checkout: checkout2, reservation: reservation2, transit: transit2, waitlist: waitlist}} = trans2
+
+      trans3 = Order.check_in(copy)
+
+            assert {
+                     :ok,
+                     %{
+                       copy: %Metro.Location.Copy{
+                         checked_out?: false
+                       },
+                       checkout: %Metro.Order.Checkout{
+                         checkin_date: not(is_nil)
+                       },
+#
+#                       reservation: %Metro.Order.Reservation{
+#                         transit_id: transit_id
+#
+#                       },
+                       waitlist: %Metro.Order.Waitlist{
+                         checkout_id: checkout_id,
+                          position: nil,
+                          copy_id: copy_id
+                       }
+                     }
+                   } = trans3
+
+#      {:ok, %{checkout: checkout2, reservation: reservation2, transit: transit2, waitlist: waitlist}} = trans2
+    end
+
+
 
     test "create_checkout/1 with invalid data returns error changeset" do
       assert {:error, %Ecto.Changeset{}} = Order.create_checkout(@invalid_attrs)
@@ -218,6 +319,53 @@ defmodule Metro.OrderTest do
     test "change_waitlist/1 returns a waitlist changeset" do
       waitlist = waitlist_fixture()
       assert %Ecto.Changeset{} = Order.change_waitlist(waitlist)
+    end
+
+
+    @tag waitlist: "line"
+    test "next_in_line/1 returns 1 if there are no other people in line for the book" do
+      book = build(:book)
+             |> insert
+             |> with_available_copies
+      assert Order.next_in_line(book.isbn) == 1
+    end
+
+    @tag waitlist: "line"
+    test "next_in_line/1 returns 1 if all other waitlist entries for a book have a position of nil" do
+      book = build(:book)
+             |> insert
+             |> with_available_copies
+             |> with_waitlist_nil
+
+      assert Order.next_in_line(book.isbn) == 1
+    end
+
+    @tag waitlist: "line"
+    test "next_in_line/1 returns 2 if there is someone else in line for the book" do
+      book = build(:book)
+             |> insert
+             |> with_available_copies
+             |> with_waitlist
+
+      assert Order.next_in_line(book.isbn) == 2
+    end
+
+    @tag waitlist: "line"
+    test "decrement_waitlist/1 reduces the position of all non null waitlist entries for a book by 1" do
+      book = build(:book)
+             |> insert
+             |> with_available_copies
+             |> with_waitlist
+
+      waitlists_before = Repo.all(Waitlist)
+
+      Order.decrement_waitlist(book.id)
+
+      Enum.all?(waitlists_before, fn x ->
+        Repo.one(from w in Waitlist, where x.id == ^w.id) == nil
+        or
+        x.position - 1  == Repo.one(from w in Waitlist, where x.id == ^w.id)
+      end)
     end
   end
 

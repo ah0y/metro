@@ -5,6 +5,7 @@ defmodule Metro.Repo.Migrations.CreateCheckouts do
     create table(:checkouts) do
       add :renewals_remaining, :integer, default: 3
       add :checkout_date, :naive_datetime
+      add :checkin_date, :naive_datetime
       add :due_date, :naive_datetime
       add :card_id, references(:cards, on_delete: :nothing)
       add :copy_id, references(:copies, on_delete: :nothing)

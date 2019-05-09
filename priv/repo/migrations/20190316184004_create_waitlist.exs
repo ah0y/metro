@@ -6,10 +6,12 @@ defmodule Metro.Repo.Migrations.CreateWaitlist do
       add :position, :integer
       add :copy_id, references(:copies, on_delete: :nothing)
       add :checkout_id, references(:checkouts, on_delete: :nothing)
+      add :isbn_id, references(:books, column: :isbn, on_delete: :nothing)
 
       timestamps()
     end
     create index(:waitlist, [:copy_id])
     create index(:waitlist, [:checkout_id])
+    create index(:waitlist, [:isbn_id])
   end
 end

@@ -21,6 +21,14 @@ defmodule Metro.BookFactory do
         insert(:copy_without_book_and_available, book: book)
         book
       end
+      def with_waitlist(%Metro.Location.Book{} = book) do
+        insert(:waitlist_without_checkout, book: book)
+        book
+      end
+      def with_waitlist_nil(%Metro.Location.Book{} = book) do
+        insert(:waitlist_with_nil, book: book)
+        book
+      end
       def book_without_author_factory do
         %Metro.Location.Book{
           title: "some title",
