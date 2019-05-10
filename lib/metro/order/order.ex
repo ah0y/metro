@@ -300,9 +300,13 @@ defmodule Metro.Order do
 
   """
   def null_waitlist_position(copy_id) do
-    Repo.one(from w in Waitlist, where: w.copy_id == ^copy_id)
-    |> Waitlist.changeset(%{position: nil})
-    |> Repo.update()
+    waitlist = Repo.one(from w in Waitlist, where: w.copy_id == ^copy_id)
+    unless waitlist == nil do
+        waitlist
+        |> Waitlist.changeset(%{position: nil})
+        |> Repo.update()
+    end
+    {:ok, nil}
   end
 
   @doc """
@@ -377,6 +381,7 @@ defmodule Metro.Order do
       ]
     )
     |> Repo.update_all([])
+    {:ok, nil}
   end
 
   alias Metro.Order.Transit

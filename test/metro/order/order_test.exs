@@ -153,7 +153,7 @@ defmodule Metro.OrderTest do
     end
 
     @tag multi: "order"
-    test "check_in/1 with valid data decremetes the position of everyone on the waitlist for a copy of a book, updates the availabaility of a book, " do
+    test "check_in/1 with valid data decrements the position of everyone on the waitlist for a copy of a book, updates the availabaility of a book, " do
       card = insert(:card)
       library = insert(:library)
       book = build(:book)
@@ -200,7 +200,6 @@ defmodule Metro.OrderTest do
                }
              } = trans2
 #      {:ok, %{checkout: checkout2, reservation: reservation2, transit: transit2, waitlist: waitlist}} = trans2
-#      require IEx; IEx.pry()
       trans3 = Order.check_in(copy)
 
             assert {
@@ -212,20 +211,18 @@ defmodule Metro.OrderTest do
                        checkout: %Metro.Order.Checkout{
 #                         checkin_date: not(is_nil)
                        },
-#
-#                       reservation: %Metro.Order.Reservation{
-#                         transit_id: transit_id
-#
-#                       },
-                       waitlist: %Metro.Order.Waitlist{
-                         checkout_id: checkout_id,
-                          position: nil,
-                          copy_id: copy_id
-                       }
+##
+##                       reservation: %Metro.Order.Reservation{
+##                         transit_id: transit_id
+##
+##                       },
+                       waitlist: nil,
+                       decrement: nil
                      }
                    } = trans3
 
-#      {:ok, %{checkout: checkout2, reservation: reservation2, transit: transit2, waitlist: waitlist}} = trans2
+      {:ok, %{checkout: checkout2, copy: copy2, waitlist: nil, decrement: nil}} = trans3
+      IO.inspect(trans3)
     end
 
 
