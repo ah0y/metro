@@ -76,7 +76,7 @@ defmodule Metro.WaitlistFactory do
     quote do
       def waitlist_without_checkout_factory do
         %Metro.Order.Waitlist{
-          position: 42,
+          position: 2,
           book: build(:book),
         }
       end

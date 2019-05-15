@@ -135,7 +135,8 @@ defmodule Metro.Order do
             |> Ecto.Multi.run(
                  :waitlist,
                  fn (%{checkout: checkout}) ->
-                   Metro.Order.create_waitlist(%{checkout_id: checkout.id, isbn_id: checkout.isbn_id}) end
+                   Metro.Order.create_waitlist(%{checkout_id: checkout.id, isbn_id: checkout.isbn_id})
+                 end
                )
             |> Repo.transaction()
   end
@@ -160,16 +161,39 @@ defmodule Metro.Order do
                       Metro.Order.update_checkout(
                         Metro.Order.get_copy_checkout!(copy.id),
                         %{checkin_date: NaiveDateTime.utc_now()}
-                      ) end
+                      )
+                    end
                   )
                |> Ecto.Multi.run(
-                    :waitlist,
+                    :null_waitlist,
                     fn (%{copy: copy}) -> Metro.Order.null_waitlist_position(copy.id) end
                   )
                |> Ecto.Multi.run(
                     :decrement,
                     fn (%{checkout: checkout}) -> Metro.Order.decrement_waitlist(checkout.isbn_id) end
                   )
+               |> Ecto.Multi.run(
+                    :next,
+                    fn (%{copy: copy}) -> Metro.Order.first_in_line(copy.isbn_id) end
+                  )
+               |> Ecto.Multi.run(
+                    :update_checkout,
+                    fn (%{next: next}) ->
+                      Metro.Order.update_checkout(
+                        Metro.Order.get_checkout!(next.checkout_id),
+                        %{copy_id: copy.id}
+                      )
+                    end
+                  )
+               |> Ecto.Multi.run(
+                    :update_copy,
+                    fn (%{update_checkout: update_checkout}) -> Metro.Location.update_copy(
+                                Metro.Location.get_copy!(copy.id),
+                                %{checked_out?: true, library_id: update_checkout.library_id}
+                              )
+                    end
+                  )
+
                |> Repo.transaction()
   end
   @doc """
@@ -185,6 +209,7 @@ defmodule Metro.Order do
 
   """
   def update_checkout(%Checkout{} = checkout, attrs) do
+    #    require IEx; IEx.pry()
     checkout
     |> Checkout.changeset(attrs)
     |> Repo.update()
@@ -300,11 +325,12 @@ defmodule Metro.Order do
 
   """
   def null_waitlist_position(copy_id) do
+    #todo fix this mess lol
     waitlist = Repo.one(from w in Waitlist, where: w.copy_id == ^copy_id)
     unless waitlist == nil do
-        waitlist
-        |> Waitlist.changeset(%{position: nil})
-        |> Repo.update()
+      waitlist
+      |> Waitlist.changeset(%{position: nil})
+      |> Repo.update()
     end
     {:ok, nil}
   end
@@ -357,6 +383,26 @@ defmodule Metro.Order do
     ) + 1
   end
 
+  @doc """
+  Returns the head of the waitlist for a certain book.
+  Raises `Ecto.NoResultsError` if the Book does not exist.
+
+  ## Examples
+
+      iex> first_in_line(123)
+      %Book{}
+
+      iex> first_in_line(456)
+      ** (Ecto.NoResultsError)
+
+  """
+  def first_in_line(book_id) do
+    #    waitlists = Repo.all(Waitlist)
+    waitlist = Repo.one(
+      from w in Waitlist, where: w.isbn_id == ^book_id and w.position == 0
+    )
+    {:ok, waitlist}
+  end
   @doc """
   Decrements all non-null waitlist positions for a particular book
   Raises `Ecto.NoResultsError` if the Book does not exist.

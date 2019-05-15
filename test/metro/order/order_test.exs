@@ -69,7 +69,7 @@ defmodule Metro.OrderTest do
                  }
                }
              } = trans
-            {:ok, %{checkout: checkout, reservation: reservation, transit: transit, copy: copy}} = trans
+      {:ok, %{checkout: checkout, reservation: reservation, transit: transit, copy: copy}} = trans
       assert Order.get_copy_checkout!(copy.id).id == checkout.id
     end
 
@@ -79,7 +79,7 @@ defmodule Metro.OrderTest do
       assert Order.get_checkout!(checkout.id).id == checkout.id
     end
 
-#    @tag multi: "order"
+    #    @tag multi: "order"
     test "create_order/2 with valid data creates a checkout, transit, and reservation if there's an available copy" do
       card = insert(:card)
       library = insert(:library)
@@ -145,7 +145,7 @@ defmodule Metro.OrderTest do
                  },
                  waitlist: %Metro.Order.Waitlist{
                    checkout_id: checkout_id,
-                    position: 1
+                   position: 1
                  }
                }
              } = trans
@@ -182,46 +182,68 @@ defmodule Metro.OrderTest do
                :ok,
                %{
                  checkout: %Metro.Order.Checkout{
-#                   id: checkout_id
+                   #                   id: checkout_id
                  },
                  transit: %Metro.Order.Transit{
-#                   checkout_id: checkout_id
+                   #                   checkout_id: checkout_id
                  },
 
                  reservation: %Metro.Order.Reservation{
-#                   transit_id: transit_id
+                   #                   transit_id: transit_id
 
                  },
                  waitlist: %Metro.Order.Waitlist{
                    checkout_id: checkout_id,
-                    position: 1,
-                    copy_id: nil
+                   position: 1,
+                   copy_id: nil
                  }
                }
              } = trans2
-#      {:ok, %{checkout: checkout2, reservation: reservation2, transit: transit2, waitlist: waitlist}} = trans2
+      {:ok, %{checkout: checkout2, reservation: reservation2, transit: transit2, waitlist: waitlist}} = trans2
+      waitlist_id = waitlist.id
+      copy_id = copy.id
       trans3 = Order.check_in(copy)
 
-            assert {
-                     :ok,
-                     %{
-                       copy: %Metro.Location.Copy{
-                         checked_out?: false
-                       },
-                       checkout: %Metro.Order.Checkout{
-#                         checkin_date: not(is_nil)
-                       },
-##
-##                       reservation: %Metro.Order.Reservation{
-##                         transit_id: transit_id
-##
-##                       },
-                       waitlist: nil,
-                       decrement: nil
-                     }
-                   } = trans3
+      assert {
+               :ok,
+               %{
+                 copy: %Metro.Location.Copy{
+                   checked_out?: false
+                 },
+                 checkout: %Metro.Order.Checkout{
+                   #                         checkin_date: not(is_nil)
+                 },
+                 ##
+                 ##                       reservation: %Metro.Order.Reservation{
+                 ##                         transit_id: transit_id
+                 ##
+                 ##                       },
+                 null_waitlist: nil,
+                 decrement: nil,
+                 next: %Metro.Order.Waitlist{
+                   id: waitlist_id
+                 },
 
-      {:ok, %{checkout: checkout2, copy: copy2, waitlist: nil, decrement: nil}} = trans3
+                 update_checkout: %Metro.Order.Checkout{
+                   copy_id: copy_id
+                 },
+                 update_copy: %Metro.Location.Copy{
+                   checked_out?: true
+                 }
+               }
+             } = trans3
+
+      {
+        :ok,
+        %{
+          checkout: checkout2,
+          copy: copy2,
+          null_waitlist: nil,
+          decrement: nil,
+          next: next,
+          update_checkout: update_checkout
+        }
+      } = trans3
       IO.inspect(trans3)
     end
 
@@ -359,6 +381,20 @@ defmodule Metro.OrderTest do
       Order.decrement_waitlist(book.isbn)
 
       assert hd(Repo.all(Waitlist)).position == waitlist_before.position - 1 == true
+    end
+
+    @tag waitlist: "line"
+    test "first_in_line/1 returns the head of the waitlist for a certain book" do
+      book = build(:book)
+             |> insert
+             |> with_available_copies
+             |> with_waitlist
+
+      Order.decrement_waitlist(book.isbn)
+
+      first = Order.first_in_line(book.isbn)
+      IO.inspect(first)
+      assert first.position == 1
     end
   end
 
