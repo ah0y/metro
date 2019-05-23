@@ -22,7 +22,7 @@ defmodule Metro.BookFactory do
         book
       end
       def with_waitlist(%Metro.Location.Book{} = book) do
-        insert(:waitlist_without_checkout, book: book)
+        insert(:waitlist, book: book)
         book
       end
       def with_waitlist_nil(%Metro.Location.Book{} = book) do

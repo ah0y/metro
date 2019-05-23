@@ -218,7 +218,6 @@ defmodule Metro.OrderTest do
                  ##
                  ##                       },
                  null_waitlist: nil,
-                 decrement: nil,
                  next: %Metro.Order.Waitlist{
                    id: waitlist_id
                  },
@@ -232,21 +231,23 @@ defmodule Metro.OrderTest do
                        checked_out?: true
                      }
                    }
-                 }
+                 },
+                 decrement: nil
                }
              } = trans3
-      {
-        :ok,
-        %{
-          checkout: checkout2,
-          copy: copy2,
-          null_waitlist: nil,
-          decrement: nil,
-          next: next,
-          update_for_waiting: update_for_waiting
-        }
-      } = trans3
-      #      IO.inspect(trans3)
+      #      {
+      #        :ok,
+      #        %{
+      #          checkout: checkout2,
+      #          copy: copy2,
+      #          null_waitlist: nil,
+      #          decrement: nil,
+      #          next: next,
+      #          update_for_waiting: update_for_waiting
+      #        }
+      #      } = trans3
+      #      require IEx; IEx.pry()
+      IO.inspect(trans3)
     end
 
     @tag multi: "order"
@@ -446,7 +447,7 @@ defmodule Metro.OrderTest do
       Order.decrement_waitlist(book.isbn)
 
       first = Order.first_in_line(book.isbn)
-      assert first.position == 1
+      assert first = {:ok, %Metro.Order.Waitlist{position: 1}}
     end
   end
 

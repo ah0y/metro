@@ -26,12 +26,11 @@ defmodule MetroWeb.WaitlistControllerTest do
       assert html_response(conn, 200) =~ "New Waitlist"
     end
   end
-
+  @tag waitlist: "show"
   describe "create waitlist" do
     test "redirects to show when data is valid", %{conn: conn} do
       checkout = insert(:checkout)
-
-      conn = post conn, waitlist_path(conn, :create), waitlist: params_for(:waitlist) |> Enum.into(checkout_id: checkout.id)
+      conn = post conn, waitlist_path(conn, :create), waitlist: %{checkout_id: checkout.id, isbn_id: checkout.isbn_id}
 
       assert %{id: id} = redirected_params(conn)
       assert redirected_to(conn) == waitlist_path(conn, :show, id)

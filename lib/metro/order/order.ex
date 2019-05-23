@@ -135,7 +135,7 @@ defmodule Metro.Order do
             |> Ecto.Multi.run(
                  :waitlist,
                  fn (%{checkout: checkout}) ->
-                   Metro.Order.create_waitlist(%{checkout_id: checkout.id, isbn_id: checkout.isbn_id})
+                   Metro.Order.create_waitlist(%{"checkout_id" => checkout.id, "isbn_id" => checkout.isbn_id})
                  end
                )
             |> Repo.transaction()
@@ -169,10 +169,6 @@ defmodule Metro.Order do
                     fn (%{copy: copy}) -> Metro.Order.null_waitlist_position(copy.id) end
                   )
                |> Ecto.Multi.run(
-                    :decrement,
-                    fn (%{checkout: checkout}) -> Metro.Order.decrement_waitlist(checkout.isbn_id) end
-                  )
-               |> Ecto.Multi.run(
                     :next,
                     fn (%{copy: copy}) -> Metro.Order.first_in_line(copy.isbn_id) end
                   )
@@ -180,13 +176,17 @@ defmodule Metro.Order do
                     :update_for_waiting,
                     fn (%{next: next}) -> Metro.Order.update_for_waiting(next, copy) end
                   )
+               |> Ecto.Multi.run(
+                    :decrement,
+                    fn (%{checkout: old_checkout}) -> Metro.Order.decrement_waitlist(old_checkout.isbn_id) end
+                  )
                |> Repo.transaction()
 
-#    IO.inspect(check_in)
+    #    IO.inspect(check_in)
   end
 
   @doc """
-  Updates a copy of a book for those who are waiting.
+  Updates a copy and checkout of a book for those who are waiting.
 
   ## Examples
 
@@ -319,9 +319,9 @@ defmodule Metro.Order do
 
   """
   def create_waitlist(attrs \\ %{}) do
-    position = Metro.Order.next_in_line(Map.fetch!(attrs, :isbn_id))
+    position = Metro.Order.next_in_line(Map.fetch!(attrs, "isbn_id"))
     %Waitlist{}
-    |> Waitlist.changeset(Map.merge(attrs, %{position: position}))
+    |> Waitlist.changeset(Map.merge(attrs, %{"position" => position}))
     |> Repo.insert()
   end
 
@@ -428,10 +428,11 @@ defmodule Metro.Order do
 
   """
   def first_in_line(book_id) do
-    #    waitlists = Repo.all(Waitlist)
+            waitlists = Repo.all(Waitlist)
     waitlist = Repo.one(
-      from w in Waitlist, where: w.isbn_id == ^book_id and w.position == 0
+      from w in Waitlist, where: w.isbn_id == ^book_id and w.position == 1
     )
+#    require IEx; IEx.pry()
     {:ok, waitlist}
   end
   @doc """
@@ -664,5 +665,11 @@ defmodule Metro.Order do
   """
   def change_reservation(%Reservation{} = reservation) do
     Reservation.changeset(reservation, %{})
+  end
+end
+
+defmodule MyMap do
+  def get(map, key) when is_atom(key) do
+    Map.get(map, key) || Map.get(map, to_string(key))
   end
 end
