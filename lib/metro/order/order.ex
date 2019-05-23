@@ -177,24 +177,55 @@ defmodule Metro.Order do
                     fn (%{copy: copy}) -> Metro.Order.first_in_line(copy.isbn_id) end
                   )
                |> Ecto.Multi.run(
-                    :update_checkout,
-                    fn (%{next: next}) ->
-                      Metro.Order.update_checkout(
-                        Metro.Order.get_checkout!(next.checkout_id),
-                        %{copy_id: copy.id}
-                      )
-                    end
+                    :update_for_waiting,
+                    fn (%{next: next}) -> Metro.Order.update_for_waiting(next, copy) end
                   )
-               |> Ecto.Multi.run(
-                    :update_copy,
-                    fn (%{update_checkout: update_checkout}) -> Metro.Location.update_copy(
-                                Metro.Location.get_copy!(copy.id),
-                                %{checked_out?: true, library_id: update_checkout.library_id}
-                              )
-                    end
-                  )
-
                |> Repo.transaction()
+
+#    IO.inspect(check_in)
+  end
+
+  @doc """
+  Updates a copy of a book for those who are waiting.
+
+  ## Examples
+
+      iex> update_for_waiting(%{field: value})
+      {:ok, %Checkout{}}
+
+      iex> update_for_waiting(%{field: bad_value})
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def update_for_waiting(next, copy) do
+    case next do
+      nil -> {:ok, nil}
+      _ ->
+        updates = Ecto.Multi.new
+                  |> Ecto.Multi.run(
+                       :update_checkout,
+                       fn (_) ->
+                         Metro.Order.update_checkout(
+                           Metro.Order.get_checkout!(next.checkout_id),
+                           %{copy_id: copy.id}
+                         )
+                       end
+                     )
+                  |> Ecto.Multi.run(
+                       :update_copy,
+                       fn (%{update_checkout: update_checkout}) ->
+                         Metro.Location.update_copy(
+                           Metro.Location.get_copy!(copy.id),
+                           %{
+                             checked_out?: true,
+                             library_id: update_checkout.library_id
+                           }
+                         )
+                       end
+                     )
+                  |> Repo.transaction()
+        {:ok, updates}
+    end
   end
   @doc """
   Updates a checkout.

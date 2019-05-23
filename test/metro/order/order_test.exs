@@ -79,7 +79,7 @@ defmodule Metro.OrderTest do
       assert Order.get_checkout!(checkout.id).id == checkout.id
     end
 
-    #    @tag multi: "order"
+    @tag multi: "order"
     test "create_order/2 with valid data creates a checkout, transit, and reservation if there's an available copy" do
       card = insert(:card)
       library = insert(:library)
@@ -211,7 +211,6 @@ defmodule Metro.OrderTest do
                    checked_out?: false
                  },
                  checkout: %Metro.Order.Checkout{
-                   #                         checkin_date: not(is_nil)
                  },
                  ##
                  ##                       reservation: %Metro.Order.Reservation{
@@ -223,16 +222,19 @@ defmodule Metro.OrderTest do
                  next: %Metro.Order.Waitlist{
                    id: waitlist_id
                  },
-
-                 update_checkout: %Metro.Order.Checkout{
-                   copy_id: copy_id
-                 },
-                 update_copy: %Metro.Location.Copy{
-                   checked_out?: true
+                 update_for_waiting: {
+                   :ok,
+                   %{
+                     update_checkout: %Metro.Order.Checkout{
+                       copy_id: copy_id
+                     },
+                     update_copy: %Metro.Location.Copy{
+                       checked_out?: true
+                     }
+                   }
                  }
                }
              } = trans3
-
       {
         :ok,
         %{
@@ -241,10 +243,61 @@ defmodule Metro.OrderTest do
           null_waitlist: nil,
           decrement: nil,
           next: next,
-          update_checkout: update_checkout
+          update_for_waiting: update_for_waiting
         }
       } = trans3
-      IO.inspect(trans3)
+      #      IO.inspect(trans3)
+    end
+
+    @tag multi: "order"
+    test "check_in/1 with valid data checks in a copy, even if there's no one else on the waitlist for that book" do
+      card = insert(:card)
+      library = insert(:library)
+      book = build(:book)
+             |> insert
+             |> with_available_copies
+
+      attr =
+        params_for(:checkout)
+        |> Enum.into(%{library_id: library.id, isbn_id: book.isbn, card_id: card.id})
+      copy = Location.find_copy(book.isbn)
+      trans = Order.create_order(attr, copy) #checks out out the only copy of a book to someone
+      trans3 = Order.check_in(copy)
+
+      assert {
+               :ok,
+               %{
+
+                 checkout: %Metro.Order.Checkout{
+
+                 },
+
+                 copy: %Metro.Location.Copy{
+                   checked_out?: false
+                 },
+                 ##
+                 ##                       reservation: %Metro.Order.Reservation{
+                 ##                         transit_id: transit_id
+                 ##
+                 ##                       },
+                 decrement: nil,
+                 next: nil,
+                 null_waitlist: nil,
+                 update_for_waiting: nil
+               }
+             } = trans3
+      {
+        :ok,
+        %{
+          checkout: checkout2,
+          copy: copy2,
+          null_waitlist: null_waitlist,
+          decrement: decrement,
+          next: next,
+          update_for_waiting: update_for_waiting
+        }
+      } = trans3
+      #      IO.inspect(trans3)
     end
 
 
@@ -393,7 +446,6 @@ defmodule Metro.OrderTest do
       Order.decrement_waitlist(book.isbn)
 
       first = Order.first_in_line(book.isbn)
-      IO.inspect(first)
       assert first.position == 1
     end
   end
