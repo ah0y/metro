@@ -78,6 +78,41 @@ defmodule Metro.Order do
   end
 
   alias Ecto.Query
+
+
+  @doc """
+  Creates an order.
+
+  ## Examples
+
+      iex> create_order(%{field: value})
+      {:ok, %Checkout{}}
+
+      iex> create_order(%{field: bad_value})
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def create_order(attr, nil) do
+    order = Ecto.Multi.new
+
+            |> Ecto.Multi.run(:checkout, fn (_) -> Metro.Order.create_checkout(attr, nil) end)
+            |> Ecto.Multi.run(
+                 :transit,
+                 fn (%{checkout: checkout}) -> Metro.Order.create_transit(%{checkout_id: checkout.id}) end
+               )
+            |> Ecto.Multi.run(
+                 :reservation,
+                 fn (%{transit: transit}) -> Metro.Order.create_reservation(%{transit_id: transit.id}) end
+               )
+            |> Ecto.Multi.run(
+                 :waitlist,
+                 fn (%{checkout: checkout}) ->
+                   Metro.Order.create_waitlist(%{"checkout_id" => checkout.id, "isbn_id" => checkout.isbn_id})
+                 end
+               )
+            |> Repo.transaction()
+  end
+
   @doc """
   Creates an order.
 
@@ -104,39 +139,6 @@ defmodule Metro.Order do
             |> Ecto.Multi.run(
                  :reservation,
                  fn (%{transit: transit}) -> Metro.Order.create_reservation(%{transit_id: transit.id}) end
-               )
-            |> Repo.transaction()
-  end
-
-  @doc """
-  Creates an order.
-
-  ## Examples
-
-      iex> create_order(%{field: value})
-      {:ok, %Checkout{}}
-
-      iex> create_order(%{field: bad_value})
-      {:error, %Ecto.Changeset{}}
-
-  """
-  def create_order(attr) do
-    order = Ecto.Multi.new
-
-            |> Ecto.Multi.run(:checkout, fn (_) -> Metro.Order.create_checkout(attr, nil) end)
-            |> Ecto.Multi.run(
-                 :transit,
-                 fn (%{checkout: checkout}) -> Metro.Order.create_transit(%{checkout_id: checkout.id}) end
-               )
-            |> Ecto.Multi.run(
-                 :reservation,
-                 fn (%{transit: transit}) -> Metro.Order.create_reservation(%{transit_id: transit.id}) end
-               )
-            |> Ecto.Multi.run(
-                 :waitlist,
-                 fn (%{checkout: checkout}) ->
-                   Metro.Order.create_waitlist(%{"checkout_id" => checkout.id, "isbn_id" => checkout.isbn_id})
-                 end
                )
             |> Repo.transaction()
   end
@@ -240,7 +242,6 @@ defmodule Metro.Order do
 
   """
   def update_checkout(%Checkout{} = checkout, attrs) do
-    #    require IEx; IEx.pry()
     checkout
     |> Checkout.changeset(attrs)
     |> Repo.update()
@@ -432,7 +433,6 @@ defmodule Metro.Order do
     waitlist = Repo.one(
       from w in Waitlist, where: w.isbn_id == ^book_id and w.position == 1
     )
-#    require IEx; IEx.pry()
     {:ok, waitlist}
   end
   @doc """
@@ -665,11 +665,5 @@ defmodule Metro.Order do
   """
   def change_reservation(%Reservation{} = reservation) do
     Reservation.changeset(reservation, %{})
-  end
-end
-
-defmodule MyMap do
-  def get(map, key) when is_atom(key) do
-    Map.get(map, key) || Map.get(map, to_string(key))
   end
 end

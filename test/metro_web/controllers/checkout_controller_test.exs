@@ -22,7 +22,7 @@ defmodule MetroWeb.CheckoutControllerTest do
     due_date: ~N[2011-05-18 15:01:01.000000],
     renewals_remaining: 43
   }
-  @invalid_attrs %{checkout_date: nil, due_date: nil, renewals_remaining: nil, isbn_id: nil}
+  @invalid_attrs %{renewals_remaining: nil}
 
   def fixture(:checkout) do
     card = insert(:card)
@@ -79,12 +79,10 @@ defmodule MetroWeb.CheckoutControllerTest do
                   )
 
       assert %{id: id} = redirected_params(conn)
-      assert redirected_to(conn) == checkout_path(conn, :show, id)
-
-      conn = get conn, checkout_path(conn, :show, id)
-      assert html_response(conn, 200) =~ "Show Checkout"
+      assert redirected_to(conn) == user_path(conn, :show, user.id)
     end
 
+    @tag checkout: "create"
     test "renders errors when data is invalid", %{conn: conn} do
       user = build(:user)
              |> insert
@@ -94,13 +92,17 @@ defmodule MetroWeb.CheckoutControllerTest do
       attrs = Map.take(user, [:email, :password_hash, :password])
       conn = post(conn, session_path(conn, :create), %{session: attrs})
 
-      conn =
-        conn
-        |> recycle()
-        |> assign(:isbn, nil)
+      conn = post conn,
+                  checkout_path(conn, :create),
+                  checkout: Enum.into(
+                    @invalid_attrs,
+                    %{
+                      library_id: user.library.id,
+                      card_id: user.card.id,
+                      isbn_id: Enum.at(user.card.checkouts, 0).book.isbn
+                    }
+                  )
 
-
-      conn = post conn, checkout_path(conn, :create), checkout: @invalid_attrs
       assert html_response(conn, 200) =~ "New Checkout"
     end
   end

@@ -28,7 +28,7 @@ defmodule Metro.OrderTest do
       {:ok, checkout} =
         params_for(:checkout)
         |> Enum.into(%{library_id: library.id, isbn_id: book.isbn, card_id: card.id})
-        |> Order.create_checkout()
+        |> Order.create_checkout(nil)
       checkout
     end
 
@@ -127,7 +127,7 @@ defmodule Metro.OrderTest do
         params_for(:checkout)
         |> Enum.into(%{library_id: library.id, isbn_id: book.isbn, card_id: card.id})
 
-      trans = Order.create_order(attr)
+      trans = Order.create_order(attr, nil)
 
       assert {
                :ok,
@@ -176,7 +176,7 @@ defmodule Metro.OrderTest do
         params_for(:checkout)
         |> Enum.into(%{library_id: library.id, isbn_id: book.isbn, card_id: card.id})
 
-      trans2 = Order.create_order(attr) #puts someone at position 1 for a book that's already checked out
+      trans2 = Order.create_order(attr, nil) #puts someone at position 1 for a book that's already checked out
 
       assert {
                :ok,
@@ -247,7 +247,7 @@ defmodule Metro.OrderTest do
       #        }
       #      } = trans3
       #      require IEx; IEx.pry()
-      IO.inspect(trans3)
+      #      IO.inspect(trans3)
     end
 
     @tag multi: "order"
@@ -302,9 +302,45 @@ defmodule Metro.OrderTest do
     end
 
 
+    test "create_checkout/2 with valid data and nil for copy returns checkout" do
+      card = insert(:card)
+      library = insert(:library)
+      book = build(:book)
+             |> insert
+             |> with_available_copies
 
-    test "create_checkout/1 with invalid data returns error changeset" do
-      assert {:error, %Ecto.Changeset{}} = Order.create_checkout(@invalid_attrs)
+      attr =
+        params_for(:checkout)
+        |> Enum.into(%{library_id: library.id, isbn_id: book.isbn, card_id: card.id})
+      assert {:ok, %Metro.Order.Checkout{}} = Order.create_checkout(attr, nil)
+    end
+
+    test "create_checkout/2 with valid data and a copy returns checkout" do
+      card = insert(:card)
+      library = insert(:library)
+      book = build(:book)
+             |> insert
+             |> with_available_copies
+
+      attr =
+        params_for(:checkout)
+        |> Enum.into(%{library_id: library.id, isbn_id: book.isbn, card_id: card.id})
+      copy = Location.find_copy(book.isbn)
+      assert {:ok, %Metro.Order.Checkout{}} = Order.create_checkout(attr, copy)
+    end
+
+
+    test "create_checkout/2 with invalid data and nil for copy returns error changeset" do
+      assert {:error, %Ecto.Changeset{}} = Order.create_checkout(@invalid_attrs, nil)
+    end
+
+    test "create_checkout/2 with invalid data and a valid copy returns error changeset" do
+      book = build(:book)
+             |> insert
+             |> with_available_copies
+
+      copy = Location.find_copy(book.isbn)
+      assert {:error, %Ecto.Changeset{}} = Order.create_checkout(@invalid_attrs, copy)
     end
 
     test "update_checkout/2 with valid data updates the checkout" do
@@ -337,32 +373,34 @@ defmodule Metro.OrderTest do
   describe "waitlist" do
     alias Metro.Order.Waitlist
 
-    @valid_attrs %{position: 42}
-    @update_attrs %{position: 43}
-    @invalid_attrs %{position: nil, copy_id: nil, checkout_id: nil}
+    @valid_attrs %{"position" => 42}
+    @update_attrs %{"position" => 43}
+    @invalid_attrs %{"position" => nil, "copy_id" => nil, "checkout_id" => nil, "isbn_id" => 0}
 
     def waitlist_fixture(attrs \\ %{}) do
-      waitlist = insert(:waitlist)
+      checkout = insert(:checkout)
+      attrs = %{checkout_id: checkout.id, isbn_id: checkout.isbn_id}
+      waitlist = insert(:waitlist_without_book, attrs)
     end
 
     test "list_waitlist/0 returns all waitlist" do
       waitlist = waitlist_fixture()
-      waitlist = Unpreloader.forget(waitlist, :checkouts)
+      waitlist = Unpreloader.forget(waitlist, :checkout)
       assert Order.list_waitlist() == [waitlist]
     end
 
     test "get_waitlist!/1 returns the waitlist with given id" do
       waitlist = waitlist_fixture()
-      waitlist = Unpreloader.forget(waitlist, :checkouts)
+      waitlist = Unpreloader.forget(waitlist, :checkout)
       assert Order.get_waitlist!(waitlist.id) == waitlist
     end
 
     test "create_waitlist/1 with valid data creates a waitlist" do
       checkout = insert(:checkout)
-      attrs = params_for(:waitlist)
-              |> Enum.into(%{checkout_id: checkout.id})
+      attrs = @valid_attrs
+              |> Enum.into(%{"checkout_id" => checkout.id, "isbn_id" => checkout.isbn_id})
       assert {:ok, %Waitlist{} = waitlist} = Order.create_waitlist(attrs)
-      assert waitlist.position == 42
+      assert waitlist.position == 1
     end
 
     test "create_waitlist/1 with invalid data returns error changeset" do
@@ -379,7 +417,7 @@ defmodule Metro.OrderTest do
     test "update_waitlist/2 with invalid data returns error changeset" do
       waitlist = waitlist_fixture()
       assert {:error, %Ecto.Changeset{}} = Order.update_waitlist(waitlist, @invalid_attrs)
-      waitlist = Unpreloader.forget(waitlist, :checkouts)
+      waitlist = Unpreloader.forget(waitlist, :checkout)
       assert waitlist == Order.get_waitlist!(waitlist.id)
     end
 
@@ -395,7 +433,6 @@ defmodule Metro.OrderTest do
     end
 
 
-    @tag waitlist: "line"
     test "next_in_line/1 returns 1 if there are no other people in line for the book" do
       book = build(:book)
              |> insert
@@ -403,7 +440,6 @@ defmodule Metro.OrderTest do
       assert Order.next_in_line(book.isbn) == 1
     end
 
-    @tag waitlist: "line"
     test "next_in_line/1 returns 1 if all other waitlist entries for a book have a position of nil" do
       book = build(:book)
              |> insert
@@ -413,7 +449,6 @@ defmodule Metro.OrderTest do
       assert Order.next_in_line(book.isbn) == 1
     end
 
-    @tag waitlist: "line"
     test "next_in_line/1 returns 2 if there is someone else in line for the book" do
       book = build(:book)
              |> insert
@@ -423,7 +458,6 @@ defmodule Metro.OrderTest do
       assert Order.next_in_line(book.isbn) == 2
     end
 
-    @tag waitlist: "line"
     test "decrement_waitlist/1 reduces the position of all non null waitlist entries for a book by 1" do
       book = build(:book)
              |> insert
@@ -437,7 +471,6 @@ defmodule Metro.OrderTest do
       assert hd(Repo.all(Waitlist)).position == waitlist_before.position - 1 == true
     end
 
-    @tag waitlist: "line"
     test "first_in_line/1 returns the head of the waitlist for a certain book" do
       book = build(:book)
              |> insert
@@ -521,7 +554,7 @@ defmodule Metro.OrderTest do
 
     @valid_attrs %{expiration_date: ~N[2010-04-17 14:00:00.000000]}
     @update_attrs %{expiration_date: ~N[2011-05-18 15:01:01.000000]}
-    @invalid_attrs %{expiration_date: nil}
+    @invalid_attrs %{expiration_date: nil, transit_id: nil}
 
     def reservation_fixture(attrs \\ %{}) do
       reservation = insert(:reservation)
@@ -558,6 +591,7 @@ defmodule Metro.OrderTest do
       assert reservation.expiration_date == ~N[2011-05-18 15:01:01.000000]
     end
 
+    @tag reservation: "update"
     test "update_reservation/2 with invalid data returns error changeset" do
       reservation = reservation_fixture()
       assert {:error, %Ecto.Changeset{}} = Order.update_reservation(reservation, @invalid_attrs)

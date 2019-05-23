@@ -7,10 +7,12 @@ defmodule MetroWeb.WaitlistControllerTest do
 
   @create_attrs %{position: 42}
   @update_attrs %{position: 43}
-  @invalid_attrs %{position: nil, copy_id: nil, checkout_id: nil}
+  @invalid_attrs %{position: nil, copy_id: nil, checkout_id: nil, isbn_id: 0}
 
   def fixture(:waitlist) do
-    waitlist = insert(:waitlist)
+    checkout = insert(:checkout)
+    attrs = %{checkout_id: checkout.id, isbn_id: checkout.isbn_id}
+    waitlist = insert(:waitlist_without_book, attrs)
   end
 
   describe "index" do
@@ -26,7 +28,6 @@ defmodule MetroWeb.WaitlistControllerTest do
       assert html_response(conn, 200) =~ "New Waitlist"
     end
   end
-  @tag waitlist: "show"
   describe "create waitlist" do
     test "redirects to show when data is valid", %{conn: conn} do
       checkout = insert(:checkout)
@@ -38,7 +39,7 @@ defmodule MetroWeb.WaitlistControllerTest do
       conn = get conn, waitlist_path(conn, :show, id)
       assert html_response(conn, 200) =~ "Show Waitlist"
     end
-
+    
     test "renders errors when data is invalid", %{conn: conn} do
       conn = post conn, waitlist_path(conn, :create), waitlist: @invalid_attrs
       assert html_response(conn, 200) =~ "New Waitlist"

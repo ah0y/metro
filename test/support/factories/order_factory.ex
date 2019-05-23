@@ -81,6 +81,12 @@ defmodule Metro.WaitlistFactory do
         }
       end
 
+      def waitlist_without_book_factory do
+        %Metro.Order.Waitlist{
+          position: 2,
+        }
+      end
+
       def waitlist_with_nil_factory do
         %Metro.Order.Waitlist{
           position: nil,
