@@ -2,6 +2,7 @@ defmodule MetroWeb.CheckoutControllerTest do
   use MetroWeb.ConnCase
 
   alias Metro.Order
+  alias Metro.Location
 
   import Metro.Factory
 
@@ -27,11 +28,17 @@ defmodule MetroWeb.CheckoutControllerTest do
   def fixture(:checkout) do
     card = insert(:card)
     library = insert(:library)
-    book = insert(:book)
-    {:ok, checkout} =
+    book = build(:book)
+           |> insert
+           |> with_available_copies
+
+    attr =
       params_for(:checkout)
       |> Enum.into(%{library_id: library.id, isbn_id: book.isbn, card_id: card.id})
-      |> Order.create_checkout()
+    copy = Location.find_copy(book.isbn)
+    trans = Order.create_order(attr, copy) #checks out out the only copy of a book to someone
+
+    {:ok, %{checkout: checkout, reservation: _, transit: _, copy: _}} = trans
     checkout
   end
 
@@ -127,23 +134,32 @@ defmodule MetroWeb.CheckoutControllerTest do
       assert html_response(conn, 200)
     end
 
+
+    test "with empty checkout params, checks in a book", %{conn: conn, checkout: checkout} do
+      conn = put conn, checkout_path(conn, :update, checkout)
+      assert redirected_to(conn) == checkout_path(conn, :index)
+
+      conn = get conn, checkout_path(conn, :show, checkout)
+      assert html_response(conn, 200)
+    end
+
     test "renders errors when data is invalid", %{conn: conn, checkout: checkout} do
       conn = put conn, checkout_path(conn, :update, checkout), checkout: @invalid_attrs
       assert html_response(conn, 200) =~ "Edit Checkout"
     end
   end
 
-  describe "delete checkout" do
-    setup [:create_checkout]
-
-    test "deletes chosen checkout", %{conn: conn, checkout: checkout} do
-      conn = delete conn, checkout_path(conn, :delete, checkout)
-      assert redirected_to(conn) == checkout_path(conn, :index)
-      assert_error_sent 404, fn ->
-        get conn, checkout_path(conn, :show, checkout)
-      end
-    end
-  end
+#  describe "delete checkout" do
+#    setup [:create_checkout]
+#
+#    test "deletes chosen checkout", %{conn: conn, checkout: checkout} do
+#      conn = delete conn, checkout_path(conn, :delete, checkout)
+#      assert redirected_to(conn) == checkout_path(conn, :index)
+#      assert_error_sent 404, fn ->
+#        get conn, checkout_path(conn, :show, checkout)
+#      end
+#    end
+#  end
 
   defp create_checkout(_) do
     checkout = fixture(:checkout)

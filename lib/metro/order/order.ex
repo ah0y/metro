@@ -73,7 +73,7 @@ defmodule Metro.Order do
 
   def create_checkout(attrs, copy) do
     %Checkout{}
-    |> Checkout.changeset(Map.merge(attrs, %{copy_id: copy.id}))
+    |> Checkout.changeset(Map.merge(attrs, %{:copy_id => copy.id}))
     |> Repo.insert()
   end
 

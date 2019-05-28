@@ -5,6 +5,7 @@ defmodule MetroWeb.CheckoutController do
   alias Metro.Order.Checkout
   alias Metro.Account
   alias Metro.Location
+  alias Metro.Repo
 
   #  plug :load_and_authorize_resource, model: Metro.Order.Checkout
   #  use MetroWeb.ControllerAuthorization
@@ -68,6 +69,20 @@ defmodule MetroWeb.CheckoutController do
           isbn: checkout.isbn_id,
           libraries: libraries
         )
+    end
+  end
+
+  def update(conn, %{"id" => id}) do
+    checkout = Order.get_checkout!(id)
+      |> Repo.preload(:copy)
+    require IEx; IEx.pry()
+    case Order.check_in(checkout.copy) do
+      {:ok, checkout} ->
+        conn
+        |> put_flash(:info, "Checkout updated successfully.")
+        |> redirect(to: checkout_path(conn, :index))
+      {:error, _} ->
+        IO.puts("error")
     end
   end
 

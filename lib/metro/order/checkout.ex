@@ -9,7 +9,7 @@ defmodule Metro.Order.Checkout do
     field :checkout_date, :naive_datetime
     field :checkin_date, :naive_datetime
     field :due_date, :naive_datetime
-    field :renewals_remaining, :integer
+    field :renewals_remaining, :integer, default: 3
 
     belongs_to :book, Metro.Location.Book, foreign_key: :isbn_id, references: :isbn
     belongs_to :card, Metro.Account.Card, foreign_key: :card_id

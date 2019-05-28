@@ -45,6 +45,7 @@ defmodule MetroWeb.Router do
     resources "/events", EventController
     resources "/rooms", RoomController
     resources "/copies", CopyController
+#    put "/copies", CopyController, :check_in
     resources "/libraries", LibraryController
 
     resources "/users", UserController

@@ -3,7 +3,7 @@ defmodule Metro.Repo.Migrations.CreateCheckouts do
 
   def change do
     create table(:checkouts) do
-      add :renewals_remaining, :integer, default: 3
+      add :renewals_remaining, :integer
       add :checkout_date, :naive_datetime
       add :checkin_date, :naive_datetime
       add :due_date, :naive_datetime
