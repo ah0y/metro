@@ -19,15 +19,15 @@ defmodule Metro.OrderTest do
       due_date: ~N[2011-05-18 15:01:01.000000],
       renewals_remaining: 4
     }
-    @invalid_attrs %{checkout_date: nil, due_date: nil, renewals_remaining: nil, isbn_id: nil}
+    @invalid_attrs %{"checkout_date" => nil, "due_date" => nil, "renewals_remaining" => nil, "isbn_id" => nil}
 
     def checkout_fixture(_attrs \\ %{}) do
       card = insert(:card)
       library = insert(:library)
       book = insert(:book)
       {:ok, checkout} =
-        params_for(:checkout)
-        |> Enum.into(%{library_id: library.id, isbn_id: book.isbn, card_id: card.id})
+        string_params_for(:checkout)
+        |> Enum.into(%{"library_id" => library.id, "isbn_id" => book.isbn, "card_id" => card.id})
         |> Order.create_checkout(nil)
       checkout
     end
@@ -45,8 +45,8 @@ defmodule Metro.OrderTest do
              |> with_available_copies
 
       attr =
-        params_for(:checkout)
-        |> Enum.into(%{library_id: library.id, isbn_id: book.isbn, card_id: card.id})
+        string_params_for(:checkout)
+        |> Enum.into(%{"library_id" => library.id, "isbn_id" => book.isbn, "card_id" => card.id})
       copy = Location.find_copy(book.isbn)
       trans = Order.create_order(attr, copy)
 
@@ -88,8 +88,8 @@ defmodule Metro.OrderTest do
              |> with_available_copies
 
       attr =
-        params_for(:checkout)
-        |> Enum.into(%{library_id: library.id, isbn_id: book.isbn, card_id: card.id})
+        string_params_for(:checkout)
+        |> Enum.into(%{"library_id" => library.id, "isbn_id" => book.isbn, "card_id" => card.id})
       copy = Location.find_copy(book.isbn)
       trans = Order.create_order(attr, copy)
 
@@ -124,8 +124,8 @@ defmodule Metro.OrderTest do
              |> with_unavailable_copies
 
       attr =
-        params_for(:checkout)
-        |> Enum.into(%{library_id: library.id, isbn_id: book.isbn, card_id: card.id})
+        string_params_for(:checkout)
+        |> Enum.into(%{"library_id" => library.id, "isbn_id" => book.isbn, "card_id" => card.id})
 
       trans = Order.create_order(attr, nil)
 
@@ -161,8 +161,8 @@ defmodule Metro.OrderTest do
              |> with_available_copies
 
       attr =
-        params_for(:checkout)
-        |> Enum.into(%{library_id: library.id, isbn_id: book.isbn, card_id: card.id})
+        string_params_for(:checkout)
+        |> Enum.into(%{"library_id" => library.id, "isbn_id" => book.isbn, "card_id" => card.id})
       copy = Location.find_copy(book.isbn)
       trans = Order.create_order(attr, copy) #checks out out the only copy of a book to someone
 
@@ -173,8 +173,8 @@ defmodule Metro.OrderTest do
       card2 = insert(:card)
 
       attr2 =
-        params_for(:checkout)
-        |> Enum.into(%{library_id: library.id, isbn_id: book.isbn, card_id: card.id})
+        string_params_for(:checkout)
+        |> Enum.into(%{"library_id" => library.id, "isbn_id" => book.isbn, "card_id" => card.id})
 
       trans2 = Order.create_order(attr, nil) #puts someone at position 1 for a book that's already checked out
 
@@ -259,8 +259,8 @@ defmodule Metro.OrderTest do
              |> with_available_copies
 
       attr =
-        params_for(:checkout)
-        |> Enum.into(%{library_id: library.id, isbn_id: book.isbn, card_id: card.id})
+        string_params_for(:checkout)
+        |> Enum.into(%{"library_id" => library.id, "isbn_id" => book.isbn, "card_id" => card.id})
       copy = Location.find_copy(book.isbn)
       trans = Order.create_order(attr, copy) #checks out out the only copy of a book to someone
       trans3 = Order.check_in(copy)
@@ -310,8 +310,8 @@ defmodule Metro.OrderTest do
              |> with_available_copies
 
       attr =
-        params_for(:checkout)
-        |> Enum.into(%{library_id: library.id, isbn_id: book.isbn, card_id: card.id})
+        string_params_for(:checkout)
+        |> Enum.into(%{"library_id" => library.id, "isbn_id" => book.isbn, "card_id" => card.id})
       assert {:ok, %Metro.Order.Checkout{}} = Order.create_checkout(attr, nil)
     end
 
@@ -323,8 +323,8 @@ defmodule Metro.OrderTest do
              |> with_available_copies
 
       attr =
-        params_for(:checkout)
-        |> Enum.into(%{library_id: library.id, isbn_id: book.isbn, card_id: card.id})
+        string_params_for(:checkout)
+        |> Enum.into(%{"library_id" => library.id, "isbn_id" => book.isbn, "card_id" => card.id})
       copy = Location.find_copy(book.isbn)
       assert {:ok, %Metro.Order.Checkout{}} = Order.create_checkout(attr, copy)
     end

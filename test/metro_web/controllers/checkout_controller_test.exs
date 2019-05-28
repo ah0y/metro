@@ -33,8 +33,8 @@ defmodule MetroWeb.CheckoutControllerTest do
            |> with_available_copies
 
     attr =
-      params_for(:checkout)
-      |> Enum.into(%{library_id: library.id, isbn_id: book.isbn, card_id: card.id})
+      string_params_for(:checkout)
+      |> Enum.into(%{"library_id" => library.id, "isbn_id" => book.isbn, "card_id" => card.id})
     copy = Location.find_copy(book.isbn)
     trans = Order.create_order(attr, copy) #checks out out the only copy of a book to someone
 
