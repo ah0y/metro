@@ -61,7 +61,7 @@ defmodule Metro.TransitFactory do
     quote do
       def transit_factory do
         %Metro.Order.Transit{
-          actual_arrival: ~N[2010-04-17 14:00:00.000000],
+#          actual_arrival: ~N[2010-04-17 14:00:00.000000],
           estimated_arrival: ~N[2010-04-17 14:00:00.000000],
           checkouts: build(:checkout),
         }

@@ -45,7 +45,6 @@ defmodule MetroWeb.Router do
     resources "/events", EventController
     resources "/rooms", RoomController
     resources "/copies", CopyController
-#    put "/copies", CopyController, :check_in
     resources "/libraries", LibraryController
 
     resources "/users", UserController
@@ -55,6 +54,7 @@ defmodule MetroWeb.Router do
     resources "/waitlist", WaitlistController
     resources "/reservation", ReservationController
     resources "/checkouts", CheckoutController
+    put "/process/:id", CheckoutController, :process
 
     get "/", PageController, :index
   end

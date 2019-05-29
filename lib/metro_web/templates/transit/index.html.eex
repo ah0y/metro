@@ -5,6 +5,8 @@
     <tr>
       <th>Estimated arrival</th>
       <th>Actual arrival</th>
+      <th>Library</th>
+      <th>Book</th>
 
       <th></th>
     </tr>
@@ -14,10 +16,13 @@
     <tr>
       <td><%= transit.estimated_arrival %></td>
       <td><%= transit.actual_arrival %></td>
+      <td><%= transit.checkout.library_id %></td>
+      <td><%= transit.checkout.copy_id %></td>
 
       <td class="text-right">
         <span><%= link "Show", to: transit_path(@conn, :show, transit), class: "btn btn-default btn-xs" %></span>
         <span><%= link "Edit", to: transit_path(@conn, :edit, transit), class: "btn btn-default btn-xs" %></span>
+        <span><%= link "Complete Transit", to: transit_path(@conn, :update, transit), method: :put, class: "btn btn-default btn-xs" %></span>
         <span><%= link "Delete", to: transit_path(@conn, :delete, transit), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %></span>
       </td>
     </tr>

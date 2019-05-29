@@ -75,12 +75,23 @@ defmodule MetroWeb.CheckoutController do
   def update(conn, %{"id" => id}) do
     checkout = Order.get_checkout!(id)
       |> Repo.preload(:copy)
-    require IEx; IEx.pry()
 
     case Order.check_in(checkout.copy) do
       {:ok, checkout} ->
         conn
         |> put_flash(:info, "Checkout updated successfully.")
+        |> redirect(to: checkout_path(conn, :index))
+      {:error, _} ->
+        IO.puts("error")
+    end
+  end
+
+  def process(conn, %{"id" => id}) do
+    checkout = Order.get_checkout!(id)
+    case Order.process_checkout(checkout) do
+      {:ok, checkout} ->
+        conn
+        |> put_flash(:info, "Checkout processed successfully.")
         |> redirect(to: checkout_path(conn, :index))
       {:error, _} ->
         IO.puts("error")

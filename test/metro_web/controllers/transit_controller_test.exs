@@ -67,6 +67,18 @@ defmodule MetroWeb.TransitControllerTest do
       assert html_response(conn, 200)
     end
 
+    test "with empty checkout params, completes a transit", %{conn: conn, transit: transit} do
+      attrs = params_for(:reservation)
+              |> Enum.into(%{transit_id: transit.id})
+      {:ok, reservation} = Order.create_reservation(attrs)
+
+      conn = put conn, transit_path(conn, :update, transit)
+      assert redirected_to(conn) == transit_path(conn, :index)
+
+      conn = get conn, transit_path(conn, :show, transit)
+      assert html_response(conn, 200)
+    end
+
     test "renders errors when data is invalid", %{conn: conn, transit: transit} do
       conn = put conn, transit_path(conn, :update, transit), transit: @invalid_attrs
       assert html_response(conn, 200) =~ "Edit Transit"

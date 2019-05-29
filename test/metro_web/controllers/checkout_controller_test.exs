@@ -135,8 +135,16 @@ defmodule MetroWeb.CheckoutControllerTest do
     end
 
 
-    test "with empty checkout params, checks in a book", %{conn: conn, checkout: checkout} do
+    test "with empty checkout params, can check in a book", %{conn: conn, checkout: checkout} do
       conn = put conn, checkout_path(conn, :update, checkout)
+      assert redirected_to(conn) == checkout_path(conn, :index)
+
+      conn = get conn, checkout_path(conn, :show, checkout)
+      assert html_response(conn, 200)
+    end
+
+    test "with empty checkout params, can check out a book", %{conn: conn, checkout: checkout} do
+      conn = put conn, checkout_path(conn, :process, checkout)
       assert redirected_to(conn) == checkout_path(conn, :index)
 
       conn = get conn, checkout_path(conn, :show, checkout)

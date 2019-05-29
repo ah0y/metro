@@ -3,6 +3,7 @@ defmodule MetroWeb.TransitController do
 
   alias Metro.Order
   alias Metro.Order.Transit
+  alias Metro.Order.Reservation
 
   def index(conn, _params) do
     transit = Order.list_transit()
@@ -46,6 +47,20 @@ defmodule MetroWeb.TransitController do
         |> redirect(to: transit_path(conn, :show, transit))
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, "edit.html", transit: transit, changeset: changeset)
+    end
+  end
+
+  def update(conn, %{"id" => id}) do
+    transit = Order.get_transit!(id)
+    reservation = Order.get_reservation_by_transit!(id)
+
+    case Order.complete_transit(transit, reservation) do
+      {:ok, %{transit: transit, reservation: reservation}} ->
+        conn
+        |> put_flash(:info, "Transit completed successfully.")
+        |> redirect(to: transit_path(conn, :index))
+      {:error, _} ->
+        IO.puts("error")
     end
   end
 

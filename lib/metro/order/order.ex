@@ -72,9 +72,18 @@ defmodule Metro.Order do
   end
 
   def create_checkout(attrs, copy) do
-#    attrs = atomize_keys(attrs)
+    #    attrs = atomize_keys(attrs)
     %Checkout{}
-    |> Checkout.changeset(Map.merge(attrs, %{"copy_id" => copy.id}))
+    |> Checkout.changeset(
+         Map.merge(
+           attrs,
+           %{
+             "copy_id" => copy.id,
+             #             "checkout_date" => NaiveDateTime.utc_now(),
+             #             "due_date" => NaiveDateTime.add(NaiveDateTime.utc_now(), 2678400)
+           }
+         )
+       )
     |> Repo.insert()
   end
 
@@ -135,7 +144,7 @@ defmodule Metro.Order do
             |> Ecto.Multi.run(:checkout, fn (_) -> Metro.Order.create_checkout(attr, book) end)
             |> Ecto.Multi.run(
                  :transit,
-                 fn (%{checkout: checkout}) -> Metro.Order.create_transit(%{checkout_id: checkout.id}) end
+                 fn (%{checkout: checkout}) -> Metro.Order.create_transit(checkout, book) end
                )
             |> Ecto.Multi.run(
                  :reservation,
@@ -163,7 +172,7 @@ defmodule Metro.Order do
                     fn (%{copy: copy}) ->
                       Metro.Order.update_checkout(
                         Metro.Order.get_copy_checkout!(copy.id),
-                        %{checkin_date: NaiveDateTime.utc_now()}
+                        %{checkin_date: NaiveDateTime.utc_now(), copy_id: nil}
                       )
                     end
                   )
@@ -221,7 +230,7 @@ defmodule Metro.Order do
                            Metro.Location.get_copy!(copy.id),
                            %{
                              checked_out?: true,
-                             library_id: update_checkout.library_id
+                             #                             library_id: update_checkout.library_id
                            }
                          )
                        end
@@ -245,6 +254,29 @@ defmodule Metro.Order do
   def update_checkout(%Checkout{} = checkout, attrs) do
     checkout
     |> Checkout.changeset(attrs)
+    |> Repo.update()
+  end
+
+  @doc """
+  Process a checkout.
+
+  ## Examples
+
+      iex> process_checkout(checkout, %{field: new_value})
+      {:ok, %Checkout{}}
+
+      iex> process_checkout(checkout, %{field: bad_value})
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def process_checkout(%Checkout{} = checkout) do
+    checkout
+    |> Checkout.changeset(
+         %{
+           "checkout_date" => NaiveDateTime.utc_now(),
+           "due_date" => NaiveDateTime.add(NaiveDateTime.utc_now(), 2678400)
+         }
+       )
     |> Repo.update()
   end
 
@@ -430,7 +462,7 @@ defmodule Metro.Order do
 
   """
   def first_in_line(book_id) do
-            waitlists = Repo.all(Waitlist)
+    #            waitlists = Repo.all(Waitlist)
     waitlist = Repo.one(
       from w in Waitlist, where: w.isbn_id == ^book_id and w.position == 1
     )
@@ -476,6 +508,7 @@ defmodule Metro.Order do
   """
   def list_transit do
     Repo.all(Transit)
+    |> Repo.preload(:checkouts)
   end
 
   @doc """
@@ -506,17 +539,69 @@ defmodule Metro.Order do
       {:error, %Ecto.Changeset{}}
 
   """
+
+  def create_transit(checkout, copy) do
+    copy_location = copy.library_id
+    case checkout.library_id do
+      copy_location ->
+        #pickup location is same as where the book actually is so number of days in transit == 1
+        %Transit{}
+        |> Transit.changeset(
+             %{
+               "copy_id" => copy.id,
+               "checkout_id" => checkout.id,
+               "estimated_arrival" => NaiveDateTime.add(NaiveDateTime.utc_now(), 86400)
+             }
+           )
+        |> Repo.insert()
+      _ ->
+        %Transit{}
+        |> Transit.changeset(
+             %{
+               "copy_id" => copy.id,
+               "checkout_id" => checkout.id,
+               "estimated_arrival" => NaiveDateTime.add(NaiveDateTime.utc_now(), 259200)
+             }
+           )
+        |> Repo.insert()
+    end
+  end
+
   def create_transit(attrs) do
     %Transit{}
     |> Transit.changeset(attrs)
     |> Repo.insert()
   end
 
-  #  def create_transit(attrs, copy) do
-  #    %Transit{}
-  #    |> Transit.changeset(Map.merge(attrs, %{copy_id: copy.id}))
-  #    |> Repo.insert()
-  #  end
+  @doc """
+  Completes a transit.
+
+  ## Examples
+
+      iex> complete_transit(transit, %{field: new_value})
+      {:ok, %Transit{}}
+
+      iex> complete_transit(transit, %{field: bad_value})
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def complete_transit(transit, reservation) do
+    completed_transit = Ecto.Multi.new
+                        |> Ecto.Multi.run(
+                             :transit,
+                             fn (_) -> Metro.Order.update_transit(transit, %{actual_arrival: NaiveDateTime.utc_now()})
+                             end
+                           )
+                        |> Ecto.Multi.run(
+                             :reservation,
+                             fn (_) ->
+                               Metro.Order.update_reservation(
+                                 reservation,
+                                 %{expiration_date: NaiveDateTime.add(NaiveDateTime.utc_now(), 432000)}
+                               ) end
+                           )
+                        |> Repo.transaction()
+  end
 
   @doc """
   Updates a transit.
@@ -595,6 +680,23 @@ defmodule Metro.Order do
 
   """
   def get_reservation!(id), do: Repo.get!(Reservation, id)
+
+  @doc """
+  Gets a single reservation.
+
+  Raises `Ecto.NoResultsError` if the Reservation does not exist.
+
+  ## Examples
+
+      iex> get_reservation_by_transit!(123)
+      %Reservation{}
+
+      iex> get_reservation_by_transit!(456)
+      ** (Ecto.NoResultsError)
+
+  """
+
+  def get_reservation_by_transit!(transit), do: Repo.get_by!(Reservation, transit_id: transit)
 
   @doc """
   Creates a reservation.

@@ -358,6 +358,31 @@ defmodule Metro.OrderTest do
       assert checkout == Order.get_checkout!(checkout.id)
     end
 
+    test "process_checkout/1 sets a checkout date and due date " do
+      card = insert(:card)
+      library = insert(:library)
+      book = build(:book)
+             |> insert
+             |> with_available_copies
+
+      attr =
+        string_params_for(:checkout)
+        |> Enum.into(%{"library_id" => library.id, "isbn_id" => book.isbn, "card_id" => card.id})
+      copy = Location.find_copy(book.isbn)
+      trans = Order.create_order(attr, copy)
+
+      {:ok, %{checkout: checkout, reservation: reservation, transit: transit, copy: copy}} = trans
+
+      assert checkout.due_date == nil
+      assert checkout.checkout_date == nil
+
+      {:ok, processed_checkout } = Order.process_checkout(checkout)
+
+      assert processed_checkout.due_date != nil
+      assert processed_checkout.checkout_date
+
+    end
+
     test "delete_checkout/1 deletes the checkout" do
       checkout = checkout_fixture()
       assert {:ok, %Checkout{}} = Order.delete_checkout(checkout)
@@ -489,7 +514,7 @@ defmodule Metro.OrderTest do
 
     import Metro.Factory
 
-    @valid_attrs %{actual_arrival: ~N[2010-04-17 14:00:00.000000], estimated_arrival: ~N[2010-04-17 14:00:00.000000]}
+    @valid_attrs %{estimated_arrival: ~N[2010-04-17 14:00:00.000000]}
     @update_attrs %{actual_arrival: ~N[2011-05-18 15:01:01.000000], estimated_arrival: ~N[2011-05-18 15:01:01.000000]}
     @invalid_attrs %{actual_arrival: nil, estimated_arrival: nil, checkout_id: nil}
 
@@ -497,10 +522,30 @@ defmodule Metro.OrderTest do
       transit = insert(:transit)
     end
 
+    test "complete_transit/2 updates transit arrival time and sets reservation expiration date" do
+      transit = insert(:transit)
+      attrs = params_for(:reservation)
+              |> Enum.into(%{transit_id: transit.id})
+      {:ok, reservation} = Order.create_reservation(attrs)
+
+      completed_transit = Order.complete_transit(transit, reservation)
+
+      {
+        :ok,
+        %{
+          transit: transit,
+          reservation: reservation
+        }
+      } = completed_transit
+
+      assert transit.actual_arrival != nil
+      assert reservation.expiration_date != nil
+    end
+
     test "list_transit/0 returns all transit" do
       transit = transit_fixture()
       transit = Unpreloader.forget(transit, :checkouts)
-      assert Order.list_transit() == [transit]
+      assert Unpreloader.forget(Enum.at(Order.list_transit(), 0), :checkouts) == transit
     end
 
     test "get_transit!/1 returns the transit with given id" do
@@ -514,7 +559,7 @@ defmodule Metro.OrderTest do
       attrs = params_for(:transit)
               |> Enum.into(%{checkout_id: checkout.id})
       assert {:ok, %Transit{} = transit} = Order.create_transit(attrs)
-      assert transit.actual_arrival == ~N[2010-04-17 14:00:00.000000]
+#      assert transit.actual_arrival == ~N[2010-04-17 14:00:00.000000]
       assert transit.estimated_arrival == ~N[2010-04-17 14:00:00.000000]
     end
 
