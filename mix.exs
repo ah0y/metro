@@ -45,7 +45,9 @@ defmodule Metro.Mixfile do
       {:coherence, "~> 0.5.2"},
       {:ex_machina, "~> 2.3", only: :test},
       {:canary, "~> 1.1.1"},
-      {:businex, "~> 0.2.0"}
+      {:businex, "~> 0.2.0"},
+      {:scrivener_ecto, "~> 1.0"},
+      {:scrivener_html, "~> 1.1"}
     ]
   end
 

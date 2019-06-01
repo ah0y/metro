@@ -1,4 +1,10 @@
-<h2>Listing Books</h2>
+<%= form_for @conn, book_path(@conn, :index), [as: "search", method: :get], fn f -> %>
+   <%= select f, :search_by, ["title": "title", "summary": "summary", "author": "author"], selected: "title" %>
+  <label>
+    <%= text_input f, :query %>
+  </label>
+  <%= submit "Submit" %>
+<% end %>
 
 <table class="table">
   <thead>
@@ -32,4 +38,11 @@
   </tbody>
 </table>
 
+<div>
 <span><%= link "New Book", to: book_path(@conn, :new) %></span>
+
+</div>
+
+<%= pagination_links @page, distance: 10, first: "<<", previous: "<", next: ">", last: ">>", ellipsis: false %>
+
+

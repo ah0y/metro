@@ -1,5 +1,6 @@
 defmodule Metro.Repo do
   use Ecto.Repo, otp_app: :metro
+  use Scrivener, page_size: 10
 
   @doc """
   Dynamically loads the repository url from the

@@ -61,3 +61,6 @@ config :coherence,
 # %% End Coherence Configuration %%
 
 config :canary, repo: Metro.Repo
+
+config :scrivener_html,
+       routes_helper: MetroWeb.Router.Helpers

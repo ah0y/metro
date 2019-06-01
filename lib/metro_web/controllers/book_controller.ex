@@ -4,9 +4,44 @@ defmodule MetroWeb.BookController do
   alias Metro.Location
   alias Metro.Location.Book
 
-  def index(conn, _params) do
-    books = Location.list_books()
-    render(conn, "index.html", books: books)
+  import Ecto.Query
+
+
+
+  def index(
+        conn,
+        %{
+          "_utf8" => status,
+          "search" => %{
+            "query" => query,
+            "search_by" => search_by
+          }
+        } = params
+      ) do
+
+#    require IEx;
+#    IEx.pry()
+
+    search_by =
+      search_by
+      |> String.to_atom()
+
+    query_params = from b in Book, where: ilike(field(b, ^search_by), ^query)
+
+
+#    require IEx; IEx.pry()
+
+    page = Metro.Repo.paginate(query_params)
+
+    render conn, "index.html", books: page.entries, page: page
+  end
+
+  def index(conn, params = %{}) do
+    page = Book
+           # Other query conditions can be done here
+           |> Metro.Repo.paginate(params)
+
+    render conn, "index.html", books: page.entries, page: page
   end
 
   def new(conn, _params) do

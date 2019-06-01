@@ -78,3 +78,148 @@ Metro.Repo.insert!(
     }
   }
 )
+
+#
+#Metro.Repo.insert!(
+#  %Book{
+#    isbn: 3,
+#    title: "The Wind-Up Bird Chronicle",
+#    author_id: 1,
+#    year: 1997,
+#    summary: "In a Tokyo suburb a young man named Toru Okada searches for his wife's missing cat.  Soon he finds himself looking for his wife as well in a netherworld that lies beneath the placid surface of Tokyo.  As these searches intersect, Okada encounters a bizarre group of allies and antagonists: a psychic prostitute; a malevolent yet mediagenic politician; a cheerfully morbid sixteen-year-old-girl; and an aging war veteran who has been permanently changed by the hideous things he witnessed during Japan's forgotten campaign in Manchuria.",
+#    pages: 613,
+#    image: "https://contentcafe2.btol.com/ContentCafe/Jacket.aspx?&userID=CLOH21163&password=CC44366&Value=9780679446699&content=M&Return=1&Type=M"
+#  }
+#)
+
+#Metro.Repo.insert!(
+#  %Book{
+#    isbn: 4,
+#    title: "The Wind-Up Bird Chronicle",
+#    author_id: 1,
+#    year: 1997,
+#    summary: "In a Tokyo suburb a young man named Toru Okada searches for his wife's missing cat.  Soon he finds himself looking for his wife as well in a netherworld that lies beneath the placid surface of Tokyo.  As these searches intersect, Okada encounters a bizarre group of allies and antagonists: a psychic prostitute; a malevolent yet mediagenic politician; a cheerfully morbid sixteen-year-old-girl; and an aging war veteran who has been permanently changed by the hideous things he witnessed during Japan's forgotten campaign in Manchuria.",
+#    pages: 613,
+#    image: "https://contentcafe2.btol.com/ContentCafe/Jacket.aspx?&userID=CLOH21163&password=CC44366&Value=9780679446699&content=M&Return=1&Type=M"
+#  }
+#)
+#
+#Metro.Repo.insert!(
+#  %Book{
+#    isbn: 5,
+#    title: "The Wind-Up Bird Chronicle",
+#    author_id: 1,
+#    year: 1997,
+#    summary: "In a Tokyo suburb a young man named Toru Okada searches for his wife's missing cat.  Soon he finds himself looking for his wife as well in a netherworld that lies beneath the placid surface of Tokyo.  As these searches intersect, Okada encounters a bizarre group of allies and antagonists: a psychic prostitute; a malevolent yet mediagenic politician; a cheerfully morbid sixteen-year-old-girl; and an aging war veteran who has been permanently changed by the hideous things he witnessed during Japan's forgotten campaign in Manchuria.",
+#    pages: 613,
+#    image: "https://contentcafe2.btol.com/ContentCafe/Jacket.aspx?&userID=CLOH21163&password=CC44366&Value=9780679446699&content=M&Return=1&Type=M"
+#  }
+#)
+#
+#Metro.Repo.insert!(
+#  %Book{
+#    isbn: 6,
+#    title: "The Wind-Up Bird Chronicle",
+#    author_id: 1,
+#    year: 1997,
+#    summary: "In a Tokyo suburb a young man named Toru Okada searches for his wife's missing cat.  Soon he finds himself looking for his wife as well in a netherworld that lies beneath the placid surface of Tokyo.  As these searches intersect, Okada encounters a bizarre group of allies and antagonists: a psychic prostitute; a malevolent yet mediagenic politician; a cheerfully morbid sixteen-year-old-girl; and an aging war veteran who has been permanently changed by the hideous things he witnessed during Japan's forgotten campaign in Manchuria.",
+#    pages: 613,
+#    image: "https://contentcafe2.btol.com/ContentCafe/Jacket.aspx?&userID=CLOH21163&password=CC44366&Value=9780679446699&content=M&Return=1&Type=M"
+#  }
+#)
+#
+#Metro.Repo.insert!(
+#  %Book{
+#    isbn: 7,
+#    title: "The Wind-Up Bird Chronicle",
+#    author_id: 1,
+#    year: 1997,
+#    summary: "In a Tokyo suburb a young man named Toru Okada searches for his wife's missing cat.  Soon he finds himself looking for his wife as well in a netherworld that lies beneath the placid surface of Tokyo.  As these searches intersect, Okada encounters a bizarre group of allies and antagonists: a psychic prostitute; a malevolent yet mediagenic politician; a cheerfully morbid sixteen-year-old-girl; and an aging war veteran who has been permanently changed by the hideous things he witnessed during Japan's forgotten campaign in Manchuria.",
+#    pages: 613,
+#    image: "https://contentcafe2.btol.com/ContentCafe/Jacket.aspx?&userID=CLOH21163&password=CC44366&Value=9780679446699&content=M&Return=1&Type=M"
+#  }
+#)
+#
+#Metro.Repo.insert!(
+#  %Book{
+#    isbn: 8,
+#    title: "The Wind-Up Bird Chronicle",
+#    author_id: 1,
+#    year: 1997,
+#    summary: "In a Tokyo suburb a young man named Toru Okada searches for his wife's missing cat.  Soon he finds himself looking for his wife as well in a netherworld that lies beneath the placid surface of Tokyo.  As these searches intersect, Okada encounters a bizarre group of allies and antagonists: a psychic prostitute; a malevolent yet mediagenic politician; a cheerfully morbid sixteen-year-old-girl; and an aging war veteran who has been permanently changed by the hideous things he witnessed during Japan's forgotten campaign in Manchuria.",
+#    pages: 613,
+#    image: "https://contentcafe2.btol.com/ContentCafe/Jacket.aspx?&userID=CLOH21163&password=CC44366&Value=9780679446699&content=M&Return=1&Type=M"
+#  }
+#)
+#
+#Metro.Repo.insert!(
+#  %Book{
+#    isbn: 9,
+#    title: "The Wind-Up Bird Chronicle",
+#    author_id: 1,
+#    year: 1997,
+#    summary: "In a Tokyo suburb a young man named Toru Okada searches for his wife's missing cat.  Soon he finds himself looking for his wife as well in a netherworld that lies beneath the placid surface of Tokyo.  As these searches intersect, Okada encounters a bizarre group of allies and antagonists: a psychic prostitute; a malevolent yet mediagenic politician; a cheerfully morbid sixteen-year-old-girl; and an aging war veteran who has been permanently changed by the hideous things he witnessed during Japan's forgotten campaign in Manchuria.",
+#    pages: 613,
+#    image: "https://contentcafe2.btol.com/ContentCafe/Jacket.aspx?&userID=CLOH21163&password=CC44366&Value=9780679446699&content=M&Return=1&Type=M"
+#  }
+#)
+#
+#Metro.Repo.insert!(
+#  %Book{
+#    isbn: 10,
+#    title: "The Wind-Up Bird Chronicle",
+#    author_id: 1,
+#    year: 1997,
+#    summary: "In a Tokyo suburb a young man named Toru Okada searches for his wife's missing cat.  Soon he finds himself looking for his wife as well in a netherworld that lies beneath the placid surface of Tokyo.  As these searches intersect, Okada encounters a bizarre group of allies and antagonists: a psychic prostitute; a malevolent yet mediagenic politician; a cheerfully morbid sixteen-year-old-girl; and an aging war veteran who has been permanently changed by the hideous things he witnessed during Japan's forgotten campaign in Manchuria.",
+#    pages: 613,
+#    image: "https://contentcafe2.btol.com/ContentCafe/Jacket.aspx?&userID=CLOH21163&password=CC44366&Value=9780679446699&content=M&Return=1&Type=M"
+#  }
+#)
+#
+#Metro.Repo.insert!(
+#  %Book{
+#    isbn: 11,
+#    title: "The Wind-Up Bird Chronicle",
+#    author_id: 1,
+#    year: 1997,
+#    summary: "In a Tokyo suburb a young man named Toru Okada searches for his wife's missing cat.  Soon he finds himself looking for his wife as well in a netherworld that lies beneath the placid surface of Tokyo.  As these searches intersect, Okada encounters a bizarre group of allies and antagonists: a psychic prostitute; a malevolent yet mediagenic politician; a cheerfully morbid sixteen-year-old-girl; and an aging war veteran who has been permanently changed by the hideous things he witnessed during Japan's forgotten campaign in Manchuria.",
+#    pages: 613,
+#    image: "https://contentcafe2.btol.com/ContentCafe/Jacket.aspx?&userID=CLOH21163&password=CC44366&Value=9780679446699&content=M&Return=1&Type=M"
+#  }
+#)
+#
+#Metro.Repo.insert!(
+#  %Book{
+#    isbn: 12,
+#    title: "The Wind-Up Bird Chronicle",
+#    author_id: 1,
+#    year: 1997,
+#    summary: "In a Tokyo suburb a young man named Toru Okada searches for his wife's missing cat.  Soon he finds himself looking for his wife as well in a netherworld that lies beneath the placid surface of Tokyo.  As these searches intersect, Okada encounters a bizarre group of allies and antagonists: a psychic prostitute; a malevolent yet mediagenic politician; a cheerfully morbid sixteen-year-old-girl; and an aging war veteran who has been permanently changed by the hideous things he witnessed during Japan's forgotten campaign in Manchuria.",
+#    pages: 613,
+#    image: "https://contentcafe2.btol.com/ContentCafe/Jacket.aspx?&userID=CLOH21163&password=CC44366&Value=9780679446699&content=M&Return=1&Type=M"
+#  }
+#)
+#
+#Metro.Repo.insert!(
+#  %Book{
+#    isbn: 13,
+#    title: "The Wind-Up Bird Chronicle",
+#    author_id: 1,
+#    year: 1997,
+#    summary: "In a Tokyo suburb a young man named Toru Okada searches for his wife's missing cat.  Soon he finds himself looking for his wife as well in a netherworld that lies beneath the placid surface of Tokyo.  As these searches intersect, Okada encounters a bizarre group of allies and antagonists: a psychic prostitute; a malevolent yet mediagenic politician; a cheerfully morbid sixteen-year-old-girl; and an aging war veteran who has been permanently changed by the hideous things he witnessed during Japan's forgotten campaign in Manchuria.",
+#    pages: 613,
+#    image: "https://contentcafe2.btol.com/ContentCafe/Jacket.aspx?&userID=CLOH21163&password=CC44366&Value=9780679446699&content=M&Return=1&Type=M"
+#  }
+#)
+#
+#Metro.Repo.insert!(
+#  %Book{
+#    isbn: 14,
+#    title: "The Wind-Up Bird Chronicle",
+#    author_id: 1,
+#    year: 1997,
+#    summary: "In a Tokyo suburb a young man named Toru Okada searches for his wife's missing cat.  Soon he finds himself looking for his wife as well in a netherworld that lies beneath the placid surface of Tokyo.  As these searches intersect, Okada encounters a bizarre group of allies and antagonists: a psychic prostitute; a malevolent yet mediagenic politician; a cheerfully morbid sixteen-year-old-girl; and an aging war veteran who has been permanently changed by the hideous things he witnessed during Japan's forgotten campaign in Manchuria.",
+#    pages: 613,
+#    image: "https://contentcafe2.btol.com/ContentCafe/Jacket.aspx?&userID=CLOH21163&password=CC44366&Value=9780679446699&content=M&Return=1&Type=M"
+#  }
+#)
