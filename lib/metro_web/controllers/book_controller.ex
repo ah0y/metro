@@ -6,8 +6,6 @@ defmodule MetroWeb.BookController do
 
   import Ecto.Query
 
-
-
   def index(
         conn,
         %{
@@ -19,17 +17,11 @@ defmodule MetroWeb.BookController do
         } = params
       ) do
 
-#    require IEx;
-#    IEx.pry()
-
     search_by =
       search_by
       |> String.to_atom()
 
-    query_params = from b in Book, where: ilike(field(b, ^search_by), ^query)
-
-
-#    require IEx; IEx.pry()
+    query_params = from b in Book, where: ilike(field(b, ^search_by), ^"%#{query}%")
 
     page = Metro.Repo.paginate(query_params)
 
@@ -125,7 +117,4 @@ defmodule MetroWeb.BookController do
     |> put_flash(:info, "Book deleted successfully.")
     |> redirect(to: book_path(conn, :index))
   end
-
-
-
 end

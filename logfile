@@ -1,0 +1,112 @@
+2019-05-18 11:16:23.356 EDT [20963] LOG:  listening on IPv6 address "::1", port 5432
+2019-05-18 11:16:23.356 EDT [20963] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2019-05-18 11:16:23.356 EDT [20963] LOG:  listening on Unix socket "/tmp/.s.PGSQL.5432"
+2019-05-18 11:16:23.371 EDT [20964] LOG:  database system was shut down at 2019-05-18 11:16:18 EDT
+2019-05-18 11:16:23.374 EDT [20963] LOG:  database system is ready to accept connections
+2019-05-18 11:16:40.298 EDT [20995] FATAL:  role "postgres" does not exist
+2019-05-18 11:16:50.181 EDT [21017] FATAL:  role "postgres" does not exist
+2019-05-18 11:16:54.188 EDT [21039] FATAL:  role "postgres" does not exist
+2019-05-18 11:17:31.869 EDT [21048] ERROR:  database "postgres" already exists
+2019-05-18 11:17:31.869 EDT [21048] STATEMENT:  CREATE DATABASE postgres WITH OWNER postgres;
+2019-05-18 11:17:53.295 EDT [21110] ERROR:  duplicate key value violates unique constraint "books_pkey"
+2019-05-18 11:17:53.295 EDT [21110] DETAIL:  Key (isbn)=(42) already exists.
+2019-05-18 11:17:53.295 EDT [21110] STATEMENT:  INSERT INTO "books" ("author_id","image","isbn","pages","summary","title","year","inserted_at","updated_at") VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9)
+2019-05-18 11:26:55.699 EDT [21555] ERROR:  database "phoenix_tasks_dev" does not exist
+2019-05-18 11:26:55.699 EDT [21555] STATEMENT:  DROP DATABASE "phoenix_tasks_dev"
+2019-05-18 11:28:58.535 EDT [21704] ERROR:  duplicate key value violates unique constraint "users_email_index"
+2019-05-18 11:28:58.535 EDT [21704] DETAIL:  Key (email)=(aberhamhaile@gmail.com) already exists.
+2019-05-18 11:28:58.535 EDT [21704] STATEMENT:  INSERT INTO "users" ("email","failed_attempts","name","password_hash","sign_in_count","inserted_at","updated_at") VALUES ($1,$2,$3,$4,$5,$6,$7) RETURNING "id"
+2019-05-18 11:44:02.464 EDT [20963] LOG:  received smart shutdown request
+2019-05-18 11:44:02.471 EDT [20963] LOG:  worker process: logical replication launcher (PID 20970) exited with exit code 1
+2019-05-18 11:44:02.471 EDT [20965] LOG:  shutting down
+2019-05-18 11:44:02.480 EDT [20963] LOG:  database system is shut down
+2019-05-18 12:12:25.221 EDT [2034] LOG:  listening on IPv6 address "::1", port 5432
+2019-05-18 12:12:25.221 EDT [2034] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2019-05-18 12:12:25.222 EDT [2034] LOG:  listening on Unix socket "/tmp/.s.PGSQL.5432"
+2019-05-18 12:12:25.237 EDT [2035] LOG:  database system was shut down at 2019-05-18 12:12:21 EDT
+2019-05-18 12:12:25.239 EDT [2034] LOG:  database system is ready to accept connections
+2019-05-18 12:12:37.599 EDT [2073] FATAL:  role "postgres" does not exist
+2019-05-18 12:13:28.420 EDT [2123] FATAL:  database "aberhamhaile" does not exist
+2019-05-18 12:13:39.040 EDT [2135] FATAL:  database "aberhamhaile" does not exist
+2019-05-18 12:13:40.804 EDT [2139] FATAL:  database "aberhamhaile" does not exist
+2019-05-18 12:13:51.147 EDT [2142] ERROR:  database "postgres" already exists
+2019-05-18 12:13:51.147 EDT [2142] STATEMENT:  CREATE DATABASE postgres WITH OWNER postgres;
+2019-05-18 12:16:56.581 EDT [2397] ERROR:  update or delete on table "authors" violates foreign key constraint "books_author_id_fkey" on table "books"
+2019-05-18 12:16:56.581 EDT [2397] DETAIL:  Key (id)=(2) is still referenced from table "books".
+2019-05-18 12:16:56.581 EDT [2397] STATEMENT:  DELETE FROM "authors" WHERE "id" = $1
+2019-05-18 13:12:30.405 EDT [3537] FATAL:  database "phoenix_tasks_dev" does not exist
+2019-05-18 13:12:30.405 EDT [3541] FATAL:  database "phoenix_tasks_dev" does not exist
+2019-05-18 13:12:30.406 EDT [3540] FATAL:  database "phoenix_tasks_dev" does not exist
+2019-05-18 13:12:30.406 EDT [3543] FATAL:  database "phoenix_tasks_dev" does not exist
+2019-05-18 13:12:30.406 EDT [3539] FATAL:  database "phoenix_tasks_dev" does not exist
+2019-05-18 13:12:30.406 EDT [3538] FATAL:  database "phoenix_tasks_dev" does not exist
+2019-05-18 13:12:30.406 EDT [3536] FATAL:  database "phoenix_tasks_dev" does not exist
+2019-05-18 13:12:30.406 EDT [3544] FATAL:  database "phoenix_tasks_dev" does not exist
+2019-05-18 13:12:30.406 EDT [3542] FATAL:  database "phoenix_tasks_dev" does not exist
+2019-05-18 13:12:30.406 EDT [3545] FATAL:  database "phoenix_tasks_dev" does not exist
+2019-05-18 13:12:39.189 EDT [3574] FATAL:  database "phoenix_tasks_dev" does not exist
+2019-05-18 13:12:39.189 EDT [3576] FATAL:  database "phoenix_tasks_dev" does not exist
+2019-05-18 13:12:39.189 EDT [3572] FATAL:  database "phoenix_tasks_dev" does not exist
+2019-05-18 13:12:39.189 EDT [3577] FATAL:  database "phoenix_tasks_dev" does not exist
+2019-05-18 13:12:39.189 EDT [3575] FATAL:  database "phoenix_tasks_dev" does not exist
+2019-05-18 13:12:39.189 EDT [3573] FATAL:  database "phoenix_tasks_dev" does not exist
+2019-05-18 13:12:39.190 EDT [3568] FATAL:  database "phoenix_tasks_dev" does not exist
+2019-05-18 13:12:39.190 EDT [3570] FATAL:  database "phoenix_tasks_dev" does not exist
+2019-05-18 13:12:39.190 EDT [3569] FATAL:  database "phoenix_tasks_dev" does not exist
+2019-05-18 13:12:39.190 EDT [3571] FATAL:  database "phoenix_tasks_dev" does not exist
+2019-05-18 13:12:40.255 EDT [3581] FATAL:  database "phoenix_tasks_dev" does not exist
+2019-05-18 13:12:40.868 EDT [3582] FATAL:  database "phoenix_tasks_dev" does not exist
+2019-05-18 13:12:41.270 EDT [3583] FATAL:  database "phoenix_tasks_dev" does not exist
+2019-05-18 13:12:41.410 EDT [3584] FATAL:  database "phoenix_tasks_dev" does not exist
+2019-05-18 13:12:41.460 EDT [3585] FATAL:  database "phoenix_tasks_dev" does not exist
+2019-05-18 13:12:41.600 EDT [3586] FATAL:  database "phoenix_tasks_dev" does not exist
+2019-05-18 13:12:41.605 EDT [3587] FATAL:  database "phoenix_tasks_dev" does not exist
+2019-05-18 13:12:41.705 EDT [3588] FATAL:  database "phoenix_tasks_dev" does not exist
+2019-05-18 13:12:41.772 EDT [3589] FATAL:  database "phoenix_tasks_dev" does not exist
+2019-05-18 13:12:41.840 EDT [3590] FATAL:  database "phoenix_tasks_dev" does not exist
+2019-05-18 13:12:42.148 EDT [3591] FATAL:  database "phoenix_tasks_dev" does not exist
+2019-05-18 13:12:42.788 EDT [3592] FATAL:  database "phoenix_tasks_dev" does not exist
+2019-05-18 13:12:46.492 EDT [3615] ERROR:  database "phoenix_tasks_dev" does not exist
+2019-05-18 13:12:46.492 EDT [3615] STATEMENT:  DROP DATABASE "phoenix_tasks_dev"
+2019-05-18 13:15:04.047 EDT [3710] ERROR:  duplicate key value violates unique constraint "users_email_index"
+2019-05-18 13:15:04.047 EDT [3710] DETAIL:  Key (email)=(aberhamhaile@gmail.com) already exists.
+2019-05-18 13:15:04.047 EDT [3710] STATEMENT:  INSERT INTO "users" ("email","failed_attempts","name","password_hash","sign_in_count","inserted_at","updated_at") VALUES ($1,$2,$3,$4,$5,$6,$7) RETURNING "id"
+2019-05-18 13:15:17.594 EDT [3749] ERROR:  database "phoenix_tasks_dev" is being accessed by other users
+2019-05-18 13:15:17.594 EDT [3749] DETAIL:  There are 10 other sessions using the database.
+2019-05-18 13:15:17.594 EDT [3749] STATEMENT:  DROP DATABASE "phoenix_tasks_dev"
+2019-05-18 14:22:52.734 EDT [4929] ERROR:  database "metro_test" already exists
+2019-05-18 14:22:52.734 EDT [4929] STATEMENT:  CREATE DATABASE "metro_test" ENCODING 'UTF8'
+2019-05-18 14:22:56.038 EDT [4931] ERROR:  duplicate key value violates unique constraint "books_pkey"
+2019-05-18 14:22:56.038 EDT [4931] DETAIL:  Key (isbn)=(42) already exists.
+2019-05-18 14:22:56.038 EDT [4931] STATEMENT:  INSERT INTO "books" ("author_id","image","isbn","pages","summary","title","year","inserted_at","updated_at") VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9)
+2019-05-18 14:23:10.088 EDT [4964] ERROR:  database "metro_test" already exists
+2019-05-18 14:23:10.088 EDT [4964] STATEMENT:  CREATE DATABASE "metro_test" ENCODING 'UTF8'
+2019-05-18 14:23:42.901 EDT [5001] ERROR:  database "metro_test" already exists
+2019-05-18 14:23:42.901 EDT [5001] STATEMENT:  CREATE DATABASE "metro_test" ENCODING 'UTF8'
+2019-05-18 14:44:23.928 EDT [5260] ERROR:  database "metro_test" already exists
+2019-05-18 14:44:23.928 EDT [5260] STATEMENT:  CREATE DATABASE "metro_test" ENCODING 'UTF8'
+2019-05-23 19:49:30.509 EDT [36094] ERROR:  database "metro_test" already exists
+2019-05-23 19:49:30.509 EDT [36094] STATEMENT:  CREATE DATABASE "metro_test" ENCODING 'UTF8'
+2019-05-23 19:49:35.112 EDT [36103] ERROR:  duplicate key value violates unique constraint "books_pkey"
+2019-05-23 19:49:35.112 EDT [36103] DETAIL:  Key (isbn)=(42) already exists.
+2019-05-23 19:49:35.112 EDT [36103] STATEMENT:  INSERT INTO "books" ("author_id","image","isbn","pages","summary","title","year","inserted_at","updated_at") VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9)
+2019-05-23 19:51:21.923 EDT [36154] ERROR:  database "metro_test" already exists
+2019-05-23 19:51:21.923 EDT [36154] STATEMENT:  CREATE DATABASE "metro_test" ENCODING 'UTF8'
+2019-05-23 19:51:26.612 EDT [36159] ERROR:  duplicate key value violates unique constraint "books_pkey"
+2019-05-23 19:51:26.612 EDT [36159] DETAIL:  Key (isbn)=(42) already exists.
+2019-05-23 19:51:26.612 EDT [36159] STATEMENT:  INSERT INTO "books" ("author_id","image","isbn","pages","summary","title","year","inserted_at","updated_at") VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9)
+2019-05-26 15:24:46.175 EDT [2039] LOG:  using stale statistics instead of current ones because stats collector is not responding
+2019-06-01 19:40:09.199 EDT [69586] LOG:  listening on IPv6 address "::1", port 5432
+2019-06-01 19:40:09.199 EDT [69586] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2019-06-01 19:40:09.200 EDT [69586] LOG:  listening on Unix socket "/tmp/.s.PGSQL.5432"
+2019-06-01 19:40:09.214 EDT [69587] LOG:  database system was shut down at 2019-06-01 19:40:04 EDT
+2019-06-01 19:40:09.217 EDT [69586] LOG:  database system is ready to accept connections
+2019-06-01 19:40:11.769 EDT [69596] FATAL:  database "aberhamhaile" does not exist
+2019-06-01 19:40:29.558 EDT [69626] FATAL:  role "postgres" does not exist
+2019-06-01 19:41:43.493 EDT [69741] FATAL:  role "postgres" does not exist
+2019-06-01 19:59:13.893 EDT [73204] ERROR:  column b0.author does not exist at character 294
+2019-06-01 19:59:13.893 EDT [73204] HINT:  Perhaps you meant to reference the column "b0.author_id".
+2019-06-01 19:59:13.893 EDT [73204] STATEMENT:  SELECT count('*') FROM (SELECT b0."isbn" AS "isbn", b0."image" AS "image", b0."title" AS "title", b0."pages" AS "pages", b0."summary" AS "summary", b0."year" AS "year", b0."author_id" AS "author_id", b0."inserted_at" AS "inserted_at", b0."updated_at" AS "updated_at" FROM "books" AS b0 WHERE (b0."author" ILIKE $1)) AS s0
+2019-06-01 20:02:09.479 EDT [73460] ERROR:  duplicate key value violates unique constraint "books_pkey"
+2019-06-01 20:02:09.479 EDT [73460] DETAIL:  Key (isbn)=(42) already exists.
+2019-06-01 20:02:09.479 EDT [73460] STATEMENT:  INSERT INTO "books" ("author_id","image","isbn","pages","summary","title","year","inserted_at","updated_at") VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9)
