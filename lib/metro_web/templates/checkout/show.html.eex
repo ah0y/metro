@@ -19,5 +19,5 @@
 
 </ul>
 
-<span><%= link "Edit", to: checkout_path(@conn, :edit, @checkout) %></span>
-<span><%= link "Back", to: checkout_path(@conn, :index) %></span>
+<span><%= link "Edit", to: Routes.checkout_path(@conn, :edit, @checkout) %></span>
+<span><%= link "Back", to: Routes.checkout_path(@conn, :index) %></span>

@@ -21,13 +21,13 @@
       <td><%= user.num_books_out %></td>
 
       <td class="text-right">
-        <span><%= link "Show", to: user_path(@conn, :show, user), class: "btn btn-default btn-xs" %></span>
-        <span><%= link "Edit", to: user_path(@conn, :edit, user), class: "btn btn-default btn-xs" %></span>
-        <span><%= link "Delete", to: user_path(@conn, :delete, user), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %></span>
+        <span><%= link "Show", to: Routes.user_path(@conn, :show, user), class: "btn btn-default btn-xs" %></span>
+        <span><%= link "Edit", to: Routes.user_path(@conn, :edit, user), class: "btn btn-default btn-xs" %></span>
+        <span><%= link "Delete", to: Routes.user_path(@conn, :delete, user), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %></span>
       </td>
     </tr>
 <% end %>
   </tbody>
 </table>
 
-<span><%= link "New User", to: user_path(@conn, :new) %></span>
+<span><%= link "New User", to: Routes.user_path(@conn, :new) %></span>

@@ -14,5 +14,5 @@
 
 </ul>
 
-<span><%= link "Edit", to: transit_path(@conn, :edit, @transit) %></span>
-<span><%= link "Back", to: transit_path(@conn, :index) %></span>
+<span><%= link "Edit", to: Routes.transit_path(@conn, :edit, @transit) %></span>
+<span><%= link "Back", to: Routes.transit_path(@conn, :index) %></span>

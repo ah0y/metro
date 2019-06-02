@@ -20,7 +20,7 @@ defmodule MetroWeb.TransitController do
       {:ok, transit} ->
         conn
         |> put_flash(:info, "Transit created successfully.")
-        |> redirect(to: transit_path(conn, :show, transit))
+        |> redirect(to: Routes.transit_path(conn, :show, transit))
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, "new.html", changeset: changeset)
     end
@@ -44,7 +44,7 @@ defmodule MetroWeb.TransitController do
       {:ok, transit} ->
         conn
         |> put_flash(:info, "Transit updated successfully.")
-        |> redirect(to: transit_path(conn, :show, transit))
+        |> redirect(to: Routes.transit_path(conn, :show, transit))
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, "edit.html", transit: transit, changeset: changeset)
     end
@@ -58,7 +58,7 @@ defmodule MetroWeb.TransitController do
       {:ok, %{transit: transit, reservation: reservation}} ->
         conn
         |> put_flash(:info, "Transit completed successfully.")
-        |> redirect(to: transit_path(conn, :index))
+        |> redirect(to: Routes.transit_path(conn, :index))
       {:error, _} ->
         IO.puts("error")
     end
@@ -70,6 +70,6 @@ defmodule MetroWeb.TransitController do
 
     conn
     |> put_flash(:info, "Transit deleted successfully.")
-    |> redirect(to: transit_path(conn, :index))
+    |> redirect(to: Routes.transit_path(conn, :index))
   end
 end

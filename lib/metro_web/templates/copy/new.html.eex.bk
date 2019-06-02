@@ -1,0 +1,12 @@
+<h2>New Copy</h2>
+<%= if assigns[:isbn] do %>
+
+ <%= render "prepopulated.html", changeset: @changeset, isbn: @isbn, libraries: @libraries, action: copy_path(@conn, :create) %>
+
+<% else %>
+
+  <%= render "form.html", changeset: @changeset, libraries: @libraries, action: copy_path(@conn, :create) %>
+
+ <% end %>
+
+<span><%= link "Back", to: copy_path(@conn, :index) %></span>

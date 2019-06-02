@@ -19,7 +19,7 @@ defmodule MetroWeb.AuthorController do
       {:ok, author} ->
         conn
         |> put_flash(:info, "Author created successfully.")
-        |> redirect(to: author_path(conn, :show, author))
+        |> redirect(to: Routes.author_path(conn, :show, author))
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, "new.html", changeset: changeset)
     end
@@ -43,7 +43,7 @@ defmodule MetroWeb.AuthorController do
       {:ok, author} ->
         conn
         |> put_flash(:info, "Author updated successfully.")
-        |> redirect(to: author_path(conn, :show, author))
+        |> redirect(to: Routes.author_path(conn, :show, author))
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, "edit.html", author: author, changeset: changeset)
     end
@@ -55,6 +55,6 @@ defmodule MetroWeb.AuthorController do
 
     conn
     |> put_flash(:info, "Author deleted successfully.")
-    |> redirect(to: author_path(conn, :index))
+    |> redirect(to: Routes.author_path(conn, :index))
   end
 end

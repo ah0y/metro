@@ -1,0 +1,48 @@
+<%= form_for @conn, book_path(@conn, :index), [as: "search", method: :get], fn f -> %>
+   <%= select f, :search_by, ["title": "title", "summary": "summary", "author": "author"], selected: "title" %>
+  <label>
+    <%= text_input f, :query %>
+  </label>
+  <%= submit "Submit" %>
+<% end %>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Image</th>
+      <th>Isbn</th>
+      <th>Title</th>
+      <th>Year</th>
+      <th>Summary</th>
+      <th>Pages</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for book <- @books do %>
+    <tr>
+      <td><img src="<%= book.image %>"height="360" width="233"</img></td>
+      <td><%= book.isbn %></td>
+      <td><%= book.title %></td>
+      <td><%= book.year %></td>
+      <td><%= String.slice(book.summary, 0..20) %></td>
+      <td><%= book.pages %></td>
+
+      <td class="text-right">
+        <span><%= link "Show", to: book_path(@conn, :show, book), class: "btn btn-default btn-xs" %></span>
+        <span><%= link "Edit", to: book_path(@conn, :edit, book), class: "btn btn-default btn-xs" %></span>
+        <span><%= link "Delete", to: book_path(@conn, :delete, book), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %></span>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
+
+<div>
+<span><%= link "New Book", to: book_path(@conn, :new) %></span>
+
+</div>
+
+<%= pagination_links @page, distance: 10, first: "<<", previous: "<", next: ">", last: ">>", ellipsis: false %>
+
+

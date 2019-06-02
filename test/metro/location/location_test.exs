@@ -374,7 +374,7 @@ defmodule Metro.LocationTest do
 
     test "create_event/1 with valid data creates a event" do
       assert {:ok, %Event{} = event} = Location.create_event(@valid_attrs)
-      assert event.datetime == ~N[2010-04-17 14:00:00.000000]
+      assert event.datetime == ~N[2010-04-17 14:00:00]
       assert event.description == "some description"
       assert event.images == "some images"
     end
@@ -387,7 +387,7 @@ defmodule Metro.LocationTest do
       event = event_fixture()
       assert {:ok, event} = Location.update_event(event, @update_attrs)
       assert %Event{} = event
-      assert event.datetime == ~N[2011-05-18 15:01:01.000000]
+      assert event.datetime == ~N[2011-05-18 15:01:01]
       assert event.description == "some updated description"
       assert event.images == "some updated images"
     end

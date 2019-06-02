@@ -1,0 +1,5 @@
+<h2>New Checkout</h2>
+
+<%= render "form.html", changeset: @changeset, isbn: @isbn, libraries: @libraries, action: checkout_path(@conn, :create) %>
+
+<span><%= link "Back", to: checkout_path(@conn, :index) %></span>

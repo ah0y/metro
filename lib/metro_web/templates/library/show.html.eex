@@ -24,5 +24,5 @@
 
 </ul>
 
-<span><%= link "Edit", to: library_path(@conn, :edit, @library) %></span>
-<span><%= link "Back", to: library_path(@conn, :index) %></span>
+<span><%= link "Edit", to: Routes.library_path(@conn, :edit, @library) %></span>
+<span><%= link "Back", to: Routes.library_path(@conn, :index) %></span>

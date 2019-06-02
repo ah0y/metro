@@ -105,18 +105,18 @@ defmodule Metro.Order do
   def create_order(attr, nil) do
     order = Ecto.Multi.new
 
-            |> Ecto.Multi.run(:checkout, fn (_) -> Metro.Order.create_checkout(attr, nil) end)
+            |> Ecto.Multi.run(:checkout, fn _,_ -> Metro.Order.create_checkout(attr, nil) end)
             |> Ecto.Multi.run(
                  :transit,
-                 fn (%{checkout: checkout}) -> Metro.Order.create_transit(%{checkout_id: checkout.id}) end
+                 fn _, %{checkout: checkout} -> Metro.Order.create_transit(%{checkout_id: checkout.id}) end
                )
             |> Ecto.Multi.run(
                  :reservation,
-                 fn (%{transit: transit}) -> Metro.Order.create_reservation(%{transit_id: transit.id}) end
+                 fn _, %{transit: transit} -> Metro.Order.create_reservation(%{transit_id: transit.id}) end
                )
             |> Ecto.Multi.run(
                  :waitlist,
-                 fn (%{checkout: checkout}) ->
+                 fn _, %{checkout: checkout} ->
                    Metro.Order.create_waitlist(%{"checkout_id" => checkout.id, "isbn_id" => checkout.isbn_id})
                  end
                )
@@ -139,16 +139,16 @@ defmodule Metro.Order do
     order = Ecto.Multi.new
             |> Ecto.Multi.run(
                  :copy,
-                 fn (_) -> Metro.Location.update_copy(book, %{checked_out?: true}) end
+                 fn _, _ -> Metro.Location.update_copy(book, %{checked_out?: true}) end
                )
-            |> Ecto.Multi.run(:checkout, fn (_) -> Metro.Order.create_checkout(attr, book) end)
+            |> Ecto.Multi.run(:checkout, fn _, _ -> Metro.Order.create_checkout(attr, book) end)
             |> Ecto.Multi.run(
                  :transit,
-                 fn (%{checkout: checkout}) -> Metro.Order.create_transit(checkout, book) end
+                 fn _, %{checkout: checkout} -> Metro.Order.create_transit(checkout, book) end
                )
             |> Ecto.Multi.run(
                  :reservation,
-                 fn (%{transit: transit}) -> Metro.Order.create_reservation(%{transit_id: transit.id}) end
+                 fn _, %{transit: transit} -> Metro.Order.create_reservation(%{transit_id: transit.id}) end
                )
             |> Repo.transaction()
   end
@@ -166,10 +166,10 @@ defmodule Metro.Order do
   """
   def check_in(copy) do
     check_in = Ecto.Multi.new
-               |> Ecto.Multi.run(:copy, fn (_) -> Metro.Location.update_copy(copy, %{checked_out?: false}) end)
+               |> Ecto.Multi.run(:copy, fn _, _ -> Metro.Location.update_copy(copy, %{checked_out?: false}) end)
                |> Ecto.Multi.run(
                     :checkout,
-                    fn (%{copy: copy}) ->
+                    fn _, %{copy: copy} ->
                       Metro.Order.update_checkout(
                         Metro.Order.get_copy_checkout!(copy.id),
                         %{checkin_date: NaiveDateTime.utc_now(), copy_id: nil}
@@ -178,19 +178,19 @@ defmodule Metro.Order do
                   )
                |> Ecto.Multi.run(
                     :null_waitlist,
-                    fn (%{copy: copy}) -> Metro.Order.null_waitlist_position(copy.id) end
+                    fn _, %{copy: copy} -> Metro.Order.null_waitlist_position(copy.id) end
                   )
                |> Ecto.Multi.run(
                     :next,
-                    fn (%{copy: copy}) -> Metro.Order.first_in_line(copy.isbn_id) end
+                    fn _, %{copy: copy} -> Metro.Order.first_in_line(copy.isbn_id) end
                   )
                |> Ecto.Multi.run(
                     :update_for_waiting,
-                    fn (%{next: next}) -> Metro.Order.update_for_waiting(next, copy) end
+                    fn _, %{next: next} -> Metro.Order.update_for_waiting(next, copy) end
                   )
                |> Ecto.Multi.run(
                     :decrement,
-                    fn (%{checkout: old_checkout}) -> Metro.Order.decrement_waitlist(old_checkout.isbn_id) end
+                    fn _, %{checkout: old_checkout} -> Metro.Order.decrement_waitlist(old_checkout.isbn_id) end
                   )
                |> Repo.transaction()
 
@@ -216,7 +216,7 @@ defmodule Metro.Order do
         updates = Ecto.Multi.new
                   |> Ecto.Multi.run(
                        :update_checkout,
-                       fn (_) ->
+                       fn _, _ ->
                          Metro.Order.update_checkout(
                            Metro.Order.get_checkout!(next.checkout_id),
                            %{copy_id: copy.id}
@@ -225,7 +225,7 @@ defmodule Metro.Order do
                      )
                   |> Ecto.Multi.run(
                        :update_copy,
-                       fn (%{update_checkout: update_checkout}) ->
+                       fn _, %{update_checkout: update_checkout} ->
                          Metro.Location.update_copy(
                            Metro.Location.get_copy!(copy.id),
                            %{
@@ -589,12 +589,12 @@ defmodule Metro.Order do
     completed_transit = Ecto.Multi.new
                         |> Ecto.Multi.run(
                              :transit,
-                             fn (_) -> Metro.Order.update_transit(transit, %{actual_arrival: NaiveDateTime.utc_now()})
+                             fn _, _ -> Metro.Order.update_transit(transit, %{actual_arrival: NaiveDateTime.utc_now()})
                              end
                            )
                         |> Ecto.Multi.run(
                              :reservation,
-                             fn (_) ->
+                             fn _, _ ->
                                Metro.Order.update_reservation(
                                  reservation,
                                  %{expiration_date: NaiveDateTime.add(NaiveDateTime.utc_now(), 432000)}

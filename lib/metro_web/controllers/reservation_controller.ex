@@ -19,7 +19,7 @@ defmodule MetroWeb.ReservationController do
       {:ok, reservation} ->
         conn
         |> put_flash(:info, "Reservation created successfully.")
-        |> redirect(to: reservation_path(conn, :show, reservation))
+        |> redirect(to: Routes.reservation_path(conn, :show, reservation))
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, "new.html", changeset: changeset)
     end
@@ -43,7 +43,7 @@ defmodule MetroWeb.ReservationController do
       {:ok, reservation} ->
         conn
         |> put_flash(:info, "Reservation updated successfully.")
-        |> redirect(to: reservation_path(conn, :show, reservation))
+        |> redirect(to: Routes.reservation_path(conn, :show, reservation))
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, "edit.html", reservation: reservation, changeset: changeset)
     end
@@ -55,6 +55,6 @@ defmodule MetroWeb.ReservationController do
 
     conn
     |> put_flash(:info, "Reservation deleted successfully.")
-    |> redirect(to: reservation_path(conn, :index))
+    |> redirect(to: Routes.reservation_path(conn, :index))
   end
 end

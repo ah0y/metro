@@ -20,14 +20,14 @@
       <td><%= transit.checkout.copy_id %></td>
 
       <td class="text-right">
-        <span><%= link "Show", to: transit_path(@conn, :show, transit), class: "btn btn-default btn-xs" %></span>
-        <span><%= link "Edit", to: transit_path(@conn, :edit, transit), class: "btn btn-default btn-xs" %></span>
-        <span><%= link "Complete Transit", to: transit_path(@conn, :update, transit), method: :put, class: "btn btn-default btn-xs" %></span>
-        <span><%= link "Delete", to: transit_path(@conn, :delete, transit), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %></span>
+        <span><%= link "Show", to: Routes.transit_path(@conn, :show, transit), class: "btn btn-default btn-xs" %></span>
+        <span><%= link "Edit", to: Routes.transit_path(@conn, :edit, transit), class: "btn btn-default btn-xs" %></span>
+        <span><%= link "Complete Transit", to: Routes.transit_path(@conn, :update, transit), method: :put, class: "btn btn-default btn-xs" %></span>
+        <span><%= link "Delete", to: Routes.transit_path(@conn, :delete, transit), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %></span>
       </td>
     </tr>
 <% end %>
   </tbody>
 </table>
 
-<span><%= link "New Transit", to: transit_path(@conn, :new) %></span>
+<span><%= link "New Transit", to: Routes.transit_path(@conn, :new) %></span>

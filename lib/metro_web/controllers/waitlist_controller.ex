@@ -19,7 +19,7 @@ defmodule MetroWeb.WaitlistController do
       {:ok, waitlist} ->
         conn
         |> put_flash(:info, "Waitlist created successfully.")
-        |> redirect(to: waitlist_path(conn, :show, waitlist))
+        |> redirect(to: Routes.waitlist_path(conn, :show, waitlist))
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, "new.html", changeset: changeset)
     end
@@ -43,7 +43,7 @@ defmodule MetroWeb.WaitlistController do
       {:ok, waitlist} ->
         conn
         |> put_flash(:info, "Waitlist updated successfully.")
-        |> redirect(to: waitlist_path(conn, :show, waitlist))
+        |> redirect(to: Routes.waitlist_path(conn, :show, waitlist))
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, "edit.html", waitlist: waitlist, changeset: changeset)
     end
@@ -55,6 +55,6 @@ defmodule MetroWeb.WaitlistController do
 
     conn
     |> put_flash(:info, "Waitlist deleted successfully.")
-    |> redirect(to: waitlist_path(conn, :index))
+    |> redirect(to: Routes.waitlist_path(conn, :index))
   end
 end

@@ -1,0 +1,23 @@
+<h2>Show Checkout</h2>
+
+<ul>
+
+  <li>
+    <strong>Renewals remaining:</strong>
+    <%= @checkout.renewals_remaining %>
+  </li>
+
+  <li>
+    <strong>Checkout date:</strong>
+    <%= @checkout.checkout_date %>
+  </li>
+
+  <li>
+    <strong>Due date:</strong>
+    <%= @checkout.due_date %>
+  </li>
+
+</ul>
+
+<span><%= link "Edit", to: checkout_path(@conn, :edit, @checkout) %></span>
+<span><%= link "Back", to: checkout_path(@conn, :index) %></span>

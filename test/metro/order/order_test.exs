@@ -347,8 +347,8 @@ defmodule Metro.OrderTest do
       checkout = checkout_fixture()
       assert {:ok, checkout} = Order.update_checkout(checkout, @update_attrs)
       assert %Checkout{} = checkout
-      assert checkout.checkout_date == ~N[2011-05-18 15:01:01.000000]
-      assert checkout.due_date == ~N[2011-05-18 15:01:01.000000]
+      assert checkout.checkout_date == ~N[2011-05-18 15:01:01]
+      assert checkout.due_date == ~N[2011-05-18 15:01:01]
       assert checkout.renewals_remaining == 4
     end
 
@@ -560,7 +560,7 @@ defmodule Metro.OrderTest do
               |> Enum.into(%{checkout_id: checkout.id})
       assert {:ok, %Transit{} = transit} = Order.create_transit(attrs)
 #      assert transit.actual_arrival == ~N[2010-04-17 14:00:00.000000]
-      assert transit.estimated_arrival == ~N[2010-04-17 14:00:00.000000]
+      assert transit.estimated_arrival == ~N[2010-04-17 14:00:00]
     end
 
     test "create_transit/1 with invalid data returns error changeset" do
@@ -571,8 +571,8 @@ defmodule Metro.OrderTest do
       transit = transit_fixture()
       assert {:ok, transit} = Order.update_transit(transit, @update_attrs)
       assert %Transit{} = transit
-      assert transit.actual_arrival == ~N[2011-05-18 15:01:01.000000]
-      assert transit.estimated_arrival == ~N[2011-05-18 15:01:01.000000]
+      assert transit.actual_arrival == ~N[2011-05-18 15:01:01]
+      assert transit.estimated_arrival == ~N[2011-05-18 15:01:01]
     end
 
     test "update_transit/2 with invalid data returns error changeset" do
@@ -597,8 +597,8 @@ defmodule Metro.OrderTest do
   describe "reservations" do
     alias Metro.Order.Reservation
 
-    @valid_attrs %{expiration_date: ~N[2010-04-17 14:00:00.000000]}
-    @update_attrs %{expiration_date: ~N[2011-05-18 15:01:01.000000]}
+    @valid_attrs %{expiration_date: ~N[2010-04-17 14:00:00]}
+    @update_attrs %{expiration_date: ~N[2011-05-18 15:01:01]}
     @invalid_attrs %{expiration_date: nil, transit_id: nil}
 
     def reservation_fixture(attrs \\ %{}) do
@@ -622,7 +622,7 @@ defmodule Metro.OrderTest do
       attrs = params_for(:reservation)
               |> Enum.into(%{transit_id: transit.id})
       assert {:ok, %Reservation{} = reservation} = Order.create_reservation(attrs)
-      assert reservation.expiration_date == ~N[2010-04-17 14:00:00.000000]
+      assert reservation.expiration_date == ~N[2010-04-17 14:00:00]
     end
 
     test "create_reservation/1 with invalid data returns error changeset" do
@@ -633,7 +633,7 @@ defmodule Metro.OrderTest do
       reservation = reservation_fixture()
       assert {:ok, reservation} = Order.update_reservation(reservation, @update_attrs)
       assert %Reservation{} = reservation
-      assert reservation.expiration_date == ~N[2011-05-18 15:01:01.000000]
+      assert reservation.expiration_date == ~N[2011-05-18 15:01:01]
     end
 
     @tag reservation: "update"

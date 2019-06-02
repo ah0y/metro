@@ -20,13 +20,13 @@
       <td><%= library.hours %></td>
 
       <td class="text-right">
-        <span><%= link "Show", to: library_path(@conn, :show, library), class: "btn btn-default btn-xs" %></span>
-        <span><%= link "Edit", to: library_path(@conn, :edit, library), class: "btn btn-default btn-xs" %></span>
-        <span><%= link "Delete", to: library_path(@conn, :delete, library), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %></span>
+        <span><%= link "Show", to: Routes.library_path(@conn, :show, library), class: "btn btn-default btn-xs" %></span>
+        <span><%= link "Edit", to: Routes.library_path(@conn, :edit, library), class: "btn btn-default btn-xs" %></span>
+        <span><%= link "Delete", to: Routes.library_path(@conn, :delete, library), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %></span>
       </td>
     </tr>
 <% end %>
   </tbody>
 </table>
 
-<span><%= link "New Library", to: library_path(@conn, :new) %></span>
+<span><%= link "New Library", to: Routes.library_path(@conn, :new) %></span>

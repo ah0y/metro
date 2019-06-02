@@ -33,7 +33,7 @@ defmodule MetroWeb.CheckoutController do
       {:ok, order} ->
         conn
         |> put_flash(:info, "Checkout created successfully.")
-        |> redirect(to: user_path(conn, :show, conn.assigns.current_user.id))
+        |> redirect(to: Routes.user_path(conn, :show, conn.assigns.current_user.id))
       {:error, :checkout, %Ecto.Changeset{} = changeset, %{}} ->
         libraries = Location.load_libraries()
         render(conn, "new.html", changeset: changeset, isbn: Map.get(changeset.changes, :isbn_id ), card: card, libraries: libraries)
@@ -59,7 +59,7 @@ defmodule MetroWeb.CheckoutController do
       {:ok, checkout} ->
         conn
         |> put_flash(:info, "Checkout updated successfully.")
-        |> redirect(to: checkout_path(conn, :show, checkout))
+        |> redirect(to: Routes.checkout_path(conn, :show, checkout))
       {:error, %Ecto.Changeset{} = changeset} ->
         render(
           conn,
@@ -80,7 +80,7 @@ defmodule MetroWeb.CheckoutController do
       {:ok, checkout} ->
         conn
         |> put_flash(:info, "Checkout updated successfully.")
-        |> redirect(to: checkout_path(conn, :index))
+        |> redirect(to: Routes.checkout_path(conn, :index))
       {:error, _} ->
         IO.puts("error")
     end
@@ -92,7 +92,7 @@ defmodule MetroWeb.CheckoutController do
       {:ok, checkout} ->
         conn
         |> put_flash(:info, "Checkout processed successfully.")
-        |> redirect(to: checkout_path(conn, :index))
+        |> redirect(to: Routes.checkout_path(conn, :index))
       {:error, _} ->
         IO.puts("error")
     end
@@ -104,6 +104,6 @@ defmodule MetroWeb.CheckoutController do
 
     conn
     |> put_flash(:info, "Checkout deleted successfully.")
-    |> redirect(to: checkout_path(conn, :index))
+    |> redirect(to: Routes.checkout_path(conn, :index))
   end
 end

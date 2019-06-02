@@ -9,5 +9,5 @@
 
 </ul>
 
-<span><%= link "Edit", to: room_path(@conn, :edit, @room) %></span>
-<span><%= link "Back", to: room_path(@conn, :index) %></span>
+<span><%= link "Edit", to: Routes.room_path(@conn, :edit, @room) %></span>
+<span><%= link "Back", to: Routes.room_path(@conn, :index) %></span>

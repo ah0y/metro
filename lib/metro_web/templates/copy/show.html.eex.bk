@@ -1,0 +1,13 @@
+<h2>Show Copy</h2>
+
+<ul>
+
+  <li>
+    <strong>Checked out?:</strong>
+    <%= @copy.checked_out? %>
+  </li>
+
+</ul>
+
+<span><%= link "Edit", to: copy_path(@conn, :edit, @copy) %></span>
+<span><%= link "Back", to: copy_path(@conn, :index) %></span>

@@ -15,5 +15,5 @@
 
 </ul>
 
-<span><%= link "Edit", to: card_path(@conn, :edit, @card) %></span>
-<span><%= link "Back", to: card_path(@conn, :index) %></span>
+<span><%= link "Edit", to: Routes.card_path(@conn, :edit, @card) %></span>
+<span><%= link "Back", to: Routes.card_path(@conn, :index) %></span>

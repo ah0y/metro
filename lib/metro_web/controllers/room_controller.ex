@@ -19,7 +19,7 @@ defmodule MetroWeb.RoomController do
       {:ok, room} ->
         conn
         |> put_flash(:info, "Room created successfully.")
-        |> redirect(to: room_path(conn, :show, room))
+        |> redirect(to: Routes.room_path(conn, :show, room))
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, "new.html", changeset: changeset)
     end
@@ -43,7 +43,7 @@ defmodule MetroWeb.RoomController do
       {:ok, room} ->
         conn
         |> put_flash(:info, "Room updated successfully.")
-        |> redirect(to: room_path(conn, :show, room))
+        |> redirect(to: Routes.room_path(conn, :show, room))
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, "edit.html", room: room, changeset: changeset)
     end
@@ -55,6 +55,6 @@ defmodule MetroWeb.RoomController do
 
     conn
     |> put_flash(:info, "Room deleted successfully.")
-    |> redirect(to: room_path(conn, :index))
+    |> redirect(to: Routes.room_path(conn, :index))
   end
 end

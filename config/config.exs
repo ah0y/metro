@@ -23,6 +23,9 @@ config :metro,
        pubsub: [
          name: Metro.PubSub,
          adapter: Phoenix.PubSub.PG2
+       ],
+       live_view: [
+         signing_salt: "GV7b0gmxZpdnCHpnqT8EmcK8ipehEuha"
        ]
 
 # Configures Elixir's Logger
@@ -64,3 +67,5 @@ config :canary, repo: Metro.Repo
 
 config :scrivener_html,
        routes_helper: MetroWeb.Router.Helpers
+
+config :phoenix, :json_library, Jason

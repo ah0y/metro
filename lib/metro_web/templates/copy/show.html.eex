@@ -9,5 +9,5 @@
 
 </ul>
 
-<span><%= link "Edit", to: copy_path(@conn, :edit, @copy) %></span>
-<span><%= link "Back", to: copy_path(@conn, :index) %></span>
+<span><%= link "Edit", to: Routes.copy_path(@conn, :edit, @copy) %></span>
+<span><%= link "Back", to: Routes.copy_path(@conn, :index) %></span>

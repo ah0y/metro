@@ -47,11 +47,11 @@ defmodule MetroWeb.BookController do
       {:ok, book} ->
         conn
         |> put_flash(:info, "Book created successfully.")
-        |> redirect(to: book_path(conn, :show, book))
+        |> redirect(to: Routes.book_path(conn, :show, book))
       {:error, %Ecto.Changeset{} = changeset} ->
         case Enum.at(changeset.errors, 0) do
           {:isbn, {"has already been taken", _}} ->
-            redirect(conn, to: copy_path(conn, :new, isbn: book_params["isbn"]))
+            redirect(conn, to: Routes.copy_path(conn, :new, isbn: book_params["isbn"]))
           {:author_id, {"can't be blank", [validation: :required]}} ->
             authors = Location.load_authors()
             render(conn, "new.html", changeset: changeset, authors: authors)
@@ -67,7 +67,7 @@ defmodule MetroWeb.BookController do
                 {:ok, book} ->
                   conn
                   |> put_flash(:info, "Book created successfully.")
-                  |> redirect(to: book_path(conn, :show, book))
+                  |> redirect(to: Routes.book_path(conn, :show, book))
                 {:error, %Ecto.Changeset{} = changeset} ->
                   authors = Location.load_authors()
                   render(conn, "new.html", changeset: changeset, authors: authors)
@@ -102,7 +102,7 @@ defmodule MetroWeb.BookController do
       {:ok, book} ->
         conn
         |> put_flash(:info, "Book updated successfully.")
-        |> redirect(to: book_path(conn, :show, book))
+        |> redirect(to: Routes.book_path(conn, :show, book))
       {:error, %Ecto.Changeset{} = changeset} ->
         authors = Location.load_authors()
         render(conn, "edit.html", book: book, changeset: changeset, authors: authors)
@@ -115,6 +115,6 @@ defmodule MetroWeb.BookController do
 
     conn
     |> put_flash(:info, "Book deleted successfully.")
-    |> redirect(to: book_path(conn, :index))
+    |> redirect(to: Routes.book_path(conn, :index))
   end
 end

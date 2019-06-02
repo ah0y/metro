@@ -1,0 +1,26 @@
+<h2>Listing Waitlist</h2>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Position</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for waitlist <- @waitlist do %>
+    <tr>
+      <td><%= waitlist.position %></td>
+
+      <td class="text-right">
+        <span><%= link "Show", to: waitlist_path(@conn, :show, waitlist), class: "btn btn-default btn-xs" %></span>
+        <span><%= link "Edit", to: waitlist_path(@conn, :edit, waitlist), class: "btn btn-default btn-xs" %></span>
+        <span><%= link "Delete", to: waitlist_path(@conn, :delete, waitlist), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %></span>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
+
+<span><%= link "New Waitlist", to: waitlist_path(@conn, :new) %></span>

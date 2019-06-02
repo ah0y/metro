@@ -19,7 +19,7 @@ defmodule MetroWeb.LibraryController do
       {:ok, library} ->
         conn
         |> put_flash(:info, "Library created successfully.")
-        |> redirect(to: library_path(conn, :show, library))
+        |> redirect(to: Routes.library_path(conn, :show, library))
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, "new.html", changeset: changeset)
     end
@@ -43,7 +43,7 @@ defmodule MetroWeb.LibraryController do
       {:ok, library} ->
         conn
         |> put_flash(:info, "Library updated successfully.")
-        |> redirect(to: library_path(conn, :show, library))
+        |> redirect(to: Routes.library_path(conn, :show, library))
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, "edit.html", library: library, changeset: changeset)
     end
@@ -55,6 +55,6 @@ defmodule MetroWeb.LibraryController do
 
     conn
     |> put_flash(:info, "Library deleted successfully.")
-    |> redirect(to: library_path(conn, :index))
+    |> redirect(to: Routes.library_path(conn, :index))
   end
 end

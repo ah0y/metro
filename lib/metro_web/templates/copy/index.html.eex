@@ -14,13 +14,13 @@
       <td><%= copy.checked_out? %></td>
 
       <td class="text-right">
-        <span><%= link "Show", to: copy_path(@conn, :show, copy), class: "btn btn-default btn-xs" %></span>
-        <span><%= link "Edit", to: copy_path(@conn, :edit, copy), class: "btn btn-default btn-xs" %></span>
-        <span><%= link "Delete", to: copy_path(@conn, :delete, copy), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %></span>
+        <span><%= link "Show", to: Routes.copy_path(@conn, :show, copy), class: "btn btn-default btn-xs" %></span>
+        <span><%= link "Edit", to: Routes.copy_path(@conn, :edit, copy), class: "btn btn-default btn-xs" %></span>
+        <span><%= link "Delete", to: Routes.copy_path(@conn, :delete, copy), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %></span>
       </td>
     </tr>
 <% end %>
   </tbody>
 </table>
 
-<span><%= link "New Copy", to: copy_path(@conn, :new) %></span>
+<span><%= link "New Copy", to: Routes.copy_path(@conn, :new) %></span>

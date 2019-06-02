@@ -9,5 +9,5 @@
 
 </ul>
 
-<span><%= link "Edit", to: waitlist_path(@conn, :edit, @waitlist) %></span>
-<span><%= link "Back", to: waitlist_path(@conn, :index) %></span>
+<span><%= link "Edit", to: Routes.waitlist_path(@conn, :edit, @waitlist) %></span>
+<span><%= link "Back", to: Routes.waitlist_path(@conn, :index) %></span>

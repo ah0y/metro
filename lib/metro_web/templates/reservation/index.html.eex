@@ -14,13 +14,13 @@
       <td><%= reservation.expiration_date %></td>
 
       <td class="text-right">
-        <span><%= link "Show", to: reservation_path(@conn, :show, reservation), class: "btn btn-default btn-xs" %></span>
-        <span><%= link "Edit", to: reservation_path(@conn, :edit, reservation), class: "btn btn-default btn-xs" %></span>
-        <span><%= link "Delete", to: reservation_path(@conn, :delete, reservation), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %></span>
+        <span><%= link "Show", to: Routes.reservation_path(@conn, :show, reservation), class: "btn btn-default btn-xs" %></span>
+        <span><%= link "Edit", to: Routes.reservation_path(@conn, :edit, reservation), class: "btn btn-default btn-xs" %></span>
+        <span><%= link "Delete", to: Routes.reservation_path(@conn, :delete, reservation), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %></span>
       </td>
     </tr>
 <% end %>
   </tbody>
 </table>
 
-<span><%= link "New Reservation", to: reservation_path(@conn, :new) %></span>
+<span><%= link "New Reservation", to: Routes.reservation_path(@conn, :new) %></span>

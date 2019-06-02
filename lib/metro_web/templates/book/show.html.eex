@@ -1,5 +1,5 @@
 <h2><%= @book.title %> (<%= @book.year %>)</h2>
-<h4><%= link @book.author.last_name <> ", " <> @book.author.first_name, to: author_path(@conn, :show, @book.author_id) %> </h4>
+<h4><%= link @book.author.last_name <> ", " <> @book.author.first_name, to: Routes.author_path(@conn, :show, @book.author_id) %> </h4>
 
 <div class="container">
 
@@ -25,12 +25,12 @@
   <% else %>
     <td>AVAILABLE</td>
   <% end %>
-    <td> <%= link copy.library_id , to: library_path(@conn, :show, copy.library_id), target: "_blank"%></td>
+    <td> <%= link copy.library_id , to: Routes.library_path(@conn, :show, copy.library_id), target: "_blank"%></td>
   </tbody>
 
   </table>
     <div>
-        <span><%= link "Place Hold", to: checkout_path(@conn, :new), class: "btn btn-default btn-xs" %></span>
+        <span><%= link "Place Hold", to: Routes.checkout_path(@conn, :new), class: "btn btn-default btn-xs" %></span>
     </div>
 <% end %>
 </div>
@@ -41,5 +41,5 @@
 
 
 
-<span><%= link "Edit", to: book_path(@conn, :edit, @book) %></span>
-<span><%= link "Back", to: book_path(@conn, :index) %></span>
+<span><%= link "Edit", to: Routes.book_path(@conn, :edit, @book) %></span>
+<span><%= link "Back", to: Routes.book_path(@conn, :index) %></span>

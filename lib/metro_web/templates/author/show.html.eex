@@ -41,9 +41,9 @@
       <td><%= book.pages %></td>
 
       <td class="text-right">
-        <span><%= link "Show", to: book_path(@conn, :show, book), class: "btn btn-default btn-xs" %></span>
-        <span><%= link "Edit", to: book_path(@conn, :edit, book), class: "btn btn-default btn-xs" %></span>
-        <span><%= link "Delete", to: book_path(@conn, :delete, book), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %></span>
+        <span><%= link "Show", to: Routes.book_path(@conn, :show, book), class: "btn btn-default btn-xs" %></span>
+        <span><%= link "Edit", to: Routes.book_path(@conn, :edit, book), class: "btn btn-default btn-xs" %></span>
+        <span><%= link "Delete", to: Routes.book_path(@conn, :delete, book), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %></span>
       </td>
     </tr>
 <% end %>
@@ -52,5 +52,5 @@
 
 
 </div>
-<span><%= link "Edit", to: author_path(@conn, :edit, @author) %></span>
-<span><%= link "Back", to: author_path(@conn, :index) %></span>
+<span><%= link "Edit", to: Routes.author_path(@conn, :edit, @author) %></span>
+<span><%= link "Back", to: Routes.author_path(@conn, :index) %></span>

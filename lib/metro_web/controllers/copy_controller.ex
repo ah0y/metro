@@ -26,7 +26,7 @@ defmodule MetroWeb.CopyController do
       {:ok, copy} ->
         conn
         |> put_flash(:info, "Copy created successfully.")
-        |> redirect(to: copy_path(conn, :show, copy))
+        |> redirect(to: Routes.copy_path(conn, :show, copy))
       {:error, %Ecto.Changeset{} = changeset} ->
         libraries = Location.load_libraries()
         render(conn, "new.html", libraries: libraries, changeset: changeset)
@@ -52,7 +52,7 @@ defmodule MetroWeb.CopyController do
       {:ok, copy} ->
         conn
         |> put_flash(:info, "Copy updated successfully.")
-        |> redirect(to: copy_path(conn, :show, copy))
+        |> redirect(to: Routes.copy_path(conn, :show, copy))
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, "edit.html", copy: copy, changeset: changeset, libraries: libraries)
     end
@@ -64,6 +64,6 @@ defmodule MetroWeb.CopyController do
 
     conn
     |> put_flash(:info, "Copy deleted successfully.")
-    |> redirect(to: copy_path(conn, :index))
+    |> redirect(to: Routes.copy_path(conn, :index))
   end
 end

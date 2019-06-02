@@ -1,0 +1,5 @@
+<h2>Edit Waitlist</h2>
+
+<%= render "form.html", Map.put(assigns, :action, waitlist_path(@conn, :update, @waitlist)) %>
+
+<span><%= link "Back", to: waitlist_path(@conn, :index) %></span>

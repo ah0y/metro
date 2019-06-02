@@ -1,4 +1,5 @@
-<%= form_for @conn, book_path(@conn, :index), [as: "search", method: :get], fn f -> %>
+<h2>Listing Books</h2>
+<%= form_for @conn, Routes.book_path(@conn, :index), [as: "search", method: :get], fn f -> %>
    <%= select f, :search_by, ["title": "title", "summary": "summary", "author": "author"], selected: "title" %>
   <label>
     <%= text_input f, :query %>
@@ -29,9 +30,9 @@
       <td><%= book.pages %></td>
 
       <td class="text-right">
-        <span><%= link "Show", to: book_path(@conn, :show, book), class: "btn btn-default btn-xs" %></span>
-        <span><%= link "Edit", to: book_path(@conn, :edit, book), class: "btn btn-default btn-xs" %></span>
-        <span><%= link "Delete", to: book_path(@conn, :delete, book), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %></span>
+        <span><%= link "Show", to: Routes.book_path(@conn, :show, book), class: "btn btn-default btn-xs" %></span>
+        <span><%= link "Edit", to: Routes.book_path(@conn, :edit, book), class: "btn btn-default btn-xs" %></span>
+        <span><%= link "Delete", to: Routes.book_path(@conn, :delete, book), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %></span>
       </td>
     </tr>
 <% end %>
@@ -39,7 +40,7 @@
 </table>
 
 <div>
-<span><%= link "New Book", to: book_path(@conn, :new) %></span>
+<span><%= link "New Book", to: Routes.book_path(@conn, :new) %></span>
 
 </div>
 

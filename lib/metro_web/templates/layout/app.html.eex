@@ -11,7 +11,7 @@
 
     <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
+    <link rel="stylesheet" href="<%= Routes.static_path(@conn, "/css/app.css") %>">
   </head>
 
   <body>
@@ -26,7 +26,7 @@
                                       <span class="caret"></span>
                                   </a>
                                   <ul class="dropdown-menu dropdown-menu-right">
-                                      <li><%= link "books", to: book_path(@conn, :index) %></li>
+                                      <li><%= link "books", to: Routes.book_path(@conn, :index) %></li>
                                   </ul>
                            </div>
                             <div class="dropdown" style="display:inline-block">
@@ -36,13 +36,13 @@
                                     <span class="caret"></span>
                                 </a>
                                 <ul class="dropdown-menu dropdown-menu-right">
-                                     <li><%= link "profile", to: user_path(@conn, :show, Coherence.current_user(@conn) ) %></li>
-                                    <li><%= link "log out", to: session_path(@conn, :delete), method: "delete" %></li>
+                                     <li><%= link "profile", to: Routes.user_path(@conn, :show, Coherence.current_user(@conn) ) %></li>
+                                    <li><%= link "log out", to: Routes.session_path(@conn, :delete), method: "delete" %></li>
                                 </ul>
                             </div>
                             <% else %>
-                <li><%= link "register", to: registration_path(@conn, :new) %></li>
-                <li><%= link "log in", to: session_path(@conn, :new) %></li>
+                <li><%= link "register", to: Routes.registration_path(@conn, :new) %></li>
+                <li><%= link "log in", to: Routes.session_path(@conn, :new) %></li>
                                 <% end %>
 
             </ul>
@@ -62,6 +62,6 @@
       </main>
 
     </div> <!-- /container -->
-    <script src="<%= static_path(@conn, "/js/app.js") %>"></script>
+    <script src="<%= Routes.static_path(@conn, "/js/app.js") %>"></script>
   </body>
 </html>

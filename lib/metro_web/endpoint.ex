@@ -1,18 +1,26 @@
 defmodule MetroWeb.Endpoint do
   use Phoenix.Endpoint, otp_app: :metro
 
-  socket "/socket", MetroWeb.UserSocket
+  socket "/live", Phoenix.LiveView.Socket
+
+  socket "/socket",
+         MetroWeb.UserSocket,
+         websocket: true,
+           # or list of options
+         longpoll: false
 
   # Serve at "/" the static files from "priv/static" directory.
   #
   # You should set gzip to true if you are running phoenix.digest
   # when deploying your static files in production.
   plug Plug.Static,
-    at: "/", from: :metro, gzip: false,
-    only: ~w(css fonts images js favicon.ico robots.txt)
+       at: "/",
+       from: :metro,
+       gzip: false,
+       only: ~w(css fonts images js favicon.ico robots.txt)
 
-  # Code reloading can be explicitly enabled under the
-  # :code_reloader configuration of your endpoint.
+         # Code reloading can be explicitly enabled under the
+         # :code_reloader configuration of your endpoint.
   if code_reloading? do
     socket "/phoenix/live_reload/socket", Phoenix.LiveReloader.Socket
     plug Phoenix.LiveReloader
@@ -22,9 +30,9 @@ defmodule MetroWeb.Endpoint do
   plug Plug.Logger
 
   plug Plug.Parsers,
-    parsers: [:urlencoded, :multipart, :json],
-    pass: ["*/*"],
-    json_decoder: Poison
+       parsers: [:urlencoded, :multipart, :json],
+       pass: ["*/*"],
+       json_decoder: Jason
 
   plug Plug.MethodOverride
   plug Plug.Head
@@ -33,9 +41,9 @@ defmodule MetroWeb.Endpoint do
   # this means its contents can be read but not tampered with.
   # Set :encryption_salt if you would also like to encrypt it.
   plug Plug.Session,
-    store: :cookie,
-    key: "_metro_key",
-    signing_salt: "NfWbiWHR"
+       store: :cookie,
+       key: "_metro_key",
+       signing_salt: "NfWbiWHR"
 
   plug MetroWeb.Router
 
