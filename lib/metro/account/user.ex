@@ -25,7 +25,7 @@ defmodule Metro.Account.User do
     timestamps()
   end
 
-  def changeset(model, params \\ %{}, :registration) do
+  def changeset(model, params \\ %{}) do
     model
     |> cast(params, [:name, :email, :fines, :is_librarian?, :num_books_out, :library_id] ++ coherence_fields())
     |> validate_required([:name, :email])
