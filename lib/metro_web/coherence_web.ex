@@ -10,8 +10,7 @@ defmodule MetroWeb.Coherence do
 
       # Use all HTML functionality (forms, tags, etc)
       use Phoenix.HTML
-
-      import MetroWeb.Router.Helpers
+      alias MetroWeb.Router.Helpers, as: Routes
       import MetroWeb.ErrorHelpers
       import MetroWeb.Gettext
       import MetroWeb.Coherence.ViewHelpers
@@ -27,7 +26,7 @@ defmodule MetroWeb.Coherence do
       import Ecto
       import Ecto.Query
       import Plug.Conn
-      import MetroWeb.Router.Helpers
+      alias MetroWeb.Router.Helpers, as: Routes
       import MetroWeb.Gettext
       import Coherence.Controller
 
