@@ -3,13 +3,95 @@ defmodule MetroWeb.CopyController do
 
   alias Metro.Location
   alias Metro.Location.Copy
+  alias Metro.Order.Checkout
 
-  def index(conn, _params) do
-    copies = Location.list_copies()
-    render(conn, "index.html", copies: copies)
+  import Ecto.Query
+
+  def work(
+        conn,
+        %{
+          "_utf8" => status,
+          "search" => %{
+            "library" => library
+          }
+        } = params
+      ) do
+
+    query_params = from c in Copy,
+                        join: ch in Checkout,
+                        where: ch.copy_id == c.id,
+                        where: c.library_id == ^library,
+                        order_by: [
+                          desc: ch.inserted_at
+                        ],
+                        select: %{
+                          id: c.id,
+                          checked_out?: c.checked_out?,
+                          library_id: c.library_id,
+                          isbn_id: c.isbn_id,
+                          destination: ch.library_id,
+                          checkout_date: ch.inserted_at
+                        }
+
+    page = Metro.Repo.paginate(query_params)
+    libraries = Location.load_libraries()
+    render conn, "work.html", copies: page.entries, libraries: libraries, page: page
   end
 
-  def new(conn,  %{"isbn"=> isbn}) do
+
+  def work(conn, params = %{}) do
+    query_params = from c in Copy,
+                        join: ch in Checkout,
+                        where: ch.copy_id == c.id,
+                        where: c.library_id == 1,
+                        order_by: [
+                          desc: ch.inserted_at
+                        ],
+                        select: %{
+                          id: c.id,
+                          checked_out?: c.checked_out?,
+                          library_id: c.library_id,
+                          isbn_id: c.isbn_id,
+                          destination: ch.library_id,
+                          checkout_date: ch.inserted_at
+                        }
+
+    page = Metro.Repo.paginate(query_params)
+    libraries = Location.load_libraries()
+    render(conn, "work.html", copies: page.entries, libraries: libraries, page: page)
+  end
+
+  def index(
+        conn,
+        %{
+          "_utf8" => status,
+          "search" => %{
+            "query" => query,
+            "search_by" => search_by
+          }
+        } = params
+      ) do
+
+    search_by =
+      search_by
+      |> String.to_atom()
+
+    query_params = from b in Copy, where: field(b, ^search_by) == ^query
+
+    page = Metro.Repo.paginate(query_params)
+
+    render conn, "index.html", copies: page.entries, page: page
+  end
+
+  def index(conn, params = %{}) do
+    page = Copy
+           # Other query conditions can be done here
+           |> Metro.Repo.paginate(params)
+
+    render conn, "index.html", copies: page.entries, page: page
+  end
+
+  def new(conn, %{"isbn" => isbn}) do
     libraries = Location.load_libraries()
     changeset = Location.change_copy(%Copy{})
     render(conn, "new.html", changeset: changeset, libraries: libraries, isbn: isbn)

@@ -1,13 +1,22 @@
 <h2>Listing Transit</h2>
 
+
+<%= form_for @conn, Routes.transit_path(@conn, :index), [as: "search", method: :get], fn f -> %>
+   <%= select f, :library, Enum.map(@libraries, &{&1.id, &1.id}), selected: "1" %>
+     <label>
+       <%= text_input f, :query %>
+     </label>
+  <%= submit "Submit" %>
+<% end %>
+
 <table class="table">
   <thead>
     <tr>
       <th>Estimated arrival</th>
       <th>Actual arrival</th>
       <th>Library</th>
-      <th>Book</th>
-
+      <th>Checkout</th>
+      <th>Copy</th>
       <th></th>
     </tr>
   </thead>
@@ -16,14 +25,15 @@
     <tr>
       <td><%= transit.estimated_arrival %></td>
       <td><%= transit.actual_arrival %></td>
-      <td><%= transit.checkout.library_id %></td>
-      <td><%= transit.checkout.copy_id %></td>
+      <td><%= transit.destination %></td>
+      <td><%= transit.checkout_id %></td>
+      <td><%= transit.copy_id %></td>
 
       <td class="text-right">
-        <span><%= link "Show", to: Routes.transit_path(@conn, :show, transit), class: "btn btn-default btn-xs" %></span>
-        <span><%= link "Edit", to: Routes.transit_path(@conn, :edit, transit), class: "btn btn-default btn-xs" %></span>
-        <span><%= link "Complete Transit", to: Routes.transit_path(@conn, :update, transit), method: :put, class: "btn btn-default btn-xs" %></span>
-        <span><%= link "Delete", to: Routes.transit_path(@conn, :delete, transit), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %></span>
+        <span><%= link "Show", to: Routes.transit_path(@conn, :show, transit.id), class: "btn btn-default btn-xs" %></span>
+        <span><%= link "Edit", to: Routes.transit_path(@conn, :edit, transit.id), class: "btn btn-default btn-xs" %></span>
+        <span><%= link "Complete Transit", to: Routes.transit_path(@conn, :update, transit.id), method: :put, class: "btn btn-default btn-xs" %></span>
+        <span><%= link "Delete", to: Routes.transit_path(@conn, :delete, transit.id), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %></span>
       </td>
     </tr>
 <% end %>

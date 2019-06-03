@@ -1,0 +1,37 @@
+<h2>Listing Work</h2>
+
+
+<%= form_for @conn, Routes.copy_path(@conn, :work), [as: "search", method: :get], fn f -> %>
+   <%= select f, :library, Enum.map(@libraries, &{&1.id, &1.id}), selected: "1" %>
+  <%= submit "Submit" %>
+<% end %>
+
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>Checked out?</th>
+      <th>Library</th>
+      <th>ISBN</th>
+      <th>Destination library</th>
+      <th>Checkout Date</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for copy <- @copies do %>
+    <tr>
+      <td><%= copy.id %></td>
+      <td><%= copy.checked_out? %></td>
+      <td><%= copy.library_id %></td>
+      <td><%= copy.isbn_id %></td>
+      <td><%= copy.destination %></td>
+      <td><%= copy.checkout_date %></td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
+
+<%= pagination_links @page, distance: 10, first: "<<", previous: "<", next: ">", last: ">>", ellipsis: false %>
+

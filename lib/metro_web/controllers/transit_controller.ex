@@ -2,12 +2,57 @@ defmodule MetroWeb.TransitController do
   use MetroWeb, :controller
 
   alias Metro.Order
+  alias Metro.Location
   alias Metro.Order.Transit
   alias Metro.Order.Reservation
+  alias Metro.Order.Checkout
 
-  def index(conn, _params) do
-    transit = Order.list_transit()
-    render(conn, "index.html", transit: transit)
+  import Ecto.Query
+
+  def index(
+        conn,
+        %{
+          "_utf8" => status,
+          "search" => %{
+            "query" => query,
+            "library" => library
+          }
+        } = params
+      ) do
+
+    query_params = from t in Transit,
+                        join: ch in Checkout,
+                        where: t.checkout_id == ch.id,
+                        where: ch.library_id == ^library,
+                        select: %{
+                          id: t.id,
+                          checkout_id: ch.id,
+                          copy_id: ch.copy_id,
+                          destination: ch.library_id,
+                          estimated_arrival: t.estimated_arrival,
+                          actual_arrival: t.actual_arrival
+                        }
+    page = Metro.Repo.paginate(query_params)
+    libraries = Location.load_libraries()
+    render(conn, "index.html", transit: page.entries, libraries: libraries, page: page)
+  end
+
+  def index(conn, params = %{}) do
+    query_params = from t in Transit,
+                        join: ch in Checkout,
+                        where: t.checkout_id == ch.id,
+                        where: ch.library_id == 1,
+                        select: %{
+                          id: t.id,
+                          checkout_id: ch.id,
+                          copy_id: ch.copy_id,
+                          destination: ch.library_id,
+                          estimated_arrival: t.estimated_arrival,
+                          actual_arrival: t.actual_arrival
+                        }
+    page =  Metro.Repo.paginate(query_params)
+    libraries = Location.load_libraries()
+    render conn, "index.html", transit: page.entries, page: page, libraries: libraries
   end
 
   def new(conn, _params) do

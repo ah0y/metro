@@ -1,5 +1,0 @@
-<h2>Edit Copy</h2>
-
-<%= render "form.html", Map.put(assigns, :action, copy_path(@conn, :update, @copy)) %>
-
-<span><%= link "Back", to: copy_path(@conn, :index) %></span>

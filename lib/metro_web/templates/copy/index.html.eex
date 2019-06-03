@@ -1,17 +1,32 @@
 <h2>Listing Copies</h2>
 
+
+<%= form_for @conn, Routes.copy_path(@conn, :index), [as: "search", method: :get], fn f -> %>
+   <%= select f, :search_by, ["id": "id", "checked_out?": "checked_out?", "library_id": "library_id", "isbn_id": "isbn_id"], selected: "id" %>
+     <label>
+       <%= text_input f, :query %>
+     </label>
+  <%= submit "Submit" %>
+<% end %>
+
+
 <table class="table">
   <thead>
     <tr>
+      <th>Id</th>
       <th>Checked out?</th>
-
+      <th>Library</th>
+      <th>ISBN</th>
       <th></th>
     </tr>
   </thead>
   <tbody>
 <%= for copy <- @copies do %>
     <tr>
+      <td><%= copy.id %></td>
       <td><%= copy.checked_out? %></td>
+      <td><%= copy.library_id %></td>
+      <td><%= copy.isbn_id %></td>
 
       <td class="text-right">
         <span><%= link "Show", to: Routes.copy_path(@conn, :show, copy), class: "btn btn-default btn-xs" %></span>
@@ -23,4 +38,9 @@
   </tbody>
 </table>
 
-<span><%= link "New Copy", to: Routes.copy_path(@conn, :new) %></span>
+<div>
+    <span><%= link "New Copy", to: Routes.copy_path(@conn, :new) %></span>
+</div>
+
+<%= pagination_links @page, distance: 10, first: "<<", previous: "<", next: ">", last: ">>", ellipsis: false %>
+

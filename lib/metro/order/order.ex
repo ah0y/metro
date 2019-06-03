@@ -542,8 +542,7 @@ defmodule Metro.Order do
 
   def create_transit(checkout, copy) do
     copy_location = copy.library_id
-    case checkout.library_id do
-      copy_location ->
+    if checkout.library_id  == copy_location do
         #pickup location is same as where the book actually is so number of days in transit == 1
         %Transit{}
         |> Transit.changeset(
@@ -554,7 +553,7 @@ defmodule Metro.Order do
              }
            )
         |> Repo.insert()
-      _ ->
+      else
         %Transit{}
         |> Transit.changeset(
              %{
