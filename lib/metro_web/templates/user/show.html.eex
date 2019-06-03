@@ -1,7 +1,5 @@
 <h2>Show User</h2>
 
-<ul>
-
   <li>
     <strong>Name:</strong>
     <%= @user.name %>
@@ -22,12 +20,124 @@
     <%= @user.is_librarian? %>
   </li>
 
-  <li>
-    <strong>Num of books out:</strong>
-    <%= @user.num_books_out %>
-  </li>
+<h3>Checked Out</h3>
+<table class="table">
+  <thead>
+    <tr>
+      <th></th>
+      <th>renewals_remaining</th>
+      <th>checkout_date</th>
+      <th>due_date</th>
+      <th>isbn_id</th>
+    </tr>
+  </thead>
+  <tbody>
 
-</ul>
+  <%= for checkout <- Map.get(@checkouts, :checked_out) do %>
+       <tr>
+           <td><img src="https://contentcafe2.btol.com/ContentCafe/Jacket.aspx?&userID=CLOH21163&password=CC44366&Value=<%= checkout.isbn_id%>&content=M&Return=1&Type=M"height="180" width="120"</img></td>
+           <td><%= checkout.renewals_remaining %></td>
+           <td><%= checkout.checkout_date %></td>
+           <td><%= checkout.due_date %></td>
+           <td><%= checkout.isbn_id %></td>
+       </tr>
+  <% end %>
+
+  </tbody>
+</table>
+
+<h3>Ready for Pickup</h3>
+<table class="table">
+  <thead>
+    <tr>
+      <th></th>
+      <th>expiration_date</th>
+      <th>library_id</th>
+      <th>isbn_id</th>
+    </tr>
+  </thead>
+  <tbody>
+
+  <%= for checkout <- Map.get(@checkouts, :pickup) do %>
+      <tr>
+          <td><img src="https://contentcafe2.btol.com/ContentCafe/Jacket.aspx?&userID=CLOH21163&password=CC44366&Value=<%= checkout.isbn_id%>&content=M&Return=1&Type=M"height="180" width="120"</img></td>
+          <td><%= checkout.reservation.expiration_date %></td>
+          <td><%= checkout.library_id %></td>
+          <td><%= checkout.isbn_id %></td>
+      </tr>
+  <% end %>
+
+  </tbody>
+</table>
+
+<h3>Transit</h3>
+<table class="table">
+  <thead>
+    <tr>
+      <th></th>
+      <th>estimated_arrival</th>
+      <th>library_id</th>
+      <th>isbn_id</th>
+    </tr>
+  </thead>
+  <tbody>
+
+  <%= for checkout <- Map.get(@checkouts, :transit) do %>
+      <tr>
+          <td><img src="https://contentcafe2.btol.com/ContentCafe/Jacket.aspx?&userID=CLOH21163&password=CC44366&Value=<%= checkout.isbn_id%>&content=M&Return=1&Type=M"height="180" width="120"</img></td>
+          <td><%= checkout.transit.estimated_arrival %></td>
+          <td><%= checkout.library_id %></td>
+          <td><%= checkout.isbn_id %></td>
+      </tr>
+  <% end %>
+
+  </tbody>
+</table>
+
+<h3>Waitlist</h3>
+<table class="table">
+  <thead>
+    <tr>
+      <th></th>
+      <th>position</th>
+      <th>isbn_id</th>
+    </tr>
+  </thead>
+  <tbody>
+
+  <%= for checkout <- Map.get(@checkouts, :waitlist) do %>
+      <tr>
+          <td><img src="https://contentcafe2.btol.com/ContentCafe/Jacket.aspx?&userID=CLOH21163&password=CC44366&Value=<%= checkout.isbn_id%>&content=M&Return=1&Type=M"height="180" width="120"</img></td>
+          <td><%= Enum.at(checkout.waitlists,0).position %></td>
+          <td><%= checkout.isbn_id %></td>
+      </tr>
+  <% end %>
+
+  </tbody>
+</table>
+
+<h3>Previously Checked Out</h3>
+<table class="table">
+  <thead>
+    <tr>
+      <th></th>
+      <th>checkin_date</th>
+      <th>isbn_id</th>
+    </tr>
+  </thead>
+  <tbody>
+
+  <%= for checkout <- Map.get(@checkouts, :checked_in) do %>
+      <tr>
+          <td><img src="https://contentcafe2.btol.com/ContentCafe/Jacket.aspx?&userID=CLOH21163&password=CC44366&Value=<%= checkout.isbn_id%>&content=M&Return=1&Type=M"height="180" width="120"</img></td>
+          <td><%= checkout.checkin_date %></td>
+          <td><%= checkout.isbn_id %></td>
+      </tr>
+  <% end %>
+
+  </tbody>
+</table>
+
 <%= if @user.card == nil do %>
  <div>
  <span><%= link "sign up for a new card", to: Routes.card_path(@conn, :new) %></span>

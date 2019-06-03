@@ -25,7 +25,7 @@ Metro.Repo.insert!(
     bio: "Haruki Murakami was born in Kyoto in 1949 and now lives near Tokyo. His work has been translated into more than fifty languages, and the most recent of his many international honors is the Jerusalem Prize, whose previous recipients include J. M. Coetzee, Milan Kundera, and V. S. Naipaul.",
     books: [
       %Book{
-        isbn: 9780679446698,
+        isbn: 9780679446699,
         title: "The Wind-Up Bird Chronicle",
         year: 1997,
         summary: "In a Tokyo suburb a young man named Toru Okada searches for his wife's missing cat.  Soon he finds himself looking for his wife as well in a netherworld that lies beneath the placid surface of Tokyo.  As these searches intersect, Okada encounters a bizarre group of allies and antagonists: a psychic prostitute; a malevolent yet mediagenic politician; a cheerfully morbid sixteen-year-old-girl; and an aging war veteran who has been permanently changed by the hideous things he witnessed during Japan's forgotten campaign in Manchuria.",
@@ -168,7 +168,7 @@ Metro.Repo.insert!(
     branch: "Columbus Metropolitan Library Livingston Branch",
     copies: [
       %Copy{
-        isbn_id: 9780679446698,
+        isbn_id: 9780679446699,
         checked_out?: false
       },
       %Copy{

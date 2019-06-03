@@ -4,6 +4,7 @@ defmodule Metro.Order.Checkout do
 
   alias Metro.Order.Transit
   alias Metro.Order.Waitlist
+  alias Metro.Order.Reservation
 
   schema "checkouts" do
     field :checkout_date, :naive_datetime
@@ -17,8 +18,9 @@ defmodule Metro.Order.Checkout do
     belongs_to :copy, Metro.Location.Copy, foreign_key: :copy_id
 
 
-    has_one :transit, Transit
+    has_one :transit, Metro.Order.Transit
     has_many :waitlists, Waitlist
+    has_one :reservation, through: [:transit, :reservation]
 
     timestamps()
   end

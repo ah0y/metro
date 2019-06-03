@@ -4,8 +4,10 @@ defmodule MetroWeb.UserController do
   alias Metro.Account
   alias Metro.Account.User
 
-#  plug :load_and_authorize_resource, model: Metro.Account.User, preload: :card
-#  use MetroWeb.ControllerAuthorization
+  import Ecto.Query
+
+  plug :load_and_authorize_resource, model: Metro.Account.User, preload: :card
+  use MetroWeb.ControllerAuthorization
 
   def index(conn, _params) do
     users = Account.list_users()
@@ -29,8 +31,40 @@ defmodule MetroWeb.UserController do
   end
 
   def show(conn, %{"id" => id}) do
-    user = Account.get_user!(id)
-    render(conn, "show.html", user: user)
+    user =
+      Account.get_user!(id)
+      |> Metro.Repo.preload(:checkouts)
+
+    checkouts = Enum.reduce(
+      user.checkouts,
+      %{:checked_in => [], :checked_out => [], :waitlist => [], :transit => [], :pickup => []},
+      fn c, checkouts ->
+        cond do
+          c.checkin_date != nil -> Map.update(checkouts, :checked_in, c, &[c | &1])
+
+          c.checkout_date != nil -> Map.update(checkouts, :checked_out, c, &[c | &1])
+
+          c.copy_id == nil ->
+            c = Metro.Repo.preload(c, :waitlists)
+            Map.update(checkouts, :waitlist, c, &[c | &1])
+          true ->
+            c = Metro.Repo.preload(c, [:transit])
+            if c.transit.actual_arrival != nil do
+              c = Metro.Repo.preload(c,  :reservation)
+              Map.update(checkouts, :pickup, c, &[c | &1])
+            else
+              Map.update(checkouts, :transit, c, &[c | &1])
+            end
+        end
+      end
+    )
+
+    render(
+      conn,
+      "show.html",
+      user: user,
+      checkouts: checkouts
+    )
   end
 
   def edit(conn, %{"id" => id}) do

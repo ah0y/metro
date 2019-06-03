@@ -18,6 +18,11 @@ import LiveSocket from "phoenix_live_view"
 let liveSocket = new LiveSocket("/live")
 liveSocket.connect()
 
+
+$('[data-toggle="collapse"]').on('click', function() {
+    $(this).toggleClass('collapsed');
+});
+
 // Import local files
 //
 // Local files can be imported directly using relative

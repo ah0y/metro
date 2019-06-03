@@ -14,7 +14,6 @@ defmodule MetroWeb.TransitController do
         %{
           "_utf8" => status,
           "search" => %{
-            "query" => query,
             "library" => library
           }
         } = params

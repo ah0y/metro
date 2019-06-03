@@ -4,9 +4,35 @@ defmodule MetroWeb.ReservationController do
   alias Metro.Order
   alias Metro.Order.Reservation
 
-  def index(conn, _params) do
-    reservations = Order.list_reservations()
-    render(conn, "index.html", reservations: reservations)
+  import Ecto.Query
+
+  def index(
+        conn,
+        %{
+          "_utf8" => status,
+          "search" => %{
+            "query" => query,
+            "search_by" => search_by
+          }
+        } = params
+      ) do
+
+    search_by =
+      search_by
+      |> String.to_atom()
+
+    query_params = from b in Reservation, where: field(b, ^search_by) == ^query
+
+    page = Metro.Repo.paginate(query_params)
+
+    render conn, "index.html", reservations: page.entries, page: page
+  end
+
+  def index(conn, params = %{}) do
+    page = Reservation
+           |> Metro.Repo.paginate(params)
+
+    render conn, "index.html", reservations: page.entries, page: page
   end
 
   def new(conn, _params) do

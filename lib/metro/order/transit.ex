@@ -3,6 +3,7 @@ defmodule Metro.Order.Transit do
   import Ecto.Changeset
 
   alias Metro.Order.Checkout
+  alias Metro.Order.Reservation
 
   schema "transit" do
     field :actual_arrival, :naive_datetime
@@ -11,6 +12,7 @@ defmodule Metro.Order.Transit do
 #    belongs_to :copies, Metro.Location.Copy, foreign_key: :copy_id
     belongs_to :checkouts, Checkout, foreign_key: :checkout_id
     has_one :copy, through: [:checkouts, :copy]
+    has_one :reservation, Reservation
 
 
     timestamps()

@@ -1,17 +1,33 @@
 <h2>Listing Reservations</h2>
 
+<%= form_for @conn, Routes.reservation_path(@conn, :index), [as: "search", method: :get], fn f -> %>
+   <%= select f, :search_by, ["id": "id", "expiration_date": "expiration_date", "transit_id": "transit_id", "inserted_at": "inserted_at", "updated_at": "updated_at"], selected: "id" %>
+     <label>
+       <%= text_input f, :query %>
+     </label>
+  <%= submit "Submit" %>
+<% end %>
+
 <table class="table">
   <thead>
     <tr>
+      <th>Id</th>
       <th>Expiration date</th>
-
+      <th>Transit Id</th>
+      <th>Inserted at</th>
+      <th>Updated at</th>
       <th></th>
     </tr>
   </thead>
   <tbody>
 <%= for reservation <- @reservations do %>
     <tr>
+      <td><%= reservation.id %></td>
       <td><%= reservation.expiration_date %></td>
+      <td><%= reservation.transit_id %></td>
+      <td><%= reservation.inserted_at %></td>
+      <td><%= reservation.updated_at %></td>
+
 
       <td class="text-right">
         <span><%= link "Show", to: Routes.reservation_path(@conn, :show, reservation), class: "btn btn-default btn-xs" %></span>
@@ -24,3 +40,5 @@
 </table>
 
 <span><%= link "New Reservation", to: Routes.reservation_path(@conn, :new) %></span>
+
+<%= pagination_links @page, distance: 10, first: "<<", previous: "<", next: ">", last: ">>", ellipsis: false %>

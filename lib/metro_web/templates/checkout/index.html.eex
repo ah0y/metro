@@ -1,8 +1,18 @@
 <h2>Listing Checkouts</h2>
 
+<%= form_for @conn, Routes.checkout_path(@conn, :index), [as: "search", method: :get], fn f -> %>
+   <%= select f, :search_by, ["id": "id", "renewals_remaining": "renewals_remaining", "checkout_date": "checkout_date", "checkin_date": "checkin_date",
+   "due_date": "due_date", "card_id": "card_id", "copy_id": "copy_id", "isbn_id": "isbn_id", "library_id": "library_id"], selected: "id" %>
+     <label>
+       <%= text_input f, :query %>
+     </label>
+  <%= submit "Submit" %>
+<% end %>
+
 <table class="table">
   <thead>
     <tr>
+      <th>Id</th>
       <th>Renewals remaining</th>
       <th>Checkout date</th>
       <th>Checkin date</th>
@@ -18,6 +28,7 @@
   <tbody>
 <%= for checkout <- @checkouts do %>
     <tr>
+      <td><%= checkout.id %></td>
       <td><%= checkout.renewals_remaining %></td>
       <td><%= checkout.checkout_date %></td>
       <td><%= checkout.checkin_date %></td>
@@ -40,3 +51,6 @@
 </table>
 
 <span><%= link "New Checkout", to: Routes.checkout_path(@conn, :new) %></span>
+
+<%= pagination_links @page, distance: 10, first: "<<", previous: "<", next: ">", last: ">>", ellipsis: false %>
+

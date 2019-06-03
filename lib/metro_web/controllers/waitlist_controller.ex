@@ -4,9 +4,35 @@ defmodule MetroWeb.WaitlistController do
   alias Metro.Order
   alias Metro.Order.Waitlist
 
-  def index(conn, _params) do
-    waitlist = Order.list_waitlist()
-    render(conn, "index.html", waitlist: waitlist)
+  import Ecto.Query
+
+  def index(
+        conn,
+        %{
+          "_utf8" => status,
+          "search" => %{
+            "query" => query,
+            "search_by" => search_by
+          }
+        } = params
+      ) do
+
+    search_by =
+      search_by
+      |> String.to_atom()
+
+    query_params = from b in Waitlist, where: field(b, ^search_by) == ^query
+
+    page = Metro.Repo.paginate(query_params)
+
+    render conn, "index.html", waitlists: page.entries, page: page
+  end
+
+  def index(conn, params = %{}) do
+    page = Waitlist
+           |> Metro.Repo.paginate(params)
+
+    render conn, "index.html", waitlists: page.entries, page: page
   end
 
   def new(conn, _params) do

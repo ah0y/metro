@@ -1,17 +1,36 @@
 <h2>Listing Waitlist</h2>
 
+<%= form_for @conn, Routes.waitlist_path(@conn, :index), [as: "search", method: :get], fn f -> %>
+   <%= select f, :search_by, ["id": "id", "position": "position", "copy_id": "copy_id", "checkout_id": "checkout_id", "isbn_id": "isbn_id"], selected: "id" %>
+     <label>
+       <%= text_input f, :query %>
+     </label>
+  <%= submit "Submit" %>
+<% end %>
+
 <table class="table">
   <thead>
     <tr>
+      <th>Id</th>
       <th>Position</th>
-
+      <th>Copy id</th>
+      <th>Checkout id</th>
+      <th>Isbn id</th>
+      <th>Inserted at</th>
+      <th>Updated at</th>
       <th></th>
     </tr>
   </thead>
   <tbody>
-<%= for waitlist <- @waitlist do %>
+<%= for waitlist <- @waitlists do %>
     <tr>
+      <td><%= waitlist.id %></td>
       <td><%= waitlist.position %></td>
+      <td><%= waitlist.copy_id %></td>
+      <td><%= waitlist.checkout_id %></td>
+      <td><%= waitlist.isbn_id %></td>
+      <td><%= waitlist.inserted_at %></td>
+      <td><%= waitlist.updated_at %></td>
 
       <td class="text-right">
         <span><%= link "Show", to: Routes.waitlist_path(@conn, :show, waitlist), class: "btn btn-default btn-xs" %></span>
@@ -24,3 +43,6 @@
 </table>
 
 <span><%= link "New Waitlist", to: Routes.waitlist_path(@conn, :new) %></span>
+
+<%= pagination_links @page, distance: 10, first: "<<", previous: "<", next: ">", last: ">>", ellipsis: false %>
+

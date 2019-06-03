@@ -7,12 +7,38 @@ defmodule MetroWeb.CheckoutController do
   alias Metro.Location
   alias Metro.Repo
 
-  #  plug :load_and_authorize_resource, model: Metro.Order.Checkout
-  #  use MetroWeb.ControllerAuthorization
+  import Ecto.Query
 
-  def index(conn, _params) do
-    checkouts = Order.list_checkouts()
-    render(conn, "index.html", checkouts: checkouts)
+#  plug :load_and_authorize_resource, model: Metro.Order.Checkout
+#  use MetroWeb.ControllerAuthorization
+
+  def index(
+        conn,
+        %{
+          "_utf8" => status,
+          "search" => %{
+            "query" => query,
+            "search_by" => search_by
+          }
+        } = params
+      ) do
+
+    search_by =
+      search_by
+      |> String.to_atom()
+
+    query_params = from b in Checkout, where: field(b, ^search_by) == ^query
+
+    page = Repo.paginate(query_params)
+
+    render conn, "index.html", checkouts: page.entries, page: page
+  end
+
+  def index(conn, params = %{}) do
+    page = Checkout
+           |> Repo.paginate(params)
+
+    render conn, "index.html", checkouts: page.entries, page: page
   end
 
   def new(conn, _params) do
@@ -36,7 +62,14 @@ defmodule MetroWeb.CheckoutController do
         |> redirect(to: Routes.user_path(conn, :show, conn.assigns.current_user.id))
       {:error, :checkout, %Ecto.Changeset{} = changeset, %{}} ->
         libraries = Location.load_libraries()
-        render(conn, "new.html", changeset: changeset, isbn: Map.get(changeset.changes, :isbn_id ), card: card, libraries: libraries)
+        render(
+          conn,
+          "new.html",
+          changeset: changeset,
+          isbn: Map.get(changeset.changes, :isbn_id),
+          card: card,
+          libraries: libraries
+        )
     end
   end
 
@@ -74,7 +107,7 @@ defmodule MetroWeb.CheckoutController do
 
   def update(conn, %{"id" => id}) do
     checkout = Order.get_checkout!(id)
-      |> Repo.preload(:copy)
+               |> Repo.preload(:copy)
 
     case Order.check_in(checkout.copy) do
       {:ok, checkout} ->

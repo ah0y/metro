@@ -22,7 +22,20 @@
                <%= if Coherence.current_user_name(@conn) do %>
                             <div class="dropdown" style="display:inline-block">
                                   <a class="dropdown-toggle" type="button" data-toggle="dropdown">
-                                      Books
+                                      admin
+                                      <span class="caret"></span>
+                                  </a>
+                                  <ul class="dropdown-menu dropdown-menu-right">
+                                      <li><%= link "transit", to: Routes.transit_path(@conn, :index) %></li>
+                                      <li><%= link "work", to: Routes.copy_path(@conn, :work) %></li>
+                                      <li><%= link "copies", to: Routes.copy_path(@conn, :index) %></li>
+                                      <li><%= link "waitlist", to: Routes.waitlist_path(@conn, :index) %></li>
+                                      <li><%= link "checkouts", to: Routes.checkout_path(@conn, :index) %></li>
+                                  </ul>
+                           </div>
+                            <div class="dropdown" style="display:inline-block">
+                                  <a class="dropdown-toggle" type="button" data-toggle="dropdown">
+                                      books
                                       <span class="caret"></span>
                                   </a>
                                   <ul class="dropdown-menu dropdown-menu-right">
