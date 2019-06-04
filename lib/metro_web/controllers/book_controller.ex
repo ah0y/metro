@@ -6,6 +6,9 @@ defmodule MetroWeb.BookController do
 
   import Ecto.Query
 
+  plug :load_and_authorize_resource, model: Book, id_name: "isbn", id_field: "isbn"
+  use MetroWeb.ControllerAuthorization
+
   def index(
         conn,
         %{

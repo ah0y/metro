@@ -9,8 +9,8 @@ defmodule MetroWeb.CheckoutController do
 
   import Ecto.Query
 
-#  plug :load_and_authorize_resource, model: Metro.Order.Checkout
-#  use MetroWeb.ControllerAuthorization
+  plug :load_and_authorize_resource, model: Metro.Order.Checkout
+  use MetroWeb.ControllerAuthorization
 
   def index(
         conn,

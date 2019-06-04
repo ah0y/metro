@@ -6,8 +6,8 @@ defmodule MetroWeb.UserController do
 
   import Ecto.Query
 
-#  plug :load_and_authorize_resource, model: Metro.Account.User, preload: :card
-#  use MetroWeb.ControllerAuthorization
+  plug :load_and_authorize_resource, model: Metro.Account.User, preload: :card
+  use MetroWeb.ControllerAuthorization
 
   def index(conn, _params) do
     users = Account.list_users()

@@ -9,6 +9,9 @@ defmodule MetroWeb.TransitController do
 
   import Ecto.Query
 
+  plug :load_and_authorize_resource, model: Transit
+  use MetroWeb.ControllerAuthorization
+
   def index(
         conn,
         %{
@@ -23,6 +26,7 @@ defmodule MetroWeb.TransitController do
                         join: ch in Checkout,
                         where: t.checkout_id == ch.id,
                         where: ch.library_id == ^library,
+                        where: is_nil(t.actual_arrival),
                         select: %{
                           id: t.id,
                           checkout_id: ch.id,
@@ -41,6 +45,7 @@ defmodule MetroWeb.TransitController do
                         join: ch in Checkout,
                         where: t.checkout_id == ch.id,
                         where: ch.library_id == 1,
+                        where: is_nil(t.actual_arrival),
                         select: %{
                           id: t.id,
                           checkout_id: ch.id,
