@@ -46,7 +46,7 @@ defmodule MetroWeb.Router do
     resources "/events", EventController
     resources "/rooms", RoomController
     resources "/copies", CopyController
-    get  "/work", CopyController, :work
+    get  "/work", WorkController, :index
     resources "/libraries", LibraryController
 
     resources "/users", UserController

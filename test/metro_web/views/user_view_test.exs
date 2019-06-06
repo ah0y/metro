@@ -11,7 +11,7 @@ defmodule MetroWeb.UserViewTest do
     test "shows link to card/new if the user has no card", %{conn: conn} do
       user = insert(:user)
             |> Repo.preload(:card)
-      content = render_to_string(UserView, "show.html", conn: conn, user: user)
+      content = render_to_string(UserView, "show.html", conn: conn, user: user, checkouts: %{:checked_in => [], :checked_out => [], :waitlist => [], :transit => [], :pickup => []})
       assert String.contains?(content, "sign up for a new card") == true
     end
 
@@ -20,7 +20,7 @@ defmodule MetroWeb.UserViewTest do
           |> insert
           |> with_card
           |> Repo.preload(:card)
-      content = render_to_string(UserView, "show.html", conn: conn, user: user)
+      content = render_to_string(UserView, "show.html", conn: conn, user: user, checkouts: %{:checked_in => [], :checked_out => [], :waitlist => [], :transit => [], :pickup => []})
       assert String.contains?(content, "sign up for a new card") == false
     end
   end

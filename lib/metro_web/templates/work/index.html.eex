@@ -1,7 +1,7 @@
 <h2>Listing Work</h2>
 
 
-<%= form_for @conn, Routes.copy_path(@conn, :work), [as: "search", method: :get], fn f -> %>
+<%= form_for @conn, Routes.work_path(@conn, :index), [as: "search", method: :get], fn f -> %>
    <%= select f, :library, Enum.map(@libraries, &{&1.id, &1.id}), selected: "1" %>
   <%= submit "Submit" %>
 <% end %>

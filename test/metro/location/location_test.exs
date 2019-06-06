@@ -224,7 +224,7 @@ defmodule Metro.LocationTest do
 
     test "create_book/1 with valid data creates a book" do
       author = author_fixture()
-      attrs = params_for(:book, %{author_id: author.id})
+      attrs = params_for(:book, %{author_id: author.id, isbn: 42})
       assert {:ok, %Book{} = book} = Location.create_book(attrs)
       assert book.image == "some image"
       assert book.isbn == 42

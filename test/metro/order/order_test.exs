@@ -22,23 +22,32 @@ defmodule Metro.OrderTest do
     @invalid_attrs %{"checkout_date" => nil, "due_date" => nil, "renewals_remaining" => nil, "isbn_id" => nil}
 
     def checkout_fixture(_attrs \\ %{}) do
-      card = insert(:card)
+      user = build(:user)
+             |> insert
+             |> with_card
+      user = Metro.Repo.preload(user, [{:card, :checkouts}])
+
       library = insert(:library)
       book = insert(:book)
-      {:ok, checkout} =
+      attrs =
         string_params_for(:checkout)
-        |> Enum.into(%{"library_id" => library.id, "isbn_id" => book.isbn, "card_id" => card.id})
-        |> Order.create_checkout(nil)
+        |> Enum.into(%{"library_id" => library.id, "isbn_id" => book.isbn, "card_id" => user.card.id})
+      {:ok, checkout} = Order.create_checkout(user, attrs, nil)
       checkout
     end
 
     test "list_checkouts/0 returns all checkouts" do
       checkout = checkout_fixture()
-      assert Order.list_checkouts() == [checkout]
+      [old_checkout, _] = Order.list_checkouts()
+      assert Order.list_checkouts() == [old_checkout, checkout]
     end
 
     test "get_copy_checkout!/1 returns the checkout with given copy id" do
-      card = insert(:card)
+      user = build(:user)
+             |> insert
+             |> with_card
+      user = Metro.Repo.preload(user, [{:card, :checkouts}])
+
       library = insert(:library)
       book = build(:book)
              |> insert
@@ -46,9 +55,9 @@ defmodule Metro.OrderTest do
 
       attr =
         string_params_for(:checkout)
-        |> Enum.into(%{"library_id" => library.id, "isbn_id" => book.isbn, "card_id" => card.id})
+        |> Enum.into(%{"library_id" => library.id, "isbn_id" => book.isbn, "card_id" => user.card.id})
       copy = Location.find_copy(book.isbn)
-      trans = Order.create_order(attr, copy)
+      trans = Order.create_order(user, attr, copy)
 
       assert {
                :ok,
@@ -80,8 +89,12 @@ defmodule Metro.OrderTest do
     end
 
     @tag multi: "order"
-    test "create_order/2 with valid data creates a checkout, transit, and reservation if there's an available copy" do
-      card = insert(:card)
+    test "create_order/3 with valid data creates a checkout, transit, and reservation if there's an available copy" do
+      user = build(:user)
+             |> insert
+             |> with_card
+      user = Metro.Repo.preload(user, [{:card, :checkouts}])
+
       library = insert(:library)
       book = build(:book)
              |> insert
@@ -89,9 +102,9 @@ defmodule Metro.OrderTest do
 
       attr =
         string_params_for(:checkout)
-        |> Enum.into(%{"library_id" => library.id, "isbn_id" => book.isbn, "card_id" => card.id})
+        |> Enum.into(%{"library_id" => library.id, "isbn_id" => book.isbn, "card_id" => user.card.id})
       copy = Location.find_copy(book.isbn)
-      trans = Order.create_order(attr, copy)
+      trans = Order.create_order(user, attr, copy)
 
       assert {
                :ok,
@@ -115,19 +128,69 @@ defmodule Metro.OrderTest do
       #      {:ok, %{checkout: checkout, reservation: reservation, transit: transit, copy: copy}} = trans
     end
 
-    @tag multi: "order"
-    test "create_order/2 with valid data creates a checkout, reservation, transit, and waitlist if there's not an available copy" do
-      card = insert(:card)
+    @tag multi: "no"
+    test "create_order/3 will not create a checkout, transit, and reservation if the user checking out has an overdue book" do
+      user = build(:user)
+             |> insert
+             |> with_card_and_overdue
+
+      user = Metro.Repo.preload(user, [{:card, :checkouts}])
+
       library = insert(:library)
+      book = build(:book)
+             |> insert
+             |> with_available_copies
+
+      attr =
+        string_params_for(:checkout)
+        |> Enum.into(%{"library_id" => library.id, "isbn_id" => book.isbn, "card_id" => user.card.id})
+      copy = Location.find_copy(book.isbn)
+      trans = Order.create_order(user, attr, copy)
+
+      assert trans == {:error, :checkout, "user has an overdue book", %{}}
+    end
+
+    @tag multi: "no"
+    test "create_order/3 will not create a checkout, transit, and reservation if the user checking out has fines over 10 dollars" do
+      user = build(:user_with_fines)
+             |> insert
+             |> with_card
+
+      user = Metro.Repo.preload(user, [{:card, :checkouts}])
+
+      library = insert(:library)
+      book = build(:book)
+             |> insert
+             |> with_available_copies
+
+      attr =
+        string_params_for(:checkout)
+        |> Enum.into(%{"library_id" => library.id, "isbn_id" => book.isbn, "card_id" => user.card.id})
+      copy = Location.find_copy(book.isbn)
+      trans = Order.create_order(user, attr, copy)
+
+      assert trans == {:error, :checkout, "user has unpaid library fines", %{}}
+    end
+
+    @tag multi: "order"
+    test "create_order/3 with valid data creates a checkout, reservation, transit, and waitlist if there's not an available copy" do
+      user = build(:user)
+             |> insert
+             |> with_card
+      user = Metro.Repo.preload(user, [{:card, :checkouts}])
+
+      library = insert(:library)
+
+
       book = build(:book)
              |> insert
              |> with_unavailable_copies
 
       attr =
         string_params_for(:checkout)
-        |> Enum.into(%{"library_id" => library.id, "isbn_id" => book.isbn, "card_id" => card.id})
+        |> Enum.into(%{"library_id" => library.id, "isbn_id" => book.isbn, "card_id" => user.card.id})
 
-      trans = Order.create_order(attr, nil)
+      trans = Order.create_order(user, attr, nil)
 
       assert {
                :ok,
@@ -154,7 +217,11 @@ defmodule Metro.OrderTest do
 
     @tag multi: "order"
     test "check_in/1 with valid data decrements the position of everyone on the waitlist for a copy of a book, updates the availabaility of a book, " do
-      card = insert(:card)
+      user = build(:user)
+             |> insert
+             |> with_card
+      user = Metro.Repo.preload(user, [{:card, :checkouts}])
+
       library = insert(:library)
       book = build(:book)
              |> insert
@@ -162,21 +229,24 @@ defmodule Metro.OrderTest do
 
       attr =
         string_params_for(:checkout)
-        |> Enum.into(%{"library_id" => library.id, "isbn_id" => book.isbn, "card_id" => card.id})
+        |> Enum.into(%{"library_id" => library.id, "isbn_id" => book.isbn, "card_id" => user.card.id})
       copy = Location.find_copy(book.isbn)
-      trans = Order.create_order(attr, copy) #checks out out the only copy of a book to someone
+      trans = Order.create_order(user, attr, copy) #checks out out the only copy of a book to someone
 
       {:ok, %{checkout: checkout, reservation: reservation, transit: transit, copy: copy}} = trans
 
       copy_id = copy.id
 
-      card2 = insert(:card)
+      user2 = build(:user)
+              |> insert
+              |> with_card
+      user2 = Metro.Repo.preload(user2, [{:card, :checkouts}])
 
       attr2 =
         string_params_for(:checkout)
-        |> Enum.into(%{"library_id" => library.id, "isbn_id" => book.isbn, "card_id" => card.id})
+        |> Enum.into(%{"library_id" => library.id, "isbn_id" => book.isbn, "card_id" => user2.card.id})
 
-      trans2 = Order.create_order(attr, nil) #puts someone at position 1 for a book that's already checked out
+      trans2 = Order.create_order(user2, attr, nil) #puts someone at position 1 for a book that's already checked out
 
       assert {
                :ok,
@@ -252,7 +322,11 @@ defmodule Metro.OrderTest do
 
     @tag multi: "order"
     test "check_in/1 with valid data checks in a copy, even if there's no one else on the waitlist for that book" do
-      card = insert(:card)
+      user = build(:user)
+             |> insert
+             |> with_card
+      user = Metro.Repo.preload(user, [{:card, :checkouts}])
+
       library = insert(:library)
       book = build(:book)
              |> insert
@@ -260,9 +334,9 @@ defmodule Metro.OrderTest do
 
       attr =
         string_params_for(:checkout)
-        |> Enum.into(%{"library_id" => library.id, "isbn_id" => book.isbn, "card_id" => card.id})
+        |> Enum.into(%{"library_id" => library.id, "isbn_id" => book.isbn, "card_id" => user.card.id})
       copy = Location.find_copy(book.isbn)
-      trans = Order.create_order(attr, copy) #checks out out the only copy of a book to someone
+      trans = Order.create_order(user, attr, copy) #checks out out the only copy of a book to someone
       trans3 = Order.check_in(copy)
 
       assert {
@@ -302,8 +376,11 @@ defmodule Metro.OrderTest do
     end
 
 
-    test "create_checkout/2 with valid data and nil for copy returns checkout" do
-      card = insert(:card)
+    test "create_checkout/3 with valid data and nil for copy returns checkout" do
+      user = build(:user)
+             |> insert
+             |> with_card
+      user = Metro.Repo.preload(user, [{:card, :checkouts}])
       library = insert(:library)
       book = build(:book)
              |> insert
@@ -311,12 +388,16 @@ defmodule Metro.OrderTest do
 
       attr =
         string_params_for(:checkout)
-        |> Enum.into(%{"library_id" => library.id, "isbn_id" => book.isbn, "card_id" => card.id})
-      assert {:ok, %Metro.Order.Checkout{}} = Order.create_checkout(attr, nil)
+        |> Enum.into(%{"library_id" => library.id, "isbn_id" => book.isbn, "card_id" => user.card.id})
+      assert {:ok, %Metro.Order.Checkout{}} = Order.create_checkout(user, attr, nil)
     end
 
-    test "create_checkout/2 with valid data and a copy returns checkout" do
-      card = insert(:card)
+    test "create_checkout/3 with valid data and a copy returns checkout" do
+      user = build(:user)
+             |> insert
+             |> with_card
+      user = Metro.Repo.preload(user, [{:card, :checkouts}])
+
       library = insert(:library)
       book = build(:book)
              |> insert
@@ -324,23 +405,33 @@ defmodule Metro.OrderTest do
 
       attr =
         string_params_for(:checkout)
-        |> Enum.into(%{"library_id" => library.id, "isbn_id" => book.isbn, "card_id" => card.id})
+        |> Enum.into(%{"library_id" => library.id, "isbn_id" => book.isbn, "card_id" => user.card.id})
       copy = Location.find_copy(book.isbn)
-      assert {:ok, %Metro.Order.Checkout{}} = Order.create_checkout(attr, copy)
+      assert {:ok, %Metro.Order.Checkout{}} = Order.create_checkout(user, attr, copy)
     end
 
 
-    test "create_checkout/2 with invalid data and nil for copy returns error changeset" do
-      assert {:error, %Ecto.Changeset{}} = Order.create_checkout(@invalid_attrs, nil)
+    test "create_checkout/3 with invalid data and nil for copy returns error changeset" do
+      user = build(:user)
+             |> insert
+             |> with_card
+      user = Metro.Repo.preload(user, [{:card, :checkouts}])
+
+      assert {:error, %Ecto.Changeset{}} = Order.create_checkout(user, @invalid_attrs, nil)
     end
 
-    test "create_checkout/2 with invalid data and a valid copy returns error changeset" do
+    test "create_checkout/3 with invalid data and a valid copy returns error changeset" do
+      user = build(:user)
+             |> insert
+             |> with_card
+      user = Metro.Repo.preload(user, [{:card, :checkouts}])
+
       book = build(:book)
              |> insert
              |> with_available_copies
 
       copy = Location.find_copy(book.isbn)
-      assert {:error, %Ecto.Changeset{}} = Order.create_checkout(@invalid_attrs, copy)
+      assert {:error, %Ecto.Changeset{}} = Order.create_checkout(user, @invalid_attrs, copy)
     end
 
     test "update_checkout/2 with valid data updates the checkout" do
@@ -359,7 +450,11 @@ defmodule Metro.OrderTest do
     end
 
     test "process_checkout/1 sets a checkout date and due date " do
-      card = insert(:card)
+      user = build(:user)
+             |> insert
+             |> with_card
+      user = Metro.Repo.preload(user, [{:card, :checkouts}])
+
       library = insert(:library)
       book = build(:book)
              |> insert
@@ -367,16 +462,16 @@ defmodule Metro.OrderTest do
 
       attr =
         string_params_for(:checkout)
-        |> Enum.into(%{"library_id" => library.id, "isbn_id" => book.isbn, "card_id" => card.id})
+        |> Enum.into(%{"library_id" => library.id, "isbn_id" => book.isbn, "card_id" => user.card.id})
       copy = Location.find_copy(book.isbn)
-      trans = Order.create_order(attr, copy)
+      trans = Order.create_order(user, attr, copy)
 
       {:ok, %{checkout: checkout, reservation: reservation, transit: transit, copy: copy}} = trans
 
       assert checkout.due_date == nil
       assert checkout.checkout_date == nil
 
-      {:ok, processed_checkout } = Order.process_checkout(checkout)
+      {:ok, processed_checkout} = Order.process_checkout(checkout)
 
       assert processed_checkout.due_date != nil
       assert processed_checkout.checkout_date
@@ -559,7 +654,7 @@ defmodule Metro.OrderTest do
       attrs = params_for(:transit)
               |> Enum.into(%{checkout_id: checkout.id})
       assert {:ok, %Transit{} = transit} = Order.create_transit(attrs)
-#      assert transit.actual_arrival == ~N[2010-04-17 14:00:00.000000]
+      #      assert transit.actual_arrival == ~N[2010-04-17 14:00:00.000000]
       assert transit.estimated_arrival == ~N[2010-04-17 14:00:00]
     end
 

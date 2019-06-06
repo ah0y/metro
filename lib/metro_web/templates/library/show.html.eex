@@ -1,5 +1,5 @@
 <h2>Show Library</h2>
-
+<img src="<%= @library.image %>"</img>
 <ul>
 
   <li>
@@ -13,16 +13,21 @@
   </li>
 
   <li>
-    <strong>Image:</strong>
-    <%= @library.image %>
-  </li>
-
-  <li>
     <strong>Hours:</strong>
     <%= @library.hours %>
   </li>
 
+<span><%= link "See other library locations", to: Routes.library_path(@conn, :index) %></span>
+
 </ul>
+
+<iframe
+  width="600"
+  height="450"
+  frameborder="0" style="border:0"
+  src="https://www.google.com/maps/embed/v1/place?key=<%= System.get_env("MAPS_API_KEY") %>
+    &q=<%= @library.address %>" allowfullscreen>
+</iframe>
 
 <span><%= link "Edit", to: Routes.library_path(@conn, :edit, @library) %></span>
 <span><%= link "Back", to: Routes.library_path(@conn, :index) %></span>

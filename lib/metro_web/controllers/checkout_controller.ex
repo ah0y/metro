@@ -9,8 +9,8 @@ defmodule MetroWeb.CheckoutController do
 
   import Ecto.Query
 
-  plug :load_and_authorize_resource, model: Metro.Order.Checkout
-  use MetroWeb.ControllerAuthorization
+#  plug :load_and_authorize_resource, model: Metro.Order.Checkout
+#  use MetroWeb.ControllerAuthorization
 
   def index(
         conn,
@@ -52,10 +52,11 @@ defmodule MetroWeb.CheckoutController do
   end
 
   def create(conn, %{"checkout" => checkout_params}) do
-    card = Account.get_users_card!(conn.assigns.current_user.id)
-    checkout_params = Enum.into(checkout_params, %{"card_id" => card.id})
+    user =
+      conn.assigns.current_user
+      |> Repo.preload([{:card, :checkouts}])
     copy = Location.find_copy(Map.get(checkout_params, "isbn_id"))
-    case Order.create_order(checkout_params, copy) do
+    case Order.create_order(user, checkout_params, copy) do
       {:ok, order} ->
         conn
         |> put_flash(:info, "Checkout created successfully.")
@@ -67,7 +68,6 @@ defmodule MetroWeb.CheckoutController do
           "new.html",
           changeset: changeset,
           isbn: Map.get(changeset.changes, :isbn_id),
-          card: card,
           libraries: libraries
         )
     end

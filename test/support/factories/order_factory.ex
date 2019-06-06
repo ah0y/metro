@@ -12,14 +12,6 @@ defmodule Metro.CheckoutFactory do
           card: build(:card)
         }
       end
-      def checkout_without_book_factory do
-        %Metro.Order.Checkout{
-          checkout_date: ~N[2010-04-17 14:00:00.000000],
-          due_date: ~N[2010-04-17 14:00:00.000000],
-          renewals_remaining: 3,
-          library: build(:library),
-        }
-      end
       def with_book_and_copy(%Metro.Order.Checkout{} = checkout) do
         book = build(:book)
                |> insert
@@ -33,6 +25,15 @@ defmodule Metro.CheckoutFactory do
           due_date: ~N[2010-04-17 14:00:00.000000],
           renewals_remaining: 3,
           book: build(:book),
+          library: build(:library),
+        }
+      end
+      def overdue_checkout_without_card_factory do
+        %Metro.Order.Checkout{
+          checkout_date: NaiveDateTime.utc_now(),
+          checkin_date: nil,
+          due_date: NaiveDateTime.add(NaiveDateTime.utc_now(), -86400),
+          renewals_remaining: 3,
           library: build(:library),
         }
       end

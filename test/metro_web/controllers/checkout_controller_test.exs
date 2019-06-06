@@ -26,7 +26,12 @@ defmodule MetroWeb.CheckoutControllerTest do
   @invalid_attrs %{renewals_remaining: nil}
 
   def fixture(:checkout) do
-    card = insert(:card)
+    user = build(:user)
+           |> insert
+           |> with_card
+
+    user = Metro.Repo.preload(user, [{:card, :checkouts}])
+
     library = insert(:library)
     book = build(:book)
            |> insert
@@ -34,9 +39,9 @@ defmodule MetroWeb.CheckoutControllerTest do
 
     attr =
       string_params_for(:checkout)
-      |> Enum.into(%{"library_id" => library.id, "isbn_id" => book.isbn, "card_id" => card.id})
+      |> Enum.into(%{"library_id" => library.id, "isbn_id" => book.isbn, "card_id" => user.card.id})
     copy = Location.find_copy(book.isbn)
-    trans = Order.create_order(attr, copy) #checks out out the only copy of a book to someone
+    trans = Order.create_order(user, attr, copy) #checks out out the only copy of a book to someone
 
     {:ok, %{checkout: checkout, reservation: _, transit: _, copy: _}} = trans
     checkout

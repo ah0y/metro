@@ -6,7 +6,7 @@ defmodule Metro.BookFactory do
         %Metro.Location.Book{
           title: "some title",
           image: "some image",
-          isbn: 42,
+          isbn: sequence(:isbn, &String.to_integer"#{&1}"),
           pages: 42,
           summary: "some summary",
           year: 42,

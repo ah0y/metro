@@ -4,8 +4,8 @@ defmodule MetroWeb.AuthorController do
   alias Metro.Location
   alias Metro.Location.Author
 
-  plug :load_and_authorize_resource, model: Author
-  use MetroWeb.ControllerAuthorization
+#  plug :load_and_authorize_resource, model: Author
+#  use MetroWeb.ControllerAuthorization
 
   def index(conn, _params) do
     authors = Location.list_authors()

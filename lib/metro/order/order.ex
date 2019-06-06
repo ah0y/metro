@@ -54,6 +54,35 @@ defmodule Metro.Order do
   def get_copy_checkout!(copy), do: Repo.get_by!(Checkout, copy_id: copy)
 
   @doc """
+  Determines whether or not a user can place a hold on a book.
+
+  Raises `Ecto.NoResultsError` if the Checkout does not exist.
+
+  ## Examples
+
+      iex> can_checkout?(user)
+      %Checkout{}
+
+      iex> can_checkout?(user)
+      ** (Ecto.NoResultsError)
+
+  """
+  def can_checkout?(user) do
+    cond do
+      user.fines > 10 ->
+        {:error, "user has unpaid library fines"}
+      Enum.any?(
+        user.card.checkouts,
+        fn c -> c.checkin_date == nil and
+                NaiveDateTime.utc_now() > c.due_date
+        end
+      ) ->
+        {:error, "user has an overdue book"}
+      true -> {:ok, "can checkout"}
+    end
+  end
+
+  @doc """
   Creates a checkout.
 
   ## Examples
@@ -65,26 +94,36 @@ defmodule Metro.Order do
       {:error, %Ecto.Changeset{}}
 
   """
-  def create_checkout(attrs, nil) do
-    %Checkout{}
-    |> Checkout.changeset(attrs)
-    |> Repo.insert()
+  def create_checkout(user, attrs, nil) do
+    case can_checkout?(user) do
+      {:ok, "can checkout"} ->
+        %Checkout{}
+        |> Checkout.changeset(Map.merge(%{"card_id" => user.card.id}, attrs))
+        |> Repo.insert()
+        {:error, error} ->
+          {:error, error}
+    end
   end
 
-  def create_checkout(attrs, copy) do
-    #    attrs = atomize_keys(attrs)
-    %Checkout{}
-    |> Checkout.changeset(
-         Map.merge(
-           attrs,
-           %{
-             "copy_id" => copy.id,
-             #             "checkout_date" => NaiveDateTime.utc_now(),
-             #             "due_date" => NaiveDateTime.add(NaiveDateTime.utc_now(), 2678400)
-           }
-         )
-       )
-    |> Repo.insert()
+  def create_checkout(user, attrs, copy) do
+    case can_checkout?(user) do
+      {:ok, "can checkout"} ->
+        %Checkout{}
+        |> Checkout.changeset(
+             Map.merge(
+               attrs,
+               %{
+                 "card_id" => user.card.id,
+                 "copy_id" => copy.id,
+                 #             "checkout_date" => NaiveDateTime.utc_now(),
+                 #             "due_date" => NaiveDateTime.add(NaiveDateTime.utc_now(), 2678400)
+               }
+             )
+           )
+        |> Repo.insert()
+        {:error, error} ->
+          {:error, error}
+    end
   end
 
   alias Ecto.Query
@@ -102,10 +141,10 @@ defmodule Metro.Order do
       {:error, %Ecto.Changeset{}}
 
   """
-  def create_order(attr, nil) do
+  def create_order(user, attr, nil) do
     order = Ecto.Multi.new
 
-            |> Ecto.Multi.run(:checkout, fn _,_ -> Metro.Order.create_checkout(attr, nil) end)
+            |> Ecto.Multi.run(:checkout, fn _, _ -> Metro.Order.create_checkout(user, attr, nil) end)
             |> Ecto.Multi.run(
                  :transit,
                  fn _, %{checkout: checkout} -> Metro.Order.create_transit(%{checkout_id: checkout.id}) end
@@ -135,13 +174,13 @@ defmodule Metro.Order do
       {:error, %Ecto.Changeset{}}
 
   """
-  def create_order(attr, book) do
+  def create_order(user, attr, book) do
     order = Ecto.Multi.new
+            |> Ecto.Multi.run(:checkout, fn _, _ -> Metro.Order.create_checkout(user, attr, book) end)
             |> Ecto.Multi.run(
                  :copy,
                  fn _, _ -> Metro.Location.update_copy(book, %{checked_out?: true}) end
                )
-            |> Ecto.Multi.run(:checkout, fn _, _ -> Metro.Order.create_checkout(attr, book) end)
             |> Ecto.Multi.run(
                  :transit,
                  fn _, %{checkout: checkout} -> Metro.Order.create_transit(checkout, book) end
@@ -542,27 +581,27 @@ defmodule Metro.Order do
 
   def create_transit(checkout, copy) do
     copy_location = copy.library_id
-    if checkout.library_id  == copy_location do
-        #pickup location is same as where the book actually is so number of days in transit == 1
-        %Transit{}
-        |> Transit.changeset(
-             %{
-               "copy_id" => copy.id,
-               "checkout_id" => checkout.id,
-               "estimated_arrival" => NaiveDateTime.add(NaiveDateTime.utc_now(), 86400)
-             }
-           )
-        |> Repo.insert()
-      else
-        %Transit{}
-        |> Transit.changeset(
-             %{
-               "copy_id" => copy.id,
-               "checkout_id" => checkout.id,
-               "estimated_arrival" => NaiveDateTime.add(NaiveDateTime.utc_now(), 259200)
-             }
-           )
-        |> Repo.insert()
+    if checkout.library_id == copy_location do
+      #pickup location is same as where the book actually is so number of days in transit == 1
+      %Transit{}
+      |> Transit.changeset(
+           %{
+             "copy_id" => copy.id,
+             "checkout_id" => checkout.id,
+             "estimated_arrival" => NaiveDateTime.add(NaiveDateTime.utc_now(), 86400)
+           }
+         )
+      |> Repo.insert()
+    else
+      %Transit{}
+      |> Transit.changeset(
+           %{
+             "copy_id" => copy.id,
+             "checkout_id" => checkout.id,
+             "estimated_arrival" => NaiveDateTime.add(NaiveDateTime.utc_now(), 259200)
+           }
+         )
+      |> Repo.insert()
     end
   end
 
@@ -588,7 +627,8 @@ defmodule Metro.Order do
     completed_transit = Ecto.Multi.new
                         |> Ecto.Multi.run(
                              :transit,
-                             fn _, _ -> Metro.Order.update_transit(transit, %{actual_arrival: NaiveDateTime.utc_now()})
+                             fn
+                               _, _ -> Metro.Order.update_transit(transit, %{actual_arrival: NaiveDateTime.utc_now()})
                              end
                            )
                         |> Ecto.Multi.run(
@@ -597,7 +637,8 @@ defmodule Metro.Order do
                                Metro.Order.update_reservation(
                                  reservation,
                                  %{expiration_date: NaiveDateTime.add(NaiveDateTime.utc_now(), 432000)}
-                               ) end
+                               )
+                             end
                            )
                         |> Repo.transaction()
   end

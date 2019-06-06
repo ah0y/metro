@@ -20,6 +20,7 @@
         <nav role="navigation">
             <ul class="breadcrumb text-right">
                <%= if Coherence.current_user_name(@conn) do %>
+                         <%= if @conn.assigns.current_user.is_librarian? do %>
                             <div class="dropdown" style="display:inline-block">
                                   <a class="dropdown-toggle" type="button" data-toggle="dropdown">
                                       admin
@@ -27,12 +28,13 @@
                                   </a>
                                   <ul class="dropdown-menu dropdown-menu-right">
                                       <li><%= link "transit", to: Routes.transit_path(@conn, :index) %></li>
-                                      <li><%= link "work", to: Routes.copy_path(@conn, :work) %></li>
+                                      <li><%= link "work", to: Routes.work_path(@conn, :index) %></li>
                                       <li><%= link "copies", to: Routes.copy_path(@conn, :index) %></li>
                                       <li><%= link "waitlist", to: Routes.waitlist_path(@conn, :index) %></li>
                                       <li><%= link "checkouts", to: Routes.checkout_path(@conn, :index) %></li>
                                   </ul>
                            </div>
+                         <% end %>
                             <div class="dropdown" style="display:inline-block">
                                   <a class="dropdown-toggle" type="button" data-toggle="dropdown">
                                       books

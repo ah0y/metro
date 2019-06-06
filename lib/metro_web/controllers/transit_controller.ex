@@ -9,8 +9,8 @@ defmodule MetroWeb.TransitController do
 
   import Ecto.Query
 
-  plug :load_and_authorize_resource, model: Transit
-  use MetroWeb.ControllerAuthorization
+#  plug :load_and_authorize_resource, model: Transit
+#  use MetroWeb.ControllerAuthorization
 
   def index(
         conn,
