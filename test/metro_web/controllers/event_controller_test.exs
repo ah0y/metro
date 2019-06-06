@@ -3,9 +3,19 @@ defmodule MetroWeb.EventControllerTest do
 
   alias Metro.Location
 
+  import Metro.Factory
+
   @create_attrs %{datetime: ~N[2010-04-17 14:00:00.000000], description: "some description", images: "some images"}
   @update_attrs %{datetime: ~N[2011-05-18 15:01:01.000000], description: "some updated description", images: "some updated images"}
   @invalid_attrs %{datetime: nil, description: nil, images: nil}
+
+  setup do
+    user = build(:admin)
+           |> with_card
+    attrs = Map.take(user, [:email, :password_hash, :password])
+    conn = post(build_conn(), "/sessions", %{session: attrs})
+    [conn: conn]
+  end
 
   def fixture(:event) do
     {:ok, event} = Location.create_event(@create_attrs)

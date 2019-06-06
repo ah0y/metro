@@ -3,8 +3,15 @@ defmodule MetroWeb.LibraryControllerTest do
 
   alias Metro.Location
 
+  import Metro.Factory
+
   @create_attrs %{address: "some address", hours: "some hours", image: "some image", branch: "some branch"}
-  @update_attrs %{address: "some updated address", hours: "some updated hours", image: "some updated image", branch: "some updated branch"}
+  @update_attrs %{
+    address: "some updated address",
+    hours: "some updated hours",
+    image: "some updated image",
+    branch: "some updated branch"
+  }
   @invalid_attrs %{address: nil, hours: nil, image: nil, branch: nil}
 
   def fixture(:library) do
@@ -20,6 +27,14 @@ defmodule MetroWeb.LibraryControllerTest do
   end
 
   describe "new library" do
+    setup do
+      user = build(:admin)
+             |> with_card
+      attrs = Map.take(user, [:email, :password_hash, :password])
+      conn = post(build_conn(), "/sessions", %{session: attrs})
+      [conn: conn]
+    end
+
     test "renders form", %{conn: conn} do
       conn = get conn, library_path(conn, :new)
       assert html_response(conn, 200) =~ "New Library"
@@ -27,6 +42,14 @@ defmodule MetroWeb.LibraryControllerTest do
   end
 
   describe "create library" do
+    setup do
+      user = build(:admin)
+             |> with_card
+      attrs = Map.take(user, [:email, :password_hash, :password])
+      conn = post(build_conn(), "/sessions", %{session: attrs})
+      [conn: conn]
+    end
+
     test "redirects to show when data is valid", %{conn: conn} do
       conn = post conn, library_path(conn, :create), library: @create_attrs
 
@@ -44,6 +67,14 @@ defmodule MetroWeb.LibraryControllerTest do
   end
 
   describe "edit library" do
+    setup do
+      user = build(:admin)
+             |> with_card
+      attrs = Map.take(user, [:email, :password_hash, :password])
+      conn = post(build_conn(), "/sessions", %{session: attrs})
+      [conn: conn]
+    end
+
     setup [:create_library]
 
     test "renders form for editing chosen library", %{conn: conn, library: library} do
@@ -82,7 +113,11 @@ defmodule MetroWeb.LibraryControllerTest do
   end
 
   defp create_library(_) do
+    user = build(:admin)
+           |> with_card
+    attrs = Map.take(user, [:email, :password_hash, :password])
+    conn = post(build_conn(), "/sessions", %{session: attrs})
     library = fixture(:library)
-    {:ok, library: library}
+    {:ok, conn: conn, library: library}
   end
 end

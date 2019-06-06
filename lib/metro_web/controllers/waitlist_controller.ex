@@ -6,8 +6,8 @@ defmodule MetroWeb.WaitlistController do
 
   import Ecto.Query
 
-#  plug :load_and_authorize_resource, model: Waitlist
-#  use MetroWeb.ControllerAuthorization
+  plug :load_and_authorize_resource, model: Waitlist
+  use MetroWeb.ControllerAuthorization
 
   def index(
         conn,

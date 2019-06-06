@@ -15,7 +15,7 @@ defmodule Metro.UserFactory do
         }
       end
 
-      def admmin_factory do
+      def admin_factory do
         %Metro.Account.User{
           name: "some user",
           email: sequence(:email, &"me-#{&1}@foo.com"),

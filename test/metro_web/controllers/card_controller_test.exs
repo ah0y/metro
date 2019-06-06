@@ -14,6 +14,12 @@ defmodule MetroWeb.CardControllerTest do
   end
 
   describe "index" do
+    setup do
+      user = insert(:admin)
+      attrs = Map.take(user, [:email, :password_hash, :password])
+      conn = post(build_conn(), "/sessions", %{session: attrs})
+      {:ok, conn: conn}
+    end
     test "lists all cards", %{conn: conn} do
       conn = get conn, card_path(conn, :index)
       assert html_response(conn, 200) =~ "Listing Cards"
@@ -21,6 +27,13 @@ defmodule MetroWeb.CardControllerTest do
   end
 
   describe "new card" do
+    setup do
+      user = insert(:admin)
+      attrs = Map.take(user, [:email, :password_hash, :password])
+      conn = post(build_conn(), "/sessions", %{session: attrs})
+      {:ok, conn: conn}
+    end
+
     test "renders form", %{conn: conn} do
       conn = get conn, card_path(conn, :new)
       assert html_response(conn, 200) =~ "New Card"
@@ -91,7 +104,10 @@ defmodule MetroWeb.CardControllerTest do
   end
 
   defp create_card(_) do
+    user = insert(:admin)
+    attrs = Map.take(user, [:email, :password_hash, :password])
+    conn = post(build_conn(), "/sessions", %{session: attrs})
     card = fixture(:card)
-    {:ok, card: card}
+    {:ok, card: card, conn: conn}
   end
 end

@@ -4,8 +4,8 @@ defmodule MetroWeb.LibraryController do
   alias Metro.Location
   alias Metro.Location.Library
 
-#  plug :load_and_authorize_resource, model: Library
-#  use MetroWeb.ControllerAuthorization
+  plug :load_and_authorize_resource, model: Library
+  use MetroWeb.ControllerAuthorization
 
   def index(conn, _params) do
     libraries = Location.list_libraries()

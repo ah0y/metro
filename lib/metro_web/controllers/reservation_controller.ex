@@ -6,8 +6,8 @@ defmodule MetroWeb.ReservationController do
 
   import Ecto.Query
 
-#  plug :load_and_authorize_resource, model: Reservation
-#  use MetroWeb.ControllerAuthorization
+  plug :load_and_authorize_resource, model: Reservation
+  use MetroWeb.ControllerAuthorization
 
   def index(
         conn,

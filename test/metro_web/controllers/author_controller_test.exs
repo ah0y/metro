@@ -1,11 +1,24 @@
 defmodule MetroWeb.AuthorControllerTest do
   use MetroWeb.ConnCase
 
+  import Metro.Factory
+
   alias Metro.Location
 
-  @create_attrs %{bio: "some bio", first_name: "some first_name", last_name: "some last_name", location: "some location"}
-  @update_attrs %{bio: "some updated bio", first_name: "some updated first_name", last_name: "some updated last_name", location: "some updated location"}
+  @create_attrs %{
+    bio: "some bio",
+    first_name: "some first_name",
+    last_name: "some last_name",
+    location: "some location"
+  }
+  @update_attrs %{
+    bio: "some updated bio",
+    first_name: "some updated first_name",
+    last_name: "some updated last_name",
+    location: "some updated location"
+  }
   @invalid_attrs %{bio: nil, first_name: nil, last_name: nil, location: nil}
+
 
   def fixture(:author) do
     {:ok, author} = Location.create_author(@create_attrs)
@@ -13,6 +26,14 @@ defmodule MetroWeb.AuthorControllerTest do
   end
 
   describe "index" do
+    setup do
+      user = build(:user)
+             |> with_card
+      attrs = Map.take(user, [:email, :password_hash, :password])
+      conn = post(build_conn(), "/sessions", %{session: attrs})
+      {:ok, conn: conn}
+    end
+
     test "lists all authors", %{conn: conn} do
       conn = get conn, author_path(conn, :index)
       assert html_response(conn, 200) =~ "Listing Authors"
@@ -20,6 +41,13 @@ defmodule MetroWeb.AuthorControllerTest do
   end
 
   describe "new author" do
+    setup do
+      user = build(:admin)
+             |> with_card
+      attrs = Map.take(user, [:email, :password_hash, :password])
+      conn = post(build_conn(), "/sessions", %{session: attrs})
+      {:ok, conn: conn}
+    end
     test "renders form", %{conn: conn} do
       conn = get conn, author_path(conn, :new)
       assert html_response(conn, 200) =~ "New Author"
@@ -27,6 +55,13 @@ defmodule MetroWeb.AuthorControllerTest do
   end
 
   describe "create author" do
+    setup do
+      user = build(:admin)
+             |> with_card
+      attrs = Map.take(user, [:email, :password_hash, :password])
+      conn = post(build_conn(), "/sessions", %{session: attrs})
+      {:ok, conn: conn}
+    end
     test "redirects to show when data is valid", %{conn: conn} do
       conn = post conn, author_path(conn, :create), author: @create_attrs
 
@@ -83,6 +118,10 @@ defmodule MetroWeb.AuthorControllerTest do
 
   defp create_author(_) do
     author = fixture(:author)
-    {:ok, author: author}
+    user = build(:admin)
+           |> with_card
+    attrs = Map.take(user, [:email, :password_hash, :password])
+    conn = post(build_conn(), "/sessions", %{session: attrs})
+    {:ok, author: author, conn: conn}
   end
 end

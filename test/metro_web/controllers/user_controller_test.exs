@@ -8,11 +8,8 @@ defmodule MetroWeb.UserControllerTest do
   @create_attrs %{
     name: "some user",
     email: "test@foo.com",
-    password_hash: "$2b$12$XLGRLrhRbzLiicATx7Zihe2hXdqrkpbN4cSwD.w0e/LpZtvh.TkcS",
     password: "password",
-    fines: 0.00,
-    num_books_out: 0,
-    is_librarian?: false,
+    password_confirmation: "password",
   }
   @update_attrs %{
     name: "some updated user",
@@ -24,10 +21,8 @@ defmodule MetroWeb.UserControllerTest do
   @invalid_attrs %{
     name: nil,
     email: nil,
-    password_hash: nil,
-    fines: nil,
-    num_books_out: nil,
-    is_librarian?: nil,
+    password: nil,
+    password_confirmation: nil,
   }
 
   def fixture(:user) do
@@ -41,6 +36,13 @@ defmodule MetroWeb.UserControllerTest do
   end
 
   describe "index" do
+    setup do
+      user = build(:admin)
+             |> with_card
+      attrs = Map.take(user, [:email, :password_hash, :password])
+      conn = post(build_conn(), "/sessions", %{session: attrs})
+      [conn: conn]
+    end
     test "lists all users", %{conn: conn} do
       conn = get conn, user_path(conn, :index)
       assert html_response(conn, 200) =~ "Listing Users"
@@ -49,8 +51,8 @@ defmodule MetroWeb.UserControllerTest do
 
   describe "new user" do
     test "renders form", %{conn: conn} do
-      conn = get conn, user_path(conn, :new)
-      assert html_response(conn, 200) =~ "New User"
+      conn = get conn, registration_path(conn, :new)
+      assert html_response(conn, 200) =~ "Register Account"
     end
   end
 
@@ -59,17 +61,15 @@ defmodule MetroWeb.UserControllerTest do
       card = insert(:card)
       library = insert(:library)
 
-      conn = post conn, user_path(conn, :create), user: Enum.into(@create_attrs, %{library_id: library.id, card_id: card.id})
-      assert %{id: id} = redirected_params(conn)
-      assert redirected_to(conn) == user_path(conn, :show, id)
-
-      conn = get conn, user_path(conn, :show, id)
-      assert html_response(conn, 200) =~ "Show User"
+      conn = post conn,
+                  registration_path(conn, :create),
+                  registration: Enum.into(@create_attrs, %{library_id: library.id, card_id: card.id})
+      assert redirected_to(conn) == page_path(conn, :index)
     end
 
     test "renders errors when data is invalid", %{conn: conn} do
-      conn = post conn, user_path(conn, :create), user: @invalid_attrs
-      assert html_response(conn, 200) =~ "New User"
+      conn = post conn, registration_path(conn, :create), registration: @invalid_attrs
+      assert html_response(conn, 200) =~ "Register Account"
     end
   end
 
@@ -113,7 +113,11 @@ defmodule MetroWeb.UserControllerTest do
   end
 
   defp create_user(_) do
+    user = build(:admin)
+           |> with_card
+    attrs = Map.take(user, [:email, :password_hash, :password])
+    conn = post(build_conn(), "/sessions", %{session: attrs})
     user = fixture(:user)
-    {:ok, user: user}
+    {:ok, conn: conn, user: user}
   end
 end

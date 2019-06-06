@@ -6,8 +6,8 @@ defmodule MetroWeb.UserController do
 
   import Ecto.Query
 
-#  plug :load_and_authorize_resource, model: Metro.Account.User, preload: :card
-#  use MetroWeb.ControllerAuthorization
+  plug :load_and_authorize_resource, model: Metro.Account.User, preload: :card
+  use MetroWeb.ControllerAuthorization
 
   def index(conn, _params) do
     users = Account.list_users()
@@ -24,7 +24,7 @@ defmodule MetroWeb.UserController do
       {:ok, user} ->
         conn
         |> put_flash(:info, "User created successfully.")
-        |> redirect(to: Routes.user_path(conn, :show, user))
+        |> redirect(to: Routes.page_path(conn, :index))
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, "new.html", changeset: changeset)
     end

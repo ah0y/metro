@@ -17,7 +17,7 @@ defimpl Canada.Can, for: User do
   def can?(%User{}, :index, Author), do: true
 
   def can?(%User{id: user_id_1}, action, %User{id: user_id_2})
-      when action in [:show, :edit, :update, :delete] do
+      when action in [:show] do
     user_id_1 == user_id_2
   end
 

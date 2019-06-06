@@ -9,6 +9,13 @@ defmodule MetroWeb.TransitControllerTest do
   @update_attrs %{actual_arrival: ~N[2011-05-18 15:01:01.000000], estimated_arrival: ~N[2011-05-18 15:01:01.000000]}
   @invalid_attrs %{actual_arrival: nil, estimated_arrival: nil, checkout_id: nil}
 
+  setup do
+    user = build(:admin)
+           |> with_card
+    attrs = Map.take(user, [:email, :password_hash, :password])
+    conn = post(build_conn(), "/sessions", %{session: attrs})
+    [conn: conn]
+  end
 
   def fixture(:transit) do
     transit = insert(:transit)

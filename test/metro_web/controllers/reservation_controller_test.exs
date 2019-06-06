@@ -9,6 +9,13 @@ defmodule MetroWeb.ReservationControllerTest do
   @update_attrs %{expiration_date: ~N[2011-05-18 15:01:01.000000]}
   @invalid_attrs %{expiration_date: nil, transit_id: nil}
 
+  setup do
+    user = build(:admin)
+           |> with_card
+    attrs = Map.take(user, [:email, :password_hash, :password])
+    conn = post(build_conn(), "/sessions", %{session: attrs})
+    [conn: conn]
+  end
 
   def fixture(:reservation) do
     reservation = insert(:reservation)

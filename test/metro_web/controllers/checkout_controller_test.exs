@@ -8,9 +8,6 @@ defmodule MetroWeb.CheckoutControllerTest do
 
   alias Metro.Repo
 
-  #  import Canary.Plugs
-  #
-  #  plug :load_and_authorize_resource, model: Metro.Order.Checkout
 
 
   @create_attrs %{
@@ -48,6 +45,14 @@ defmodule MetroWeb.CheckoutControllerTest do
   end
 
   describe "index" do
+    setup do
+      user = build(:admin)
+             |> with_card
+      attrs = Map.take(user, [:email, :password_hash, :password])
+      conn = post(build_conn(), "/sessions", %{session: attrs})
+      [conn: conn]
+    end
+
     test "lists all checkouts", %{conn: conn} do
       conn = get conn, checkout_path(conn, :index)
       assert html_response(conn, 200) =~ "Listing Checkouts"
@@ -175,7 +180,11 @@ defmodule MetroWeb.CheckoutControllerTest do
 #  end
 
   defp create_checkout(_) do
+    user = build(:admin)
+           |> with_card
+    attrs = Map.take(user, [:email, :password_hash, :password])
+    conn = post(build_conn(), "/sessions", %{session: attrs})
     checkout = fixture(:checkout)
-    {:ok, checkout: checkout}
+    {:ok, conn: conn, checkout: checkout}
   end
 end

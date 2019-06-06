@@ -30,6 +30,14 @@ defmodule MetroWeb.BookControllerTest do
   end
 
   describe "new book" do
+    setup do
+      user = build(:admin)
+             |> with_card
+      attrs = Map.take(user, [:email, :password_hash, :password])
+      conn = post(build_conn(), "/sessions", %{session: attrs})
+      [conn: conn]
+    end
+
     test "renders form", %{conn: conn} do
       conn = get conn, book_path(conn, :new)
       assert html_response(conn, 200) =~ "New Book"
@@ -37,6 +45,13 @@ defmodule MetroWeb.BookControllerTest do
   end
 
   describe "create book" do
+    setup do
+      user = build(:admin)
+             |> with_card
+      attrs = Map.take(user, [:email, :password_hash, :password])
+      conn = post(build_conn(), "/sessions", %{session: attrs})
+    {:ok, conn: conn}
+    end
     test "redirects to show when data is valid", %{conn: conn} do
       author = insert(:author)
       attrs = params_for(:book, %{author_id: author.id})
@@ -54,37 +69,37 @@ defmodule MetroWeb.BookControllerTest do
       assert html_response(conn, 200) =~ "New Book"
     end
 
-
+    @tag book: "route"
     test "routes to Copy/new when creating a book with an existing isbn", %{conn: conn} do
       author = insert(:author)
-      attrs = params_for(:book, %{author_id: author.id})
+      attrs = params_for(:book, %{isbn: 42, author_id: author.id})
       conn = post conn, book_path(conn, :create), book: attrs
 
       assert %{isbn: isbn} = redirected_params(conn)
       assert redirected_to(conn) == book_path(conn, :show, isbn)
 
-      conn = post(build_conn(), "/books", book: attrs)
+      conn = post conn, "/books", book: attrs
 
       assert redirected_to(conn) == copy_path(conn, :new, isbn: isbn)
     end
 
-    test "creates a new author if one is entered that doesn't already exist"  do
-      conn = post(build_conn(), "/books", book: Enum.into(@create_attrs, %{author_id: "author, new"}))
+    test "creates a new author if one is entered that doesn't already exist", %{conn: conn}  do
+      conn = post conn, "/books", book: Enum.into(@create_attrs, %{author_id: "author, new"})
       assert get_flash(conn, :info) == "Book created successfully."
     end
   end
 
-  @moduletag book_show_case: "book show"
-#  describe "show book" do
-#    setup [:create_book]
-#    test "routes to checkout/new when placing a hold on a book with an available copy ", %{conn: conn, book: book} do
-#      book =
-#        book
-#        |> with_available_copies
-#      conn = post conn, book_path(conn, :checkout, book)
-#      assert redirected_to(conn) == checkout_path(conn, :new, isbn: book.isbn)
-#    end
-#  end
+  #  @moduletag book_show_case: "book show"
+  #  describe "show book" do
+  #    setup [:create_book]
+  #    test "routes to checkout/new when placing a hold on a book with an available copy ", %{conn: conn, book: book} do
+  #      book =
+  #        book
+  #        |> with_available_copies
+  #      conn = post conn, book_path(conn, :checkout, book)
+  #      assert redirected_to(conn) == checkout_path(conn, :new, isbn: book.isbn)
+  #    end
+  #  end
 
   describe "edit book" do
     setup [:create_book]
@@ -125,8 +140,12 @@ defmodule MetroWeb.BookControllerTest do
   end
 
   defp create_book(_) do
+    user = build(:admin)
+           |> with_card
+    attrs = Map.take(user, [:email, :password_hash, :password])
+    conn = post(build_conn(), "/sessions", %{session: attrs})
     book = fixture(:book)
-    {:ok, book: book}
+    {:ok, conn: conn, book: book}
   end
 
   #  defp create_book_with_available_copies(_) do

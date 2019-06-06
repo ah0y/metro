@@ -3,9 +3,19 @@ defmodule MetroWeb.RoomControllerTest do
 
   alias Metro.Location
 
+  import Metro.Factory
+
   @create_attrs %{capacity: 42}
   @update_attrs %{capacity: 43}
   @invalid_attrs %{capacity: nil}
+
+  setup do
+    user = build(:admin)
+           |> with_card
+    attrs = Map.take(user, [:email, :password_hash, :password])
+    conn = post(build_conn(), "/sessions", %{session: attrs})
+    [conn: conn]
+  end
 
   def fixture(:room) do
     {:ok, room} = Location.create_room(@create_attrs)

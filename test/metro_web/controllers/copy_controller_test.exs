@@ -9,6 +9,14 @@ defmodule MetroWeb.CopyControllerTest do
   @update_attrs %{checked_out?: false}
   @invalid_attrs %{checked_out?: nil}
 
+  setup do
+    user = build(:admin)
+           |> with_card
+    attrs = Map.take(user, [:email, :password_hash, :password])
+    conn = post(build_conn(), "/sessions", %{session: attrs})
+    [conn: conn]
+  end
+
   def fixture(:copy) do
     library = insert(:library)
     book = insert(:book)

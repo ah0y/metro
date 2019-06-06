@@ -9,6 +9,14 @@ defmodule MetroWeb.WaitlistControllerTest do
   @update_attrs %{position: 43}
   @invalid_attrs %{position: nil, copy_id: nil, checkout_id: nil, isbn_id: 0}
 
+  setup do
+    user = build(:admin)
+           |> with_card
+    attrs = Map.take(user, [:email, :password_hash, :password])
+    conn = post(build_conn(), "/sessions", %{session: attrs})
+    [conn: conn]
+  end
+
   def fixture(:waitlist) do
     checkout = insert(:checkout)
     attrs = %{checkout_id: checkout.id, isbn_id: checkout.isbn_id}
