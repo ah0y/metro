@@ -265,6 +265,21 @@ defmodule Metro.Location do
   end
 
   @doc """
+  Returns the list of rooms.
+
+  ## Examples
+
+      iex> list_rooms()
+      [%Room{}, ...]
+
+  """
+  def load_rooms do
+    query =
+      Room
+      |> Room.room_name
+    authors = Repo.all query
+  end
+  @doc """
   Gets a single room.
 
   Raises `Ecto.NoResultsError` if the Room does not exist.

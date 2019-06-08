@@ -8,7 +8,6 @@ defmodule MetroWeb.RoomControllerTest do
   @create_attrs %{capacity: 42}
   @update_attrs %{capacity: 43}
   @invalid_attrs %{capacity: nil}
-
   setup do
     user = build(:admin)
            |> with_card
@@ -18,7 +17,8 @@ defmodule MetroWeb.RoomControllerTest do
   end
 
   def fixture(:room) do
-    {:ok, room} = Location.create_room(@create_attrs)
+    library = insert(:library)
+    {:ok, room} = Location.create_room(Enum.into(@create_attrs, %{library_id: library.id}))
     room
   end
 
@@ -38,7 +38,9 @@ defmodule MetroWeb.RoomControllerTest do
 
   describe "create room" do
     test "redirects to show when data is valid", %{conn: conn} do
-      conn = post conn, room_path(conn, :create), room: @create_attrs
+      library = insert(:library)
+      attrs = params_for(:room, %{library_id: library.id})
+      conn = post conn, room_path(conn, :create), room: attrs
 
       assert %{id: id} = redirected_params(conn)
       assert redirected_to(conn) == room_path(conn, :show, id)

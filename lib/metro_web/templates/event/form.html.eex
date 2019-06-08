@@ -11,6 +11,17 @@
     <%= error_tag f, :description %>
   </div>
 
+      <div class="form-group">
+        <%= label f, :room_id, class: "control-label" %>
+        <input list="event_room_id" name="event[room_id]" class="form-control" />
+        <datalist id="event_room_id">
+        <%= for room <- @rooms do %>
+         <option value=<%=room.id%>><%=room.room_name%></option>
+         <% end %>
+        </datalist>
+       <%= error_tag f, :room_id %>
+      </div>
+
   <div class="form-group">
     <%= label f, :images, class: "control-label" %>
     <%= text_input f, :images, class: "form-control" %>
@@ -18,10 +29,16 @@
   </div>
 
   <div class="form-group">
-    <%= label f, :datetime, class: "control-label" %>
-    <%= datetime_select f, :datetime, class: "form-control" %>
-    <%= error_tag f, :datetime %>
+    <%= label f, :start_time, class: "control-label" %>
+    <%= datetime_select f, :start_time, class: "form-control" %>
+    <%= error_tag f, :start_time %>
   </div>
+
+    <div class="form-group">
+      <%= label f, :end_time, class: "control-label" %>
+      <%= datetime_select f, :end_time, class: "form-control" %>
+      <%= error_tag f, :end_time %>
+    </div>
 
   <div class="form-group">
     <%= submit "Submit", class: "btn btn-primary" %>

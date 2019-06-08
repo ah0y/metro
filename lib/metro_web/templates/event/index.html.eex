@@ -1,30 +1,25 @@
-<h2>Listing Events</h2>
+<div id="myCarousel" class="carousel slide" data-ride="carousel">
+  <ol class="carousel-indicators">
+    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+    <li data-target="#myCarousel" data-slide-to="1"></li>
+    <li data-target="#myCarousel" data-slide-to="2"></li>
+  </ol>
+  <div class="carousel-inner">
+         <div class="active item">
+           <img class = "d-block w-100" src="<%= @head.images %>">
+         </div>
 
-<table class="table">
-  <thead>
-    <tr>
-      <th>Description</th>
-      <th>Images</th>
-      <th>Datetime</th>
+          <%= for event <- @events do %>
+             <div class="item">
+               <img class= "d-block w-100" src="<%= event.images %>">
+             </div>
+         <% end %>
+  </div>
+  <a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
+  <a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
+</div>
 
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-<%= for event <- @events do %>
-    <tr>
-      <td><%= event.description %></td>
-      <td><%= event.images %></td>
-      <td><%= event.datetime %></td>
 
-      <td class="text-right">
-        <span><%= link "Show", to: Routes.event_path(@conn, :show, event), class: "btn btn-default btn-xs" %></span>
-        <span><%= link "Edit", to: Routes.event_path(@conn, :edit, event), class: "btn btn-default btn-xs" %></span>
-        <span><%= link "Delete", to: Routes.event_path(@conn, :delete, event), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %></span>
-      </td>
-    </tr>
-<% end %>
-  </tbody>
-</table>
-
-<span><%= link "New Event", to: Routes.event_path(@conn, :new) %></span>
+<script>
+$('.carousel').carousel()
+</script>

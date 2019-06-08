@@ -11,7 +11,8 @@ defmodule MetroWeb.RoomController do
 
   def new(conn, _params) do
     changeset = Location.change_room(%Room{})
-    render(conn, "new.html", changeset: changeset)
+    libraries = Location.load_libraries()
+    render(conn, "new.html", changeset: changeset, libraries: libraries)
   end
 
   def create(conn, %{"room" => room_params}) do
@@ -21,7 +22,8 @@ defmodule MetroWeb.RoomController do
         |> put_flash(:info, "Room created successfully.")
         |> redirect(to: Routes.room_path(conn, :show, room))
       {:error, %Ecto.Changeset{} = changeset} ->
-        render(conn, "new.html", changeset: changeset)
+        libraries = Location.load_libraries()
+        render(conn, "new.html", changeset: changeset, libraries: libraries)
     end
   end
 
@@ -31,21 +33,22 @@ defmodule MetroWeb.RoomController do
   end
 
   def edit(conn, %{"id" => id}) do
+    libraries = Location.load_libraries()
     room = Location.get_room!(id)
     changeset = Location.change_room(room)
-    render(conn, "edit.html", room: room, changeset: changeset)
+    render(conn, "edit.html", room: room, changeset: changeset, libraries: libraries)
   end
 
   def update(conn, %{"id" => id, "room" => room_params}) do
     room = Location.get_room!(id)
-
     case Location.update_room(room, room_params) do
       {:ok, room} ->
         conn
         |> put_flash(:info, "Room updated successfully.")
         |> redirect(to: Routes.room_path(conn, :show, room))
       {:error, %Ecto.Changeset{} = changeset} ->
-        render(conn, "edit.html", room: room, changeset: changeset)
+        libraries = Location.load_libraries()
+        render(conn, "edit.html", room: room, changeset: changeset, libraries: libraries)
     end
   end
 

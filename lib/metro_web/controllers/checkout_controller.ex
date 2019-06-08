@@ -53,7 +53,7 @@ defmodule MetroWeb.CheckoutController do
 
   def create(conn, %{"checkout" => checkout_params}) do
     user =
-      conn.assigns.current_user
+      Metro.Account.get_user!(conn.assigns.current_user.id)
       |> Repo.preload([{:card, :checkouts}])
     copy = Location.find_copy(Map.get(checkout_params, "isbn_id"))
     case Order.create_order(user, checkout_params, copy) do
@@ -70,6 +70,15 @@ defmodule MetroWeb.CheckoutController do
           isbn: Map.get(changeset.changes, :isbn_id),
           libraries: libraries
         )
+      {:error, :checkout, "user has an overdue book", %{}} ->
+        conn
+        |> put_flash(:error, "user has an overdue book.")
+        |> redirect(to: Routes.user_path(conn, :show, user))
+      {:error, :checkout, "user has unpaid library fines", %{}} ->
+        conn
+        |> put_flash(:error, "user has unpaid library fines.")
+        |> redirect(to: Routes.user_path(conn, :show, user))
+
     end
   end
 

@@ -5,7 +5,8 @@ defmodule Metro.Repo.Migrations.CreateEvents do
     create table(:events) do
       add :description, :text
       add :images, :string
-      add :datetime, :naive_datetime
+      add :start_time, :naive_datetime
+      add :end_time, :naive_datetime
       add :room_id, references(:rooms, on_delete: :nothing)
 
       timestamps()

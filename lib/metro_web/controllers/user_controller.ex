@@ -34,7 +34,6 @@ defmodule MetroWeb.UserController do
     user =
       Account.get_user!(id)
       |> Metro.Repo.preload(:checkouts)
-
     checkouts = Enum.reduce(
       user.checkouts,
       %{:checked_in => [], :checked_out => [], :waitlist => [], :transit => [], :pickup => []},

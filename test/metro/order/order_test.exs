@@ -731,7 +731,6 @@ defmodule Metro.OrderTest do
       assert reservation.expiration_date == ~N[2011-05-18 15:01:01]
     end
 
-    @tag reservation: "update"
     test "update_reservation/2 with invalid data returns error changeset" do
       reservation = reservation_fixture()
       assert {:error, %Ecto.Changeset{}} = Order.update_reservation(reservation, @invalid_attrs)

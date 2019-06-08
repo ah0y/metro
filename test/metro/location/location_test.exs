@@ -143,11 +143,12 @@ defmodule Metro.LocationTest do
     @invalid_attrs %{capacity: nil}
 
     def room_fixture(attrs \\ %{}) do
+      library = library_fixture()
       {:ok, room} =
         attrs
         |> Enum.into(@valid_attrs)
+        |> Enum.into(%{library_id: library.id})
         |> Location.create_room()
-
       room
     end
 
@@ -162,8 +163,11 @@ defmodule Metro.LocationTest do
     end
 
     test "create_room/1 with valid data creates a room" do
-      assert {:ok, %Room{} = room} = Location.create_room(@valid_attrs)
-      assert room.capacity == 42
+      library = library_fixture()
+      attrs = params_for(:room, %{library_id: library.id})
+      assert {:ok, %Room{} = room} = Location.create_room(attrs)
+      assert room.capacity == 32
+      assert room.library_id == library.id
     end
 
     test "create_room/1 with invalid data returns error changeset" do
@@ -349,16 +353,17 @@ defmodule Metro.LocationTest do
   describe "events" do
     alias Metro.Location.Event
 
-    @valid_attrs %{datetime: ~N[2010-04-17 14:00:00.000000], description: "some description", images: "some images"}
-    @update_attrs %{datetime: ~N[2011-05-18 15:01:01.000000], description: "some updated description", images: "some updated images"}
-    @invalid_attrs %{datetime: nil, description: nil, images: nil}
+    @valid_attrs %{start_time: ~N[2010-04-17 14:00:00.000000], end_time: ~N[2011-04-17 15:01:01.000000], description: "some description", images: "some images"}
+    @update_attrs %{start_time: ~N[2010-04-17 12:00:00.000000], end_time: ~N[2011-04-17 15:01:01.000000], description: "some updated description", images: "some updated images"}
+    @invalid_attrs %{start_time: nil, end_time: nil, description: nil, images: nil}
 
     def event_fixture(attrs \\ %{}) do
+      room = room_fixture()
       {:ok, event} =
         attrs
         |> Enum.into(@valid_attrs)
+        |> Enum.into(%{room_id: room.id})
         |> Location.create_event()
-
       event
     end
 
@@ -373,10 +378,13 @@ defmodule Metro.LocationTest do
     end
 
     test "create_event/1 with valid data creates a event" do
-      assert {:ok, %Event{} = event} = Location.create_event(@valid_attrs)
-      assert event.datetime == ~N[2010-04-17 14:00:00]
+      room = room_fixture()
+      attrs = params_for(:event, %{room_id: room.id})
+      assert {:ok, %Event{} = event} = Location.create_event(attrs)
+      assert event.start_time ==  ~N[2010-04-17 12:00:00]
+      assert event.end_time == ~N[2010-04-17 14:00:00]
       assert event.description == "some description"
-      assert event.images == "some images"
+      assert event.images == "some image"
     end
 
     test "create_event/1 with invalid data returns error changeset" do
@@ -387,7 +395,7 @@ defmodule Metro.LocationTest do
       event = event_fixture()
       assert {:ok, event} = Location.update_event(event, @update_attrs)
       assert %Event{} = event
-      assert event.datetime == ~N[2011-05-18 15:01:01]
+      assert event.end_time == ~N[2011-04-17 15:01:01]
       assert event.description == "some updated description"
       assert event.images == "some updated images"
     end

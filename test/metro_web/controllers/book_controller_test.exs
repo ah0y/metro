@@ -15,7 +15,6 @@ defmodule MetroWeb.BookControllerTest do
     year: 43
   }
   @invalid_attrs %{title: nil, image: nil, isbn: nil, pages: nil, summary: nil, year: nil}
-
   def fixture(:book) do
     author = insert(:author)
     {:ok, book} = Location.create_book(Enum.into(@create_attrs, %{author_id: author.id}))
@@ -69,7 +68,6 @@ defmodule MetroWeb.BookControllerTest do
       assert html_response(conn, 200) =~ "New Book"
     end
 
-    @tag book: "route"
     test "routes to Copy/new when creating a book with an existing isbn", %{conn: conn} do
       author = insert(:author)
       attrs = params_for(:book, %{isbn: 42, author_id: author.id})

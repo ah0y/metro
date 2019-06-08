@@ -6,12 +6,15 @@ defmodule MetroWeb.EventController do
 
   def index(conn, _params) do
     events = Location.list_events()
-    render(conn, "index.html", events: events)
+    {head, events} = List.pop_at(events, 0)
+#    require IEx; IEx.pry()
+    render(conn, "index.html", events: events, head: head)
   end
 
   def new(conn, _params) do
     changeset = Location.change_event(%Event{})
-    render(conn, "new.html", changeset: changeset)
+    rooms = Location.load_rooms
+    render(conn, "new.html", changeset: changeset, rooms: rooms)
   end
 
   def create(conn, %{"event" => event_params}) do
@@ -21,7 +24,9 @@ defmodule MetroWeb.EventController do
         |> put_flash(:info, "Event created successfully.")
         |> redirect(to: Routes.event_path(conn, :show, event))
       {:error, %Ecto.Changeset{} = changeset} ->
-        render(conn, "new.html", changeset: changeset)
+#      require IEx; IEx.pry()
+        rooms = Location.load_rooms
+        render(conn, "new.html", changeset: changeset, rooms: rooms)
     end
   end
 
@@ -33,7 +38,8 @@ defmodule MetroWeb.EventController do
   def edit(conn, %{"id" => id}) do
     event = Location.get_event!(id)
     changeset = Location.change_event(event)
-    render(conn, "edit.html", event: event, changeset: changeset)
+    rooms = Location.load_rooms
+    render(conn, "edit.html", event: event, changeset: changeset, rooms: rooms)
   end
 
   def update(conn, %{"id" => id, "event" => event_params}) do
@@ -45,7 +51,8 @@ defmodule MetroWeb.EventController do
         |> put_flash(:info, "Event updated successfully.")
         |> redirect(to: Routes.event_path(conn, :show, event))
       {:error, %Ecto.Changeset{} = changeset} ->
-        render(conn, "edit.html", event: event, changeset: changeset)
+        rooms = Location.load_rooms
+        render(conn, "edit.html", event: event, changeset: changeset, rooms: rooms)
     end
   end
 

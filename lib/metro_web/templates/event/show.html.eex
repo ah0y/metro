@@ -1,5 +1,10 @@
-<h2>Show Event</h2>
+<script src="https://cdn.jsdelivr.net/npm/simple-jscalendar@1.4.3/source/jsCalendar.min.js" integrity="sha384-JqNLUzAxpw7zEu6rKS/TNPZ5ayCWPUY601zaig7cUEVfL+pBoLcDiIEkWHjl07Ot" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/simple-jscalendar@1.4.3/source/jsCalendar.min.css" integrity="sha384-+OB2CadpqXIt7AheMhNaVI99xKH8j8b+bHC8P5m2tkpFopGBklD3IRvYjPekeWIJ" crossorigin="anonymous">
 
+<div class="container">
+
+<h2>Show Event</h2>
+<img src="<%= @event.images %>"></img>
 <ul>
 
   <li>
@@ -8,16 +13,33 @@
   </li>
 
   <li>
-    <strong>Images:</strong>
-    <%= @event.images %>
+    <strong>Start Time:</strong>
+    <%= @event.start_time %>
   </li>
 
-  <li>
-    <strong>Datetime:</strong>
-    <%= @event.datetime %>
-  </li>
-
+   <li>
+      <strong>End Time:</strong>
+      <%= @event.end_time %>
+    </li>
 </ul>
+
+</div>
+<div id="event-calendar" style="vertical-align:bottom" align="right" class="classic-theme red">
+</div>
+
+
+<script type="text/javascript">
+    // Get the element
+    var element = document.getElementById("event-calendar");
+    // Create the calendar
+    var myCalendar = jsCalendar.new(element);
+    // Get the buttons
+    // Add events
+    var date = new Date("<%=NaiveDateTime.to_date(@event.start_time)%>")
+    console.log(date)
+    myCalendar.set(date)
+</script>
+
 
 <span><%= link "Edit", to: Routes.event_path(@conn, :edit, @event) %></span>
 <span><%= link "Back", to: Routes.event_path(@conn, :index) %></span>

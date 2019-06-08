@@ -7,7 +7,8 @@ defmodule Metro.Location.Event do
 
 
   schema "events" do
-    field :datetime, :naive_datetime
+    field :start_time, :naive_datetime
+    field :end_time, :naive_datetime
     field :description, :string
     field :images, :string
 
@@ -19,7 +20,7 @@ defmodule Metro.Location.Event do
   @doc false
   def changeset(event, attrs) do
     event
-    |> cast(attrs, [:description, :images, :datetime])
-    |> validate_required([:description, :images, :datetime])
+    |> cast(attrs, [:description, :images, :start_time, :end_time, :room_id])
+    |> validate_required([:description, :images, :start_time, :end_time, :room_id])
   end
 end

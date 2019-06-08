@@ -106,3 +106,31 @@ defmodule Metro.LibraryFactory do
 end
 
 
+defmodule Metro.EventFactory do
+  defmacro __using__(_opts) do
+    quote do
+      def event_factory do
+        %Metro.Location.Event{
+          start_time:  ~N[2010-04-17 12:00:00.000000],
+          end_time:  ~N[2010-04-17 14:00:00.000000],
+          description: "some description",
+          images: "some image",
+        }
+      end
+    end
+  end
+end
+
+defmodule Metro.RoomFactory do
+  defmacro __using__(_opts) do
+    quote do
+      def room_factory do
+        %Metro.Location.Room{
+          capacity: 32,
+          library: build(:library)
+        }
+      end
+    end
+  end
+end
+

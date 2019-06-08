@@ -10,4 +10,6 @@ defmodule Metro.Factory do
   use Metro.ReservationFactory
   use Metro.TransitFactory
   use Metro.WaitlistFactory
+  use Metro.RoomFactory
+  use Metro.EventFactory
 end

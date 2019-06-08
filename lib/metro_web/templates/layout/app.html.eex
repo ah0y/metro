@@ -27,8 +27,8 @@
                                       <span class="caret"></span>
                                   </a>
                                   <ul class="dropdown-menu dropdown-menu-right">
-                                      <li><%= link "transit", to: Routes.transit_path(@conn, :index) %></li>
                                       <li><%= link "work", to: Routes.work_path(@conn, :index) %></li>
+                                      <li><%= link "transit", to: Routes.transit_path(@conn, :index) %></li>
                                       <li><%= link "copies", to: Routes.copy_path(@conn, :index) %></li>
                                       <li><%= link "waitlist", to: Routes.waitlist_path(@conn, :index) %></li>
                                       <li><%= link "checkouts", to: Routes.checkout_path(@conn, :index) %></li>

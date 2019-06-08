@@ -99,7 +99,6 @@ defmodule MetroWeb.CheckoutControllerTest do
       assert redirected_to(conn) == user_path(conn, :show, user.id)
     end
 
-    @tag checkout: "create"
     test "renders errors when data is invalid", %{conn: conn} do
       user = build(:user)
              |> insert
