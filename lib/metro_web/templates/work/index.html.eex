@@ -10,12 +10,12 @@
 <table class="table">
   <thead>
     <tr>
-      <th>Id</th>
-      <th>Checked out?</th>
+      <th>Copy Id</th>
       <th>Library</th>
       <th>ISBN</th>
       <th>Destination library</th>
       <th>Checkout Date</th>
+      <th>Picked Up</th>
       <th></th>
     </tr>
   </thead>
@@ -23,11 +23,11 @@
 <%= for copy <- @copies do %>
     <tr>
       <td><%= copy.id %></td>
-      <td><%= copy.checked_out? %></td>
       <td><%= copy.library_id %></td>
       <td><%= copy.isbn_id %></td>
       <td><%= copy.destination %></td>
       <td><%= copy.checkout_date %></td>
+      <td><input id = "<%= copy.id %>_picked_up?" type="checkbox" name="<%= copy.id %>_picked_up?" /></td>
     </tr>
 <% end %>
   </tbody>

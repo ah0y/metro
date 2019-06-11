@@ -19,6 +19,20 @@ defmodule Metro.Account.Card do
   def changeset(card, attrs) do
     card
     |> cast(attrs, [:pin, :user_id])
+    |> validate_card_pin_length
     |> validate_required([:pin, :user_id])
+  end
+
+  defp validate_card_pin_length(changeset) do
+    pin = get_field(changeset, :pin)
+    validate_card_pin_length(changeset, pin)
+  end
+
+  defp validate_card_pin_length(changeset, pin) do
+    if pin == nil or String.length(pin) != 4 do
+      add_error(changeset, :pin, "should be 4 digits")
+      else
+      changeset
+    end
   end
 end

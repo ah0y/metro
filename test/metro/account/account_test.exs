@@ -8,9 +8,9 @@ defmodule Metro.AccountTest do
   describe "cards" do
     alias Metro.Account.Card
 
-    @valid_attrs %{pin: "42"}
-    @update_attrs %{pin: "43"}
-    @invalid_attrs %{pin: nil}
+    @valid_attrs %{pin: "0142"}
+    @update_attrs %{pin: "0143"}
+    @invalid_attrs %{pin: "012"}
 
     def card_fixture(attrs \\ %{}) do
       card = insert(:card)
@@ -29,7 +29,7 @@ defmodule Metro.AccountTest do
     test "create_card/1 with valid data creates a card" do
       user = insert(:user)
       assert {:ok, %Card{} = card} = Account.create_card(Enum.into(@valid_attrs, %{user_id: user.id}))
-      assert card.pin == "42"
+      assert card.pin == "0142"
     end
 
     test "create_card/1 with invalid data returns error changeset" do
@@ -40,7 +40,7 @@ defmodule Metro.AccountTest do
       card = card_fixture()
       assert {:ok, card} = Account.update_card(card, @update_attrs)
       assert %Card{} = card
-      assert card.pin == "43"
+      assert card.pin == "0143"
     end
 
     test "update_card/2 with invalid data returns error changeset" do

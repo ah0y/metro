@@ -5,9 +5,9 @@ defmodule MetroWeb.CardControllerTest do
 
   import Metro.Factory
 
-  @create_attrs %{pin: "42"}
-  @update_attrs %{pin: "43"}
-  @invalid_attrs %{pin: nil}
+  @create_attrs %{pin: "0142"}
+  @update_attrs %{pin: "0143"}
+  @invalid_attrs %{pin: "014"}
 
   def fixture(:card) do
     card = insert(:card)
@@ -28,7 +28,7 @@ defmodule MetroWeb.CardControllerTest do
 
   describe "new card" do
     setup do
-      user = insert(:admin)
+      user = insert(:user)
       attrs = Map.take(user, [:email, :password_hash, :password])
       conn = post(build_conn(), "/sessions", %{session: attrs})
       {:ok, conn: conn}

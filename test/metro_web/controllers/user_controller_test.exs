@@ -64,7 +64,7 @@ defmodule MetroWeb.UserControllerTest do
       conn = post conn,
                   registration_path(conn, :create),
                   registration: Enum.into(@create_attrs, %{library_id: library.id, card_id: card.id})
-      assert redirected_to(conn) == page_path(conn, :index)
+      assert redirected_to(conn) == event_path(conn, :index)
     end
 
     test "renders errors when data is invalid", %{conn: conn} do

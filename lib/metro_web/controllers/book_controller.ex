@@ -2,12 +2,34 @@ defmodule MetroWeb.BookController do
   use MetroWeb, :controller
 
   alias Metro.Location
+  alias Metro.Location.Author
   alias Metro.Location.Book
 
   import Ecto.Query
 
   plug :load_and_authorize_resource, model: Book, id_name: "isbn", id_field: "isbn"
   use MetroWeb.ControllerAuthorization
+
+  def index(
+        conn,
+        %{
+          "_utf8" => status,
+          "search" => %{
+            "query" => query,
+            "search_by" => "author"
+          }
+        }
+      ) do
+
+    query_params = from b in Book,
+                        join: a in Author,
+                        where: a.id == b.author_id,
+                        where: ilike(a.last_name, ^"%#{query}%") or ilike(a.first_name, ^"%#{query}%")
+
+    page = Metro.Repo.paginate(query_params)
+
+    render conn, "index.html", books: page.entries, page: page
+  end
 
   def index(
         conn,
@@ -24,7 +46,8 @@ defmodule MetroWeb.BookController do
       search_by
       |> String.to_atom()
 
-    query_params = from b in Book, where: ilike(field(b, ^search_by), ^"%#{query}%")
+    query_params = from b in Book,
+                        where: ilike(field(b, ^search_by), ^"%#{query}%")
 
     page = Metro.Repo.paginate(query_params)
 

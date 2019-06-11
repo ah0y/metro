@@ -2,7 +2,11 @@ defmodule MetroWeb.AuthorController do
   use MetroWeb, :controller
 
   alias Metro.Location
+  alias Metro.Location.Book
   alias Metro.Location.Author
+
+  import Ecto.Query
+
 
   plug :load_and_authorize_resource, model: Author
   use MetroWeb.ControllerAuthorization
@@ -28,9 +32,25 @@ defmodule MetroWeb.AuthorController do
     end
   end
 
+  def show(conn, %{"id" => id, "page" => pagenumber}) do
+    author = Location.get_author!(id)
+
+    page = Book
+           |> where([b], b.author_id == ^id)
+           |> Metro.Repo.paginate(page: pagenumber)
+
+    render(conn, "show.html", page: page, books: page.entries, author: author)
+  end
+
   def show(conn, %{"id" => id}) do
-    author = Location.get_author_and_books(id)
-    render(conn, "show.html", author: author)
+    author = Location.get_author!(id)
+
+    query_params = from b in Book,
+                        where: b.author_id == ^id
+
+    page = Metro.Repo.paginate(query_params)
+
+    render(conn, "show.html", page: page, books: page.entries, author: author)
   end
 
   def edit(conn, %{"id" => id}) do

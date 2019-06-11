@@ -9,6 +9,7 @@ defmodule MetroWeb.CheckoutControllerTest do
   alias Metro.Repo
 
 
+  @moduletag checkout: "all"
 
   @create_attrs %{
     checkout_date: ~N[2010-04-17 14:00:00.000000],

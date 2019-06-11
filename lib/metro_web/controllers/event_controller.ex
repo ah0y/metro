@@ -7,7 +7,6 @@ defmodule MetroWeb.EventController do
   def index(conn, _params) do
     events = Location.list_events()
     {head, events} = List.pop_at(events, 0)
-#    require IEx; IEx.pry()
     render(conn, "index.html", events: events, head: head)
   end
 
@@ -24,7 +23,6 @@ defmodule MetroWeb.EventController do
         |> put_flash(:info, "Event created successfully.")
         |> redirect(to: Routes.event_path(conn, :show, event))
       {:error, %Ecto.Changeset{} = changeset} ->
-#      require IEx; IEx.pry()
         rooms = Location.load_rooms
         render(conn, "new.html", changeset: changeset, rooms: rooms)
     end
