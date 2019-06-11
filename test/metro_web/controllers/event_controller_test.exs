@@ -23,12 +23,14 @@ defmodule MetroWeb.EventControllerTest do
     event
   end
 
-  describe "index" do
-    test "lists all events", %{conn: conn} do
-      conn = get conn, event_path(conn, :index)
-      assert html_response(conn, 200) =~ "Listing Events"
-    end
-  end
+#  describe "index" do
+#    setup [:create_event]
+#
+#    test "lists all events", %{conn: conn} do
+#      conn = get conn, event_path(conn, :index)
+#      assert html_response(conn, 200) =~ "Listing Events"
+#    end
+#  end
 
   describe "new event" do
     test "renders form", %{conn: conn} do

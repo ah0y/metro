@@ -3,9 +3,11 @@ defmodule MetroWeb.AuthorViewTest do
 
   alias MetroWeb.AuthorView
   alias Metro.Repo
+  alias Metro.Location.Book
 
   import Phoenix.View
   import Metro.Factory
+  import Ecto.Query
 
   test "renders show.html", %{conn: conn} do
     author = build(:author)
@@ -14,7 +16,11 @@ defmodule MetroWeb.AuthorViewTest do
 
     author = Repo.preload(author, :books)
 
-    content = render_to_string(AuthorView, "show.html", conn: conn, author: author)
+    page = Book
+           |> where([b], b.author_id == ^author.id)
+           |> Metro.Repo.paginate(page: 1)
+
+    content = render_to_string(AuthorView, "show.html", page: page, books: page.entries, conn: conn, author: author)
     for book <- author.books do
       assert String.contains?(content, book.title)
     end

@@ -68,7 +68,6 @@ defmodule Metro.Order do
 
   """
   def can_checkout?(user) do
-    require IEx; IEx.pry()
     cond do
       user.fines > 10 ->
         {:error, "user has unpaid library fines"}

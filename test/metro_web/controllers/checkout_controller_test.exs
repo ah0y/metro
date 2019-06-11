@@ -12,13 +12,13 @@ defmodule MetroWeb.CheckoutControllerTest do
   @moduletag checkout: "all"
 
   @create_attrs %{
-    checkout_date: ~N[2010-04-17 14:00:00.000000],
-    due_date: ~N[2010-04-17 14:00:00.000000],
+    checkout_date: ~N[2024-04-17 14:00:00.000000],
+    due_date: ~N[2024-05-17 14:00:00.000000],
     renewals_remaining: 42
   }
   @update_attrs %{
-    checkout_date: ~N[2011-05-18 15:01:01.000000],
-    due_date: ~N[2011-05-18 15:01:01.000000],
+    checkout_date: ~N[2024-05-18 15:01:01.000000],
+    due_date: ~N[2024-06-18 15:01:01.000000],
     renewals_remaining: 43
   }
   @invalid_attrs %{renewals_remaining: nil}
