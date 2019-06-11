@@ -16,6 +16,8 @@ alias Metro.Location.Author
 alias Metro.Location.Library
 alias Metro.Account.User
 alias Metro.Account.Card
+alias Metro.Location.Room
+alias Metro.Location.Event
 
 Metro.Repo.insert!(
   %Author{
@@ -179,6 +181,41 @@ Metro.Repo.insert!(
         isbn_id: 9780451494627,
         checked_out?: false
       }
+    ],
+    rooms: [
+      %Room{
+        capacity: 32,
+        events: [
+          %Event{
+            start_time: ~N[2010-04-17 12:00:00],
+            end_time: ~N[2010-04-17 14:00:00],
+            description: "Read over the summer for strong reading skills all year long.",
+            images: "https://www.columbuslibrary.org/sites/default/files/uploads/images/SRC-SignUpNowTile.jpg"
+          }
+        ]
+      },
+      %Room{
+        capacity: 20,
+        events: [
+          %Event{
+            start_time: ~N[2020-08-17 12:00:00],
+            end_time: ~N[2020-08-17 14:00:00],
+            description: "Columbus Metropolitan Library is committed to building a new, world-class library in Dublin.",
+            images: "https://www.columbuslibrary.org/sites/default/files/uploads/images/DublinCampaign_homepage.jpg"
+          }
+        ]
+      },
+      %Room{
+        capacity: 10,
+        events: [
+          %Event{
+            start_time: ~N[2020-12-20 12:00:00],
+            end_time: ~N[2020-12-20 14:00:00],
+            description: "Read over the summer for strong reading skills all year long.",
+            images: "https://www.columbuslibrary.org/sites/default/files/uploads/images/MayQuickPickEbooks.jpg"
+          }
+        ]
+      }
     ]
   }
 )
@@ -227,6 +264,20 @@ Metro.Repo.insert!(
         isbn_id: 9780307265838,
         checked_out?: false
       }
+    ],
+    rooms: [
+      %Room{
+        capacity: 32,
+        events: [
+          %Event{
+            start_time: ~N[1969-07-14 12:00:00],
+            end_time: ~N[1969-07-14 14:00:00],
+            description: "Access central Ohio's digital history. Images, documents, maps and artifacts.",
+            images: "https://www.columbuslibrary.org/sites/default/files/uploads/images/crp%26l-109%20cropped%203.jpg"
+          }
+        ]
+      },
+
     ]
   }
 )

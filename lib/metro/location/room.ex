@@ -4,11 +4,14 @@ defmodule Metro.Location.Room do
   import Ecto.Query
 
   alias Metro.Location.Library
+  alias Metro.Location.Event
 
 
   schema "rooms" do
     field :capacity, :integer
     field :room_name, :string, virtual: true
+
+    has_many :events, Event
 
     belongs_to :library, Library, foreign_key: :library_id
 

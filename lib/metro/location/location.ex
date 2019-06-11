@@ -134,7 +134,7 @@ defmodule Metro.Location do
   end
 
   @doc """
-  Loads a list of author ids and first and last names concatenated in alphabetical order and assigns it to conn.
+  Loads a list of author ids and first and last names concatenated and assigns it to conn.
 
   ## Examples
 
@@ -145,7 +145,6 @@ defmodule Metro.Location do
   def load_authors  do
     query =
       Author
-      |> Author.alphabetical
       |> Author.names_and_ids
     authors = Repo.all query
   end

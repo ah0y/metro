@@ -27,7 +27,7 @@ defmodule MetroWeb.CheckoutController do
       search_by
       |> String.to_atom()
 
-    query_params = from b in Checkout, where: field(b, ^search_by) == ^query
+    query_params = from c in Checkout, where: field(c, ^search_by) == ^query and not(is_nil(c.copy_id))
 
     page = Repo.paginate(query_params)
 
@@ -35,9 +35,8 @@ defmodule MetroWeb.CheckoutController do
   end
 
   def index(conn, params = %{}) do
-    page = Checkout
-           |> Repo.paginate(params)
-
+    query_params  = from c in Checkout, where: not(is_nil(c.copy_id))
+    page = Repo.paginate(query_params)
     render conn, "index.html", checkouts: page.entries, page: page
   end
 

@@ -9,7 +9,7 @@ defmodule Metro.Account.User do
     field :name, :string
     field :email, :string
 
-    field :fines, :float
+    field :fines, :float, default: 0.00
     field :is_librarian?, :boolean, default: false
     field :num_books_out, :integer
 

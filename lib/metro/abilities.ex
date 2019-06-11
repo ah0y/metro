@@ -26,10 +26,11 @@ defimpl Canada.Can, for: User do
     true
   end
 
-  def can?(user = %User{id: user_id}, _, Checkout)
-    do
+  def can?(user = %User{id: user_id}, action, Checkout)
+      when action in [:new, :create] do
     user = user
            |> Repo.preload(:card)
+
     user.card != nil
   end
 

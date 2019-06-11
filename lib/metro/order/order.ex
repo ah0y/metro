@@ -68,13 +68,14 @@ defmodule Metro.Order do
 
   """
   def can_checkout?(user) do
+#    require IEx; IEx.pry()
     cond do
       user.fines > 10 ->
         {:error, "user has unpaid library fines"}
       Enum.any?(
         user.card.checkouts,
         fn c -> c.checkin_date == nil and
-                NaiveDateTime.utc_now() > c.due_date
+                NaiveDateTime.compare(NaiveDateTime.utc_now(), c.due_date) == :gt
         end
       ) ->
         {:error, "user has an overdue book"}

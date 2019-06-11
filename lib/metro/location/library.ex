@@ -17,6 +17,7 @@ defmodule Metro.Location.Library do
     has_many :copies, Copy
     has_many :checkouts, Metro.Order.Checkout
     has_many :users, Metro.Account.User
+    has_many :events, through: [:rooms, :events]
 
     timestamps()
   end

@@ -27,6 +27,7 @@ defmodule MetroWeb.TransitController do
                         where: t.checkout_id == ch.id,
                         where: ch.library_id == ^library,
                         where: is_nil(t.actual_arrival),
+                         where: not(is_nil(t.estimated_arrival)),
                         select: %{
                           id: t.id,
                           checkout_id: ch.id,
@@ -46,6 +47,7 @@ defmodule MetroWeb.TransitController do
                         where: t.checkout_id == ch.id,
                         where: ch.library_id == 1,
                         where: is_nil(t.actual_arrival),
+                        where: not(is_nil(t.estimated_arrival)),
                         select: %{
                           id: t.id,
                           checkout_id: ch.id,
