@@ -77,7 +77,6 @@ defmodule MetroWeb.CheckoutController do
         conn
         |> put_flash(:error, "user has unpaid library fines.")
         |> redirect(to: Routes.user_path(conn, :show, user))
-
     end
   end
 

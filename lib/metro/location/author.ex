@@ -25,10 +25,6 @@ defmodule Metro.Location.Author do
     |> validate_required([:first_name, :last_name])
   end
 
-#  def alphabetical(query) do
-#    from a in query, order_by: [a.last_name, a.first_name]
-#  end
-
   def names_and_ids(query) do
     from a in query, select: %{name: fragment("concat(?, ', ', ?)", a.last_name, a.first_name), id: a.id}
   end

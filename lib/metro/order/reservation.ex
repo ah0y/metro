@@ -16,6 +16,7 @@ defmodule Metro.Order.Reservation do
   def changeset(reservation, attrs) do
     reservation
     |> cast(attrs, [:expiration_date, :transit_id])
+    |> foreign_key_constraint(:transit_id)
     |> validate_required([:transit_id])
   end
 end

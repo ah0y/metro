@@ -22,6 +22,7 @@ defmodule Metro.Location.Room do
   def changeset(room, attrs) do
     room
     |> cast(attrs, [:capacity, :library_id])
+    |> foreign_key_constraint(:library_id)
     |> validate_required([:capacity, :library_id])
   end
 

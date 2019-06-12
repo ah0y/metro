@@ -29,6 +29,9 @@ defmodule Metro.Order.Checkout do
   def changeset(checkout, attrs) do
     checkout
     |> cast(attrs, [:isbn_id, :card_id, :library_id, :copy_id, :checkout_date,:checkin_date, :due_date, :renewals_remaining ])
+    |> foreign_key_constraint(:isbn_id)
+    |> foreign_key_constraint(:card_id)
+    |> foreign_key_constraint(:library_id)
     |> validate_required([:renewals_remaining, :isbn_id, :card_id, :library_id])
   end
 end

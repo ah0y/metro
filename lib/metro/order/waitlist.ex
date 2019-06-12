@@ -18,6 +18,9 @@ defmodule Metro.Order.Waitlist do
   def changeset(waitlist, attrs) do
     waitlist
     |> cast(attrs, [:position, :copy_id, :checkout_id, :isbn_id])
+    |> foreign_key_constraint(:copy_id)
+    |> foreign_key_constraint(:isbn_id)
+    |> foreign_key_constraint(:checkout_id)
     |> validate_required([:position, :checkout_id])
   end
 end

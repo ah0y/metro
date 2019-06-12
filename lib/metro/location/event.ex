@@ -21,6 +21,7 @@ defmodule Metro.Location.Event do
   def changeset(event, attrs) do
     event
     |> cast(attrs, [:description, :images, :start_time, :end_time, :room_id])
+    |> foreign_key_constraint(:room_id)
     |> validate_required([:description, :images, :start_time, :end_time, :room_id])
   end
 end

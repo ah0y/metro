@@ -22,6 +22,7 @@ defmodule Metro.Order.Transit do
   def changeset(transit, attrs) do
     transit
     |> cast(attrs, [:estimated_arrival, :actual_arrival, :checkout_id])
+    |> foreign_key_constraint(:checkout_id)
     |> validate_required([:checkout_id])
   end
 end

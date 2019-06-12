@@ -24,7 +24,7 @@ defmodule Metro.Location.Copy do
     copy
     |> cast(attrs, [:checked_out?, :library_id, :isbn_id])
     |> foreign_key_constraint(:library_id)
-    |> foreign_key_constraint(:isbn_Id)
+    |> foreign_key_constraint(:isbn_id)
     |> validate_required([:checked_out?, :library_id, :isbn_id])
   end
 end
