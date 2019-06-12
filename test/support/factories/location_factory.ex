@@ -6,7 +6,7 @@ defmodule Metro.BookFactory do
         %Metro.Location.Book{
           title: "some title",
           image: "some image",
-          isbn: sequence(:isbn, &String.to_integer"#{&1}"),
+          isbn: sequence(:isbn, &(&1+ 1)),
           pages: 42,
           summary: "some summary",
           year: 42,
@@ -33,7 +33,7 @@ defmodule Metro.BookFactory do
         %Metro.Location.Book{
           title: "some title",
           image: "some image",
-          isbn: 42,
+          isbn: sequence(:isbn, &(&1+ 1)),
           pages: 42,
           summary: "some summary",
           year: 42,
@@ -56,7 +56,11 @@ defmodule Metro.AuthorFactory do
         }
       end
       def with_book(%Metro.Location.Author{} = author) do
-        insert(:book_without_author, author: author)
+        insert_list(10, :book_without_author, author: author)
+        author
+      end
+      def with_ten_books(%Metro.Location.Author{} = author) do
+        insert_list(10, :book_without_author, author: author)
         author
       end
     end
@@ -84,6 +88,11 @@ defmodule Metro.CopyFactory do
         %Metro.Location.Copy{
           checked_out?: false,
           library: build(:library),
+        }
+      end
+      def copy_without_book_and_library_factory do
+        %Metro.Location.Copy{
+          checked_out?: false,
         }
       end
     end

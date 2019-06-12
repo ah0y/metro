@@ -26,6 +26,7 @@ defmodule Metro.Mixfile do
 
   # Specifies which paths to compile per environment.
   defp elixirc_paths(:test), do: ["lib", "test/support"]
+  defp elixirc_paths(:dev), do: ["lib", "test/support"]
   defp elixirc_paths(_), do: ["lib"]
 
   # Specifies your project dependencies.
@@ -43,7 +44,7 @@ defmodule Metro.Mixfile do
       {:plug_cowboy, "~> 2.0"},
       {:plug, "~> 1.7"},
       {:coherence, github: "appprova/coherence", ref: "10bb848f885217097ac5be76b202d9bf213b7e20"},
-      {:ex_machina, "~> 2.3", only: :test},
+      {:ex_machina, "~> 2.3"},
       {:canary, "~> 1.1.1"},
       {:jason, "~> 1.0"},
       {:businex, "~> 0.2.0"},
@@ -62,6 +63,7 @@ defmodule Metro.Mixfile do
   defp aliases do
     [
       "ecto.setup": ["ecto.create", "ecto.migrate", "run priv/repo/seeds.exs"],
+      "ecto.performance": ["ecto.drop", "ecto.create", "ecto.migrate", "run priv/repo/load.exs"],
       "ecto.reset": ["ecto.drop", "ecto.setup"],
       "test": ["ecto.create --quiet", "ecto.migrate", "test"],
       "test.reset": ["ecto.drop", "test"]
