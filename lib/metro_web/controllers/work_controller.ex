@@ -7,7 +7,7 @@ defmodule MetroWeb.WorkController do
 
   import Ecto.Query
 
-  plug :load_and_authorize_resource, model: Copy
+  plug :authorize_resource, model: Copy
   use MetroWeb.ControllerAuthorization
 
   def index(

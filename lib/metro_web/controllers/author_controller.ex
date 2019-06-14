@@ -8,7 +8,7 @@ defmodule MetroWeb.AuthorController do
   import Ecto.Query
 
 
-  plug :load_and_authorize_resource, model: Author
+  plug :authorize_resource, model: Author
   use MetroWeb.ControllerAuthorization
 
   def index(conn, _params) do

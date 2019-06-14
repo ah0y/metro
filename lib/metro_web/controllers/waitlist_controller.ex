@@ -6,12 +6,13 @@ defmodule MetroWeb.WaitlistController do
 
   import Ecto.Query
 
-  plug :load_and_authorize_resource, model: Waitlist
+  plug :authorize_resource, model: Waitlist
   use MetroWeb.ControllerAuthorization
 
   def index(
         conn,
         %{
+          "page" => pagenumber,
           "_utf8" => status,
           "search" => %{
             "query" => query,
@@ -24,17 +25,17 @@ defmodule MetroWeb.WaitlistController do
       search_by
       |> String.to_atom()
 
-    query_params = from b in Waitlist, where: field(b, ^search_by) == ^query
+    query_params = from w in Waitlist, where: field(w, ^search_by) == ^query
 
-    page = Metro.Repo.paginate(query_params)
+    page = Metro.Repo.paginate(query_params, page: pagenumber)
 
     render conn, "index.html", waitlists: page.entries, page: page
   end
 
   def index(conn, params = %{}) do
-    page = Waitlist
-           |> Metro.Repo.paginate(params)
-
+    query_params = from w in Waitlist
+    pagenumber = conn.params["page"]
+    page = Metro.Repo.paginate(params, page: pagenumber)
     render conn, "index.html", waitlists: page.entries, page: page
   end
 

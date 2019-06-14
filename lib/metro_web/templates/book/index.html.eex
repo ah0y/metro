@@ -44,6 +44,6 @@
 
 </div>
 
-<%= pagination_links @page, distance: 10, first: "<<", previous: "<", next: ">", last: ">>", ellipsis: false %>
+<%= pagination_links @conn, @page, pagination_params(@conn.params) %>
 
 

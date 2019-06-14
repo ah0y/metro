@@ -31,8 +31,8 @@ defmodule Metro.BookFactory do
       end
       def book_without_author_factory do
         %Metro.Location.Book{
-          title: "some title",
-          image: "some image",
+          title: sequence(:title, &"title-#{&1+1}"),
+          image: "http://clipart-library.com/images/8czM9K7cp.jpg",
           isbn: sequence(:isbn, &(&1+ 1)),
           pages: 42,
           summary: "some summary",
@@ -50,8 +50,8 @@ defmodule Metro.AuthorFactory do
       def author_factory do
         %Metro.Location.Author{
           bio: "some bio",
-          first_name: "some first_name",
-          last_name: "some last_name",
+          first_name: sequence(:first_name, &"first_name-#{&1+1}"),
+          last_name: sequence(:last_name, &"last_name-#{&1+1}"),
           location: "some location",
         }
       end
@@ -107,7 +107,7 @@ defmodule Metro.LibraryFactory do
           address: "some address",
           image: "some image",
           hours: "some hours",
-          branch: "some branch",
+          branch: sequence(:branch, &"branch-#{&1+1}"),
         }
       end
     end

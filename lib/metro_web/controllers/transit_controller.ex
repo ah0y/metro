@@ -9,12 +9,13 @@ defmodule MetroWeb.TransitController do
 
   import Ecto.Query
 
-  plug :load_and_authorize_resource, model: Transit
+  plug :authorize_resource, model: Transit
   use MetroWeb.ControllerAuthorization
 
   def index(
         conn,
         %{
+          "page" => pagenumber,
           "_utf8" => status,
           "search" => %{
             "library" => library
@@ -27,7 +28,7 @@ defmodule MetroWeb.TransitController do
                         where: t.checkout_id == ch.id,
                         where: ch.library_id == ^library,
                         where: is_nil(t.actual_arrival),
-                         where: not(is_nil(t.estimated_arrival)),
+                        where: not (is_nil(t.estimated_arrival)),
                         select: %{
                           id: t.id,
                           checkout_id: ch.id,
@@ -36,7 +37,7 @@ defmodule MetroWeb.TransitController do
                           estimated_arrival: t.estimated_arrival,
                           actual_arrival: t.actual_arrival
                         }
-    page = Metro.Repo.paginate(query_params)
+    page = Metro.Repo.paginate(query_params, page: pagenumber)
     libraries = Location.load_libraries()
     render(conn, "index.html", transit: page.entries, libraries: libraries, page: page)
   end
@@ -47,7 +48,7 @@ defmodule MetroWeb.TransitController do
                         where: t.checkout_id == ch.id,
                         where: ch.library_id == 1,
                         where: is_nil(t.actual_arrival),
-                        where: not(is_nil(t.estimated_arrival)),
+                        where: not (is_nil(t.estimated_arrival)),
                         select: %{
                           id: t.id,
                           checkout_id: ch.id,
@@ -56,7 +57,8 @@ defmodule MetroWeb.TransitController do
                           estimated_arrival: t.estimated_arrival,
                           actual_arrival: t.actual_arrival
                         }
-    page =  Metro.Repo.paginate(query_params)
+    pagenumber = conn.params["page"]
+    page = Metro.Repo.paginate(query_params, page: pagenumber)
     libraries = Location.load_libraries()
     render conn, "index.html", transit: page.entries, page: page, libraries: libraries
   end

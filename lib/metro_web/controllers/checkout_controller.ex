@@ -9,12 +9,13 @@ defmodule MetroWeb.CheckoutController do
 
   import Ecto.Query
 
-  plug :load_and_authorize_resource, model: Checkout
+  plug :authorize_resource, model: Checkout
   use MetroWeb.ControllerAuthorization
 
   def index(
         conn,
         %{
+          "page" => pagenumber,
           "_utf8" => status,
           "search" => %{
             "query" => query,
@@ -36,7 +37,8 @@ defmodule MetroWeb.CheckoutController do
 
   def index(conn, params = %{}) do
     query_params  = from c in Checkout, where: not(is_nil(c.copy_id))
-    page = Repo.paginate(query_params)
+    pagenumber = conn.params["page"] || 1
+    page = Repo.paginate(query_params, page: pagenumber)
     render conn, "index.html", checkouts: page.entries, page: page
   end
 
