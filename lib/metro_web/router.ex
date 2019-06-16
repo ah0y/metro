@@ -67,8 +67,11 @@ defmodule MetroWeb.Router do
     # add protected resources below
   end
 
-  # Other scopes may use custom stacks.
-  # scope "/api", MetroWeb do
-  #   pipe_through :api
-  # end
+  scope "/api", MetroWeb do
+    pipe_through :api
+    resources "/books", BookApiController, param: "isbn", only: [:index, :show]
+    resources "/copies", CopyApiController, only: [:show]
+    resources "/authors", AuthorApiController, only: [:show]
+
+  end
 end

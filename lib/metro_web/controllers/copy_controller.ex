@@ -65,10 +65,7 @@ defmodule MetroWeb.CopyController do
     end
   end
 
-  def show(conn, %{"id" => id}) do
-    copy = Location.get_copy!(id)
-    render(conn, "show.html", copy: copy)
-  end
+
 
   def edit(conn, %{"id" => id}) do
     libraries = Location.load_libraries()
