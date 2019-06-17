@@ -13,10 +13,10 @@
 // to also remove its path from "config.paths.watched".
 import "phoenix_html"
 import css from '../css/app.css';
-import LiveSocket from "phoenix_live_view"
+// import LiveSocket from "phoenix_live_view"
 
-let liveSocket = new LiveSocket("/live")
-liveSocket.connect()
+// let liveSocket = new LiveSocket("/live")
+// liveSocket.connect()
 
 
 $('[data-toggle="collapse"]').on('click', function() {
