@@ -1,6 +1,7 @@
 defmodule MetroWeb.BookApiView do
   use MetroWeb, :view
   alias MetroWeb.CopyApiView
+  alias MetroWeb.AuthorApiView
 
   def render("index.json", %{books: books}) do
     %{
@@ -27,7 +28,8 @@ defmodule MetroWeb.BookApiView do
       summary: book.summary,
       pages: book.pages,
       image: book.image,
-      copies: render_many(book.copies, CopyApiView, "show.json", as: :copy)
+      copies: render_many(book.copies, CopyApiView, "show.json", as: :copy),
+      author: render_one(book.author, AuthorApiView, "simple.json", as: :author)
     }
   end
 
