@@ -32,10 +32,10 @@ defmodule MetroWeb.WaitlistController do
     render conn, "index.html", waitlists: page.entries, page: page
   end
 
-  def index(conn, params = %{}) do
+  def index(conn, _params) do
     query_params = from w in Waitlist
-    pagenumber = conn.params["page"]
-    page = Metro.Repo.paginate(params, page: pagenumber)
+    pagenumber = conn.params["page"] || 1
+    page = Metro.Repo.paginate(query_params, page: pagenumber)
     render conn, "index.html", waitlists: page.entries, page: page
   end
 
