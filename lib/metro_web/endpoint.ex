@@ -1,7 +1,7 @@
 defmodule MetroWeb.Endpoint do
   use Phoenix.Endpoint, otp_app: :metro
 
-  socket "/live", Phoenix.LiveView.Socket
+#  socket "/live", Phoenix.LiveView.Socket
 
   socket "/socket",
          MetroWeb.UserSocket,
