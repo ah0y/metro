@@ -39,4 +39,3 @@
 
 <span><%= link "New Transit", to: Routes.transit_path(@conn, :new) %></span>
 
-<%= pagination_links @conn, @page, pagination_params(@conn.params) %>
