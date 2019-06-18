@@ -30,9 +30,37 @@ defmodule MetroWeb.CheckoutController do
 
     query_params = from c in Checkout, where: field(c, ^search_by) == ^query and not(is_nil(c.copy_id))
 
-    page = Repo.paginate(query_params)
+    try do
+      page = Metro.Repo.paginate(query_params, page: pagenumber)
+      render conn, "index.html", checkouts: page.entries, page: page
+    rescue _ ->
+      redirect(conn, to: Routes.checkout_path(conn, :index))
+    end
+  end
 
-    render conn, "index.html", checkouts: page.entries, page: page
+  def index(
+        conn,
+        %{
+          "_utf8" => status,
+          "search" => %{
+            "query" => query,
+            "search_by" => search_by
+          }
+        } = params
+      ) do
+
+    search_by =
+      search_by
+      |> String.to_atom()
+
+    query_params = from c in Checkout, where: field(c, ^search_by) == ^query and not(is_nil(c.copy_id))
+
+    try do
+      page = Metro.Repo.paginate(query_params, page: 1)
+      render conn, "index.html", checkouts: page.entries, page: page
+    rescue _ ->
+      redirect(conn, to: Routes.checkout_path(conn, :index))
+    end
   end
 
   def index(conn, params = %{}) do

@@ -12,7 +12,7 @@
     <tr>
       <th>Copy Id</th>
       <th>Library</th>
-      <th>ISBN</th>
+      <th>ISBN</th>l
       <th>Destination library</th>
       <th>Checkout Date</th>
       <th>Picked Up</th>
@@ -32,6 +32,4 @@
 <% end %>
   </tbody>
 </table>
-
-<%= pagination_links @conn, @page, pagination_params(@conn.params) %>
 

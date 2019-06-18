@@ -27,11 +27,38 @@ defmodule MetroWeb.CopyController do
       |> String.to_atom()
 
     query_params = from c in Copy, where: field(c, ^search_by) == ^query
-
-    page = Metro.Repo.paginate(query_params, page: pagenumber)
-
-    render conn, "index.html", copies: page.entries, page: page
+    try do
+      page = Metro.Repo.paginate(query_params, page: pagenumber)
+      render conn, "index.html", copies: page.entries, page: page
+    rescue _ ->
+      redirect(conn, to: Routes.copy_path(conn, :index))
+    end
   end
+
+  def index(
+        conn,
+        %{
+          "_utf8" => status,
+          "search" => %{
+            "query" => query,
+            "search_by" => search_by
+          }
+        } = params
+      ) do
+
+    search_by =
+      search_by
+      |> String.to_atom()
+
+    query_params = from c in Copy, where: field(c, ^search_by) == ^query
+    try do
+      page = Metro.Repo.paginate(query_params, page: 1)
+      render conn, "index.html", copies: page.entries, page: page
+    rescue _ ->
+      redirect(conn, to: Routes.copy_path(conn, :index))
+    end
+  end
+
 
   def index(conn, params = %{}) do
     query_params = from c in Copy

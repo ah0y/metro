@@ -35,6 +35,27 @@ defmodule MetroWeb.BookController do
   def index(
         conn,
         %{
+          "_utf8" => status,
+          "search" => %{
+            "query" => query,
+            "search_by" => "author"
+          }
+        }
+      ) do
+
+    query_params = from b in Book,
+                        join: a in Author,
+                        where: a.id == b.author_id,
+                        where: ilike(a.last_name, ^"%#{query}%") or ilike(a.first_name, ^"%#{query}%")
+
+    page = Metro.Repo.paginate(query_params, page: 1)
+
+    render conn, "index.html", books: page.entries, page: page
+  end
+
+  def index(
+        conn,
+        %{
           "page" => pagenumber,
           "_utf8" => status,
           "search" => %{
@@ -55,8 +76,33 @@ defmodule MetroWeb.BookController do
 
     render conn, "index.html", books: page.entries, page: page
   end
-  
+
+  def index(
+        conn,
+        %{
+          "_utf8" => status,
+          "search" => %{
+            "query" => query,
+            "search_by" => search_by
+          }
+        } = params
+      ) do
+
+    search_by =
+      search_by
+      |> String.to_atom()
+
+    query_params = from b in Book,
+                        where: ilike(field(b, ^search_by), ^"%#{query}%")
+
+    page = Metro.Repo.paginate(query_params, page: 1)
+
+    render conn, "index.html", books: page.entries, page: page
+  end
+
   def index(conn, _params) do
+    #    require IEx; IEx.pry()
+
     query_params = from b in Book
 
     pagenumber = conn.params["page"] || 1

@@ -27,9 +27,37 @@ defmodule MetroWeb.WaitlistController do
 
     query_params = from w in Waitlist, where: field(w, ^search_by) == ^query
 
-    page = Metro.Repo.paginate(query_params, page: pagenumber)
+    try do
+      page = Metro.Repo.paginate(query_params, page: pagenumber)
+      render conn, "index.html", waitlists: page.entries, page: page
+    rescue _ ->
+      redirect(conn, to: Routes.waitlist_path(conn, :index))
+    end
+  end
 
-    render conn, "index.html", waitlists: page.entries, page: page
+  def index(
+        conn,
+        %{
+          "_utf8" => status,
+          "search" => %{
+            "query" => query,
+            "search_by" => search_by
+          }
+        } = params
+      ) do
+
+    search_by =
+      search_by
+      |> String.to_atom()
+
+    query_params = from w in Waitlist, where: field(w, ^search_by) == ^query
+
+    try do
+      page = Metro.Repo.paginate(query_params, page: 1)
+      render conn, "index.html", waitlists: page.entries, page: page
+    rescue _ ->
+      redirect(conn, to: Routes.waitlist_path(conn, :index))
+    end
   end
 
   def index(conn, _params) do

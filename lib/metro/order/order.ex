@@ -100,8 +100,8 @@ defmodule Metro.Order do
         %Checkout{}
         |> Checkout.changeset(Map.merge(%{"card_id" => user.card.id}, attrs))
         |> Repo.insert()
-        {:error, error} ->
-          {:error, error}
+      {:error, error} ->
+        {:error, error}
     end
   end
 
@@ -121,8 +121,8 @@ defmodule Metro.Order do
              )
            )
         |> Repo.insert()
-        {:error, error} ->
-          {:error, error}
+      {:error, error} ->
+        {:error, error}
     end
   end
 
@@ -256,17 +256,19 @@ defmodule Metro.Order do
                   |> Ecto.Multi.run(
                        :update_checkout,
                        fn _, _ ->
-                         Metro.Order.update_checkout(
-                           Metro.Order.get_checkout!(next.checkout_id),
-                           %{copy_id: copy.id}
-                         )
+                         Metro.Order.update_checkout(Metro.Order.get_checkout!(next.checkout_id), %{copy_id: copy.id})
+                       end
+                     )
+                  |> Ecto.Multi.run(
+                       :update_transit,
+                       fn _, _ ->
+                         Metro.Order.update_transit_arrival(Metro.Order.get_transit_by_checkout!(next.checkout_id), Metro.Order.get_checkout!(next.checkout_id), copy )
                        end
                      )
                   |> Ecto.Multi.run(
                        :update_copy,
                        fn _, %{update_checkout: update_checkout} ->
-                         Metro.Location.update_copy(
-                           Metro.Location.get_copy!(copy.id),
+                         Metro.Location.update_copy(copy,
                            %{
                              checked_out?: true,
                              #                             library_id: update_checkout.library_id
@@ -274,6 +276,7 @@ defmodule Metro.Order do
                          )
                        end
                      )
+
                   |> Repo.transaction()
         {:ok, updates}
     end
@@ -567,6 +570,22 @@ defmodule Metro.Order do
   def get_transit!(id), do: Repo.get!(Transit, id)
 
   @doc """
+  Gets a single transit by checkout id.
+
+  Raises `Ecto.NoResultsError` if the Transit does not exist.
+
+  ## Examples
+
+      iex> get_transit_by_checkout!(123)
+      %Transit{}
+
+      iex> get_transit_by_checkout!(456)
+      ** (Ecto.NoResultsError)
+
+  """
+  def get_transit_by_checkout!(checkout_id), do: Repo.get_by!(Transit, checkout_id: checkout_id)
+
+  @doc """
   Creates a transit.
 
   ## Examples
@@ -603,6 +622,33 @@ defmodule Metro.Order do
          )
       |> Repo.insert()
     end
+  end
+
+  def update_transit_arrival(transit, checkout, copy) do
+    copy_location = copy.library_id
+    if checkout.library_id == copy_location do
+      #pickup location is same as where the book actually is so number of days in transit == 1
+      transit
+      |> Transit.changeset(
+           %{
+             "copy_id" => copy.id,
+             "checkout_id" => checkout.id,
+             "estimated_arrival" => NaiveDateTime.add(NaiveDateTime.utc_now(), 86400)
+           }
+         )
+      |> Repo.update()
+    else
+      transit
+      |> Transit.changeset(
+           %{
+             "copy_id" => copy.id,
+             "checkout_id" => checkout.id,
+             "estimated_arrival" => NaiveDateTime.add(NaiveDateTime.utc_now(), 259200)
+           }
+         )
+      |> Repo.update()
+    end
+
   end
 
   def create_transit(attrs) do
@@ -790,7 +836,7 @@ defmodule Metro.Order do
       {:ok, %Reservation{}}
 
       iex> delete_reservation(reservation)
-      {:error, %Ecto.Changeset{}}
+     {:error, %Ecto.Changeset{}}
 
   """
   def delete_reservation(%Reservation{} = reservation) do

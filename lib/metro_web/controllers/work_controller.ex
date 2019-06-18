@@ -61,6 +61,7 @@ defmodule MetroWeb.WorkController do
 
     page = Metro.Repo.paginate(query_params)
     libraries = Location.load_libraries()
+#    require IEx; IEx.pry()
     render(conn, "index.html", copies: page.entries, libraries: libraries, page: page)
   end
 end

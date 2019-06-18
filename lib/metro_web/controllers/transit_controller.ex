@@ -37,9 +37,46 @@ defmodule MetroWeb.TransitController do
                           estimated_arrival: t.estimated_arrival,
                           actual_arrival: t.actual_arrival
                         }
-    page = Metro.Repo.paginate(query_params, page: pagenumber)
-    libraries = Location.load_libraries()
-    render(conn, "index.html", transit: page.entries, libraries: libraries, page: page)
+    try do
+      libraries = Location.load_libraries()
+      page = Metro.Repo.paginate(query_params, page: pagenumber)
+      render conn, "index.html", transit: page.entries, libraries: libraries, page: page
+    rescue _ ->
+      redirect(conn, to: Routes.transit_path(conn, :index))
+    end
+  end
+
+  def index(
+        conn,
+        %{
+          "_utf8" => status,
+          "search" => %{
+            "library" => library
+          }
+        } = params
+      ) do
+
+    query_params = from t in Transit,
+                        join: ch in Checkout,
+                        where: t.checkout_id == ch.id,
+                        where: ch.library_id == ^library,
+                        where: is_nil(t.actual_arrival),
+                        where: not (is_nil(t.estimated_arrival)),
+                        select: %{
+                          id: t.id,
+                          checkout_id: ch.id,
+                          copy_id: ch.copy_id,
+                          destination: ch.library_id,
+                          estimated_arrival: t.estimated_arrival,
+                          actual_arrival: t.actual_arrival
+                        }
+    try do
+      libraries = Location.load_libraries()
+      page = Metro.Repo.paginate(query_params, page: 1)
+      render conn, "index.html", transit: page.entries, libraries: libraries, page: page
+    rescue _ ->
+      redirect(conn, to: Routes.transit_path(conn, :index))
+    end
   end
 
   def index(conn, params = %{}) do
