@@ -9,7 +9,7 @@ defmodule MetroWeb.Router do
     plug :accepts, ["html"]
     plug :fetch_session
     plug :fetch_flash
-#    plug Phoenix.LiveView.Flash
+    #    plug Phoenix.LiveView.Flash
     plug :protect_from_forgery
     plug :put_secure_browser_headers
     plug Coherence.Authentication.Session  # Add this
@@ -56,6 +56,13 @@ defmodule MetroWeb.Router do
   scope "/api", MetroWeb do
     pipe_through :protected_api
     coherence_routes :protected
+    #    resources "/books", BookApiController, param: "isbn", only: [:index, :show]
+    #    resources "/copies", CopyApiController, only: [:show]
+    #    resources "/authors", AuthorApiController, only: [:show]
+    #    resources "/checkouts", CheckoutApiController, only: [:create, :new]
+  end
+
+  scope "/api", MetroWeb do
     resources "/books", BookApiController, param: "isbn", only: [:index, :show]
     resources "/copies", CopyApiController, only: [:show]
     resources "/authors", AuthorApiController, only: [:show]

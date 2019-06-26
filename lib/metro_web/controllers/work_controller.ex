@@ -4,6 +4,8 @@ defmodule MetroWeb.WorkController do
   alias Metro.Location
   alias Metro.Location.Copy
   alias Metro.Order.Checkout
+  alias Metro.Location.Book
+  alias Metro.Order.Transit
 
   import Ecto.Query
 
@@ -22,6 +24,11 @@ defmodule MetroWeb.WorkController do
 
     query_params = from c in Copy,
                         join: ch in Checkout,
+                        join: b in Book,
+                        join: t in Transit,
+                        where: is_nil(t.actual_arrival),
+                        where: t.checkout_id == ch.id,
+                        where: c.isbn_id == b.isbn,
                         where: ch.copy_id == c.id,
                         where: c.library_id == ^library,
                         order_by: [
@@ -29,6 +36,7 @@ defmodule MetroWeb.WorkController do
                         ],
                         select: %{
                           id: c.id,
+                          title: b.title,
                           checked_out?: c.checked_out?,
                           library_id: c.library_id,
                           isbn_id: c.isbn_id,
@@ -45,6 +53,10 @@ defmodule MetroWeb.WorkController do
   def index(conn, params = %{}) do
     query_params = from c in Copy,
                         join: ch in Checkout,
+                        join: b in Book,
+                        join: t in Transit,
+                        where: is_nil(t.actual_arrival),
+                        where: c.isbn_id == b.isbn,
                         where: ch.copy_id == c.id,
                         where: c.library_id == 1,
                         order_by: [
@@ -52,6 +64,7 @@ defmodule MetroWeb.WorkController do
                         ],
                         select: %{
                           id: c.id,
+                          title: b.title,
                           checked_out?: c.checked_out?,
                           library_id: c.library_id,
                           isbn_id: c.isbn_id,

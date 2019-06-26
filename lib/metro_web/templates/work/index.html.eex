@@ -10,9 +10,10 @@
 <table class="table">
   <thead>
     <tr>
-      <th>Copy Id</th>
       <th>Library</th>
-      <th>ISBN</th>l
+      <th>Copy Id</th>
+      <th>Title</th>
+      <th>ISBN</th>
       <th>Destination library</th>
       <th>Checkout Date</th>
       <th>Picked Up</th>
@@ -22,8 +23,9 @@
   <tbody>
 <%= for copy <- @copies do %>
     <tr>
-      <td><%= copy.id %></td>
       <td><%= copy.library_id %></td>
+      <td><%= copy.id %></td>
+      <td><%= copy.title %></td>
       <td><%= copy.isbn_id %></td>
       <td><%= copy.destination %></td>
       <td><%= copy.checkout_date %></td>

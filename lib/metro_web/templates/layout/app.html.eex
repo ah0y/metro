@@ -19,6 +19,7 @@
       <header class="header">
         <nav role="navigation">
             <ul class="breadcrumb text-right">
+                                                  <li><%= link "books", to: Routes.book_path(@conn, :index) %></li>
                <%= if Coherence.current_user_name(@conn) do %>
                          <%= if @conn.assigns.current_user.is_librarian? do %>
                             <div class="dropdown" style="display:inline-block">
@@ -35,15 +36,7 @@
                                   </ul>
                            </div>
                          <% end %>
-                            <div class="dropdown" style="display:inline-block">
-                                  <a class="dropdown-toggle" type="button" data-toggle="dropdown">
-                                      books
-                                      <span class="caret"></span>
-                                  </a>
-                                  <ul class="dropdown-menu dropdown-menu-right">
-                                      <li><%= link "books", to: Routes.book_path(@conn, :index) %></li>
-                                  </ul>
-                           </div>
+
                             <div class="dropdown" style="display:inline-block">
                                 <a class="dropdown-toggle" type="button" data-toggle="dropdown">
                                     <%= Coherence.current_user_name(@conn) %>

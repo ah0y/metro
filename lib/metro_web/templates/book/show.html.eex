@@ -8,7 +8,6 @@
 </div>
 
 <div style="float:right">
-<%= for copy <- @book.copies do %>
 
 <table border="1" class="table">
   <thead>
@@ -18,21 +17,20 @@
     </tr>
   </thead>
   <tbody>
+ <%= for copy <- Enum.uniq_by(@book.copies, fn x -> {x.library_id, x.checked_out?} end) do %>
   <%= if copy.checked_out? do %>
-
-
     <td>UNAVAILABLE</td>
   <% else %>
     <td>AVAILABLE</td>
   <% end %>
     <td> <%= link copy.library_id , to: Routes.library_path(@conn, :show, copy.library_id), target: "_blank"%></td>
   </tbody>
+<% end %>
 
   </table>
     <div>
         <span><%= link "Place Hold", to: Routes.checkout_path(@conn, :new), class: "btn btn-default btn-xs" %></span>
     </div>
-<% end %>
 </div>
 </div>
 <div style="vertical-align:bottom">

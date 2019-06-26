@@ -38,7 +38,7 @@
            <td><img src="https://contentcafe2.btol.com/ContentCafe/Jacket.aspx?&userID=CLOH21163&password=CC44366&Value=<%= checkout.isbn_id%>&content=M&Return=1&Type=M"height="180" width="120"</img></td>
            <td><%= checkout.renewals_remaining %></td>
            <td><%= checkout.checkout_date %></td>
-           <td><%= checkout.due_date %></td>
+           <%= due_date(checkout.due_date) %>
            <td><%= checkout.isbn_id %></td>
        </tr>
   <% end %>
