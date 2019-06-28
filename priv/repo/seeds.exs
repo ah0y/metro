@@ -18,6 +18,170 @@ alias Metro.Account.User
 alias Metro.Account.Card
 alias Metro.Location.Room
 alias Metro.Location.Event
+alias Metro.Location.Genre
+
+
+Metro.Repo.insert!(
+  %Genre{
+    category: "Romance"
+  }
+)
+
+Metro.Repo.insert!(
+  %Genre{
+    category: "Comedy"
+  }
+)
+
+Metro.Repo.insert!(
+  %Genre{
+    category: "Kids"
+  }
+)
+
+Metro.Repo.insert!(
+  %Genre{
+    category: "Adventure"
+  }
+)
+
+Metro.Repo.insert!(
+  %Genre{
+    category: "Fiction"
+  }
+)
+
+Metro.Repo.insert!(
+  %Genre{
+    category: "Non-Fiction"
+  }
+)
+
+Metro.Repo.insert!(
+  %Genre{
+    category: "Fantasy"
+  }
+)
+
+Metro.Repo.insert!(
+  %Genre{
+    category: "Teen"
+  }
+)
+
+Metro.Repo.insert!(
+  %Genre{
+    category: "History"
+  }
+)
+
+Metro.Repo.insert!(
+  %Genre{
+    category: "Historical Fiction"
+  }
+)
+
+Metro.Repo.insert!(
+  %Genre{
+    category: "Eastern"
+  }
+)
+
+Metro.Repo.insert!(
+  %Genre{
+      category: "Technical"
+  }
+)
+
+Metro.Repo.insert!(
+  %Genre{
+    category: "Drama"
+  }
+)
+
+Metro.Repo.insert!(
+  %Genre{
+    category: "Drama"
+  }
+)
+
+Metro.Repo.insert!(
+  %Genre{
+    category: "Comic"
+  }
+)
+
+Metro.Repo.insert!(
+  %Genre{
+    category: "Biography"
+  }
+)
+
+Metro.Repo.insert!(
+  %Genre{
+    category: "Thriller"
+  }
+)
+
+Metro.Repo.insert!(
+  %Genre{
+    category: "Mystery"
+  }
+)
+
+Metro.Repo.insert!(
+  %Genre{
+    category: "Horror"
+  }
+)
+
+Metro.Repo.insert!(
+  %Genre{
+    category: "Crime"
+  }
+)
+
+Metro.Repo.insert!(
+  %Genre{
+    category: "Medieval"
+  }
+)
+
+Metro.Repo.insert!(
+  %Genre{
+    category: "Science Fiction"
+  }
+)
+
+Metro.Repo.insert!(
+  %Genre{
+    category: "Poetry"
+  }
+)
+
+Metro.Repo.insert!(
+  %Genre{
+    category: "Tragedy"
+  }
+)
+
+Metro.Repo.insert!(
+  %Genre{
+    category: "Fable"
+  }
+)
+
+Metro.Repo.insert!(
+  %Genre{
+    category: "Satire"
+  }
+)
+
+Metro.Repo.insert!(
+  %Genre{
+    category: "Essay"
+  }
+)
 
 Metro.Repo.insert!(
   %Author{

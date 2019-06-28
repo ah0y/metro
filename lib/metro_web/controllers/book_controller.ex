@@ -115,7 +115,9 @@ defmodule MetroWeb.BookController do
   def new(conn, _params) do
     authors = Location.load_authors()
     changeset = Location.change_book(%Book{})
-    render(conn, "new.html", changeset: changeset, authors: authors)
+    genres = Location.list_genres()
+#    require IEx; IEx.pry()
+    render(conn, "new.html", changeset: changeset, authors: authors, genres: genres)
   end
 
   def create(conn, %{"book" => book_params}) do

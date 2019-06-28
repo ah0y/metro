@@ -20,4 +20,10 @@ p {
     width: 100%;  /* The width is the width of the web page */
 }
 
+.checkbox-grid li {
+    display: block;
+    float: left;
+    width: 30%;
+}
+
 

@@ -52,10 +52,21 @@
     <%= text_input f, :image, class: "form-control" %>
     <%= error_tag f, :image %>
   </div>
+    <ul class="checkbox-grid">
+    <%=
+      multiselect_checkboxes(
+        f,
+        :genres,
+        Enum.map(@genres, fn g -> { g.category, g.id } end),
+        selected: []
+      )
+    %>
+    </ul>
 
   <div class="form-group">
     <%= submit "Submit", class: "btn btn-primary" %>
   </div>
+
 <% end %>
 
 <script>
