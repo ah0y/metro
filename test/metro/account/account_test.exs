@@ -18,7 +18,7 @@ defmodule Metro.AccountTest do
 
     test "list_cards/0 returns all cards" do
       card = card_fixture()
-      assert Enum.at(Account.list_cards(), 0).id == card.id
+      assert card in Account.list_cards()
     end
 
     test "get_card!/1 returns the card with given id" do

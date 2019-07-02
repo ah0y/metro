@@ -23,7 +23,7 @@ defmodule Metro.LocationTest do
 
     test "list_libraries/0 returns all libraries" do
       library = library_fixture()
-      assert Location.list_libraries() == [library]
+      assert library in Location.list_libraries()
     end
 
     test "get_library!/1 returns the library with given id" do
@@ -87,7 +87,7 @@ defmodule Metro.LocationTest do
 
     test "list_authors/0 returns all authors" do
       author = author_fixture()
-      assert Location.list_authors() == [author]
+      assert author in Location.list_authors()
     end
 
     test "get_author!/1 returns the author with given id" do
@@ -154,7 +154,7 @@ defmodule Metro.LocationTest do
 
     test "list_rooms/0 returns all rooms" do
       room = room_fixture()
-      assert Location.list_rooms() == [room]
+      assert room in Location.list_rooms()
     end
 
     test "get_room!/1 returns the room with given id" do
@@ -218,7 +218,7 @@ defmodule Metro.LocationTest do
 
     test "list_books/0 returns all books" do
       book = book_fixture()
-      assert Location.list_books() == [book]
+      assert book in Location.list_books()
     end
 
     test "get_book!/1 returns the book with given id" do
@@ -305,7 +305,7 @@ defmodule Metro.LocationTest do
 
     test "list_copies/0 returns all copies" do
       copy = copy_fixture()
-      assert Location.list_copies() == [copy]
+      assert copy in Location.list_copies()
     end
 
     test "get_copy!/1 returns the copy with given id" do
@@ -369,7 +369,7 @@ defmodule Metro.LocationTest do
 
     test "list_events/0 returns all events" do
       event = event_fixture()
-      assert Location.list_events() == [event]
+      assert event in Location.list_events()
     end
 
     test "get_event!/1 returns the event with given id" do
