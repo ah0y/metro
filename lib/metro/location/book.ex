@@ -33,6 +33,7 @@ defmodule Metro.Location.Book do
       on_replace: :delete
     )
 
+
     timestamps()
   end
 

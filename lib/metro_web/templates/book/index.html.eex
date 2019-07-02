@@ -5,9 +5,22 @@
     <%= text_input f, :query %>
   </label>
   <%= submit "Submit" %>
-<% end %>
 
-<table class="table">
+<div class="form-group">
+    <ul class="checkbox-grid" >
+      <%=
+        vertical_checkboxes(
+          f,
+          :genres,
+          Enum.map(@genres, fn g -> { g.category, g.id, g.count} end),
+          selected: []
+        )
+      %>
+      <%= error_tag f, :genres %>
+    </ul>
+</div>
+
+<table class="table" style="width: 50%">
   <thead>
     <tr>
       <th>Image</th>
@@ -43,6 +56,9 @@
 <span><%= link "New Book", to: Routes.book_path(@conn, :new) %></span>
 
 </div>
+
+<% end %>
+
 
 <%= pagination_links @conn, @page, pagination_params(@conn.params) %>
 

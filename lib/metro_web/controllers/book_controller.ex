@@ -6,6 +6,7 @@ defmodule MetroWeb.BookController do
   alias Metro.Location.Book
   alias Metro.Location.Genre
   alias Metro.Order
+  alias Metro.Location.BookGenre
 
   alias Metro.Repo
 
@@ -33,7 +34,9 @@ defmodule MetroWeb.BookController do
 
     page = Metro.Repo.paginate(query_params, page: pagenumber)
 
-    render conn, "index.html", books: page.entries, page: page
+    genres = Location.list_genres
+
+    render conn, "index.html", books: page.entries, page: page, genres: genres
   end
 
   def index(
@@ -52,9 +55,21 @@ defmodule MetroWeb.BookController do
                         where: a.id == b.author_id,
                         where: ilike(a.last_name, ^"%#{query}%") or ilike(a.first_name, ^"%#{query}%")
 
+    genres =
+      Repo.all(
+        from b in Book,
+        left_join: g in assoc(b, :genres),
+        where: not(is_nil(g.category)),
+        group_by: g.id,
+        select: %{
+          category: g.category,
+          count: count(g.id),
+          id: g.id
+        }
+      )
     page = Metro.Repo.paginate(query_params, page: 1)
 
-    render conn, "index.html", books: page.entries, page: page
+    render conn, "index.html", books: page.entries, page: page, genres: genres
   end
 
   def index(
@@ -76,9 +91,21 @@ defmodule MetroWeb.BookController do
     query_params = from b in Book,
                         where: ilike(field(b, ^search_by), ^"%#{query}%")
 
+    genres =
+      Repo.all(
+        from b in Book,
+        left_join: g in assoc(b, :genres),
+        where: not(is_nil(g.category)),
+        group_by: g.id,
+        select: %{
+          category: g.category,
+          count: count(g.id),
+          id: g.id
+        }
+      )
     page = Metro.Repo.paginate(query_params, page: pagenumber)
 
-    render conn, "index.html", books: page.entries, page: page
+    render conn, "index.html", books: page.entries, page: page, genres: genres
   end
 
   def index(
@@ -98,20 +125,48 @@ defmodule MetroWeb.BookController do
 
     query_params = from b in Book,
                         where: ilike(field(b, ^search_by), ^"%#{query}%")
-
+    genres =
+      Repo.all(
+        from b in Book,
+        left_join: g in assoc(b, :genres),
+        where: not(is_nil(g.category)),
+        group_by: g.id,
+        select: %{
+          category: g.category,
+          count: count(g.id),
+          id: g.id
+        }
+      )
     page = Metro.Repo.paginate(query_params, page: 1)
 
-    render conn, "index.html", books: page.entries, page: page
+    render conn, "index.html", books: page.entries, page: page, genres: genres
   end
 
   def index(conn, _params) do
     query_params = from b in Book
-
+    #    genres = Location.list_genres
     pagenumber = conn.params["page"] || 1
 
     page = Metro.Repo.paginate(query_params, page: pagenumber)
+    books = Repo.preload(page.entries, :genres)
 
-    render conn, "index.html", books: page.entries, page: page
+    #todo this could be better!
+    genres =
+    Repo.all(
+      from b in Book,
+      left_join: g in assoc(b, :genres),
+      where: not(is_nil(g.category)),
+      group_by: g.id,
+      select: %{
+        category: g.category,
+        count: count(g.id),
+        id: g.id
+      }
+    )
+
+#        require IEx; IEx.pry()
+
+    render conn, "index.html", genres: genres, books: books, page: page
   end
 
   def new(conn, _params) do
@@ -122,8 +177,8 @@ defmodule MetroWeb.BookController do
   end
 
   def create(conn, %{"book" => book_params}) do
-#    require IEx;
-#    IEx.pry()
+    #    require IEx;
+    #    IEx.pry()
 
     case Location.create_book(book_params) do
       {:ok, book} ->
