@@ -4,6 +4,10 @@ defmodule MetroWeb.BookController do
   alias Metro.Location
   alias Metro.Location.Author
   alias Metro.Location.Book
+  alias Metro.Location.Genre
+  alias Metro.Order
+
+  alias Metro.Repo
 
   import Ecto.Query
 
@@ -101,8 +105,6 @@ defmodule MetroWeb.BookController do
   end
 
   def index(conn, _params) do
-    #    require IEx; IEx.pry()
-
     query_params = from b in Book
 
     pagenumber = conn.params["page"] || 1
@@ -116,13 +118,26 @@ defmodule MetroWeb.BookController do
     authors = Location.load_authors()
     changeset = Location.change_book(%Book{})
     genres = Location.list_genres()
-#    require IEx; IEx.pry()
+    #    require IEx; IEx.pry()
     render(conn, "new.html", changeset: changeset, authors: authors, genres: genres)
   end
 
   def create(conn, %{"book" => book_params}) do
     case Location.create_book(book_params) do
       {:ok, book} ->
+        genres = Repo.all from g in Genre, where: g.id in ^book_params["genres"]
+        genres = Repo.preload genres, :books
+        book = Repo.preload(book, :genres)
+        changeset = Book.changeset(book, %{})
+                    |> Ecto.Changeset.put_assoc(:genres, genres)
+        case Repo.update (changeset) do
+          {:ok, book} ->
+            conn
+            |> put_flash(:info, "Book created successfully.")
+            |> redirect(to: Routes.book_path(conn, :show, book))
+          {:error, changeset} -> IO.puts("error")
+          #todo better handing stuff here eventually
+        end
         conn
         |> put_flash(:info, "Book created successfully.")
         |> redirect(to: Routes.book_path(conn, :show, book))
@@ -148,34 +163,41 @@ defmodule MetroWeb.BookController do
                   |> redirect(to: Routes.book_path(conn, :show, book))
                 {:error, %Ecto.Changeset{} = changeset} ->
                   authors = Location.load_authors()
-                  render(conn, "new.html", changeset: changeset, authors: authors)
+                  genres = Location.list_genres()
+                  render(conn, "new.html", changeset: changeset, authors: authors, genres: genres)
               end
             rescue _ ->
+              genres = Location.list_genres()
               authors = Location.load_authors()
-              render(conn, "new.html", changeset: changeset, authors: authors)
+              render(conn, "new.html", changeset: changeset, authors: authors, genres: genres)
             end
           _ ->
             authors = Location.load_authors()
-            render(conn, "new.html", changeset: changeset, authors: authors)
+            genres = Location.list_genres()
+            render(conn, "new.html", changeset: changeset, authors: authors, genres: genres)
         end
     end
   end
 
   def show(conn, %{"isbn" => isbn}) do
     book = Location.get_book_and_copies(isbn)
-#    require IEx; IEx.pry()
+    #    require IEx; IEx.pry()
     render(conn, "show.html", book: book)
   end
 
   def edit(conn, %{"isbn" => isbn}) do
     authors = Location.load_authors()
-    book = Location.get_book!(isbn)
+    book =
+      Location.get_book!(isbn)
+      |> Repo.preload([:genres, :author])
     changeset = Location.change_book(book)
-    render(conn, "edit.html", book: book, changeset: changeset, authors: authors)
+    genres = Location.list_genres()
+    render(conn, "edit.html", book: book, changeset: changeset, authors: authors, genres: genres)
   end
 
   def update(conn, %{"isbn" => isbn, "book" => book_params}) do
     book = Location.get_book!(isbn)
+
 
     case Location.update_book(book, book_params) do
       {:ok, book} ->
@@ -184,7 +206,8 @@ defmodule MetroWeb.BookController do
         |> redirect(to: Routes.book_path(conn, :show, book))
       {:error, %Ecto.Changeset{} = changeset} ->
         authors = Location.load_authors()
-        render(conn, "edit.html", book: book, changeset: changeset, authors: authors)
+        genres = Location.list_genres()
+        render(conn, "edit.html", genres: genres, book: book, changeset: changeset, authors: authors)
     end
   end
 

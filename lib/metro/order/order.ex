@@ -37,6 +37,22 @@ defmodule Metro.Order do
   """
   def get_checkout!(id), do: Repo.get!(Checkout, id)
 
+#  @doc """
+#  Gets all checkouts by book isbn.
+#
+#  Raises `Ecto.NoResultsError` if the Checkout does not exist.
+#
+#  ## Examples
+#
+#      iex> fetch_checkouts_by_book!(123)
+#      %Checkout{}
+#
+#      iex> fetch_checkouts_by_book!(456)
+#      ** (Ecto.NoResultsError)
+#
+#  """
+#  def fetch_checkouts_by_book!(isbn), do: Repo.get_by!(Checkout, isbn_id: isbn)
+
   @doc """
   Gets a single checkout from a book copy.
 

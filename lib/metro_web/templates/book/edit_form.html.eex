@@ -19,7 +19,7 @@
 
   <div class="form-group">
     <%= label f, :author_id, class: "control-label" %>
-    <input id="authorList" list="book_author_id" name="book[author_id]" class="form-control" />
+    <input id="authorList" list="book_author_id" name="book[author_id]" class="form-control" value=<%=@book.author_id %> />
     <datalist id="book_author_id">
     <%= for author <- @authors do %>
      <option value=<%=author.id%>><%=author.name%></option>
@@ -61,7 +61,7 @@
         f,
         :genres,
         Enum.map(@genres, fn g -> { g.category, g.id } end),
-        selected: []
+        selected: Enum.map(@book.genres, &(&1.id))
       )
     %>
         <%= error_tag f, :genres %>

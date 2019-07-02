@@ -4,6 +4,7 @@ defmodule Metro.Location.Genre do
   import Ecto.Query
 
   alias Metro.Location.Book
+#  alias Metro.Location.BookGenre
 
   schema "genres" do
     field :category, :string
@@ -11,8 +12,11 @@ defmodule Metro.Location.Genre do
     many_to_many(
       :books,
       Book,
-      join_through: "book_genres",
-      join_keys: [genre_id: :id, book_id: :isbn_id],
+      join_through: Metro.Location.BookGenre,
+      join_keys: [
+        genre_id: :id,
+        book_isbn: :isbn
+      ],
       on_replace: :delete
     )
 

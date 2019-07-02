@@ -360,6 +360,7 @@ defmodule Metro.Location do
   end
 
   alias Metro.Location.Book
+  alias Metro.Location.Genre
 
   @doc """
   Returns the list of books.
@@ -462,8 +463,12 @@ defmodule Metro.Location do
 
   """
   def update_book(%Book{} = book, attrs) do
+    genres = Repo.all from g in Genre, where: g.id in ^attrs["genres"]
+    genres = Repo.preload genres, :books
     book
+    |> Repo.preload(:genres)
     |> Book.changeset(attrs)
+    |> Ecto.Changeset.put_assoc(:genres, genres)
     |> Repo.update()
   end
 
