@@ -20,6 +20,8 @@ alias Metro.Location.Room
 alias Metro.Location.Event
 alias Metro.Location.Genre
 
+import Ecto.Query
+
 
 Metro.Repo.insert!(
   %Genre{
@@ -89,13 +91,7 @@ Metro.Repo.insert!(
 
 Metro.Repo.insert!(
   %Genre{
-      category: "Technical"
-  }
-)
-
-Metro.Repo.insert!(
-  %Genre{
-    category: "Drama"
+    category: "Technical"
   }
 )
 
@@ -180,6 +176,12 @@ Metro.Repo.insert!(
 Metro.Repo.insert!(
   %Genre{
     category: "Essay"
+  }
+)
+
+Metro.Repo.insert!(
+  %Genre{
+    category: "Action"
   }
 )
 
@@ -278,10 +280,25 @@ Metro.Repo.insert!(
         pages: 227,
         image: "https://contentcafe2.btol.com/ContentCafe/Jacket.aspx?&userID=CLOH21163&password=CC44366&Value=9780451494627&content=M&Return=1&Type=M"
       }
-
     ]
   }
 )
+
+genres = Metro.Repo.all(from g in Genre, where: g.id in [13, 1, 5])
+         |> Metro.Repo.preload :books
+books = from(b in Book, where: b.author_id == 1)
+        |> Metro.Repo.all
+        |> Metro.Repo.preload(:genres)
+
+Enum.map(
+  books,
+  fn b ->
+    Book.changeset(b, %{})
+    |> Ecto.Changeset.put_assoc(:genres, genres)
+    |> Metro.Repo.update!
+  end
+)
+
 
 Metro.Repo.insert!(
   %Author{
@@ -324,6 +341,22 @@ Metro.Repo.insert!(
       }
     ]
   }
+)
+
+
+genres = Metro.Repo.all(from g in Genre, where: g.id in [27, 4, 5, 20, 7])
+         |> Metro.Repo.preload :books
+books = from(b in Book, where: b.author_id == 2)
+        |> Metro.Repo.all
+        |> Metro.Repo.preload(:genres)
+
+Enum.map(
+  books,
+  fn b ->
+    Book.changeset(b, %{})
+    |> Ecto.Changeset.put_assoc(:genres, genres)
+    |> Metro.Repo.update!
+  end
 )
 
 Metro.Repo.insert!(

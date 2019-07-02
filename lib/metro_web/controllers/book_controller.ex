@@ -118,25 +118,29 @@ defmodule MetroWeb.BookController do
     authors = Location.load_authors()
     changeset = Location.change_book(%Book{})
     genres = Location.list_genres()
-    #    require IEx; IEx.pry()
     render(conn, "new.html", changeset: changeset, authors: authors, genres: genres)
   end
 
   def create(conn, %{"book" => book_params}) do
+#    require IEx;
+#    IEx.pry()
+
     case Location.create_book(book_params) do
       {:ok, book} ->
-        genres = Repo.all from g in Genre, where: g.id in ^book_params["genres"]
-        genres = Repo.preload genres, :books
-        book = Repo.preload(book, :genres)
-        changeset = Book.changeset(book, %{})
-                    |> Ecto.Changeset.put_assoc(:genres, genres)
-        case Repo.update (changeset) do
-          {:ok, book} ->
-            conn
-            |> put_flash(:info, "Book created successfully.")
-            |> redirect(to: Routes.book_path(conn, :show, book))
-          {:error, changeset} -> IO.puts("error")
-          #todo better handing stuff here eventually
+        if book_params["genres"] != nil do
+          genres = Repo.all from g in Genre, where: g.id in ^book_params["genres"]
+          genres = Repo.preload genres, :books
+          book = Repo.preload(book, :genres)
+          changeset = Book.changeset(book, %{})
+                      |> Ecto.Changeset.put_assoc(:genres, genres)
+          case Repo.update (changeset) do
+            {:ok, book} ->
+              conn
+              |> put_flash(:info, "Book created successfully.")
+              |> redirect(to: Routes.book_path(conn, :show, book))
+            {:error, changeset} -> IO.puts("error")
+            #todo better handing stuff here eventually
+          end
         end
         conn
         |> put_flash(:info, "Book created successfully.")

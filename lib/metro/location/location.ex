@@ -463,7 +463,8 @@ defmodule Metro.Location do
 
   """
   def update_book(%Book{} = book, attrs) do
-    genres = Repo.all from g in Genre, where: g.id in ^attrs["genres"]
+    genres = attrs["genres"] || []
+    genres = Repo.all from g in Genre, where: g.id in ^genres
     genres = Repo.preload genres, :books
     book
     |> Repo.preload(:genres)
