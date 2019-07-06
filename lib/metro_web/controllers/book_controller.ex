@@ -27,16 +27,31 @@ defmodule MetroWeb.BookController do
         }
       ) do
 
+    genres = conn.params["search"]["genres"] || Enum.to_list 1..27
+
     query_params = from b in Book,
                         join: a in Author,
+                        join: g in assoc(b, :genres),
+                        group_by: b.isbn,
                         where: a.id == b.author_id,
-                        where: ilike(a.last_name, ^"%#{query}%") or ilike(a.first_name, ^"%#{query}%")
+                        where: ilike(a.last_name, ^"%#{query}%") or ilike(a.first_name, ^"%#{query}%"),
+                        having: fragment("ARRAY_AGG(?::integer) @> ?", g.id, ^genres)
 
     page = Metro.Repo.paginate(query_params, page: pagenumber)
+    books = Repo.preload(page.entries, :genres)
 
-    genres = Location.list_genres
+    genres =
+      Metro.Repo.all(query_params)
+      |> Repo.preload(:genres)
+      |> Enum.map(fn book -> Map.get(book, :genres) end)
+      |> List.flatten
+      |> Enum.group_by(fn g -> {g.id, g.category} end)
+      |> Enum.map(fn {{id, category}, list} -> %{id: id, category: category, count: length(list)}   end)
 
-    render conn, "index.html", books: page.entries, page: page, genres: genres
+    #    require IEx;
+    #    IEx.pry()
+
+    render conn, "index.html", books: books, page: page, genres: genres
   end
 
   def index(
@@ -50,26 +65,33 @@ defmodule MetroWeb.BookController do
         }
       ) do
 
+    genres = conn.params["search"]["genres"] || Enum.to_list 1..27
+
     query_params = from b in Book,
                         join: a in Author,
+                        join: g in assoc(b, :genres),
+                        group_by: b.isbn,
                         where: a.id == b.author_id,
-                        where: ilike(a.last_name, ^"%#{query}%") or ilike(a.first_name, ^"%#{query}%")
+                        where: ilike(a.last_name, ^"%#{query}%") or ilike(a.first_name, ^"%#{query}%"),
+                        having: fragment("ARRAY_AGG(?::integer) @> ?", g.id, ^genres)
+
+
+
+    page = Metro.Repo.paginate(query_params, page: 1)
+    books = Repo.preload(page.entries, :genres)
 
     genres =
-      Repo.all(
-        from b in Book,
-        left_join: g in assoc(b, :genres),
-        where: not(is_nil(g.category)),
-        group_by: g.id,
-        select: %{
-          category: g.category,
-          count: count(g.id),
-          id: g.id
-        }
-      )
-    page = Metro.Repo.paginate(query_params, page: 1)
+      Metro.Repo.all(query_params)
+      |> Repo.preload(:genres)
+      |> Enum.map(fn book -> Map.get(book, :genres) end)
+      |> List.flatten
+      |> Enum.group_by(fn g -> {g.id, g.category} end)
+      |> Enum.map(fn {{id, category}, list} -> %{id: id, category: category, count: length(list)}   end)
 
-    render conn, "index.html", books: page.entries, page: page, genres: genres
+    #        require IEx;
+    #        IEx.pry()
+
+    render conn, "index.html", books: books, page: page, genres: genres
   end
 
   def index(
@@ -88,24 +110,29 @@ defmodule MetroWeb.BookController do
       search_by
       |> String.to_atom()
 
+    genres = conn.params["search"]["genres"] || Enum.to_list 1..27
+
     query_params = from b in Book,
-                        where: ilike(field(b, ^search_by), ^"%#{query}%")
+                        join: g in assoc(b, :genres),
+                        group_by: b.isbn,
+                        where: ilike(field(b, ^search_by), ^"%#{query}%"),
+                        having: fragment("ARRAY_AGG(?::integer) @> ?", g.id, ^genres)
+
+    page = Metro.Repo.paginate(query_params, page: pagenumber)
+    books = Repo.preload(page.entries, :genres)
 
     genres =
-      Repo.all(
-        from b in Book,
-        left_join: g in assoc(b, :genres),
-        where: not(is_nil(g.category)),
-        group_by: g.id,
-        select: %{
-          category: g.category,
-          count: count(g.id),
-          id: g.id
-        }
-      )
-    page = Metro.Repo.paginate(query_params, page: pagenumber)
+      Metro.Repo.all(query_params)
+      |> Repo.preload(:genres)
+      |> Enum.map(fn book -> Map.get(book, :genres) end)
+      |> List.flatten
+      |> Enum.group_by(fn g -> {g.id, g.category} end)
+      |> Enum.map(fn {{id, category}, list} -> %{id: id, category: category, count: length(list)}   end)
 
-    render conn, "index.html", books: page.entries, page: page, genres: genres
+    #        require IEx;
+    #        IEx.pry()
+
+    render conn, "index.html", books: books, page: page, genres: genres
   end
 
   def index(
@@ -123,24 +150,35 @@ defmodule MetroWeb.BookController do
       search_by
       |> String.to_atom()
 
-    query_params = from b in Book,
-                        where: ilike(field(b, ^search_by), ^"%#{query}%")
-    genres =
-      Repo.all(
-        from b in Book,
-        left_join: g in assoc(b, :genres),
-        where: not(is_nil(g.category)),
-        group_by: g.id,
-        select: %{
-          category: g.category,
-          count: count(g.id),
-          id: g.id
-        }
-      )
-    page = Metro.Repo.paginate(query_params, page: 1)
+    genres = Enum.map(conn.params["search"]["genres"], &String.to_integer/1) || Enum.to_list 1..27
 
-    render conn, "index.html", books: page.entries, page: page, genres: genres
+    query_params = from b in Book,
+                        join: g in assoc(b, :genres),
+                        group_by: b.isbn,
+                        where: ilike(field(b, ^search_by), ^"%#{query}%"),
+                        having: fragment("ARRAY_AGG(?::integer) @> ?", g.id, ^genres)
+
+#        require IEx;
+#        IEx.pry()
+
+
+    page = Metro.Repo.paginate(query_params, page: 1)
+    books = Repo.preload(page.entries, :genres)
+
+    genres =
+      Metro.Repo.all(query_params)
+      |> Repo.preload(:genres)
+      |> Enum.map(fn book -> Map.get(book, :genres) end)
+      |> List.flatten
+      |> Enum.group_by(fn g -> {g.id, g.category} end)
+      |> Enum.map(fn {{id, category}, list} -> %{id: id, category: category, count: length(list)}   end)
+
+
+
+    render conn, "index.html", books: books, page: page, genres: genres
   end
+
+
 
   def index(conn, _params) do
     query_params = from b in Book
@@ -152,19 +190,15 @@ defmodule MetroWeb.BookController do
 
     #todo this could be better!
     genres =
-    Repo.all(
-      from b in Book,
-      left_join: g in assoc(b, :genres),
-      where: not(is_nil(g.category)),
-      group_by: g.id,
-      select: %{
-        category: g.category,
-        count: count(g.id),
-        id: g.id
-      }
-    )
+      Metro.Repo.all(query_params)
+      |> Repo.preload(:genres)
+      |> Enum.map(fn book -> Map.get(book, :genres) end)
+      |> List.flatten
+      |> Enum.group_by(fn g -> {g.id, g.category} end)
+      |> Enum.map(fn {{id, category}, list} -> %{id: id, category: category, count: length(list)}   end)
 
-#        require IEx; IEx.pry()
+    #    require IEx;
+    #    IEx.pry()
 
     render conn, "index.html", genres: genres, books: books, page: page
   end
