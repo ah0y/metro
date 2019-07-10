@@ -6,6 +6,14 @@
   </label>
   <%= submit "Submit" %>
 
+<p>
+  <label for="years">Years:</label>
+  <input type="text" name=search[years] id="search_years" readonly style="border:0; color:#f6931f; font-weight:bold;">
+</p>
+
+<div id="slider-range"></div>
+
+
 <div class="form-group">
     <ul class="checkbox-grid" >
       <%=
@@ -61,5 +69,21 @@
 
 
 <%= pagination_links @conn, @page, pagination_params(@conn.params) %>
+<script>
+ $( function() {
+    $( "#slider-range" ).slider({
+      range: true,
+      min: <%= @min %>,
+      max: <%= @max %>,
+      values: [ <%= @min %>, <%= @max %> ],
+      slide: function( event, ui ) {
+        $( "#search_years" ).val(ui.values[ 0 ] + " - " + ui.values[ 1 ] );
+      }
+    });
+    $( "#search_years" ).val($( "#slider-range" ).slider( "values", 0 ) +
+      " - " + $( "#slider-range" ).slider( "values", 1 ) );
+  } );
+  </script>
+
 
 
