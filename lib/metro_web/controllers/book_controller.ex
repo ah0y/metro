@@ -33,7 +33,12 @@ defmodule MetroWeb.BookController do
     genres = Enum.map(conn.params["search"]["genres"], &String.to_integer/1)
 
     [{min, max}] = Repo.all(from b in Book, select: {min(b.year), max(b.year)})
-    [b_year, e_year] = Enum.map(String.split(years, [" ", "-"], trim: true), &String.to_integer/1)
+
+    [b_year, e_year] =
+      case conn.params["search"]["years"] do
+        nil -> [min, max]
+        _ -> Enum.map(String.split(years, [" ", "-"], trim: true), &String.to_integer/1)
+      end
 
     query_params = from b in Book,
                         join: g in assoc(b, :genres),
@@ -51,7 +56,9 @@ defmodule MetroWeb.BookController do
       |> Enum.group_by(fn g -> {g.id, g.category} end)
       |> Enum.map(fn {{id, category}, list} -> %{id: id, category: category, count: length(list)}   end)
 
-    render conn, "index.html", books: books, page: page, genres: genres, min: min, max: max
+    render conn,
+           "index.html",
+           books: books, page: page, genres: genres, min: min, max: max, b_year: b_year, e_year: e_year
   end
 
   #searching with only genres first page
@@ -71,7 +78,12 @@ defmodule MetroWeb.BookController do
     genres = Enum.map(conn.params["search"]["genres"], &String.to_integer/1)
 
     [{min, max}] = Repo.all(from b in Book, select: {min(b.year), max(b.year)})
-    [b_year, e_year] = Enum.map(String.split(years, [" ", "-"], trim: true), &String.to_integer/1)
+
+    [b_year, e_year] =
+      case conn.params["search"]["years"] do
+        nil -> [min, max]
+        _ -> Enum.map(String.split(years, [" ", "-"], trim: true), &String.to_integer/1)
+      end
 
     query_params = from b in Book,
                         join: g in assoc(b, :genres),
@@ -90,10 +102,12 @@ defmodule MetroWeb.BookController do
       |> Enum.group_by(fn g -> {g.id, g.category} end)
       |> Enum.map(fn {{id, category}, list} -> %{id: id, category: category, count: length(list)}   end)
 
-    render conn, "index.html", books: books, page: page, genres: genres, min: min, max: max
+    render conn,
+           "index.html",
+           books: books, page: page, genres: genres, min: min, max: max, b_year: b_year, e_year: e_year
   end
 
-  #first page
+
   def index(
         conn,
         %{
@@ -106,10 +120,15 @@ defmodule MetroWeb.BookController do
         }
       ) do
 
-    query_params = from b in Book
-    #    genres = Location.list_genres
     [{min, max}] = Repo.all(from b in Book, select: {min(b.year), max(b.year)})
-    [b_year, e_year] = Enum.map(String.split(years, [" ", "-"], trim: true), &String.to_integer/1)
+
+    [b_year, e_year] =
+      case conn.params["search"]["years"] do
+        nil -> [min, max]
+        _ -> Enum.map(String.split(years, [" ", "-"], trim: true), &String.to_integer/1)
+      end
+
+    query_params = from b in Book, where: b.year >= ^b_year and b.year <= ^e_year
 
     pagenumber = conn.params["page"] || 1
 
@@ -125,7 +144,47 @@ defmodule MetroWeb.BookController do
       |> Enum.group_by(fn g -> {g.id, g.category} end)
       |> Enum.map(fn {{id, category}, list} -> %{id: id, category: category, count: length(list)}   end)
 
-    render conn, "index.html", genres: genres, books: books, page: page, min: min, max: max
+    render conn,
+           "index.html",
+           genres: genres, books: books, page: page, min: min, max: max, b_year: b_year, e_year: e_year
+  end
+
+  #first page
+  def index(
+        conn,
+        %{
+          "_utf8" => status,
+          "search" => %{
+            "query" => "",
+            "search_by" => _
+            #            "years" => ""
+          }
+        }
+      ) do
+
+    query_params = from b in Book
+    #    genres = Location.list_genres
+    [{min, max}] = Repo.all(from b in Book, select: {min(b.year), max(b.year)})
+
+    [b_year, e_year] = [min, max]
+
+    pagenumber = conn.params["page"] || 1
+
+    page = Metro.Repo.paginate(query_params, page: pagenumber)
+    books = Repo.preload(page.entries, :genres)
+
+    #todo this could be better!
+    genres =
+      Metro.Repo.all(query_params)
+      |> Repo.preload(:genres)
+      |> Enum.map(fn book -> Map.get(book, :genres) end)
+      |> List.flatten
+      |> Enum.group_by(fn g -> {g.id, g.category} end)
+      |> Enum.map(fn {{id, category}, list} -> %{id: id, category: category, count: length(list)}   end)
+
+    render conn,
+           "index.html",
+           genres: genres, books: books, page: page, min: min, max: max, b_year: b_year, e_year: e_year
   end
 
   #searching with checkboxes and author paging
@@ -149,7 +208,12 @@ defmodule MetroWeb.BookController do
       end
 
     [{min, max}] = Repo.all(from b in Book, select: {min(b.year), max(b.year)})
-    [b_year, e_year] = Enum.map(String.split(years, [" ", "-"], trim: true), &String.to_integer/1)
+
+    [b_year, e_year] =
+      case conn.params["search"]["years"] do
+        nil -> [min, max]
+        _ -> Enum.map(String.split(years, [" ", "-"], trim: true), &String.to_integer/1)
+      end
 
     query_params =
       case conn.params["search"]["genres"] do
@@ -182,7 +246,9 @@ defmodule MetroWeb.BookController do
       |> Enum.group_by(fn g -> {g.id, g.category} end)
       |> Enum.map(fn {{id, category}, list} -> %{id: id, category: category, count: length(list)}   end)
 
-    render conn, "index.html", books: books, page: page, genres: genres, min: min, max: max
+    render conn,
+           "index.html",
+           books: books, page: page, genres: genres, min: min, max: max, b_year: b_year, e_year: e_year
   end
 
   #searching with checkboxes and author first page
@@ -205,7 +271,12 @@ defmodule MetroWeb.BookController do
       end
 
     [{min, max}] = Repo.all(from b in Book, select: {min(b.year), max(b.year)})
-    [b_year, e_year] = Enum.map(String.split(years, [" ", "-"], trim: true), &String.to_integer/1)
+
+    [b_year, e_year] =
+      case conn.params["search"]["years"] do
+        nil -> [min, max]
+        _ -> Enum.map(String.split(years, [" ", "-"], trim: true), &String.to_integer/1)
+      end
 
     query_params =
       case conn.params["search"]["genres"] do
@@ -227,8 +298,6 @@ defmodule MetroWeb.BookController do
                   having: fragment("ARRAY_AGG(?::integer) @> ?", g.id, ^genres)
       end
 
-
-
     page = Metro.Repo.paginate(query_params, page: 1)
     books = Repo.preload(page.entries, :genres)
 
@@ -240,7 +309,9 @@ defmodule MetroWeb.BookController do
       |> Enum.group_by(fn g -> {g.id, g.category} end)
       |> Enum.map(fn {{id, category}, list} -> %{id: id, category: category, count: length(list)}   end)
 
-    render conn, "index.html", books: books, page: page, genres: genres, min: min, max: max
+    render conn,
+           "index.html",
+           books: books, page: page, genres: genres, min: min, max: max, b_year: b_year, e_year: e_year
   end
 
   #searching with checkboxes and title/summary paging
@@ -268,7 +339,12 @@ defmodule MetroWeb.BookController do
       end
 
     [{min, max}] = Repo.all(from b in Book, select: {min(b.year), max(b.year)})
-    [b_year, e_year] = Enum.map(String.split(years, [" ", "-"], trim: true), &String.to_integer/1)
+
+    [b_year, e_year] =
+      case conn.params["search"]["years"] do
+        nil -> [min, max]
+        _ -> Enum.map(String.split(years, [" ", "-"], trim: true), &String.to_integer/1)
+      end
 
     query_params =
       case conn.params["search"]["genres"] do
@@ -298,7 +374,9 @@ defmodule MetroWeb.BookController do
       |> Enum.group_by(fn g -> {g.id, g.category} end)
       |> Enum.map(fn {{id, category}, list} -> %{id: id, category: category, count: length(list)}   end)
 
-    render conn, "index.html", books: books, page: page, genres: genres, min: min, max: max
+    render conn,
+           "index.html",
+           books: books, page: page, genres: genres, min: min, max: max, b_year: b_year, e_year: e_year
   end
 
   #searching with checkboxes and title/summary first page
@@ -325,8 +403,12 @@ defmodule MetroWeb.BookController do
       end
 
     [{min, max}] = Repo.all(from b in Book, select: {min(b.year), max(b.year)})
-    [b_year, e_year] = Enum.map(String.split(years, [" ", "-"], trim: true), &String.to_integer/1)
 
+    [b_year, e_year] =
+      case conn.params["search"]["years"] do
+        nil -> [min, max]
+        _ -> Enum.map(String.split(years, [" ", "-"], trim: true), &String.to_integer/1)
+      end
 
     query_params =
       case conn.params["search"]["genres"] do
@@ -344,9 +426,6 @@ defmodule MetroWeb.BookController do
                   having: fragment("ARRAY_AGG(?::integer) @> ?", g.id, ^genres)
       end
 
-#    require IEx; IEx.pry()
-
-
     page = Metro.Repo.paginate(query_params, page: 1)
     books = Repo.preload(page.entries, :genres)
 
@@ -358,7 +437,9 @@ defmodule MetroWeb.BookController do
       |> Enum.group_by(fn g -> {g.id, g.category} end)
       |> Enum.map(fn {{id, category}, list} -> %{id: id, category: category, count: length(list)}   end)
 
-    render conn, "index.html", books: books, page: page, genres: genres, min: min, max: max
+    render conn,
+           "index.html",
+           books: books, page: page, genres: genres, min: min, max: max, b_year: b_year, e_year: e_year
   end
 
 
@@ -381,9 +462,15 @@ defmodule MetroWeb.BookController do
       |> Enum.map(fn {{id, category}, list} -> %{id: id, category: category, count: length(list)}   end)
 
     [{min, max}] = Repo.all(from b in Book, select: {min(b.year), max(b.year)})
-#    [b_year, e_year] = Enum.map(String.split(years, [" ", "-"], trim: true), &String.to_integer/1)
 
-    render conn, "index.html", genres: genres, books: books, page: page, min: min, max: max
+    [b_year, e_year] =
+      case conn.params["search"]["years"] do
+        nil -> [min, max]
+        _ -> Enum.map(String.split(conn.params["search"]["years"], [" ", "-"], trim: true), &String.to_integer/1)
+      end
+    render conn,
+           "index.html",
+           genres: genres, books: books, page: page, min: min, max: max, b_year: b_year, e_year: e_year
   end
 
   def new(conn, _params) do
