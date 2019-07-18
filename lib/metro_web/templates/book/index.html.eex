@@ -1,5 +1,5 @@
 <h2>Listing Books</h2>
-<div class="container">
+<div class="row">
 <%= form_for @conn, Routes.book_path(@conn, :index), [as: "search", method: :get], fn f -> %>
    <%= select f, :search_by, ["title": "title", "summary": "summary", "author": "author"], selected: "title" %>
   <label>
@@ -7,7 +7,8 @@
   </label>
   <%= submit "Submit" %>
 </div>
-<div id="siderbar" class="form-group col-sm-3 wrapper container">
+<div class="row">
+<div id="siderbar" class="col-sm-3 make-me-sticky" style="height: 100%">
 <div class="row">
 <p>
   <label for="years">Years:</label>
@@ -15,9 +16,10 @@
 </p>
 </div>
 
-<div id="slider-range"></div>
 
-    <ul class="checkbox-grid" >
+<div id="slider-range" class=""></div>
+
+    <ul class="checkbox-grid"  class="" >
       <%=
         vertical_checkboxes(
           f,
@@ -70,6 +72,7 @@
 
 
 <%= pagination_links @conn, @page, pagination_params(@conn.params) %>
+</div>
 </div>
 
 <script>
