@@ -41,6 +41,7 @@ defmodule MetroWeb.BookController do
       end
 
     query_params = from b in Book,
+                        distinct: true,
                         join: g in assoc(b, :genres),
                         group_by: b.isbn,
                         having: fragment("ARRAY_AGG(?::integer) @> ?", g.id, ^genres)
@@ -86,6 +87,7 @@ defmodule MetroWeb.BookController do
       end
 
     query_params = from b in Book,
+                        distinct: true,
                         join: g in assoc(b, :genres),
                         group_by: b.isbn,
                         where: b.year >= ^b_year and b.year <= ^e_year,
@@ -120,7 +122,10 @@ defmodule MetroWeb.BookController do
         }
       ) do
 
-    [{min, max}] = Repo.all(from b in Book, select: {min(b.year), max(b.year)})
+    [{min, max}] = Repo.all(
+      from b in Book, distinct: true,
+                      select: {min(b.year), max(b.year)}
+    )
 
     [b_year, e_year] =
       case conn.params["search"]["years"] do
@@ -164,7 +169,10 @@ defmodule MetroWeb.BookController do
 
     query_params = from b in Book
     #    genres = Location.list_genres
-    [{min, max}] = Repo.all(from b in Book, select: {min(b.year), max(b.year)})
+    [{min, max}] = Repo.all(
+      from b in Book, distinct: true,
+                      select: {min(b.year), max(b.year)}
+    )
 
     [b_year, e_year] = [min, max]
 
@@ -218,6 +226,7 @@ defmodule MetroWeb.BookController do
     query_params =
       case conn.params["search"]["genres"] do
         nil -> from b in Book,
+                    distinct: true,
                     join: a in Author,
                     join: g in assoc(b, :genres),
                     group_by: b.isbn,
@@ -226,6 +235,7 @@ defmodule MetroWeb.BookController do
                     where: b.year >= ^b_year and b.year <= ^e_year,
                     having: fragment("ARRAY_AGG(?::integer) <@ ?", g.id, ^genres)
         _ -> from b in Book,
+                  distinct: true,
                   join: a in Author,
                   join: g in assoc(b, :genres),
                   group_by: b.isbn,
@@ -281,6 +291,7 @@ defmodule MetroWeb.BookController do
     query_params =
       case conn.params["search"]["genres"] do
         nil -> from b in Book,
+                    distinct: true,
                     join: a in Author,
                     join: g in assoc(b, :genres),
                     group_by: b.isbn,
@@ -289,6 +300,7 @@ defmodule MetroWeb.BookController do
                     where: b.year >= ^b_year and b.year <= ^e_year,
                     having: fragment("ARRAY_AGG(?::integer) <@ ?", g.id, ^genres)
         _ -> from b in Book,
+                  distinct: true,
                   join: a in Author,
                   join: g in assoc(b, :genres),
                   group_by: b.isbn,
@@ -349,12 +361,14 @@ defmodule MetroWeb.BookController do
     query_params =
       case conn.params["search"]["genres"] do
         nil -> from b in Book,
+                    distinct: true,
                     join: g in assoc(b, :genres),
                     group_by: b.isbn,
                     where: ilike(field(b, ^search_by), ^"%#{query}%"),
                     where: b.year >= ^b_year and b.year <= ^e_year,
                     having: fragment("ARRAY_AGG(?::integer) <@ ?", g.id, ^genres)
         _ -> from b in Book,
+                  distinct: true,
                   join: g in assoc(b, :genres),
                   group_by: b.isbn,
                   where: ilike(field(b, ^search_by), ^"%#{query}%"),
@@ -413,12 +427,14 @@ defmodule MetroWeb.BookController do
     query_params =
       case conn.params["search"]["genres"] do
         nil -> from b in Book,
+                    distinct: true,
                     join: g in assoc(b, :genres),
                     group_by: b.isbn,
                     where: ilike(field(b, ^search_by), ^"%#{query}%"),
                     where: b.year >= ^b_year and b.year <= ^e_year,
                     having: fragment("ARRAY_AGG(?::integer) <@ ?", g.id, ^genres)
         _ -> from b in Book,
+                  distinct: true,
                   join: g in assoc(b, :genres),
                   group_by: b.isbn,
                   where: ilike(field(b, ^search_by), ^"%#{query}%"),
@@ -461,7 +477,10 @@ defmodule MetroWeb.BookController do
       |> Enum.group_by(fn g -> {g.id, g.category} end)
       |> Enum.map(fn {{id, category}, list} -> %{id: id, category: category, count: length(list)}   end)
 
-    [{min, max}] = Repo.all(from b in Book, select: {min(b.year), max(b.year)})
+    [{min, max}] = Repo.all(
+      from b in Book, distinct: true,
+                      select: {min(b.year), max(b.year)}
+    )
 
     [b_year, e_year] =
       case conn.params["search"]["years"] do
