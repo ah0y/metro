@@ -6,6 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
+    <%= if Coherence.current_user(@conn) do %>
+    <%= tag :meta, name: "user_token", content: Phoenix.Token.sign(@conn, "user", Coherence.current_user(@conn).id) %>
+    <% end %>
 
     <title>Hello Metro!</title>
 
@@ -43,7 +46,7 @@
 
                             <div class="dropdown" style="display:inline-block;">
                                   <a class="dropdown-toggle" role="button" data-toggle="dropdown">
-                                    <%= Coherence.current_user_name(@conn) %>
+                                    <%= Coherence.current_user_name(@conn) %><span style="color:red"><%= @conn.assigns.current_user.pending_notifications %></span>
                                 </a>
                                   <ul class="dropdown-menu  dropdown-menu-right" aria-labelledby="dropdownMenuLink">
                                     <%= link "profile", to: Routes.user_path(@conn, :show, Coherence.current_user(@conn) ) , class: "dropdown-item" %>
@@ -72,6 +75,7 @@
       </main>
 
     </div> <!-- /container -->
+    <script> window.userId = "<%= Coherence.current_user(@conn).id %>" </script>
     <script src="<%= Routes.static_path(@conn, "/js/app.js") %>"></script>
   </body>
 </html>

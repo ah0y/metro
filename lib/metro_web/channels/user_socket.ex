@@ -2,7 +2,7 @@ defmodule MetroWeb.UserSocket do
   use Phoenix.Socket
 
   ## Channels
-  # channel "room:*", MetroWeb.RoomChannel
+  channel "notifications:*", MetroWeb.NotificationChannel
 
   ## Transports
 
@@ -17,8 +17,14 @@ defmodule MetroWeb.UserSocket do
   #
   # See `Phoenix.Token` documentation for examples in
   # performing token verification on connect.
-  def connect(_params, socket) do
-    {:ok, socket}
+  def connect(%{"token" => token}, socket) do
+    case Phoenix.Token.verify(socket, "user", token, max_age: 1209600) do
+      {:ok, user_id} ->
+        socket = assign(socket, :user, Metro.Repo.get!(Metro.Account.User, user_id))
+        {:ok, socket}
+      {:error, _} ->
+        :error
+    end
   end
 
   # Socket id's are topics that allow you to identify all sockets for a given user:

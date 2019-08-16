@@ -114,7 +114,7 @@ defmodule Metro.Order do
     case can_checkout?(user) do
       {:ok, "can checkout"} ->
         %Checkout{}
-        |> Checkout.changeset(Map.merge(%{"card_id" => user.card.id}, attrs))
+        |> Checkout.changeset(Map.merge(%{"card_id" => user.card.id, "user_id" => user.id}, attrs))
         |> Repo.insert()
       {:error, error} ->
         {:error, error}
@@ -131,6 +131,7 @@ defmodule Metro.Order do
                %{
                  "card_id" => user.card.id,
                  "copy_id" => copy.id,
+                  "user_id" => user.id
                  #             "checkout_date" => NaiveDateTime.utc_now(),
                  #             "due_date" => NaiveDateTime.add(NaiveDateTime.utc_now(), 2678400)
                }
@@ -203,7 +204,7 @@ defmodule Metro.Order do
                )
             |> Ecto.Multi.run(
                  :reservation,
-                 fn _, %{transit: transit} -> Metro.Order.create_reservation(%{transit_id: transit.id}) end
+                 fn _, %{transit: transit} -> Metro.Order.create_reservation(%{transit_id: transit.id, user_id: user.id}) end
                )
             |> Repo.transaction()
   end

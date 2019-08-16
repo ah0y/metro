@@ -7,6 +7,7 @@ defmodule Metro.Order.Reservation do
   schema "reservations" do
     field :expiration_date, :naive_datetime
 
+    belongs_to :user, Metro.Account.User, foreign_key: :user_id
     belongs_to :transit, Transit, foreign_key: :transit_id
 
     timestamps()
@@ -15,7 +16,8 @@ defmodule Metro.Order.Reservation do
   @doc false
   def changeset(reservation, attrs) do
     reservation
-    |> cast(attrs, [:expiration_date, :transit_id])
+    |> cast(attrs, [:user_id, :expiration_date, :transit_id])
+    |> foreign_key_constraint(:user_id)
     |> foreign_key_constraint(:transit_id)
     |> validate_required([:transit_id])
   end

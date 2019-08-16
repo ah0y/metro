@@ -12,8 +12,10 @@ defmodule Metro.Account.User do
     field :fines, :float, default: 0.00
     field :is_librarian?, :boolean, default: false
     field :num_books_out, :integer
+    field :pending_notifications, :integer
 
     has_one :card, Card
+    has_many :alerts, Metro.Notification.Alert
     belongs_to :library, Metro.Location.Library, foreign_key: :library_id
 
     has_many :checkouts, through: [:card, :checkouts]
@@ -27,7 +29,7 @@ defmodule Metro.Account.User do
 
   def changeset(model, params \\ %{}) do
     model
-    |> cast(params, [:name, :email, :fines, :is_librarian?, :num_books_out, :library_id] ++ coherence_fields())
+    |> cast(params, [:pending_notifications, :name, :email, :fines, :is_librarian?, :num_books_out, :library_id] ++ coherence_fields())
     |> validate_required([:name, :email])
     |> validate_format(:email, ~r/@/)
     |> unique_constraint(:email)

@@ -10,6 +10,7 @@ defmodule Metro.UserFactory do
           password_hash: "$2b$12$XLGRLrhRbzLiicATx7Zihe2hXdqrkpbN4cSwD.w0e/LpZtvh.TkcS",
           fines: 0.00,
           num_books_out: 0,
+          pending_notifications: 0,
           is_librarian?: false,
           library: build(:library),
         }
@@ -23,6 +24,7 @@ defmodule Metro.UserFactory do
           password_hash: "$2b$12$XLGRLrhRbzLiicATx7Zihe2hXdqrkpbN4cSwD.w0e/LpZtvh.TkcS",
           fines: 0.00,
           num_books_out: 0,
+          pending_notifications: 0,
           is_librarian?: true,
           library: build(:library),
         }
@@ -36,6 +38,7 @@ defmodule Metro.UserFactory do
           password_hash: "$2b$12$XLGRLrhRbzLiicATx7Zihe2hXdqrkpbN4cSwD.w0e/LpZtvh.TkcS",
           fines: 11.00,
           num_books_out: 0,
+          pending_notifications: 0,
           is_librarian?: false,
           library: build(:library),
         }

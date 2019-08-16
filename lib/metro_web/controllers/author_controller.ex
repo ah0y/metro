@@ -12,6 +12,7 @@ defmodule MetroWeb.AuthorController do
   use MetroWeb.ControllerAuthorization
 
   def index(conn, _params) do
+#    require IEx; IEx.pry()
     authors = Location.list_authors()
     render(conn, "index.html", authors: authors)
   end

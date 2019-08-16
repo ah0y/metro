@@ -25,6 +25,7 @@ defmodule Metro.Repo.Migrations.CreateCoherenceUser do
       add :fines, :float
       add :is_librarian?, :boolean, default: false
       add :num_books_out, :integer
+      add :pending_notifications, :integer, default: 0
 
       add :library_id, references(:libraries, on_delete: :nothing)
 
