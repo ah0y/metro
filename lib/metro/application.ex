@@ -12,6 +12,12 @@ defmodule Metro.Application do
       supervisor(Metro.Repo, []),
       # Start the endpoint when the application starts
       supervisor(MetroWeb.Endpoint, []),
+
+      worker(
+        Metro.PubSub.Listener,
+        ["user_notification", [name: Metro.PubSub.Listener]],
+        restart: :permanent
+      )
       # Start your own worker by calling: Metro.Worker.start_link(arg1, arg2, arg3)
       # worker(Metro.Worker, [arg1, arg2, arg3]),
     ]
