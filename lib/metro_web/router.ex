@@ -9,10 +9,11 @@ defmodule MetroWeb.Router do
     plug :accepts, ["html"]
     plug :fetch_session
     plug :fetch_flash
-    #    plug Phoenix.LiveView.Flash
+    plug Phoenix.LiveView.Flash
     plug :protect_from_forgery
     plug :put_secure_browser_headers
-    plug Coherence.Authentication.Session  # Add this
+    plug Coherence.Authentication.Session# Add this
+    plug MetroWeb.Plug.LogAuthenticatedUser, header_field_name: "user_id"
   end
 
   pipeline :protected do

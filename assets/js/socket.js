@@ -11,15 +11,13 @@ let socket = null;
 
 let userId = window.userId;
 
-console.log(userId)
-
 if (document.querySelector("meta[name=user_token]")) {
-
     socket = new Socket("/socket", {
         params: {
             token: document.querySelector("meta[name=user_token]").content
         }
     });
+
     socket.connect();
 
     let channel = socket.channel(`notifications:${userId}`, {});

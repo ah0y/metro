@@ -23,7 +23,7 @@ defmodule MetroWeb do
       import Plug.Conn
       alias MetroWeb.Router.Helpers, as: Routes
       import MetroWeb.Gettext
-#      import Phoenix.LiveView.Controller, only: [live_render: 3]
+      import Phoenix.LiveView.Controller, only: [live_render: 3]
       import Canary.Plugs
     end
   end
@@ -35,7 +35,7 @@ defmodule MetroWeb do
 
       # Import convenience functions from controllers
       import Phoenix.Controller, only: [get_flash: 2, view_module: 1]
-#      import Phoenix.LiveView, only: [live_render: 2, live_render: 3]
+      import Phoenix.LiveView, only: [live_render: 2, live_render: 3]
 
       # Use all HTML functionality (forms, tags, etc)
       use Phoenix.HTML
@@ -51,7 +51,7 @@ defmodule MetroWeb do
       use Phoenix.Router
       import Plug.Conn
       import Phoenix.Controller
-#      import Phoenix.LiveView.Router
+      import Phoenix.LiveView.Router
     end
   end
 

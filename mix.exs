@@ -50,7 +50,7 @@ defmodule Metro.Mixfile do
       {:businex, "~> 0.2.0"},
       {:scrivener_ecto, "~> 2.2.0"},
       {:scrivener_html, "~> 1.8.1"},
-#      {:phoenix_live_view, github: "phoenixframework/phoenix_live_view"}
+      {:phoenix_live_view, github: "phoenixframework/phoenix_live_view"}
     ]
   end
 
