@@ -150,4 +150,17 @@ h3 {
 }
 
 
+ul {
+
+}
+
+li {
+    border-top: 1px solid #ddd;
+    padding: 5px;
+}
+li:first-child {
+    border-top: 0;
+}
+
+
 

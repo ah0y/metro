@@ -31,7 +31,9 @@ if (document.querySelector("meta[name=user_token]")) {
         });
 
     channel.on('new_notification', payload => {
-        console.log("ding")
+        console.log("ding");
+        console.log(payload)
+        document.getElementById("noti_Counter").innerHTML = parseInt(document.getElementById("noti_Counter").innerHTML) + 1
     });
 }
 // When you connect, you'll often need to authenticate the client.
