@@ -30,8 +30,9 @@ defmodule MetroWeb do
 
   def view do
     quote do
-      use Phoenix.View, root: "lib/metro_web/templates",
-                        namespace: MetroWeb
+      use Phoenix.View,
+          root: "lib/metro_web/templates",
+          namespace: MetroWeb
 
       # Import convenience functions from controllers
       import Phoenix.Controller, only: [get_flash: 2, view_module: 1]
@@ -39,6 +40,10 @@ defmodule MetroWeb do
 
       # Use all HTML functionality (forms, tags, etc)
       use Phoenix.HTML
+
+      def render_shared(template, assigns \\ []) do
+        render(MetroWeb.SharedView, template, assigns)
+      end
 
       alias MetroWeb.Router.Helpers, as: Routes
       import MetroWeb.ErrorHelpers

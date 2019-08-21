@@ -49,7 +49,7 @@ config :metro,
            ~r{priv/gettext/.*(po)$},
            ~r{lib/metro_web/views/.*(ex)$},
            ~r{lib/metro_web/templates/.*(eex)$},
-           ~r{lib/metro_web/live/.*(ex)$}
+           ~r{lib/my_app_web/live/.*(ex)$}
          ]
        ]
 

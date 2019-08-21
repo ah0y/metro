@@ -20,4 +20,8 @@ defmodule Metro.Notification.Alert do
     |> cast(attrs, [:notification_object_id, :notifier_id])
     |> validate_required([:notification_object_id, :notifier_id])
   end
+
+  def list_notifications() do
+    [%{description: "Notification!"}]
+  end
 end

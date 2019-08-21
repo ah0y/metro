@@ -79,6 +79,7 @@ defmodule Metro.PubSub.Listener do
                         end
                       )
                    |> Metro.Repo.transaction()
+    MetroWeb.Endpoint.broadcast! "notifications:#{user}", "new_notification", %{body: "notification"}
   end
 
 
@@ -123,6 +124,8 @@ defmodule Metro.PubSub.Listener do
                         end
                       )
                    |> Metro.Repo.transaction()
+    MetroWeb.Endpoint.broadcast! "notifications:#{user}", "new_notification", %{body: "notification"}
+
   end
 
   @doc """
@@ -169,6 +172,8 @@ defmodule Metro.PubSub.Listener do
                         end
                       )
                    |> Metro.Repo.transaction()
+    MetroWeb.Endpoint.broadcast! "notifications:#{user}", "new_notification", %{body: "notification"}
+
   end
 
   @doc """
@@ -215,6 +220,7 @@ defmodule Metro.PubSub.Listener do
                         end
                       )
                    |> Metro.Repo.transaction()
+    MetroWeb.Endpoint.broadcast! "notifications:#{user}", "new_notification", %{body: "notification"}
   end
 
   def handle_changes(payload), do: nil
