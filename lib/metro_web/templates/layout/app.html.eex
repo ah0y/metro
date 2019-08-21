@@ -25,7 +25,7 @@
   <body>
     <div class="container">
       <header class="header">
-        <%= live_render(@conn, MetroWeb.NavbarLive)%>
+        <%= live_render(@conn, MetroWeb.NavbarLive, session: %{current_user: @conn.assigns.current_user})%>
           <ul class="nav nav-pills pull-right">
             <li><a href="http://www.phoenixframework.org/docs">Get Started</a></li>
           </ul>

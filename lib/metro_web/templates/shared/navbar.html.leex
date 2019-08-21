@@ -1,56 +1,7 @@
 <nav role="navigation">
     <div class="breadcrumb text-right">
         <%= link "books", to: Routes.book_path(@socket, :index), class: "ml-auto", style: "padding-right: 7px;" %>
-        <%= if Map.has_key?(@socket.assigns, :current_user) do %>
-        <%= if @socket.assigns.current_user.is_librarian? do %>
-        <div class="dropdown" style="display:inline-block;">
-            <a class="dropdown-toggle" role="button" data-toggle="dropdown">
-                admin
-            </a>
-            <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
-                <%= link "work", to: Routes.work_path(@socket, :index), class: "dropdown-item"%>
-                <%= link "transit", to: Routes.transit_path(@socket, :index), class: "dropdown-item"%>
-                <%= link "copies", to: Routes.copy_path(@socket, :index), class: "dropdown-item"%>
-                <%= link "waitlist", to: Routes.waitlist_path(@socket, :index), class: "dropdown-item"%>
-                <%= link "checkouts", to: Routes.checkout_path(@socket, :index), class: "dropdown-item"%>
-            </ul>
-        </div>
-        <% end %>
-        <div>
-            <li id="noti_Container">
-                <div id="noti_Counter"></div>   <!--SHOW NOTIFICATIONS COUNT.-->
-
-                <!--A CIRCLE LIKE BUTTON TO DISPLAY NOTIFICATION DROPDOWN.-->
-                <div id="noti_Button"></div>
-
-                <!--THE NOTIFICAIONS DROPDOWN BOX.-->
-                <div id="notifications">
-                    <h3>Notifications</h3>
-                    <div style="height:300px;">
-                        <ul style='text-align: left; list-style: none;'>
-                            <%= for notif <- @notifications do %>
-                            <div><%= notif.description %></div>
-                            <% end %>
-                        </ul>
-                    </div>
-                    <div class="seeAll"><a href="#">See All</a></div>
-                </div>
-        </div>
-
-        <div class="dropdown" style="display:inline-block;">
-            <a class="dropdown-toggle" role="button" data-toggle="dropdown">
-                <%= @socket.assigns.current_user.name %><span style="color:red"></span>
-            </a>
-            <ul class="dropdown-menu  dropdown-menu-right" aria-labelledby="dropdownMenuLink">
-                <%= link "profile", to: Routes.user_path(@socket, :show, @socket.assigns.current_user.id) , class:
-                "dropdown-item" %>
-                <%= link "log out", to: Routes.session_path(@socket, :delete), method: "delete", class: "dropdown-item"
-                %>
-            </ul>
-        </div>
-        <% else %>
         <%= link "register", to: Routes.registration_path(@socket, :new), class: "dropdown-item" %>
         <%= link "log in", to: Routes.session_path(@socket, :new), class: "dropdown-item" %>
-        <% end %>
     </div>
 </nav>
