@@ -25,7 +25,7 @@
   <body>
     <div class="container">
       <header class="header">
-        <%= live_render(@conn, MetroWeb.NavbarLive, session: %{user_id: @conn.assigns.user_id})%>
+        <%= render_shared "navbar.html", assigns %>
           <ul class="nav nav-pills pull-right">
             <li><a href="http://www.phoenixframework.org/docs">Get Started</a></li>
           </ul>

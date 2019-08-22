@@ -1,0 +1,33 @@
+       <nav role="navigation">
+            <div class="breadcrumb text-right">
+               <%= link "books", to: Routes.book_path(@conn, :index), class: "ml-auto", style: "padding-right: 7px;" %>
+               <%= if Coherence.current_user_name(@conn) do %>
+                         <%= if @conn.assigns.current_user.is_librarian? do %>
+                            <div class="dropdown" style="display:inline-block;">
+                                  <a class="dropdown-toggle" role="button" data-toggle="dropdown">
+                                      admin
+                                  </a>
+                                  <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
+                                      <%= link "work", to: Routes.work_path(@conn, :index), class: "dropdown-item"%>
+                                      <%= link "transit", to: Routes.transit_path(@conn, :index), class: "dropdown-item"%>
+                                      <%= link "copies", to: Routes.copy_path(@conn, :index), class: "dropdown-item"%>
+                                      <%= link "waitlist", to: Routes.waitlist_path(@conn, :index), class: "dropdown-item"%>
+                                      <%= link "checkouts", to: Routes.checkout_path(@conn, :index), class: "dropdown-item"%>
+                                  </ul>
+                           </div>
+                         <% end %>
+                            <div class="dropdown" style="display:inline-block;">
+                                  <a class="dropdown-toggle" role="button" data-toggle="dropdown">
+                                    <%= Coherence.current_user_name(@conn) %><span style="color:red"></span>
+                                </a>
+                                  <ul class="dropdown-menu  dropdown-menu-right" aria-labelledby="dropdownMenuLink">
+                                    <%= link "profile", to: Routes.user_path(@conn, :show, Coherence.current_user(@conn) ) , class: "dropdown-item" %>
+                                    <%= link "log out", to: Routes.session_path(@conn, :delete), method: "delete", class: "dropdown-item" %>
+                                </ul>
+                            </div>
+                            <% else %>
+                <%= link "register", to: Routes.registration_path(@conn, :new), class: "dropdown-item" %>
+                <%= link "log in", to: Routes.session_path(@conn, :new), class: "dropdown-item" %>
+               <% end %>
+            </div>
+        </nav>
