@@ -16,6 +16,7 @@
                                   </ul>
                            </div>
                          <% end %>
+                         <%= live_render(@conn, MetroWeb.NotificationsLive)%>
                             <div class="dropdown" style="display:inline-block;">
                                   <a class="dropdown-toggle" role="button" data-toggle="dropdown">
                                     <%= Coherence.current_user_name(@conn) %><span style="color:red"></span>

@@ -5,37 +5,8 @@
 // and connect at the socket path in "lib/web/endpoint.ex":
 import {Socket} from "phoenix"
 
-// let socket = new Socket("/socket", {params: {token: window.userToken}})
+let socket = new Socket("/socket", {params: {token: window.userToken}})
 
-let socket = null;
-
-let userId = window.userId;
-
-if (document.querySelector("meta[name=user_token]")) {
-    socket = new Socket("/socket", {
-        params: {
-            token: document.querySelector("meta[name=user_token]").content
-        }
-    });
-
-    socket.connect();
-
-    let channel = socket.channel(`notifications:${userId}`, {});
-    channel.join()
-        .receive("ok", resp => {
-            console.log("Joined successfully", resp)
-            console.log(socket)
-        })
-        .receive("error", resp => {
-            console.log("Unable to join", resp)
-        });
-
-    channel.on('new_notification', payload => {
-        console.log("ding");
-        console.log(payload)
-        document.getElementById("noti_Counter").innerHTML = parseInt(document.getElementById("noti_Counter").innerHTML) + 1
-    });
-}
 // When you connect, you'll often need to authenticate the client.
 // For example, imagine you have an authentication plug, `MyAuth`,
 // which authenticates the session and assigns a `:current_user`.
@@ -80,7 +51,12 @@ if (document.querySelector("meta[name=user_token]")) {
 // Finally, pass the token on connect as below. Or remove it
 // from connect if you don't care about authentication.
 
+socket.connect()
 
 // Now that you are connected, you can join channels with a topic:
+let channel = socket.channel("topic:subtopic", {})
+channel.join()
+    .receive("ok", resp => { console.log("Joined successfully", resp) })
+    .receive("error", resp => { console.log("Unable to join", resp) })
 
 export default socket

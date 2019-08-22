@@ -13,10 +13,11 @@ defmodule MetroWeb.NotificationsLive do
     {:ok, fetch(socket)}
   end
 
-  #  def handle_info(%Phoenix.Socket.Broadcast{event: "notifications:1"}, socket) do
-  #    IO.puts "ding"
-  #    {:noreply, fetch(socket)}
-  #  end
+  def handle_info(%{event: "notifications:1", payload: state}, socket) do
+    require IEx; IEx.pry()
+    IO.puts "ding"
+    {:noreply, fetch(socket)}
+  end
 
   defp fetch(socket) do
     assign(socket, notifications: Alert.list_notifications())
