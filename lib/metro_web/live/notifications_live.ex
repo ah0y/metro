@@ -9,13 +9,19 @@ defmodule MetroWeb.NotificationsLive do
   end
 
 
-  def mount(_session, socket) do
+  def mount(session, socket) do
+    if connected?(socket) do
+      IO.inspect session
+      Metro.PubSub.Listener.subscribe(session.current_user)
+    end
     {:ok, fetch(socket)}
   end
 
-  def handle_info(%{event: "notifications:1", payload: state}, socket) do
-    require IEx; IEx.pry()
-    IO.puts "ding"
+  def handle_info(
+        {Metro.PubSub.Listener, "new_notification", %{body: notification}},
+        socket
+      ) do
+    IO.puts "luck"
     {:noreply, fetch(socket)}
   end
 

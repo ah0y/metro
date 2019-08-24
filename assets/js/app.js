@@ -19,36 +19,16 @@ import LiveSocket from "phoenix_live_view"
 if (document.querySelector("meta[name=user_token]")) {
 
 
-    const liveSocket = new LiveSocket("/live",
-        {
-            params: {
-                token: document.querySelector("meta[name=user_token]").content
-            }
-        })
-    liveSocket.connect()
-
-// let socket = new Socket("/socket", {params: {token: window.userToken}})
-
-// let socket = null;
+    const liveSocket = new LiveSocket("/live");
+    liveSocket.connect();
 
     let userId = window.userId;
 
-    // socket.connect();
-
     let channel = liveSocket.channel(`notifications:${userId}`, {});
-    // channel.join()
-    //     .receive("ok", resp => {
-    //         console.log("Joined successfully", resp)
-    //         console.log(socket)
-    //     })
-    //     .receive("error", resp => {
-    //         console.log("Unable to join", resp)
-    //     });
 
     channel.on('new_notification', payload => {
-        console.log("ding");
-        console.log(payload)
-        document.getElementById("noti_Counter").innerHTML = parseInt(document.getElementById("noti_Counter").innerHTML) + 1
+        console.log(payload);
+        // document.getElementById("noti_Counter").innerHTML = parseInt(document.getElementById("noti_Counter").innerHTML) + 1
     });
 }
 

@@ -6,6 +6,8 @@ defmodule Metro.PubSub.Listener do
   import Jason, only: [decode!: 1]
   import Ecto.Changeset, only: [change: 2]
 
+  @topic inspect(__MODULE__)
+
 
   @doc """
   Initialize the GenServer
@@ -23,6 +25,10 @@ defmodule Metro.PubSub.Listener do
     {:ok, pid} = Postgrex.Notifications.start_link(pg_config)
     {:ok, ref} = Postgrex.Notifications.listen(pid, channel)
     {:ok, {pid, channel, ref}}
+  end
+
+  def subscribe(user_id) do
+    Phoenix.PubSub.subscribe(Metro.PubSub, "notifications:" <> "#{user_id}")
   end
 
   @doc """
@@ -79,7 +85,8 @@ defmodule Metro.PubSub.Listener do
                         end
                       )
                    |> Metro.Repo.transaction()
-    MetroWeb.Endpoint.broadcast! "notifications:#{user}", "new_notification", %{body: "notification"}
+    Phoenix.PubSub.broadcast(Metro.PubSub, "notifications:#{user}", {__MODULE__, "new_notification", %{body: "notification"}})
+    {:ok, %{body: "Checkout created and in transit"}}
   end
 
 
@@ -124,8 +131,8 @@ defmodule Metro.PubSub.Listener do
                         end
                       )
                    |> Metro.Repo.transaction()
-    MetroWeb.Endpoint.broadcast! "notifications:#{user}", "new_notification", %{body: "notification"}
-
+    Phoenix.PubSub.broadcast(Metro.PubSub, "notifications:#{user}", {__MODULE__, "new_notification", %{body: "notification"}})
+    {:ok, %{body: "Checkout created and user on waitlist"}}
   end
 
   @doc """
@@ -172,8 +179,8 @@ defmodule Metro.PubSub.Listener do
                         end
                       )
                    |> Metro.Repo.transaction()
-    MetroWeb.Endpoint.broadcast! "notifications:#{user}", "new_notification", %{body: "notification"}
-
+    Phoenix.PubSub.broadcast(Metro.PubSub, "notifications:#{user}", {__MODULE__, "new_notification", %{body: "notification"}})
+    {:ok, %{body: "Book is now in transit"}}
   end
 
   @doc """
@@ -220,8 +227,9 @@ defmodule Metro.PubSub.Listener do
                         end
                       )
                    |> Metro.Repo.transaction()
-    MetroWeb.Endpoint.broadcast! "notifications:#{user}", "new_notification", %{body: "notification"}
-  end
+    Phoenix.PubSub.broadcast(Metro.PubSub, "notifications:#{user}", {__MODULE__, "new_notification", %{body: "notification"}})
+    {:ok, %{body: "Book is now ready for pickup"}}
+    end
 
   def handle_changes(payload), do: nil
 end
