@@ -10,6 +10,7 @@ defmodule Metro.Notification.Alert do
 
     belongs_to :notification_object, Object, foreign_key: :notification_object_id
     belongs_to :user, Metro.Account.User, foreign_key: :notifier_id
+    field :description, :string
 
     timestamps()
   end
@@ -17,11 +18,11 @@ defmodule Metro.Notification.Alert do
   @doc false
   def changeset(alert, attrs) do
     alert
-    |> cast(attrs, [:notification_object_id, :notifier_id])
+    |> cast(attrs, [:description, :notification_object_id, :notifier_id])
     |> validate_required([:notification_object_id, :notifier_id])
   end
 
-  def list_notifications() do
-    [%{description: "Notification!"}]
-  end
+#  def list_notifications() do
+#    [%{description: "Notification!"}]
+#  end
 end

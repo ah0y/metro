@@ -1,7 +1,7 @@
 defmodule MetroWeb.NotificationsLive do
   use Phoenix.LiveView
 
-  alias Metro.Notification.Alert
+  alias Metro.Notification.Notification
   alias MetroWeb.SharedView
 
   def render(assigns) do
@@ -11,21 +11,20 @@ defmodule MetroWeb.NotificationsLive do
 
   def mount(session, socket) do
     if connected?(socket) do
-      IO.inspect session
       Metro.PubSub.Listener.subscribe(session.current_user)
     end
-    {:ok, fetch(socket)}
+    user = Metro.Account.get_user!(session.current_user)
+    {:ok, fetch(session.current_user, user.pending_notifications, socket)}
   end
 
   def handle_info(
-        {Metro.PubSub.Listener, "new_notification", %{body: notification}},
+        {Metro.PubSub.Listener, "new_notification", %{notification: notification, to: user, pending: pending}},
         socket
       ) do
-    IO.puts "luck"
-    {:noreply, fetch(socket)}
+    {:noreply, fetch(user, pending, socket)}
   end
 
-  defp fetch(socket) do
-    assign(socket, notifications: Alert.list_notifications())
+  defp fetch(user, pending, socket) do
+    assign(socket, notifications: Notification.for(user), pending: pending)
   end
 end

@@ -5,6 +5,7 @@ defmodule Metro.PubSub.Listener do
 
   import Jason, only: [decode!: 1]
   import Ecto.Changeset, only: [change: 2]
+  import Ecto.Query
 
   @topic inspect(__MODULE__)
 
@@ -55,6 +56,8 @@ defmodule Metro.PubSub.Listener do
             "id" => checkout,
             "user_id" => user,
             "copy_id" => copy,
+            "library_id" => library,
+            "isbn_id" => isbn,
             "checkout_date" => checkout_date
           }
         }
@@ -71,69 +74,53 @@ defmodule Metro.PubSub.Listener do
                         :alert,
                         fn _, %{object: object} ->
                           Metro.Repo.insert(
-                            %Metro.Notification.Alert{notification_object_id: object.id, notifier_id: user}
+                            %Metro.Notification.Alert{
+                              notification_object_id: object.id,
+                              notifier_id: user,
+                              description: "#{isbn} is in transit to #{library}"
+                            }
                           )
                         end
                       )
                    |> Ecto.Multi.run(
                         :user,
                         fn _, _ ->
-                          Metro.Account.update_user(
-                            Metro.Account.get_user!(user),
-                            %{pending_notifications: Metro.Account.get_user!(user).pending_notifications + 1}
+                        Metro.Repo.update(
+                          from(
+                            u in Metro.Account.User,
+                            where: u.id == ^user,
+                            update: [
+                              inc: [
+                                pending_notifications: 1
+                              ]
+                            ]
                           )
+                        )
                         end
                       )
                    |> Metro.Repo.transaction()
-    Phoenix.PubSub.broadcast(Metro.PubSub, "notifications:#{user}", {__MODULE__, "new_notification", %{body: "notification"}})
-    {:ok, %{body: "Checkout created and in transit"}}
+                   |> case do
+                        {:ok, %{object: _, alert: _, user: updated_user}} ->
+                          Phoenix.PubSub.broadcast(
+                            Metro.PubSub,
+                            "notifications:#{user}",
+                            {
+                              __MODULE__,
+                              "new_notification",
+                              %{
+                                notification: "#{
+                                  isbn
+                                } is in transit to #{library}",
+                                to: user,
+                                pending:
+                                  updated_user.pending_notifications
+                              }
+                            }
+                          )
+                      end
+    {:ok, %{notification: "Checkout created and in transit"}}
   end
 
-
-  @doc """
-  Listen for new users and log when created
-  """
-  def handle_changes(
-        %{
-          "table" => "checkouts",
-          "type" => "INSERT",
-          "new_row_data" => %{
-            "id" => checkout,
-            "user_id" => user,
-            "copy_id" => copy,
-            "checkout_date" => checkout_date
-          }
-        }
-      ) when copy == nil and checkout_date == nil do
-    IO.puts("Checkout created and user on waitlist")
-
-    notification = Ecto.Multi.new
-                   |> Ecto.Multi.run(
-                        :object,
-                        fn _, _ -> Metro.Repo.insert(%Metro.Notification.Object{entity_id: 2, entity_type_id: checkout})
-                        end
-                      )
-                   |> Ecto.Multi.run(
-                        :alert,
-                        fn _, %{object: object} ->
-                          Metro.Repo.insert(
-                            %Metro.Notification.Alert{notification_object_id: object.id, notifier_id: user}
-                          )
-                        end
-                      )
-                   |> Ecto.Multi.run(
-                        :user,
-                        fn _, _ ->
-                          Metro.Account.update_user(
-                            Metro.Account.get_user!(user),
-                            %{pending_notifications: Metro.Account.get_user!(user).pending_notifications + 1}
-                          )
-                        end
-                      )
-                   |> Metro.Repo.transaction()
-    Phoenix.PubSub.broadcast(Metro.PubSub, "notifications:#{user}", {__MODULE__, "new_notification", %{body: "notification"}})
-    {:ok, %{body: "Checkout created and user on waitlist"}}
-  end
 
   @doc """
   Listen and log when users change their payment plan
@@ -148,6 +135,8 @@ defmodule Metro.PubSub.Listener do
           },
           "new_row_data" => %{
             "id" => checkout,
+            "isbn_id" => isbn,
+            "library_id" => library,
             "user_id" => user,
             "copy_id" => new_copy,
           },
@@ -165,22 +154,49 @@ defmodule Metro.PubSub.Listener do
                         :alert,
                         fn _, %{object: object} ->
                           Metro.Repo.insert(
-                            %Metro.Notification.Alert{notification_object_id: object.id, notifier_id: user}
+                            %Metro.Notification.Alert{
+                              notification_object_id: object.id,
+                              notifier_id: user,
+                              description: "#{isbn} is now in transit to library: #{library}"
+                            }
                           )
                         end
                       )
                    |> Ecto.Multi.run(
                         :user,
                         fn _, _ ->
-                          Metro.Account.update_user(
-                            Metro.Account.get_user!(user),
-                            %{pending_notifications: Metro.Account.get_user!(user).pending_notifications + 1}
+                          Metro.Repo.update(
+                            from(
+                              u in Metro.Account.User,
+                              where: u.id == ^user,
+                              update: [
+                                inc: [
+                                  pending_notifications: 1
+                                ]
+                              ]
+                            )
                           )
                         end
                       )
                    |> Metro.Repo.transaction()
-    Phoenix.PubSub.broadcast(Metro.PubSub, "notifications:#{user}", {__MODULE__, "new_notification", %{body: "notification"}})
-    {:ok, %{body: "Book is now in transit"}}
+                   |> case do
+                        {:ok, %{object: _, alert: _, user: updated_user}} ->
+                          Phoenix.PubSub.broadcast(
+                            Metro.PubSub,
+                            "notifications:#{user}",
+                            {
+                              __MODULE__,
+                              "new_notification",
+                              %{
+                                notification: "#{isbn} is now in transit to library: #{library}",
+                                to: user,
+                                pending:
+                                  updated_user.pending_notifications
+                              }
+                            }
+                          )
+                      end
+    {:ok, %{notification: "Book is now in transit"}}
   end
 
   @doc """
@@ -195,6 +211,8 @@ defmodule Metro.PubSub.Listener do
           },
           "new_row_data" => %{
             "id" => reservation,
+            "isbn_id" => isbn,
+            "library_id" => library,
             "user_id" => user,
             "expiration_date" => new_expiration,
           },
@@ -213,23 +231,54 @@ defmodule Metro.PubSub.Listener do
                         :alert,
                         fn _, %{object: object} ->
                           Metro.Repo.insert(
-                            %Metro.Notification.Alert{notification_object_id: object.id, notifier_id: user}
+                            %Metro.Notification.Alert{
+                              notification_object_id: object.id,
+                              notifier_id: user,
+                              description: "#{isbn} is now ready for pickup at library: #{library}"
+                            }
                           )
                         end
                       )
                    |> Ecto.Multi.run(
                         :user,
                         fn _, _ ->
-                          Metro.Account.update_user(
-                            Metro.Account.get_user!(user),
-                            %{pending_notifications: Metro.Account.get_user!(user).pending_notifications + 1}
+                          Metro.Repo.update(
+                            from(
+                              u in Metro.Account.User,
+                              where: u.id == ^user,
+                              update: [
+                                inc: [
+                                  pending_notifications: 1
+                                ]
+                              ]
+                            )
                           )
                         end
                       )
                    |> Metro.Repo.transaction()
-    Phoenix.PubSub.broadcast(Metro.PubSub, "notifications:#{user}", {__MODULE__, "new_notification", %{body: "notification"}})
-    {:ok, %{body: "Book is now ready for pickup"}}
-    end
+                   |> case do
+                        {:ok, %{object: _, alert: _, user: updated_user}} ->
+                          Phoenix.PubSub.broadcast(
+                            Metro.PubSub,
+                            "notifications:#{user}",
+                            {
+                              __MODULE__,
+                              "new_notification",
+                              %{
+                                notification: "#{
+                                  isbn
+                                } is now ready for pickup at library: #{
+                                  library
+                                }",
+                                to: user,
+                                pending:
+                                  updated_user.pending_notifications
+                              }
+                            }
+                          )
+                      end
+    {:ok, %{notification: "Book is now ready for pickup"}}
+  end
 
   def handle_changes(payload), do: nil
 end

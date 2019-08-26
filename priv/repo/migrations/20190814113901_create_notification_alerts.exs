@@ -5,6 +5,7 @@ defmodule Metro.Repo.Migrations.CreateNotificationAlerts do
     create table(:notification_alerts) do
       add :notification_object_id, references(:notification_objects, on_delete: :nothing)
       add :notifier_id, references(:users, on_delete: :nothing)
+      add :description, :string
 
       timestamps()
     end

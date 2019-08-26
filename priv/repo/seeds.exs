@@ -505,14 +505,32 @@ Metro.Repo.insert!(
 
 Metro.Repo.insert!(
   %User{
-    name: "abe",
-    email: "test@gmail.com",
+    name: "admin",
+    email: "admin@gmail.com",
     password: "password",
     password_hash: "$2b$12$yPfPx1nWGe3yb/UfLfPy.Op9REGVuZbVze85heRgsu9uAVj7/MTUK",
     fines: 0.00,
     num_books_out: 0,
     pending_notifications: 0,
     is_librarian?: true,
+    card:
+    %Card{
+      pin: "0123"
+    }
+  }
+)
+
+
+Metro.Repo.insert!(
+  %User{
+    name: "abe",
+    email: "abe@gmail.com",
+    password: "password",
+    password_hash: "$2b$12$yPfPx1nWGe3yb/UfLfPy.Op9REGVuZbVze85heRgsu9uAVj7/MTUK",
+    fines: 0.00,
+    num_books_out: 0,
+    pending_notifications: 0,
+    is_librarian?: false,
     card:
     %Card{
       pin: "0123"
