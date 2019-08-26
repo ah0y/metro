@@ -18,7 +18,8 @@ defmodule Metro.Account do
 
   """
   def list_cards do
-    Repo.all(Card) |> Repo.preload([{:user, :library}])
+    Repo.all(Card)
+    |> Repo.preload([{:user, :library}])
   end
 
   @doc """
@@ -35,7 +36,9 @@ defmodule Metro.Account do
       ** (Ecto.NoResultsError)
 
   """
-  def get_card!(id), do: Repo.get!(Card, id) |> Repo.preload([{:user, :library}])
+  def get_card!(id),
+      do: Repo.get!(Card, id)
+          |> Repo.preload([{:user, :library}])
 
   @doc """
   Gets a users card.
@@ -148,7 +151,9 @@ defmodule Metro.Account do
       ** (Ecto.NoResultsError)
 
   """
-  def get_user!(id), do: Repo.get!(User, id) |> Repo.preload(:card)
+  def get_user!(id),
+      do: Repo.get!(User, id)
+          |> Repo.preload(:card)
 
   @doc """
   Creates a user.
@@ -215,4 +220,26 @@ defmodule Metro.Account do
     User.changeset(user, %{})
   end
 
+  @doc """
+  Returns an `%Ecto.Changeset{}` for tracking user changes.
+
+  ## Examples
+
+      iex> update_pending(user)
+      %Ecto.Changeset{source: %User{}}
+
+  """
+  def increase_pending(user_id) do
+    query =
+      from(
+        u in Metro.Account.User,
+        where: u.id == ^user_id,
+        update: [
+          inc: [
+            pending_notifications: 1
+          ]
+        ]
+      )
+    {:ok, Repo.one(query)}
+  end
 end

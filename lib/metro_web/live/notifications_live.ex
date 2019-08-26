@@ -17,6 +17,20 @@ defmodule MetroWeb.NotificationsLive do
     {:ok, fetch(session.current_user, user.pending_notifications, socket)}
   end
 
+  def handle_event("clear", _, socket) do
+    IO.puts "clear"
+    IO.puts "clear"
+    IO.puts "clear"
+    IO.puts "clear"
+    IO.puts "clear"
+    IO.puts "clear"
+    IO.puts "clear"
+    IO.puts "clear"
+    IO.puts "clear"
+
+    {:noreply, update(socket, :pending, &(&1 + 1))}
+  end
+
   def handle_info(
         {Metro.PubSub.Listener, "new_notification", %{notification: notification, to: user, pending: pending}},
         socket
@@ -25,6 +39,7 @@ defmodule MetroWeb.NotificationsLive do
   end
 
   defp fetch(user, pending, socket) do
-    assign(socket, notifications: Notification.for(user), pending: pending)
+  {unread, seen} = Enum.split(Notification.for(user), pending)
+    assign(socket, seen: seen, unread: unread, pending: pending)
   end
 end

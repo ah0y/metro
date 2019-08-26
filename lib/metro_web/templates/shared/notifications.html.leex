@@ -1,20 +1,25 @@
-        <div>
-            <li id="noti_Container">
-                <div id="noti_Counter"></div>   <!--SHOW NOTIFICATIONS COUNT.-->
+<div>
+    <li id="noti_Container">
+        <div id="noti_Counter"> <%= @pending %>
+        </div>   <!--SHOW NOTIFICATIONS COUNT.-->
 
-                <!--A CIRCLE LIKE BUTTON TO DISPLAY NOTIFICATION DROPDOWN.-->
-                <div id="noti_Button"></div>
+        <!--A CIRCLE LIKE BUTTON TO DISPLAY NOTIFICATION DROPDOWN.-->
+        <div id="noti_Button" phx-click="clear"></div>
 
-                <!--THE NOTIFICAIONS DROPDOWN BOX.-->
-                <div id="notifications">
-                    <h3>Notifications</h3>
-                    <div style="height:300px;">
-                        <ul style='text-align: left; list-style: none;'>
-                            <%= for notif <- @notifications do %>
-                            <div><%= notif.description %></div>
-                            <% end %>
-                        </ul>
-                    </div>
-                    <div class="seeAll"><a href="#">See All</a></div>
-                </div>
+
+        <!--THE NOTIFICAIONS DROPDOWN BOX.-->
+        <div id="notifications">
+            <h3>Notifications</h3>
+            <div style="height:300px;">
+                <ul style='text-align: left; list-style: none;'>
+                    <%= for notif <- @unread do %>
+                    <div style="color: red;"><%= notif.description %></div>
+                    <% end %>
+                    <%= for notif <- @seen do %>
+                    <div><%= notif.description %></div>
+                    <% end %>
+                </ul>
+            </div>
+            <%= link "See All", to: Routes.user_path(MetroWeb.Endpoint, :show, 2) , class: "seeAll dropdown-item"%>
         </div>
+</div>

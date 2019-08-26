@@ -85,17 +85,7 @@ defmodule Metro.PubSub.Listener do
                    |> Ecto.Multi.run(
                         :user,
                         fn _, _ ->
-                        Metro.Repo.update(
-                          from(
-                            u in Metro.Account.User,
-                            where: u.id == ^user,
-                            update: [
-                              inc: [
-                                pending_notifications: 1
-                              ]
-                            ]
-                          )
-                        )
+                          Metro.Account.increase_pending(user)
                         end
                       )
                    |> Metro.Repo.transaction()
@@ -118,7 +108,6 @@ defmodule Metro.PubSub.Listener do
                             }
                           )
                       end
-    {:ok, %{notification: "Checkout created and in transit"}}
   end
 
 
@@ -128,7 +117,6 @@ defmodule Metro.PubSub.Listener do
   def handle_changes(
         %{
           "table" => "checkouts",
-          "id" => id,
           "type" => "UPDATE",
           "old_row_data" => %{
             "copy_id" => old_copy,
@@ -165,17 +153,7 @@ defmodule Metro.PubSub.Listener do
                    |> Ecto.Multi.run(
                         :user,
                         fn _, _ ->
-                          Metro.Repo.update(
-                            from(
-                              u in Metro.Account.User,
-                              where: u.id == ^user,
-                              update: [
-                                inc: [
-                                  pending_notifications: 1
-                                ]
-                              ]
-                            )
-                          )
+                          Metro.Account.increase_pending(user)
                         end
                       )
                    |> Metro.Repo.transaction()
@@ -196,7 +174,6 @@ defmodule Metro.PubSub.Listener do
                             }
                           )
                       end
-    {:ok, %{notification: "Book is now in transit"}}
   end
 
   @doc """
@@ -211,8 +188,6 @@ defmodule Metro.PubSub.Listener do
           },
           "new_row_data" => %{
             "id" => reservation,
-            "isbn_id" => isbn,
-            "library_id" => library,
             "user_id" => user,
             "expiration_date" => new_expiration,
           },
@@ -234,7 +209,7 @@ defmodule Metro.PubSub.Listener do
                             %Metro.Notification.Alert{
                               notification_object_id: object.id,
                               notifier_id: user,
-                              description: "#{isbn} is now ready for pickup at library: #{library}"
+                              description: "One of your books is now ready for pickup!"
                             }
                           )
                         end
@@ -242,17 +217,7 @@ defmodule Metro.PubSub.Listener do
                    |> Ecto.Multi.run(
                         :user,
                         fn _, _ ->
-                          Metro.Repo.update(
-                            from(
-                              u in Metro.Account.User,
-                              where: u.id == ^user,
-                              update: [
-                                inc: [
-                                  pending_notifications: 1
-                                ]
-                              ]
-                            )
-                          )
+                          Metro.Account.increase_pending(user)
                         end
                       )
                    |> Metro.Repo.transaction()
@@ -265,11 +230,7 @@ defmodule Metro.PubSub.Listener do
                               __MODULE__,
                               "new_notification",
                               %{
-                                notification: "#{
-                                  isbn
-                                } is now ready for pickup at library: #{
-                                  library
-                                }",
+                                notification: "One of your books is now ready for pickup!",
                                 to: user,
                                 pending:
                                   updated_user.pending_notifications
@@ -277,7 +238,6 @@ defmodule Metro.PubSub.Listener do
                             }
                           )
                       end
-    {:ok, %{notification: "Book is now ready for pickup"}}
   end
 
   def handle_changes(payload), do: nil

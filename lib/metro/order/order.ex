@@ -191,16 +191,16 @@ defmodule Metro.Order do
       {:error, %Ecto.Changeset{}}
 
   """
-  def create_order(user, attr, book) do
+  def create_order(user, attr, copy) do
     order = Ecto.Multi.new
-            |> Ecto.Multi.run(:checkout, fn _, _ -> Metro.Order.create_checkout(user, attr, book) end)
+            |> Ecto.Multi.run(:checkout, fn _, _ -> Metro.Order.create_checkout(user, attr, copy) end)
             |> Ecto.Multi.run(
                  :copy,
-                 fn _, _ -> Metro.Location.update_copy(book, %{checked_out?: true}) end
+                 fn _, _ -> Metro.Location.update_copy(copy, %{checked_out?: true}) end
                )
             |> Ecto.Multi.run(
                  :transit,
-                 fn _, %{checkout: checkout} -> Metro.Order.create_transit(checkout, book) end
+                 fn _, %{checkout: checkout} -> Metro.Order.create_transit(checkout, copy) end
                )
             |> Ecto.Multi.run(
                  :reservation,
