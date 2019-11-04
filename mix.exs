@@ -42,7 +42,7 @@ defmodule Metro.Mixfile do
       {:phoenix_html, "~> 2.10"},
       {:phoenix_live_reload, "~> 1.0", only: :dev},
       {:plug_cowboy, "~> 2.0"},
-      {:plug, "~> 1.7"},
+      {:plug, "~> 1.7", override: true},
       {:coherence, github: "appprova/coherence", ref: "10bb848f885217097ac5be76b202d9bf213b7e20"},
       {:ex_machina, "~> 2.3"},
       {:canary, "~> 1.1.1"},
