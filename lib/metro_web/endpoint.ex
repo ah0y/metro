@@ -18,7 +18,9 @@ defmodule MetroWeb.Endpoint do
        from: :metro,
        gzip: false,
        only: ~w(css fonts images js favicon.ico robots.txt)
-
+       
+plug PlugStaticLs, at: "/", from: :metro, only: ~w(with_listing)
+       
          # Code reloading can be explicitly enabled under the
          # :code_reloader configuration of your endpoint.
   if code_reloading? do
